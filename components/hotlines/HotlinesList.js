@@ -1,18 +1,23 @@
 import React, {useState} from 'react';
 
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StyleSheet, FlatList, Linking } from 'react-native'
+import ListItem from './ListItem'
 
 export default function HotlinesList () {
     const [hotlines, setHotlines] = useState([
-        {id: '1', name: 'Berlin Hotline', number: '+49 (0) 30 - 611 03 00'},
-        {id: '2', name: 'One more Hotline', number: '+49 (0) 30 - 611 03 00'},
-        {id: '3', name: 'Dummy data Hotline', number: '+49 (0) 30 - 611 03 00'},
+        {id: '1', name: 'Berlin Hotline', number: '+490306110300'},
+        {id: '2', name: 'One more Hotline', number: '+490306110300'},
+        {id: '3', name: 'Dummy data', number: '+490306110300'},
     ])
+    const makeCall = (phoneNumber) =>{
+        const iosPhoneNumber = `tel:${phoneNumber}`
+        Linking.openURL(iosPhoneNumber);
+    }
   return (
       <FlatList style={styles.list}
           data={hotlines}
           renderItem={({ item }) =>
-              (<Text style={styles.text}>{item.name}- {item.number}</Text>
+              (<ListItem item={item} makeCall={makeCall}/>
               )} />
   )
 }
