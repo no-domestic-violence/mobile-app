@@ -2,12 +2,14 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native'
 import Header from './components/header/Header'
 import HotlinesList from './components/hotlines/HotlinesList'
+import Nav from './components/navigation/Navigation'
 
 export default function App () {
   return (
     <View style ={styles.container}>
       <Header/>
       <HotlinesList/> 
+      <Nav/> 
     </View>
   )
 }
