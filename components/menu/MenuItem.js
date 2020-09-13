@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
-export default function NavigationItem ({item}) {
+export default function MenuItem ({item}) {
   return (
     <TouchableOpacity style ={styles.navItem}>
         <View style ={styles.navItemView}>

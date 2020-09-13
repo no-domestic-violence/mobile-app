@@ -1,22 +1,28 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native'
-import Header from './components/header/Header'
-import HotlinesList from './components/hotlines/HotlinesList'
-import Nav from './components/navigation/Navigation'
+import {View, StyleSheet} from 'react-native';
+import Header from './components/header/Header';
+import {NavigationContainer} from '@react-navigation/native';
+import {HomeNavigator} from './routes/HomeNavigator';
 
-export default function App () {
+import HotlinesList from './components/hotlines/HotlinesList';
+import Menu from './components/menu/Menu';
+
+export default function App() {
   return (
-    <View style ={styles.container}>
-      <Header/>
-      <HotlinesList/> 
-      <Nav/> 
+    <View style={styles.container}>
+      <Header />
+      <NavigationContainer>
+        <HomeNavigator />
+      </NavigationContainer>
+      <Menu />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      paddingTop: 50,
-      flex: 1, 
-    }
-  })
+  container: {
+    paddingTop: 50,
+    flex: 1,
+  },
+});
