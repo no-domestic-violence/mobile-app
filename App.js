@@ -3,14 +3,14 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 // import Header from './components/header/Header';
 import {NavigationContainer} from '@react-navigation/native';
-import BottomTabNavigator from './routes/TabNavigator';
+import AppNavigation from './routes/AppNavigator';
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <Header /> */}
       <NavigationContainer>
-        <BottomTabNavigator />
+        <AppNavigation />
       </NavigationContainer>
     </View>
   );

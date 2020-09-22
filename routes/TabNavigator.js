@@ -4,7 +4,7 @@ import {
   HomeStackNavigator,
   HotlinesStackNavigator,
   ContentStackNavigator,
-} from './AppNavigator';
+} from './StackNavigator';
 import {faPhone, faHome, faBook} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
