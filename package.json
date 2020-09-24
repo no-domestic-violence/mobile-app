@@ -15,19 +15,26 @@
     "@react-navigation/bottom-tabs": "^5.8.0",
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.9.0",
-    "expo": "~39.0.2",
+    "expo": "^39.0.3",
+    "expo-localization": "~9.0.0",
     "expo-status-bar": "~1.0.2",
+    "i18n-js": "^3.7.1",
+    "lodash.memoize": "^4.1.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.2.tar.gz",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-onboarding-swiper": "^1.1.4",
     "react-native-screens": "^2.11.0",
-    "react-native-web": "~0.13.12",
-    "react-native-svg": "^12.1.0"
+    "react-native-svg": "^12.1.0",
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint-import-resolver-babel-module": "^5.1.2",
+    "eslint-plugin-import": "^2.22.0",
+    "metro-react-native-babel-preset": "^0.63.0"
   },
   "private": true
 }

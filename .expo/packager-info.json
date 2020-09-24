@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 52396,
-  "expoServerNgrokUrl": "https://8z-cer.anonymous.mobileapp.exp.direct",
-  "packagerNgrokUrl": "https://packager.8z-cer.anonymous.mobileapp.exp.direct",
-  "ngrokPid": 52648
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

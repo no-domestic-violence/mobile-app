@@ -4,7 +4,7 @@ import BottomTabNavigator from './TabNavigator';
 import {OnboardingNavigator} from './StackNavigator';
 
 export default function AppNavigation() {
-  const [isOnboarded, setIsOnboarded] = useState(false);
+  const [isOnboarded, setIsOnboarded] = useState(true);
 
   if (!isOnboarded) {
     return <OnboardingNavigator />;
