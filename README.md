@@ -1,14 +1,16 @@
-# ** Pool Project**
+# Pool Project
 
-### Description: React Native app which helps to fight domestic violence
+### Description:
 
-** Tech Stack **
+React Native app which helps to fight domestic violence
+
+**Tech Stack**
 
 - React Native with Expo
 
 ---
 
-** To run locally **
+**To run locally**
 
 1. Install dependencies:
 

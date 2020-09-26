@@ -2,7 +2,7 @@ name: Expo Publish on Staging
 on:
   push:
     branches:
-      - staging
+      - epic*
 jobs:
   publish:
     name: Install and publish
