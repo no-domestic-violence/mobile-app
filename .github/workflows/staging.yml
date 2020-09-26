@@ -2,9 +2,7 @@ name: Expo Publish on Staging
 on:
   push:
     branches:
-      - develop
-      - setting-github-actions
-      -
+      - staging
 jobs:
   publish:
     name: Install and publish

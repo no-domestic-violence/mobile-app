@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mobile-app",
-    "slug": "mobile-app",
+    "name": "pool-mobile-app",
+    "slug": "pool-mobile-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "src/assets/icon.png",
@@ -15,7 +15,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "pool-ios"
     },
     "web": {
       "favicon": "src/assets/favicon.png"
