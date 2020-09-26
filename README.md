@@ -1,14 +1,23 @@
-Install dependencies:
+# ** Pool Project**
+
+### Description: React Native app which helps to fight domestic violence
+
+** Tech Stack **
+
+- React Native with Expo
+
+---
+
+** To run locally **
+
+1. Install dependencies:
+
 ```s
 yarn install
 ```
 
-To run locally for IOS:
-```s
-react-native run-ios
-```
+2. Start environment
 
-To run locally for Android:
 ```s
-react-native run-android
+yarn start
 ```
