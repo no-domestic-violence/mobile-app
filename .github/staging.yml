@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - develop
+      - setting-github-actions
+      -
 jobs:
   publish:
     name: Install and publish
