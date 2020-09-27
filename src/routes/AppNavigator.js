@@ -7,7 +7,7 @@ import {OnboardingNavigator} from './StackNavigator';
 
 
 export default function AppNavigation() {
-  const [isOnboarded, setIsOnboarded] = useState(true);
+  const [isOnboarded, setIsOnboarded] = useState(false);
 
   if (!isOnboarded) {
     return <OnboardingNavigator />;
