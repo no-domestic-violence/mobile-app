@@ -11,8 +11,8 @@ const OnboardingScreen = ({navigation}) => (
       {
         backgroundColor: '#fff',
         image: <Image source={require('assets/images/circle.png')} />,
-        title: 'Language',
-        subtitle: 'Here is the languige picker',
+        title: "Language",
+        subtitle: 'Here is the languige picker', 
       },
       {
         backgroundColor: '#fe6e58',

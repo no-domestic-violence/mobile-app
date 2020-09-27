@@ -3,7 +3,7 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 // import Header from './components/header/Header';
 import {NavigationContainer} from '@react-navigation/native';
-import AppNavigation from './src/routes/AppNavigator';
+import AppNavigation from './routes/AppNavigator';
 
 export default function App() {
   return (
