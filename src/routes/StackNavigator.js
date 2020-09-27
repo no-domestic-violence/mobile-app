@@ -6,6 +6,7 @@ import HomeScreen from 'screens/Home';
 import SosContactForm from 'screens/SosContactForm';
 import Hotlines from 'screens/Hotlines';
 import Content from 'screens/Content';
+import Login from 'screens/Login';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export const OnboardingNavigator = () => {
     <Stack.Navigator>
       {/* figure out where the right place for onboarding screen  */}
       <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+      <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   );
 };

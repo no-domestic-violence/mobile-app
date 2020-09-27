@@ -1,17 +1,30 @@
 import React from 'react';
-import {Image} from 'react-native';
-
+import {AsyncStorage, Image} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 
 const OnboardingScreen = ({navigation}) => (
   <Onboarding
-    onDone={() => navigation.navigate('Home')}
+    // #TODO make it dry
+    onDone={async () => {
+      await AsyncStorage.setItem(
+        'hasOnboarded',
+        JSON.stringify({hasOnboarded: true}),
+        navigation.navigate('Login'),
+      );
+    }}
+    onSkip={async () => {
+      await AsyncStorage.setItem(
+        'hasOnboarded',
+        JSON.stringify({hasOnboarded: true}),
+        navigation.navigate('Login'),
+      );
+    }}
     pages={[
       {
         backgroundColor: '#fff',
         image: <Image source={require('assets/images/circle.png')} />,
-        title: "Language",
-        subtitle: 'Here is the languige picker', 
+        title: 'Language',
+        subtitle: 'Here is the languige picker',
       },
       {
         backgroundColor: '#fe6e58',
