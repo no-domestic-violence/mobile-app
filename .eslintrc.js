@@ -5,9 +5,18 @@ module.exports = {
     "plugin:import/errors",
     "plugin:import/warnings"
   ],
-  "settings": {
+  settings: {
     "import/resolver": {
-      "babel-module": {}
+      "babel-module": {},
+      node: {
+        paths: ["src"],
+        alias: {
+          _assets: "./src/assets/",
+          _components: "./src/components/",
+          _routes: "./src/routes/",
+          _screens: "./src/screens/"
+        }
+      }
     }
   }
 };
