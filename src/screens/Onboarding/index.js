@@ -3,7 +3,6 @@ import {Image} from 'react-native';
 
 import Onboarding from 'react-native-onboarding-swiper';
 
-
 const OnboardingScreen = ({navigation}) => (
   <Onboarding
     onDone={() => navigation.navigate('Home')}
@@ -26,6 +25,12 @@ const OnboardingScreen = ({navigation}) => (
         title: 'Check your relationship with our questionary',
         subtitle:
           'Everyone deserves to be in a healthy relationship. Do you know if your relationship is healthy?',
+      },
+      {
+        backgroundColor: '#020202',
+        image: <Image source={require('assets/images/toxic-screen.png')} />,
+        title: 'testtest',
+        subtitle: 'testtest',
       },
       {
         backgroundColor: '#999',
