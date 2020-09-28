@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 
-export default function Hotlines() {
+export default function Login({navigation}) {
   return (
     <View>
       <Text>Login screen is here</Text>
+      <Button
+        title="Without login"
+        onPress={() => navigation.navigate('Home')}
+      />
     </View>
   );
 }
