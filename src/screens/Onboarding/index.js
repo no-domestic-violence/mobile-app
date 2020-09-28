@@ -5,14 +5,10 @@ import Onboarding from 'react-native-onboarding-swiper';
 
 const OnboardingScreen = ({navigation}) => (
   <Onboarding
+    onSkip={() => navigation.navigate('Home')}
     onDone={() => navigation.navigate('Home')}
     pages={[
-      {
-        backgroundColor: '#fff',
-        image: <Image source={require('assets/images/circle.png')} />,
-        title: "Language",
-        subtitle: 'Here is the languige picker', 
-      },
+      
       {
         backgroundColor: '#fe6e58',
         image: <Image source={require('assets/images/square.png')} />,

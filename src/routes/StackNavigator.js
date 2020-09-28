@@ -1,19 +1,43 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
+import React, { useState } from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+
+import LanguageScreen from '_screens/Language';
 import OnboardingScreen from '_screens/Onboarding';
 import HomeScreen from '_screens/Home';
 import SosContactForm from '_screens/SosContactForm';
 import Hotlines from '_screens/Hotlines';
 import Content from '_screens/Content';
+import BottomTabNavigator from './TabNavigator';
+
+
 
 const Stack = createStackNavigator();
 
 export const OnboardingNavigator = () => {
+
+
+  const [languageSelected, setLanguageSelect] = useState(false);
+
+  const handleLanguageSelect = () => {
+    // TODO: implement real localization mechanism 
+    setLanguageSelect(true);
+  }  
+
   return (
     <Stack.Navigator>
-      {/* figure out where the right place for onboarding screen  */}
-      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+      {languageSelected ? (
+        <>
+          <Stack.Screen name="Onboarding" component={OnboardingScreen}/>
+          <Stack.Screen name="Home" component={BottomTabNavigator} />
+        </>
+        ) : (
+          <Stack.Screen name="Language">
+          {(props) => (
+          <LanguageScreen {...props} onLanguageSelect={handleLanguageSelect} />
+          )}
+          </Stack.Screen>
+        )}            
     </Stack.Navigator>
   );
 };
