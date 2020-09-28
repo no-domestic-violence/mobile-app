@@ -9,7 +9,7 @@ import SosContactForm from '_screens/SosContactForm';
 import Hotlines from '_screens/Hotlines';
 import Content from '_screens/Content';
 import BottomTabNavigator from './TabNavigator';
-
+import LoginScreen from '_screens/Login';
 
 
 const Stack = createStackNavigator();
@@ -29,6 +29,7 @@ export const OnboardingNavigator = () => {
       {languageSelected ? (
         <>
           <Stack.Screen name="Onboarding" component={OnboardingScreen}/>
+          <Stack.Screen name="Login" component={LoginScreen}/>
           <Stack.Screen name="Home" component={BottomTabNavigator} />
         </>
         ) : (

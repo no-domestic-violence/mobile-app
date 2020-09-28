@@ -1,12 +1,11 @@
 import React from 'react';
-import {Image} from 'react-native';
-
+import {AsyncStorage, Image} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 
 const OnboardingScreen = ({navigation}) => (
   <Onboarding
-    onSkip={() => navigation.navigate('Home')}
-    onDone={() => navigation.navigate('Home')}
+    onSkip={() => navigation.navigate('Login')}
+    onDone={() => navigation.navigate('Login')}
     pages={[
       
       {
