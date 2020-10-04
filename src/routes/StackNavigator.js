@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import LanguageScreen from '_screens/Language';
@@ -10,35 +10,37 @@ import Hotlines from '_screens/Hotlines';
 import Content from '_screens/Content';
 import BottomTabNavigator from './TabNavigator';
 import LoginScreen from '_screens/Login';
-
+import SignUpScreen from '_screens/SignUp';
 
 const Stack = createStackNavigator();
 
 export const OnboardingNavigator = () => {
-
-
   const [languageSelected, setLanguageSelect] = useState(false);
 
   const handleLanguageSelect = () => {
-    // TODO: implement real localization mechanism 
+    // TODO: implement real localization mechanism
     setLanguageSelect(true);
-  }  
+  };
 
   return (
     <Stack.Navigator>
       {languageSelected ? (
         <>
-          <Stack.Screen name="Onboarding" component={OnboardingScreen}/>
-          <Stack.Screen name="Login" component={LoginScreen}/>
+          <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Sign Up" component={SignUpScreen} />
           <Stack.Screen name="Home" component={BottomTabNavigator} />
         </>
-        ) : (
-          <Stack.Screen name="Language">
+      ) : (
+        <Stack.Screen name="Language">
           {(props) => (
-          <LanguageScreen {...props} onLanguageSelect={handleLanguageSelect} />
+            <LanguageScreen
+              {...props}
+              onLanguageSelect={handleLanguageSelect}
+            />
           )}
-          </Stack.Screen>
-        )}            
+        </Stack.Screen>
+      )}
     </Stack.Navigator>
   );
 };

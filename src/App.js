@@ -2,17 +2,14 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 // import Header from './components/header/Header';
-import {NavigationContainer} from '@react-navigation/native';
+// import {NavigationContainer} from '@react-navigation/native';
 import AppNavigation from './routes/AppNavigator';
-import {OnboardingNavigator} from './routes/StackNavigator';
-
+import AuthContext from './context';
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <Header /> */}
-      <NavigationContainer>
-        <OnboardingNavigator />
-      </NavigationContainer>
+      <AppNavigation />
     </View>
   );
 }
