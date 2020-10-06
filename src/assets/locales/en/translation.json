@@ -1,4 +1,13 @@
 {
-    "welcome": "Welcome",
-    "language": "Language"
+    "common": {
+        "welcome": "Welcome",
+        "language" : "Select Your Language",
+        "login": "Please Log In"
+    },
+    "OnboardingScreen" : {
+        "privacy-title" : "Terms of Privacy",
+        "privacy-subtitle": "Here is the terms of privacy translated.",
+        "question-title" : "Check your relationship status with our questionnaire."
+    }
+    
 }

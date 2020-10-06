@@ -6,6 +6,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import AppNavigation from './routes/AppNavigator';
 import {OnboardingNavigator} from './routes/StackNavigator';
 
+import './services/i18n'
+
 export default function App() {
   return (
     <View style={styles.container}>

@@ -1,4 +1,13 @@
 {
-    "welcome": "Wilkommen",
-    "language" : "Sprache"
+    "common": {
+        "welcome": "Wilkommen",
+        "language" : "Wähle deine Sprache",
+        "login" : "Bitte Anmelden"
+    },
+    "OnboardingScreen" : {
+        "privacy-title" : "Datenschutzbestimmungen",
+        "privacy-subtitle": "Hier sind die Datenschutzbestimmungen.",
+        "question-title" : "Überprüfen Sie Ihre Beziehung zu unserem Fragebogen"
+    }
+    
 }
