@@ -4,7 +4,7 @@ import {View, StyleSheet} from 'react-native';
 // import Header from './components/header/Header';
 // import {NavigationContainer} from '@react-navigation/native';
 import AppNavigation from './routes/AppNavigator';
-import AuthContext from './context';
+
 export default function App() {
   return (
     <View style={styles.container}>
