@@ -1,5 +1,5 @@
 import React from 'react';
-import HotlinesList from 'components/hotlines/HotlinesList';
+import HotlinesList from '_components/hotlines/HotlinesList';
 
 export default function Hotlines() {
   return (

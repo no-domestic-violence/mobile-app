@@ -3,7 +3,13 @@ import React, {useState} from 'react';
 import BottomTabNavigator from './TabNavigator';
 import {OnboardingNavigator} from './StackNavigator';
 
+
+
+
+
 export default function AppNavigation() {
+
+  //we dont need this code anymore 
   const [isOnboarded, setIsOnboarded] = useState(false);
 
   if (!isOnboarded) {

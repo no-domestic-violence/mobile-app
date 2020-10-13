@@ -1,19 +1,26 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
+import React, { useState } from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import OnboardingScreen from 'screens/Onboarding';
-import HomeScreen from 'screens/Home';
-import SosContactForm from 'screens/SosContactForm';
-import Hotlines from 'screens/Hotlines';
-import Content from 'screens/Content';
+
+import LanguageScreen from '_screens/Language';
+import OnboardingScreen from '_screens/Onboarding';
+import HomeScreen from '_screens/Home';
+import SosContactForm from '_screens/SosContactForm';
+import Hotlines from '_screens/Hotlines';
+import Content from '_screens/Content';
+import BottomTabNavigator from './TabNavigator';
+import LoginScreen from '_screens/Login';
+
 
 const Stack = createStackNavigator();
 
 export const OnboardingNavigator = () => {
   return (
     <Stack.Navigator>
-      {/* figure out where the right place for onboarding screen  */}
-      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+          <Stack.Screen name="Language" component={LanguageScreen}/>
+          <Stack.Screen name="Onboarding" component={OnboardingScreen}/>
+          <Stack.Screen name="Login" component={LoginScreen}/>
+          <Stack.Screen name="Home" component={BottomTabNavigator} />        
     </Stack.Navigator>
   );
 };
