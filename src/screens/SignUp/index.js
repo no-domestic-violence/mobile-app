@@ -1,8 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {View, Text, Button, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 // import {AuthContext} from '../../context';
-import {login} from '../../api/mock';
-import { useTranslation } from 'react-i18next';
+import {signup} from '../../api/mock';
 
 const styles = StyleSheet.create({
   input: {
@@ -37,36 +36,40 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function LoginScreen({navigation}) {
-  const {t, i18n} = useTranslation();
-  // const {logIn} = useContext(AuthContext);
+export default function SignUpScreen({navigation}) {
+  // const {signUp} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const handleUsername = (e) => {
+    console.log(e.target.value);
+  };
   const handlePassword = (e) => {
     console.log(e.target.value);
   };
   const handleEmail = (e) => {
     console.log(e.target.value);
   };
-  const logInUser = () => {
-    login('test@test.com', 'password')
+
+  const signUpUser = () => {
+    setErrorMessage('');
+    signup('test@test.com', 'password')
       .then(() => {
         navigation.navigate('Home');
       })
-      .catch((err) => console.log('error:', err.message));
+      .catch((e) => setErrorMessage(e.message));
   };
+
   return (
-    <View style={styles.view}>
-       <Text>{t('common.login')}</Text>
+    <View  style={styles.view}>
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="Username"
         autoCapitalize="none"
         placeholderTextColor="#6c757d"
-        onChangeText={handleEmail}
+        onChange={handleUsername}
       />
       <TextInput
         style={styles.input}
@@ -76,14 +79,19 @@ export default function LoginScreen({navigation}) {
         placeholderTextColor="#6c757d"
         onChangeText={handlePassword}
       />
-       <TouchableOpacity onPress={() => logInUser()}>
-          <Text style={styles.button}>Login</Text>
-        </TouchableOpacity>
-      <Button title="Do not have an account? Go to sign up" onPress={() => navigation.navigate('Sign Up')} />
-      <Button
-        title="Proceed without login"
-        onPress={() => navigation.navigate('Home')}
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        autoCapitalize="none"
+        placeholderTextColor="#6c757d"
+        onChangeText={handleEmail}
       />
+      <TouchableOpacity onPress={() => signUpUser()}>
+          <Text style={styles.button}>Sign Up</Text>
+        </TouchableOpacity>
+      {errorMessage ? <Text>{errorMessage}</Text> : null}
     </View>
   );
 }
+
+
