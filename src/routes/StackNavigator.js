@@ -24,23 +24,11 @@ export const OnboardingNavigator = () => {
 
   return (
     <Stack.Navigator>
-      {languageSelected ? (
-        <>
-          <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Sign Up" component={SignUpScreen} />
-          <Stack.Screen name="Home" component={BottomTabNavigator} />
-        </>
-      ) : (
-        <Stack.Screen name="Language">
-          {(props) => (
-            <LanguageScreen
-              {...props}
-              onLanguageSelect={handleLanguageSelect}
-            />
-          )}
-        </Stack.Screen>
-      )}
+      <Stack.Screen name="Language" component={LanguageScreen} />
+      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Sign Up" component={SignUpScreen} />
+      <Stack.Screen name="Home" component={BottomTabNavigator} />
     </Stack.Navigator>
   );
 };

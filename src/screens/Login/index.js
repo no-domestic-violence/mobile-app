@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import {View, Text, Button, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 // import {AuthContext} from '../../context';
 import {login} from '../../api/mock';
+import { useTranslation } from 'react-i18next';
 
 const styles = StyleSheet.create({
   input: {
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
 });
 
 export default function LoginScreen({navigation}) {
+  const {t, i18n} = useTranslation();
   // const {logIn} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -58,6 +60,7 @@ export default function LoginScreen({navigation}) {
   };
   return (
     <View style={styles.view}>
+       <Text>{t('common.login')}</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
