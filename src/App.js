@@ -4,15 +4,16 @@ import {View, StyleSheet} from 'react-native';
 // import Header from './components/header/Header';
 // import {NavigationContainer} from '@react-navigation/native';
 import AppNavigation from './routes/AppNavigator';
-
-import './services/i18n'
+import {ContextProvider} from './state';
+import './services/i18n';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      {/* <Header /> */}
-      <AppNavigation />
-    </View>
+    <ContextProvider>
+      <View style={styles.container}>
+        <AppNavigation />
+      </View>
+    </ContextProvider>
   );
 }
 

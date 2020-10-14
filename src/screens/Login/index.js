@@ -1,8 +1,8 @@
 import React, {useContext, useState} from 'react';
 import {View, Text, Button, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
-// import {AuthContext} from '../../context';
 import {login} from '../../api/mock';
 import { useTranslation } from 'react-i18next';
+import {AppContext} from '../../state'
 
 const styles = StyleSheet.create({
   input: {
@@ -60,7 +60,7 @@ export default function LoginScreen({navigation}) {
   };
   return (
     <View style={styles.view}>
-       <Text>{t('common.login')}</Text>
+      <Text>{t('common.login')}</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -76,10 +76,13 @@ export default function LoginScreen({navigation}) {
         placeholderTextColor="#6c757d"
         onChangeText={handlePassword}
       />
-       <TouchableOpacity onPress={() => logInUser()}>
-          <Text style={styles.button}>Login</Text>
-        </TouchableOpacity>
-      <Button title="Do not have an account? Go to sign up" onPress={() => navigation.navigate('Sign Up')} />
+      <TouchableOpacity onPress={() => logInUser()}>
+        <Text style={styles.button}>Login</Text>
+      </TouchableOpacity>
+      <Button
+        title="Do not have an account? Go to sign up"
+        onPress={() => navigation.navigate('Sign Up')}
+      />
       <Button
         title="Proceed without login"
         onPress={() => navigation.navigate('Home')}
