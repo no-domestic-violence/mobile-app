@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+  push_request:
+    branches:
+      - master
 jobs:
   publish:
     name: Install and publish
@@ -19,4 +22,4 @@ jobs:
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
       - run: yarn
-      - run: expo publish --release-channel production
+      - run: expo publish
