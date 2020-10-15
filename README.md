@@ -12,6 +12,8 @@ React Native app which helps to fight domestic violence
 
 - React Native with Expo
 
+* We use the latest version of React Navigation v5
+* We use Context API for state management 
 ---
 
 **To run locally**
@@ -27,3 +29,12 @@ yarn install
 ```s
 yarn start
 ```
+**To test with device in development mode or production mode**
+
+1. Login to expo with given credentials :
+
+```s
+expo login
+```
+
+2. Open expo app from your device and login with the same credentials and you can start manually testing your work
