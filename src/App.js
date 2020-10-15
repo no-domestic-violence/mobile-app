@@ -4,18 +4,19 @@ import {View, StyleSheet} from 'react-native';
 // import Header from './components/header/Header';
 // import {NavigationContainer} from '@react-navigation/native';
 import AppNavigation from './routes/AppNavigator';
-import {ContextProvider} from './state';
+import {Provider as AuthProvider} from './state/AuthContext';
+
 import './services/i18n';
 
-export default function App() {
+export default App = () => {
   return (
-    <ContextProvider>
+    <AuthProvider>
       <View style={styles.container}>
-        <AppNavigation />
-      </View>
-    </ContextProvider>
+      <AppNavigation />
+    </View>
+      </AuthProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
