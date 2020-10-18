@@ -1,8 +1,13 @@
 import React, {useContext, useState} from 'react';
-import {View, Text, Button, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
-import {login} from '../../api/mock';
-import { useTranslation } from 'react-i18next';
-import {AppContext} from '../../state'
+import {
+  View,
+  Text,
+  Button,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 const styles = StyleSheet.create({
   input: {

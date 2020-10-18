@@ -4,8 +4,9 @@ import {
   HomeStackNavigator,
   HotlinesStackNavigator,
   ContentStackNavigator,
+  UserSettingsStackNavigator,
 } from './StackNavigator';
-import {faPhone, faHome, faBook} from '@fortawesome/free-solid-svg-icons';
+import {faPhone, faHome, faBook, faUserCog} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const Tab = createBottomTabNavigator();
@@ -24,6 +25,9 @@ const BottomTabNavigator = () => {
           } else if (route.name === 'Content') {
             iconName = faBook;
           }
+          else if (route.name === 'UserSettings') {
+            iconName = faUserCog;
+          }
           return <FontAwesomeIcon icon={iconName} size={size} color={color} />;
         },
       })}
@@ -34,6 +38,7 @@ const BottomTabNavigator = () => {
       <Tab.Screen name="Home" component={HomeStackNavigator} />
       <Tab.Screen name="Hotlines" component={HotlinesStackNavigator} />
       <Tab.Screen name="Content" component={ContentStackNavigator} />
+      <Tab.Screen name="UserSettings" component={UserSettingsStackNavigator} />
     </Tab.Navigator>
   );
 };

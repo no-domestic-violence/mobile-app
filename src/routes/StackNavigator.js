@@ -8,6 +8,7 @@ import HomeScreen from '_screens/Home';
 import SosContactForm from '_screens/SosContactForm';
 import Hotlines from '_screens/Hotlines';
 import Content from '_screens/Content';
+import UserSettings from '_screens/UserSettings';
 import BottomTabNavigator from './TabNavigator';
 import LoginScreen from '_screens/Login';
 import SignUpScreen from '_screens/SignUp';
@@ -53,6 +54,13 @@ export const ContentStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Content" component={Content} />
+    </Stack.Navigator>
+  );
+};
+export const UserSettingsStackNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Content" component={UserSettings} />
     </Stack.Navigator>
   );
 };
