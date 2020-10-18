@@ -1,21 +1,31 @@
 import createAppContext from './CreateAppContext';
 import appApiClient from '../api/appApiClient';
+import {AsyncStorage} from 'react-native';
 
 const authReducer = (state, action) => {
   switch (action.type) {
+    case 'SIGNUP_ERROR':
+      return {...state, errorMessage: action.payload};
+    case 'SIGNUP_SUCCESS':
+      return {...state, token: action.payload, errorMessage: ''};
     default:
       return state;
   }
 };
 
 const signup = (dispatch) => {
-  //add username
-  return async ({email, password}) => {
+  return async ({email, password, username}) => {
     try {
-      const response = await appApiClient.post('/signup', {email, password});
-      console.log(response.data);
+      const response = await appApiClient.post('/signup', 
+      {email, password, username});
+      //console.log(response.data.token);//here is JWT
+      await AsyncStorage.setItem('token', response.data.token);
+      dispatch({type: 'SIGNUP_SUCCESS', payload: response.data.token});
     } catch (error) {
-      console.log(error.message);
+      dispatch({
+        type: 'SIGNUP_ERROR',
+        payload: 'Something went wrong with sign up',
+      });
     }
   };
 };
@@ -31,5 +41,5 @@ const signout = (dispatch) => {
 export const {Provider, Context} = createAppContext(
   authReducer,
   {signup, login, signout},
-  {isLoggedIn: false},
+  {isLoggedIn: false, errorMessage: 'Something went wrong!'},
 );

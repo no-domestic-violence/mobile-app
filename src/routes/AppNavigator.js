@@ -1,15 +1,15 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useContext} from 'react';
 import BottomTabNavigator from './TabNavigator';
 import {OnboardingNavigator} from './StackNavigator';
 import {NavigationContainer} from '@react-navigation/native';
-
+import {Context as AuthContext} from '../state/AuthContext';
 
 export default function AppNavigation() {
-  const isLoggedIn = false;
+  const {state} = useContext(AuthContext);
   return (
     <NavigationContainer>
-      {!isLoggedIn ? <OnboardingNavigator /> : <BottomTabNavigator />}
+      {!state.token ? <OnboardingNavigator /> : <BottomTabNavigator />}
     </NavigationContainer>
   );
 }

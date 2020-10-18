@@ -37,64 +37,54 @@ const styles = StyleSheet.create({
 });
 
 export default function SignUpScreen({navigation}) {
-  const {signup} = useContext(AuthContext);
-  
+  const {state, signup} = useContext(AuthContext);
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleUsername = (e) => {
-    setUsername(e.target.value);
-  };
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  const handleSignUp = () => {
+    signup({email, password, username});
   };
 
   return (
-    <View  style={styles.view}>
+    <View style={styles.view}>
       <TextInput
         style={styles.input}
         placeholder="Username"
         autoCapitalize="none"
-				autoCorrect="none"
-
+        autoCorrect={false}
         placeholderTextColor="#6c757d"
-        onChange={setUsername}
-        value = {username}
+        onChangeText={setUsername}
+        value={username}
       />
-            <TextInput
+      <TextInput
         style={styles.input}
         placeholder="Email"
-				autoCorrect="none"
-
+        autoCorrect={false}
         autoCapitalize="none"
         placeholderTextColor="#6c757d"
         onChangeText={setEmail}
-        value = {email}
-
+        value={email}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
         secureTextEntry={true}
         autoCapitalize="none"
-        autoCorrect="none"
+        autoCorrect={false}
         // secureTextEntry
         placeholderTextColor="#6c757d"
         onChangeText={setPassword}
-        value = {password}
-
+        value={password}
       />
 
-      <TouchableOpacity onPress={() => signup({ email, password })} >
-          <Text style={styles.button}>Sign Up</Text>
-        </TouchableOpacity>
-      {errorMessage ? <Text>{errorMessage}</Text> : null}
+      <TouchableOpacity onPress={() => handleSignUp()}>
+        <Text style={styles.button}>Sign Up</Text>
+      </TouchableOpacity>
+      {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
     </View>
   );
 }

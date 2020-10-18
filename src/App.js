@@ -12,9 +12,9 @@ export default App = () => {
   return (
     <AuthProvider>
       <View style={styles.container}>
-      <AppNavigation />
-    </View>
-      </AuthProvider>
+        <AppNavigation />
+      </View>
+    </AuthProvider>
   );
 };
 

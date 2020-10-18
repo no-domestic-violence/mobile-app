@@ -12,8 +12,11 @@ React Native app which helps to fight domestic violence
 
 - React Native with Expo
 
-* We use the latest version of React Navigation v5
-* We use Context API for state management 
+We use:
+* the latest version of React Navigation v5
+* Context API + hooks for state management 
+* font awesome for icons
+* axios for API calls
 ---
 
 **To run locally**
