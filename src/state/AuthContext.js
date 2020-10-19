@@ -19,7 +19,7 @@ const signup = (dispatch) => async ({email, password, username}) => {
     try {
       const response = await appApiClient.post('/signup', 
       {email, password, username});
-      //console.log(response.data.token);//here is JWT
+      
       await AsyncStorage.setItem('token', response.data.token);
       dispatch({type: 'SIGNUP_SUCCESS', payload: response.data.token});
     } catch (error) {

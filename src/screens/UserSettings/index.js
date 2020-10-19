@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
 
 export default function UserSettings() {
   const {state} = useContext(AuthContext);
-  console.log(state);
   const handleSignOut = () => {
     //TODO: create signout action
     console.log('signout!');
