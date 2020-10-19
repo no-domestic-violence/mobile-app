@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, StyleSheet, TouchableOpacity, Button} from 'react-native';
 import { Context as AuthContext } from "../../state/AuthContext";
 
 const styles = StyleSheet.create({
@@ -42,13 +42,11 @@ export default function SignUpScreen({navigation}) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSignUp = () => {
     signup({email, password, username});
   };
-
+//TODO: refactor togerther with login
   return (
     <View style={styles.view}>
       <TextInput
@@ -84,6 +82,10 @@ export default function SignUpScreen({navigation}) {
       <TouchableOpacity onPress={() => handleSignUp()}>
         <Text style={styles.button}>Sign Up</Text>
       </TouchableOpacity>
+      <Button
+        title="Have an account? Go to login"
+        onPress={() => navigation.navigate('Login')}
+      />
       {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
     </View>
   );
