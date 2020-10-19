@@ -127,10 +127,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 12,
   },
-  tcP: {
-    marginTop: 10,
-    fontSize: 12,
-  },
   tcL: {
     marginLeft: 10,
     marginTop: 10,
