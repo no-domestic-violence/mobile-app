@@ -60,5 +60,6 @@ buck-out/
 
 # expo
 .expo
+.expo/packager-info.json
 __generated__
 web-build

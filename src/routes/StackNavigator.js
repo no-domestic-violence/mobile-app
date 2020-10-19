@@ -11,6 +11,7 @@ import Content from '_screens/Content';
 import BottomTabNavigator from './TabNavigator';
 import LoginScreen from '_screens/Login';
 import SignUpScreen from '_screens/SignUp';
+import TermsAndConditionsScreen from '_screens/TermsAndConditions';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,10 @@ export const OnboardingNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Language" component={LanguageScreen} />
+      <Stack.Screen
+        name="TermsAndConditions"
+        component={TermsAndConditionsScreen}
+      />
       <Stack.Screen name="Onboarding" component={OnboardingScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Sign Up" component={SignUpScreen} />
