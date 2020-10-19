@@ -8,6 +8,8 @@
         "privacy-title" : "Datenschutzbestimmungen",
         "privacy-subtitle": "Hier sind die Datenschutzbestimmungen.",
         "question-title" : "Überprüfen Sie Ihre Beziehung zu unserem Fragebogen"
+    },
+    "HomeScreen" : {
+        "emergency-title": "Stellen Sie Ihre Notfallnachricht ein."
     }
-    
 }
