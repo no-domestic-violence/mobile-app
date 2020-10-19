@@ -15,13 +15,6 @@ import SignUpScreen from '_screens/SignUp';
 const Stack = createStackNavigator();
 
 export const OnboardingNavigator = () => {
-  const [languageSelected, setLanguageSelect] = useState(false);
-
-  const handleLanguageSelect = () => {
-    // TODO: implement real localization mechanism
-    setLanguageSelect(true);
-  };
-
   return (
     <Stack.Navigator>
       <Stack.Screen name="Language" component={LanguageScreen} />
