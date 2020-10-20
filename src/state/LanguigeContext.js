@@ -1,5 +1,4 @@
-//TODO: it did not work, to figure out if we need or we can just you provider for everything
-
+// TODO: it did not work, to figure out if we need or we can just you provider for everything
 
 // import React, { createContext } from 'react';
 // import { I18nextProvider } from 'react-i18next';
@@ -17,4 +16,3 @@
 // }
 
 // export {LanguigeProvider, LanguigeContext};
-
