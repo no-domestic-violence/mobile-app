@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react';
-import {View, Text, Button, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
-// import {AuthContext} from '../../context';
-import {signup} from '../../api/mock';
+import {View, Text, TextInput, StyleSheet, TouchableOpacity, Button} from 'react-native';
+import { Context as AuthContext } from "../../state/AuthContext";
 
 const styles = StyleSheet.create({
   input: {
@@ -19,6 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 250,
   },
   button: {
     backgroundColor: '#009688',
@@ -32,64 +32,61 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     overflow: 'hidden',
-    textAlign:'center',
-  }
+    textAlign: 'center',
+  },
 });
 
 export default function SignUpScreen({navigation}) {
-  // const {signUp} = useContext(AuthContext);
+  const {state, signup} = useContext(AuthContext);
+
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleUsername = (e) => {
-    console.log(e.target.value);
+  const handleSignUp = () => {
+    signup({email, password, username});
   };
-  const handlePassword = (e) => {
-    console.log(e.target.value);
-  };
-  const handleEmail = (e) => {
-    console.log(e.target.value);
-  };
-
-  const signUpUser = () => {
-    setErrorMessage('');
-    signup('test@test.com', 'password')
-      .then(() => {
-        navigation.navigate('Home');
-      })
-      .catch((e) => setErrorMessage(e.message));
-  };
-
+//TODO: refactor togerther with login
   return (
-    <View  style={styles.view}>
+    <View style={styles.view}>
       <TextInput
         style={styles.input}
         placeholder="Username"
         autoCapitalize="none"
+        autoCorrect={false}
         placeholderTextColor="#6c757d"
-        onChange={handleUsername}
+        onChangeText={setUsername}
+        value={username}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        autoCorrect={false}
+        autoCapitalize="none"
+        placeholderTextColor="#6c757d"
+        onChangeText={setEmail}
+        value={email}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
         secureTextEntry={true}
         autoCapitalize="none"
+        autoCorrect={false}
+        // secureTextEntry
         placeholderTextColor="#6c757d"
-        onChangeText={handlePassword}
+        onChangeText={setPassword}
+        value={password}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        autoCapitalize="none"
-        placeholderTextColor="#6c757d"
-        onChangeText={handleEmail}
+
+      <TouchableOpacity onPress={() => handleSignUp()}>
+        <Text style={styles.button}>Sign Up</Text>
+      </TouchableOpacity>
+      <Button
+        title="Have an account? Go to login"
+        onPress={() => navigation.navigate('Login')}
       />
-      <TouchableOpacity onPress={() => signUpUser()}>
-          <Text style={styles.button}>Sign Up</Text>
-        </TouchableOpacity>
-      {errorMessage ? <Text>{errorMessage}</Text> : null}
+      {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
     </View>
   );
 }

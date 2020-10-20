@@ -13,13 +13,16 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "pool-ios"
     },
     "web": {
       "favicon": "src/assets/favicon.png"
-    }
+    },
+    "description": ""
   }
 }
