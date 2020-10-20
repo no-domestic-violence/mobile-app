@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-//TODO: refactor imports
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+// TODO: refactor imports
 import LanguageScreen from '_screens/Language';
 import OnboardingScreen from '_screens/Onboarding';
 import HomeScreen from '_screens/Home';
@@ -9,16 +9,16 @@ import SosContactForm from '_screens/SosContactForm';
 import Hotlines from '_screens/Hotlines';
 import Content from '_screens/Content';
 import UserSettings from '_screens/UserSettings';
-import BottomTabNavigator from './TabNavigator';
 import LoginScreen from '_screens/Login';
 import SignUpScreen from '_screens/SignUp';
 import TermsAndConditionsScreen from '_screens/TermsAndConditions';
+import BottomTabNavigator from './TabNavigator';
 
 const Stack = createStackNavigator();
 
 export const OnboardingNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Language" component={LanguageScreen} />
       <Stack.Screen
         name="TermsAndConditions"
