@@ -1,22 +1,18 @@
-import React, {useState} from 'react';
-import {View, Text, Button} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import React, { useState, useContext } from 'react';
+import { View, Text, Button, AsyncStorage } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import i18n from '../../services/i18n';
+import { LanguageContext } from '../../state/LanguageContext';
 
-export default function LanguageScreen({navigation}) {
-  const {t, i18n} = useTranslation();
+export default function LanguageScreen({ navigation }) {
+  const { t, i18n } = useTranslation();
+  const { availableLanguages, setAppLanguage } = useContext(LanguageContext);
 
   const [languageSelected, setLanguageSelect] = useState(false);
-
   const handleLanguageSelect = () => setLanguageSelect(true);
 
-  const changeToEn = () => {
-    i18n.changeLanguage('en');
-    handleLanguageSelect();
-  };
-
-  const changeToDe = () => {
-    i18n.changeLanguage('de');
+  const handleLanguageChange = async (language) => {
+    setAppLanguage(language);
     handleLanguageSelect();
   };
 
@@ -24,8 +20,12 @@ export default function LanguageScreen({navigation}) {
     <View>
       <Text>{t('common.welcome')}</Text>
       <Text>{t('common.language')}</Text>
-      <Button title="English" onPress={changeToEn}></Button>
-      <Button title="German" onPress={changeToDe}></Button>
+      {availableLanguages.map((item, i) => (
+        <Button
+          key={i}
+          title={item.name}
+          onPress={() => handleLanguageChange(item.lang)}></Button>
+      ))}
       {
         languageSelected && (
           <Button

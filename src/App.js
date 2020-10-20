@@ -5,16 +5,21 @@ import { View, StyleSheet } from 'react-native';
 // import {NavigationContainer} from '@react-navigation/native';
 import AppNavigation from './routes/AppNavigator';
 import { Provider as AuthProvider } from './state/AuthContext';
+import { LanguageProvider } from './state/LanguageContext';
+import { I18nextProvider } from 'react-i18next';
+import i18next from 'i18next';
 
 import './services/i18n';
 
 export default App = () => {
   return (
-    <AuthProvider>
-      <View style={styles.container}>
-        <AppNavigation />
-      </View>
-    </AuthProvider>
+    <LanguageProvider>
+      <AuthProvider>
+        <View style={styles.container}>
+          <AppNavigation />
+        </View>
+      </AuthProvider>
+    </LanguageProvider>
   );
 };
 
