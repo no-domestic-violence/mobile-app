@@ -6,10 +6,31 @@ const authReducer = (state, action) => {
   switch (action.type) {
     case 'SIGNUP_ERROR':
     case 'LOGIN_ERROR':
-      return { ...state, errorMessage: action.payload };
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
     case 'SIGNUP_SUCCESS':
     case 'LOGIN_SUCCESS':
-      return { ...state, token: action.payload, errorMessage: '' };
+      return {
+        ...state,
+        token: action.payload,
+        errorMessage: '',
+      };
+    case 'AUTH_SUCCESS':
+      return {
+        ...state,
+        token: action.payload,
+      };
+    case 'LOGOUT':
+      return {
+        token: '',
+      };
+    case 'REMOVE_ERRORS':
+      return {
+        ...state,
+        errorMessage: '',
+      };
     default:
       return state;
   }
@@ -45,12 +66,27 @@ const login = (dispatch) => async ({ email, password }) => {
   }
 };
 
+const authentication = (dispatch) => async () => {
+  const token = await AsyncStorage.getItem('token');
+  if (token) {
+    dispatch({ type: 'AUTH_SUCCESS', payload: token });
+  }
+};
+
+const removeErrors = (dispatch) => () => {
+  dispatch({ type: 'REMOVE_ERRORS' });
+};
+
 const signout = () => {
-  return () => {};
+  return () => {
+
+  };
 };
 
 export const { Provider, Context } = createAppContext(
   authReducer,
-  { signup, login, signout },
+  {
+    signup, login, signout, removeErrors, authentication
+  },
   { isLoggedIn: false, errorMessage: '' },
 );

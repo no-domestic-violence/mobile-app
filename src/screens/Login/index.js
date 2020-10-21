@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect } from 'react';
 import { Context as AuthContext } from "../../state/AuthContext";
 import {
   View,
@@ -44,14 +44,24 @@ const styles = StyleSheet.create({
 });
 
 export default function LoginScreen({navigation}) {
+
   const {t, i18n} = useTranslation();
-  const {state, login} = useContext(AuthContext);
+  const {state, login, removeErrors} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogIn = () => {
     login({email, password});
   };
+//TODO: reuse it
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      removeErrors();
+    });
+ 
+    return unsubscribe;
+  }, [navigation, removeErrors]);
+
   return (
     <View style={styles.view}>
       <Text>{t('common.login')}</Text>
