@@ -13,10 +13,13 @@ React Native app which helps to fight domestic violence
 - React Native with Expo
 
 We use:
-* the latest version of React Navigation v5
-* Context API + hooks for state management 
-* font awesome for icons
-* axios for API calls
+
+- the latest version of React Navigation v5
+- Context API + hooks for state management
+- font awesome for icons
+- axios for API calls
+- i18next and expo-localization for localization
+
 ---
 
 **To run locally**
@@ -32,6 +35,13 @@ yarn install
 ```s
 yarn start
 ```
+
+3. Before merging to master, check errors
+
+```s
+yarn lint
+```
+
 **To test with device in development mode or production mode**
 
 1. Login to expo with given credentials :
