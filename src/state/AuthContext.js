@@ -14,13 +14,15 @@ const authReducer = (state, action) => {
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        token: action.payload,
+        token: action.payload.token,
+        username: action.payload.user.username,
         errorMessage: '',
       };
     case 'AUTH_SUCCESS':
       return {
         ...state,
-        token: action.payload,
+        token: action.payload.token,
+        username: action.payload.username,
       };
     case 'LOGOUT':
       return {
@@ -42,9 +44,10 @@ const signup = (dispatch) => async ({ email, password, username }) => {
       { email, password, username });
 
     await AsyncStorage.setItem('token', response.data.token);
-    dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data.token });
+    await AsyncStorage.setItem('username', response.data.user.username);
+
+    dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data });
   } catch (error) {
-    console.error(error);
     dispatch({
       type: 'SIGNUP_ERROR',
       payload: "Something went wrong'( Try again",
@@ -57,7 +60,8 @@ const login = (dispatch) => async ({ email, password }) => {
     const response = await appApiClient.post('/login',
       { email, password });
     await AsyncStorage.setItem('token', response.data.token);
-    dispatch({ type: 'LOGIN_SUCCESS', payload: response.data.token });
+    await AsyncStorage.setItem('username', response.data.user.username);
+    dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
   } catch (error) {
     dispatch({
       type: 'LOGIN_ERROR',
@@ -68,8 +72,10 @@ const login = (dispatch) => async ({ email, password }) => {
 
 const authentication = (dispatch) => async () => {
   const token = await AsyncStorage.getItem('token');
+  const username = await AsyncStorage.getItem('username');
+  const user = { token, username };
   if (token) {
-    dispatch({ type: 'AUTH_SUCCESS', payload: token });
+    dispatch({ type: 'AUTH_SUCCESS', payload: user });
   }
 };
 
@@ -77,10 +83,9 @@ const removeErrors = (dispatch) => () => {
   dispatch({ type: 'REMOVE_ERRORS' });
 };
 
-const signout = () => {
-  return () => {
-
-  };
+const signout = (dispatch) => async () => {
+  await AsyncStorage.removeItem('token');
+  dispatch({ type: 'LOGOUT' });
 };
 
 export const { Provider, Context } = createAppContext(
