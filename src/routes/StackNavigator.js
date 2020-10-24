@@ -11,6 +11,7 @@ import Content from '_screens/Content';
 import UserSettings from '_screens/UserSettings';
 import LoginScreen from '_screens/Login';
 import SignUpScreen from '_screens/SignUp';
+import MapScreen from '_screens/Map';
 import TermsAndConditionsScreen from '_screens/TermsAndConditions';
 import BottomTabNavigator from './TabNavigator';
 
@@ -43,11 +44,20 @@ export const HomeStackNavigator = () => {
 
 export const HotlinesStackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Hotlines" component={Hotlines} />
     </Stack.Navigator>
   );
 };
+
+export const MapStackNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Map" component={MapScreen} />
+    </Stack.Navigator>
+  );
+};
+
 export const ContentStackNavigator = () => {
   return (
     <Stack.Navigator>
