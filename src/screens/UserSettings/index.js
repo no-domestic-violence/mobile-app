@@ -19,17 +19,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function UserSettings() {
-  const {state} = useContext(AuthContext);
+export default function UserSettings({navigation}) {
+  const {state, signout} = useContext(AuthContext);
+  const {username} = state
   const handleSignOut = () => {
-    //TODO: create signout action
-    console.log('signout!');
+    signout()
   };
   return (
     <View>
-      <Text>Here is an info about user</Text>
+      <Text>Hello {username}</Text>
       {!state.token ? (
-        <Text>Sign in please</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <Text style={styles.button}>Sign in</Text>
+      </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={() => handleSignOut()}>
           <Text style={styles.button}>Sign Out</Text>
