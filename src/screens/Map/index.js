@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { StyleSheet, View } from 'react-native';
 import {
   requestPermissionsAsync,
   watchPositionAsync,
   Accuracy,
 } from 'expo-location';
 import MapContainer from '_components/map/MapContainer';
+import { Context as LocationContext } from '../../state/LocationContext'
 
 const MapScreen = () => {
+const { state: {currentLocation}, updateCurrentLocation } = useContext(LocationContext)
+// console.log(currentLocation)
   const [error, setError] = useState(null);
   const askForLocation = async () => {
     try {
@@ -19,7 +22,7 @@ const MapScreen = () => {
           distanceInterval: 10,
         },
         (location) => {
-          console.log(location);
+          updateCurrentLocation(location);
         },
       );
     } catch (error) {
@@ -33,8 +36,8 @@ const MapScreen = () => {
 
   return (
     <View>
-      <MapContainer />
-      {/* how to handle errors here ?  */}
+      <MapContainer currentLocation = {currentLocation} />
+      {/* TODO: how to handle errors here ?  */}
       {/* {error ? <Text>Can you enable location services</Text> : null} */}
     </View>
   );
