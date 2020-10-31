@@ -1,17 +1,26 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import {
   requestPermissionsAsync,
   watchPositionAsync,
   Accuracy,
 } from 'expo-location';
-import MapContainer from '_components/map/MapContainer';
-import { Context as LocationContext } from '../../state/LocationContext'
+import { withNavigationFocus } from '@react-navigation/compat';
 
-const MapScreen = () => {
-const { state: {currentLocation}, updateCurrentLocation } = useContext(LocationContext)
-// console.log(currentLocation)
-  const [error, setError] = useState(null);
+import MapContainer from '_components/map/MapContainer';
+import { Context as LocationContext } from '../../state/LocationContext';
+
+const MapScreen = ({ isFocused }) => {
+  const {
+    state,
+    fetchShelters,
+    state: { currentLocation },
+    updateCurrentLocation,
+  } = useContext(LocationContext);
+  //TODO: handle errros
+  const [error, setError] = useState({});
+  
+
   const askForLocation = async () => {
     try {
       await requestPermissionsAsync();
@@ -31,17 +40,23 @@ const { state: {currentLocation}, updateCurrentLocation } = useContext(LocationC
   };
 
   useEffect(() => {
-    askForLocation();
+      askForLocation();
+      fetchShelters();
   }, []);
 
+  if (!state.shelters_list) {
+    return <View><ActivityIndicator size="large" style={styles.loader} /></View>
+  }
   return (
-    <View>
-      <MapContainer currentLocation = {currentLocation} />
-      {/* TODO: how to handle errors here ?  */}
-      {/* {error ? <Text>Can you enable location services</Text> : null} */}
-    </View>
+      <View>
+        <MapContainer currentLocation={currentLocation} sheltersList = {state.shelters_list}/>
+      </View>
   );
 };
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  loader: {
+    flex: 1
+  }
+});
 
-export default MapScreen;
+export default withNavigationFocus(MapScreen);

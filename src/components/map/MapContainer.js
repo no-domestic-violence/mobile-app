@@ -2,28 +2,16 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Circle, Marker } from 'react-native-maps';
 
-const MapContainer = ({ currentLocation }) => {
-  if (!currentLocation) {
-    return null;
-  }
-  //hardcoded location for now
-  const markers = [{
-    coordinate: {
-      latitude: 52.523,
-      longitude: 13.406417
-    },
-    title: 'Test test',
-    description: "Here is descr"
-
-  }]
+const MapContainer = ({ currentLocation, sheltersList }) => {
   return (
     <View>
       <MapView
         onRegionChange={() => {}}
         style={styles.mapContainer}
+        zoomEnabled={true}
         initialRegion={{
           ...currentLocation.coords,
-          latitudeDelta: 0.1,
+          latitudeDelta: 90,
           longitudeDelta: 0.1,
         }}
         // ??? center to germany
@@ -39,14 +27,18 @@ const MapContainer = ({ currentLocation }) => {
           strokeColor="#cc0e74"
           fillColor="#f1d4d4"
         />
-        {markers.map((marker, index) => (
-          <Marker
-            key={index}
-            coordinate={marker.coordinate}
-            title={marker.title}
-            description={marker.description}
-          />
-        ))}
+        {sheltersList &&
+          sheltersList.map((marker, index) => (
+            <Marker
+              key={index}
+              coordinate={{
+                latitude: marker.locs[0],
+                longitude: marker.locs[1],
+              }}
+              title={marker.place_name}
+              description={marker.description}
+            />
+          ))}
       </MapView>
     </View>
   );
