@@ -8,8 +8,8 @@ export default function ListItem ({item, makeCall}) {
   return (
     <TouchableOpacity style ={styles.listItem}>
         <View style ={styles.listItemView}>
-            <Text style={styles.listItemText}>{item.name}  {item.number}</Text>
-            <FontAwesomeIcon icon={ faPhone } onPress ={()=>makeCall(item.number)} />
+            <Text style={styles.listItemText}> {item.city}, {item.organisation_name}, tel:{item.phone}</Text>
+            <FontAwesomeIcon icon={ faPhone } onPress ={()=>makeCall(item.phone)} />
         </View>
     </TouchableOpacity>
   )

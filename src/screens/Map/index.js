@@ -44,7 +44,7 @@ const MapScreen = ({ isFocused }) => {
       fetchShelters();
   }, []);
 
-  if (!state.shelters_list) {
+  if (!currentLocation) {
     return <View><ActivityIndicator size="large" style={styles.loader} /></View>
   }
   return (

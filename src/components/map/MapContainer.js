@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import MapView, { Circle, Marker } from 'react-native-maps';
 
 const MapContainer = ({ currentLocation, sheltersList }) => {
@@ -21,12 +21,14 @@ const MapContainer = ({ currentLocation, sheltersList }) => {
         //   longitudeDelta: 0.1,
         // }}
       >
-        <Circle
-          center={currentLocation.coords}
-          radius={50}
-          strokeColor="#cc0e74"
-          fillColor="#f1d4d4"
-        />
+        <Marker
+          coordinate={currentLocation.coords}
+        >
+          <Image
+            source={require('../../assets/images/here.png')}
+            style={styles.currentLocation}
+          />
+        </Marker>
         {sheltersList &&
           sheltersList.map((marker, index) => (
             <Marker
@@ -46,6 +48,10 @@ const MapContainer = ({ currentLocation, sheltersList }) => {
 const styles = StyleSheet.create({
   mapContainer: {
     height: '100%',
+  },
+  currentLocation: {
+    width: 30,
+    height: 30,
   },
 });
 
