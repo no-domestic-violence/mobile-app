@@ -14,7 +14,7 @@ import appApiClient from '../../api/appApiClient';
 export default function EmergencyScreen({ navigation }) {
   const initialContactState = {
     name: '',
-    number: '',
+    phone: '',
     message: '',
   };
   const [contact, setContact] = useState(initialContactState);
@@ -24,8 +24,8 @@ export default function EmergencyScreen({ navigation }) {
     setContact({ ...contact, name });
   };
 
-  const handleNumberChange = (number) => {
-    setContact({ ...contact, number });
+  const handleNumberChange = (phone) => {
+    setContact({ ...contact, phone });
   };
 
   const handleMessageChange = (message) => {
@@ -35,7 +35,7 @@ export default function EmergencyScreen({ navigation }) {
   const saveContact = () => {
     const data = {
       name: contact.name,
-      number: contact.number,
+      phone: contact.phone,
       message: contact.message,
     };
     appApiClient
@@ -43,11 +43,12 @@ export default function EmergencyScreen({ navigation }) {
       .then((response) => {
         setContact({
           name: response.data.name,
-          number: response.data.number,
+          phone: response.data.phone,
           message: response.data.message,
         });
         setSubmitted(true);
         alert(response.data);
+        console.log(response.data);
       })
       .catch((e) => {
         alert(e);
@@ -60,6 +61,8 @@ export default function EmergencyScreen({ navigation }) {
   };
 
   return (
+    //TODO: add form validation
+    //TODO: implement send SMS button
     <View style={styles.view}>
       {submitted ? (
         <>
