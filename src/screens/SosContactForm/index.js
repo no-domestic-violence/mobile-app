@@ -1,24 +1,149 @@
-import React from 'react';
-import {View, Button, StyleSheet, Text, TextInput} from 'react-native';
+import React, { useState } from 'react';
 
-export default function SosContactForm({navigation}) {
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+
+import appApiClient from '../../api/appApiClient';
+
+export default function EmergencyScreen({ navigation }) {
+  const initialContactState = {
+    name: '',
+    phone: '',
+    message: '',
+  };
+  const [contact, setContact] = useState(initialContactState);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleNameChange = (name) => {
+    setContact({ ...contact, name });
+  };
+
+  const handleNumberChange = (phone) => {
+    setContact({ ...contact, phone });
+  };
+
+  const handleMessageChange = (message) => {
+    setContact({ ...contact, message });
+  };
+
+  const saveContact = () => {
+    const data = {
+      name: contact.name,
+      phone: contact.phone,
+      message: contact.message,
+    };
+    appApiClient
+      .post('/emergency', data)
+      .then((response) => {
+        setContact({
+          name: response.data.name,
+          phone: response.data.phone,
+          message: response.data.message,
+        });
+        setSubmitted(true);
+        alert(response.data);
+        console.log(response.data);
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
+
+  const newContact = () => {
+    setContact(initialContactState);
+    setSubmitted(false);
+  };
+
   return (
-    <View style={styles.formView}>
-      <Text>Here is the form</Text>
-      <TextInput style={styles.formInput} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+    //TODO: add form validation
+    //TODO: implement send SMS button
+    <View style={styles.view}>
+      {submitted ? (
+        <>
+          <Text>Emergency Contact was successfully added!</Text>
+          <TouchableOpacity>
+            <Text style={styles.button} onPress={newContact}>
+              Add another contact
+            </Text>
+          </TouchableOpacity>
+          <Button title="Go back" onPress={() => navigation.goBack()} />
+        </>
+      ) : (
+        <>
+          <Text>Add Emergency Contact</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Name"
+            placeholderTextColor="#6c757d"
+            onChangeText={handleNameChange}
+            value={contact.name}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Phone Number"
+            placeholderTextColor="#6c757d"
+            onChangeText={handleNumberChange}
+            value={contact.number}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Write custom emergency message"
+            placeholderTextColor="#6c757d"
+            onChangeText={handleMessageChange}
+            value={contact.message}
+          />
+          <TouchableOpacity>
+            <Text style={styles.button} onPress={saveContact}>
+              Save
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.button} onPress={newContact}>
+              Add a second contact
+            </Text>
+          </TouchableOpacity>
+          <Button title="Go back" onPress={() => navigation.goBack()} />
+        </>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  formView: {
-    alignItems: 'center',
-    justifyContent: 'center',
+  input: {
+    width: 350,
+    height: 55,
+    backgroundColor: '#fff',
+    margin: 10,
+    padding: 8,
+    color: '#000',
+    borderRadius: 14,
+    fontSize: 18,
+    fontWeight: '500',
   },
-  formInput: {
-    width: 100,
-    borderColor: 'gray',
+  view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#009688',
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderColor: 'white',
     borderWidth: 1,
+    borderRadius: 12,
+    color: 'white',
+    fontSize: 20,
+    overflow: 'hidden',
+    textAlign: 'center',
   },
 });
