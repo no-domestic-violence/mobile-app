@@ -44,7 +44,7 @@ export default function EmergencyScreen({ navigation, route }) {
       'contact_1.message': contact.message,
     };
     appApiClient
-      .patch(`/emergency/${route.params.username}`, data)
+      .patch(`/users/${route.params.username}/contacts`, data)
       .then((response) => {
         // setContact({
         //   name: response.data.name,
