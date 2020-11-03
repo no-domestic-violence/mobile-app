@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useParams } from 'react';
 
 import {
   View,
@@ -10,8 +10,13 @@ import {
 } from 'react-native';
 
 import appApiClient from '../../api/appApiClient';
+import { Context as AuthContext } from '../../state/AuthContext';
 
-export default function EmergencyScreen({ navigation }) {
+export default function EmergencyScreen({ navigation, route }) {
+  const { state } = useContext(AuthContext);
+  console.log(route);
+  console.log(route.params);
+
   const initialContactState = {
     name: '',
     phone: '',
@@ -34,21 +39,23 @@ export default function EmergencyScreen({ navigation }) {
 
   const saveContact = () => {
     const data = {
-      name: contact.name,
-      phone: contact.phone,
-      message: contact.message,
+      'contact_1.name': contact.name,
+      'contact_1.phone': contact.phone,
+      'contact_1.message': contact.message,
     };
     appApiClient
-      .post('/emergency', data)
+      .patch(`/emergency/${route.params.username}`, data)
       .then((response) => {
-        setContact({
-          name: response.data.name,
-          phone: response.data.phone,
-          message: response.data.message,
-        });
+        // setContact({
+        //   name: response.data.name,
+        //   phone: response.data.phone,
+        //   message: response.data.message,
+        // });
         setSubmitted(true);
         alert(response.data);
         console.log(response.data);
+
+        console.log('hello');
       })
       .catch((e) => {
         alert(e);
@@ -76,7 +83,7 @@ export default function EmergencyScreen({ navigation }) {
         </>
       ) : (
         <>
-          <Text>Add Emergency Contact</Text>
+          <Text>{route.params.text} Add Emergency Contact</Text>
           <TextInput
             style={styles.input}
             placeholder="Name"

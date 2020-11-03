@@ -40,8 +40,11 @@ const authReducer = (state, action) => {
 
 const signup = (dispatch) => async ({ email, password, username }) => {
   try {
-    const response = await appApiClient.post('/signup',
-      { email, password, username });
+    const response = await appApiClient.post('/signup', {
+      email,
+      password,
+      username,
+    });
 
     await AsyncStorage.setItem('token', response.data.token);
     await AsyncStorage.setItem('username', response.data.user.username);
@@ -57,8 +60,7 @@ const signup = (dispatch) => async ({ email, password, username }) => {
 
 const login = (dispatch) => async ({ email, password }) => {
   try {
-    const response = await appApiClient.post('/login',
-      { email, password });
+    const response = await appApiClient.post('/login', { email, password });
     await AsyncStorage.setItem('token', response.data.token);
     await AsyncStorage.setItem('username', response.data.user.username);
     dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
@@ -91,7 +93,11 @@ const signout = (dispatch) => async () => {
 export const { Provider, Context } = createAppContext(
   authReducer,
   {
-    signup, login, signout, removeErrors, authentication
+    signup,
+    login,
+    signout,
+    removeErrors,
+    authentication,
   },
   { isLoggedIn: false, errorMessage: '' },
 );
