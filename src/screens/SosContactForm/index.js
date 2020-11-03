@@ -54,8 +54,6 @@ export default function EmergencyScreen({ navigation, route }) {
         setSubmitted(true);
         alert(response.data);
         console.log(response.data);
-
-        console.log('hello');
       })
       .catch((e) => {
         alert(e);
@@ -83,7 +81,7 @@ export default function EmergencyScreen({ navigation, route }) {
         </>
       ) : (
         <>
-          <Text>{route.params.text} Add Emergency Contact</Text>
+          <Text>Add Emergency Contact</Text>
           <TextInput
             style={styles.input}
             placeholder="Name"

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
-  faPhone, faHome, faBook, faUserCog
+  faPhone,
+  faHome,
+  faBook,
+  faUserCog,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
@@ -10,10 +13,12 @@ import {
   ContentStackNavigator,
   UserSettingsStackNavigator,
 } from './StackNavigator';
+import { Context as AuthContext } from '../state/AuthContext';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
+  const { state, authentication } = useContext(AuthContext);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -35,12 +40,23 @@ const BottomTabNavigator = () => {
       tabBarOptions={{
         activeTintColor: 'black',
         inactiveTintColor: 'gray',
-      }}
-    >
-      <Tab.Screen name="Home" component={HomeStackNavigator} />
-      <Tab.Screen name="Hotlines" component={HotlinesStackNavigator} />
-      <Tab.Screen name="Content" component={ContentStackNavigator} />
-      <Tab.Screen name="UserSettings" component={UserSettingsStackNavigator} />
+      }}>
+      {!state.token ? (
+        <>
+          <Tab.Screen name="Hotlines" component={HotlinesStackNavigator} />
+          <Tab.Screen name="Content" component={ContentStackNavigator} />
+        </>
+      ) : (
+        <>
+          <Tab.Screen name="Home" component={HomeStackNavigator} />
+          <Tab.Screen name="Hotlines" component={HotlinesStackNavigator} />
+          <Tab.Screen name="Content" component={ContentStackNavigator} />
+          <Tab.Screen
+            name="UserSettings"
+            component={UserSettingsStackNavigator}
+          />
+        </>
+      )}
     </Tab.Navigator>
   );
 };
