@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import appApiClient from '../../api/appApiClient';
+
 import {
   View,
   Text,
@@ -14,7 +16,7 @@ export default function HotlinesList() {
   const [search, setSearch] = useState('');
   const [dataSource, setDataSource] = useState([]);
 
-  useEffect(() => getData(), []);
+  useEffect(() => { getHotlinesData() }),[];
 
   const makeCall = (phoneNumber) => {
     const iosPhoneNumber = `tel:${phoneNumber}`;
@@ -25,16 +27,14 @@ export default function HotlinesList() {
     setSearch(search);
   };
 
-  const getData = () => {
-    fetch('http://localhost:3001/hotlines')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        setDataSource([...dataSource, ...responseJson]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  const getHotlinesData = async () => {
+  try {
+    const response = await appApiClient.get('/hotlines');
+    setDataSource([...dataSource, ...response.data]);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
   const ItemSeparatorView = () => {
     return (
@@ -42,7 +42,7 @@ export default function HotlinesList() {
         style={{
           height: 0.5,
           width: '100%',
-          backgroundColor: '#C8C8C8',
+          backgroundColor: '#c8c8c8',
         }}
       />
     );
@@ -52,7 +52,7 @@ export default function HotlinesList() {
       <View style={styles.footer}>
         <TouchableOpacity
           activeOpacity={0.9}
-          onPress={getData}
+          onPress={getHotlinesData}
           style={styles.loadMoreBtn}>
           <Text style={styles.btnText}>Load More</Text>
         </TouchableOpacity>
@@ -62,7 +62,7 @@ export default function HotlinesList() {
 
   return (
     <>
-      {/* TODO: how to decode cocation  */}
+      {/* TODO: how to decode location  */}
       {/* <Text>Current Location</Text> */}
       <TextInput
         style={styles.input}
@@ -71,15 +71,17 @@ export default function HotlinesList() {
         placeholder="City..."
         value={search}
       />
-      <FlatList
-        style={styles.list}
-        data={dataSource}
-        keyExtractor={(item, index) => index.toString()}
-        ItemSeparatorComponent={ItemSeparatorView}
-        enableEmptySections={true}
-        renderItem={({ item }) => <ListItem item={item} makeCall={makeCall} title={item.phone} />}
-        ListFooterComponent={renderFooter}
-      />
+        <FlatList
+          style={styles.list}
+          data={dataSource}
+          keyExtractor={(item, index) => index.toString()}
+          ItemSeparatorComponent={ItemSeparatorView}
+          enableEmptySections={true}
+          renderItem={({ item }) => (
+            <ListItem item={item} makeCall={makeCall} title={item.phone} />
+          )}
+          ListFooterComponent={renderFooter}
+        />
     </>
   );
 }
@@ -120,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnText: {
-    color: 'white',
+    color: '#fff',
     fontSize: 15,
     textAlign: 'center',
   },
