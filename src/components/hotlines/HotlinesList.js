@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import appApiClient from '../../api/appApiClient';
 
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Linking,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import { View, StyleSheet, FlatList, Linking, TextInput } from 'react-native';
 import ListItem from './ListItem';
 
 export default function HotlinesList() {
   const [search, setSearch] = useState('');
   const [dataSource, setDataSource] = useState([]);
 
-  useEffect(() => { getHotlinesData() }),[];
+  useEffect(() => {
+    getHotlinesData();
+  }, []);
 
   const makeCall = (phoneNumber) => {
     const iosPhoneNumber = `tel:${phoneNumber}`;
@@ -28,36 +22,16 @@ export default function HotlinesList() {
   };
 
   const getHotlinesData = async () => {
-  try {
-    const response = await appApiClient.get('/hotlines');
-    setDataSource([...dataSource, ...response.data]);
-  } catch (error) {
-    console.error(error);
-  }
-}
+    try {
+      const response = await appApiClient.get('/hotlines');
+      setDataSource([...dataSource, ...response.data]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const ItemSeparatorView = () => {
-    return (
-      <View
-        style={{
-          height: 0.5,
-          width: '100%',
-          backgroundColor: '#c8c8c8',
-        }}
-      />
-    );
-  };
-  const renderFooter = () => {
-    return (
-      <View style={styles.footer}>
-        <TouchableOpacity
-          activeOpacity={0.9}
-          onPress={getHotlinesData}
-          style={styles.loadMoreBtn}>
-          <Text style={styles.btnText}>Load More</Text>
-        </TouchableOpacity>
-      </View>
-    );
+    return <View style={styles.itemSeparator} />;
   };
 
   return (
@@ -71,17 +45,16 @@ export default function HotlinesList() {
         placeholder="City..."
         value={search}
       />
-        <FlatList
-          style={styles.list}
-          data={dataSource}
-          keyExtractor={(item, index) => index.toString()}
-          ItemSeparatorComponent={ItemSeparatorView}
-          enableEmptySections={true}
-          renderItem={({ item }) => (
-            <ListItem item={item} makeCall={makeCall} title={item.phone} />
-          )}
-          ListFooterComponent={renderFooter}
-        />
+      <FlatList
+        style={styles.list}
+        data={dataSource}
+        keyExtractor={(item, index) => index.toString()}
+        ItemSeparatorComponent={ItemSeparatorView}
+        enableEmptySections={true}
+        renderItem={({ item }) => (
+          <ListItem item={item} makeCall={makeCall} title={item.phone} />
+        )}
+      />
     </>
   );
 }
@@ -113,17 +86,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  loadMoreBtn: {
-    padding: 10,
-    backgroundColor: 'lightgreen',
-    borderRadius: 4,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  btnText: {
-    color: '#fff',
-    fontSize: 15,
-    textAlign: 'center',
+  itemSeparator: {
+    height: 0.5,
+    width: '100%',
+    backgroundColor: '#c8c8c8',
   },
 });
