@@ -10,7 +10,7 @@ import {
   UserSettingsStackNavigator,
 } from './StackNavigator';
 
-import ContactsTabNavigator from './ContactsTabNavigator';
+import SheltersHotlinesTabNavigator from './SheltersHotlinesTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,7 +39,7 @@ const BottomTabNavigator = () => {
       }}
     >
       <Tab.Screen name="Home" component={HomeStackNavigator} />
-      <Tab.Screen name="Contacts" component={ContactsTabNavigator} />
+      <Tab.Screen name="Contacts" component={SheltersHotlinesTabNavigator} />
       <Tab.Screen name="Content" component={ContentStackNavigator} />
       <Tab.Screen name="UserSettings" component={UserSettingsStackNavigator} />
     </Tab.Navigator>

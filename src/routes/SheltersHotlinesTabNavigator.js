@@ -7,7 +7,7 @@ import {
 
 const Tab = createMaterialTopTabNavigator();
 
-const ContactsTabNavigator = () => {
+const SheltersHotlinesTabNavigator = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -22,4 +22,4 @@ const ContactsTabNavigator = () => {
   );
 };
 
-export default ContactsTabNavigator;
+export default SheltersHotlinesTabNavigator;
