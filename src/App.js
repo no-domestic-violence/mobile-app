@@ -3,6 +3,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import AppNavigation from './routes/AppNavigator';
 import { Provider as AuthProvider } from './state/AuthContext';
+import { Provider as LocationProvider } from './state/LocationContext';
 import { LanguageProvider } from './state/LanguageContext';
 
 import './services/i18n';
@@ -10,11 +11,13 @@ import './services/i18n';
 const App = () => {
   return (
     <LanguageProvider>
-      <AuthProvider>
-        <View style={styles.container}>
-          <AppNavigation />
-        </View>
-      </AuthProvider>
+      <LocationProvider>
+        <AuthProvider>
+          <View style={styles.container}>
+            <AppNavigation />
+          </View>
+        </AuthProvider>
+      </LocationProvider>
     </LanguageProvider>
   );
 };

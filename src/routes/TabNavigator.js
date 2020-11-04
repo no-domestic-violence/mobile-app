@@ -9,11 +9,12 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   HomeStackNavigator,
-  HotlinesStackNavigator,
   ContentStackNavigator,
   UserSettingsStackNavigator,
 } from './StackNavigator';
 import { Context as AuthContext } from '../state/AuthContext';
+
+import SheltersHotlinesTabNavigator from './SheltersHotlinesTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +28,7 @@ const BottomTabNavigator = () => {
 
           if (route.name === 'Home') {
             iconName = faHome;
-          } else if (route.name === 'Hotlines') {
+          } else if (route.name === 'Contacts') {
             iconName = faPhone;
           } else if (route.name === 'Content') {
             iconName = faBook;
@@ -45,16 +46,16 @@ const BottomTabNavigator = () => {
         <>
           <Tab.Screen name="Hotlines" component={HotlinesStackNavigator} />
           <Tab.Screen name="Content" component={ContentStackNavigator} />
+          <Tab.Screen
+            name="UserSettings"
+            component={UserSettingsStackNavigator}
+          />
         </>
       ) : (
         <>
           <Tab.Screen name="Home" component={HomeStackNavigator} />
           <Tab.Screen name="Hotlines" component={HotlinesStackNavigator} />
           <Tab.Screen name="Content" component={ContentStackNavigator} />
-          <Tab.Screen
-            name="UserSettings"
-            component={UserSettingsStackNavigator}
-          />
         </>
       )}
     </Tab.Navigator>
