@@ -28,7 +28,7 @@ const BottomTabNavigator = () => {
 
           if (route.name === 'Home') {
             iconName = faHome;
-          } else if (route.name === 'Contacts') {
+          } else if (route.name === 'Hotlines') {
             iconName = faPhone;
           } else if (route.name === 'Content') {
             iconName = faBook;
@@ -44,7 +44,10 @@ const BottomTabNavigator = () => {
       }}>
       {!state.token ? (
         <>
-          <Tab.Screen name="Hotlines" component={HotlinesStackNavigator} />
+          <Tab.Screen
+            name="Hotlines"
+            component={SheltersHotlinesTabNavigator}
+          />
           <Tab.Screen name="Content" component={ContentStackNavigator} />
           <Tab.Screen
             name="UserSettings"
@@ -54,8 +57,15 @@ const BottomTabNavigator = () => {
       ) : (
         <>
           <Tab.Screen name="Home" component={HomeStackNavigator} />
-          <Tab.Screen name="Hotlines" component={HotlinesStackNavigator} />
+          <Tab.Screen
+            name="Hotlines"
+            component={SheltersHotlinesTabNavigator}
+          />
           <Tab.Screen name="Content" component={ContentStackNavigator} />
+          <Tab.Screen
+            name="UserSettings"
+            component={UserSettingsStackNavigator}
+          />
         </>
       )}
     </Tab.Navigator>
