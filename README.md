@@ -19,7 +19,9 @@ We use:
 - font awesome for icons
 - axios for API calls
 - i18next and expo-localization for localization
-
+- react-native-maps for maps(goggle maps for android, native maps for ios)
+- expo-location for reading geolocation information from the device.
+- react-native-elements for material ui styling (could be changed later)
 ---
 
 **To run locally**
