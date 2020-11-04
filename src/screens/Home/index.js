@@ -1,11 +1,32 @@
-import React, { useContext } from 'react';
-import { View, Button, StyleSheet, Text } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Button, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Context as AuthContext } from '../../state/AuthContext';
 
-export default function Home({ navigation }) {
+import { Context as AuthContext } from '../../state/AuthContext';
+import appApiClient from '../../api/appApiClient';
+
+export default function Home({ navigation, route }) {
   const { state } = useContext(AuthContext);
   const { t, i18n } = useTranslation();
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    getContacts();
+  }, []);
+
+  const getContacts = async () => {
+    try {
+      const response = await appApiClient.get(
+        `/users/${route.params.username}/contacts`,
+      );
+
+      setDataSource([...response.data.contacts]);
+      // console.log(dataSource);
+      // console.log(dataSource.length);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View style={styles.homeView}>
@@ -17,6 +38,9 @@ export default function Home({ navigation }) {
           })
         }
       />
+      <TouchableOpacity onPress={getContacts}>
+        <Text>Show contact details</Text>
+      </TouchableOpacity>
       <Text>SOS button is here</Text>
     </View>
   );

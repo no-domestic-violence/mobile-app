@@ -39,9 +39,9 @@ export default function EmergencyScreen({ navigation, route }) {
 
   const saveContact = () => {
     const data = {
-      'contact_1.name': contact.name,
-      'contact_1.phone': contact.phone,
-      'contact_1.message': contact.message,
+      name: contact.name,
+      phone: contact.phone,
+      message: contact.message,
     };
     appApiClient
       .patch(`/users/${route.params.username}/contacts`, data)
@@ -74,10 +74,17 @@ export default function EmergencyScreen({ navigation, route }) {
           <Text>Emergency Contact was successfully added!</Text>
           <TouchableOpacity>
             <Text style={styles.button} onPress={newContact}>
-              Add another contact
+              Add second contact
             </Text>
           </TouchableOpacity>
-          <Button title="Go back" onPress={() => navigation.goBack()} />
+          <Button
+            title="Go back"
+            onPress={() =>
+              navigation.navigate('Home', {
+                username: state.username,
+              })
+            }
+          />
         </>
       ) : (
         <>
@@ -108,12 +115,14 @@ export default function EmergencyScreen({ navigation, route }) {
               Save
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={styles.button} onPress={newContact}>
-              Add a second contact
-            </Text>
-          </TouchableOpacity>
-          <Button title="Go back" onPress={() => navigation.goBack()} />
+          <Button
+            title="Go back"
+            onPress={() =>
+              navigation.navigate('Home', {
+                username: state.username,
+              })
+            }
+          />
         </>
       )}
     </View>
