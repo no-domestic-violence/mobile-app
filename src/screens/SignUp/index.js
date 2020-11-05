@@ -1,6 +1,13 @@
-import React, {useContext, useState, useEffect} from 'react';
-import {View, Text, TextInput, StyleSheet, TouchableOpacity, Button} from 'react-native';
-import { Context as AuthContext } from "../../state/AuthContext";
+import React, { useContext, useState, useEffect } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Button,
+} from 'react-native';
+import { Context as AuthContext } from '../../state/AuthContext';
 
 const styles = StyleSheet.create({
   input: {
@@ -36,26 +43,26 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SignUpScreen({navigation}) {
-  const {state, signup, removeErrors} = useContext(AuthContext);
+export default function SignUpScreen({ navigation }) {
+  const { state, signup, removeErrors } = useContext(AuthContext);
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignUp = () => {
-    signup({email, password, username});
+    signup({ email, password, username });
   };
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
       removeErrors();
     });
- 
+
     return unsubscribe;
   }, [navigation, removeErrors]);
 
-//TODO: refactor togerther with login
+  //TODO: refactor togerther with login
   return (
     <View style={styles.view}>
       <TextInput
@@ -99,5 +106,3 @@ export default function SignUpScreen({navigation}) {
     </View>
   );
 }
-
-

@@ -1,5 +1,5 @@
-import React, {useContext, useState, useEffect } from 'react';
-import { Context as AuthContext } from "../../state/AuthContext";
+import React, { useContext, useState, useEffect } from 'react';
+import { Context as AuthContext } from '../../state/AuthContext';
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const styles = StyleSheet.create({
   input: {
@@ -39,26 +39,26 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     overflow: 'hidden',
-    textAlign:'center',
-  }
+    textAlign: 'center',
+  },
 });
 
-export default function LoginScreen({navigation}) {
-
-  const {t, i18n} = useTranslation();
-  const {state, login, removeErrors} = useContext(AuthContext);
+export default function LoginScreen({ navigation }) {
+  const { t, i18n } = useTranslation();
+  const { state, login, removeErrors } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogIn = () => {
-    login({email, password});
+    login({ email, password });
   };
-//TODO: reuse it
+
+  //TODO: reuse it
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
       removeErrors();
     });
- 
+
     return unsubscribe;
   }, [navigation, removeErrors]);
 
@@ -82,7 +82,7 @@ export default function LoginScreen({navigation}) {
         onChangeText={setPassword}
         value={password}
       />
-      <TouchableOpacity onPress={() => handleLogIn()}>
+      <TouchableOpacity onPress={handleLogIn}>
         <Text style={styles.button}>Login</Text>
       </TouchableOpacity>
       <Button
@@ -93,7 +93,7 @@ export default function LoginScreen({navigation}) {
         title="Proceed without login"
         onPress={() => navigation.navigate('Home')}
       />
-       {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
+      {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
     </View>
   );
 }

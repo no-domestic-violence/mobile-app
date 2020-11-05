@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useParams } from 'react';
 
 import {
   View,
@@ -10,8 +10,11 @@ import {
 } from 'react-native';
 
 import appApiClient from '../../api/appApiClient';
+import { Context as AuthContext } from '../../state/AuthContext';
 
-export default function EmergencyScreen({ navigation }) {
+export default function EmergencyScreen({ navigation, route }) {
+  const { state } = useContext(AuthContext);
+
   const initialContactState = {
     name: '',
     phone: '',
@@ -39,16 +42,10 @@ export default function EmergencyScreen({ navigation }) {
       message: contact.message,
     };
     appApiClient
-      .post('/emergency', data)
+      .patch(`/users/${route.params.username}/contacts`, data)
       .then((response) => {
-        setContact({
-          name: response.data.name,
-          phone: response.data.phone,
-          message: response.data.message,
-        });
         setSubmitted(true);
         alert(response.data);
-        console.log(response.data);
       })
       .catch((e) => {
         alert(e);
@@ -69,10 +66,17 @@ export default function EmergencyScreen({ navigation }) {
           <Text>Emergency Contact was successfully added!</Text>
           <TouchableOpacity>
             <Text style={styles.button} onPress={newContact}>
-              Add another contact
+              Add second contact
             </Text>
           </TouchableOpacity>
-          <Button title="Go back" onPress={() => navigation.goBack()} />
+          <Button
+            title="Go back"
+            onPress={() =>
+              navigation.navigate('Home', {
+                username: state.username,
+              })
+            }
+          />
         </>
       ) : (
         <>
@@ -103,12 +107,14 @@ export default function EmergencyScreen({ navigation }) {
               Save
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={styles.button} onPress={newContact}>
-              Add a second contact
-            </Text>
-          </TouchableOpacity>
-          <Button title="Go back" onPress={() => navigation.goBack()} />
+          <Button
+            title="Go back"
+            onPress={() =>
+              navigation.navigate('Home', {
+                username: state.username,
+              })
+            }
+          />
         </>
       )}
     </View>
