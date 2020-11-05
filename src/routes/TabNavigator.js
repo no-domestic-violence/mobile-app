@@ -42,32 +42,17 @@ const BottomTabNavigator = () => {
         activeTintColor: 'black',
         inactiveTintColor: 'gray',
       }}>
-      {!state.token ? (
-        <>
-          <Tab.Screen
-            name="Hotlines"
-            component={SheltersHotlinesTabNavigator}
-          />
-          <Tab.Screen name="Content" component={ContentStackNavigator} />
-          <Tab.Screen
-            name="UserSettings"
-            component={UserSettingsStackNavigator}
-          />
-        </>
-      ) : (
-        <>
+      <>
+        {state.token && (
           <Tab.Screen name="Home" component={HomeStackNavigator} />
-          <Tab.Screen
-            name="Hotlines"
-            component={SheltersHotlinesTabNavigator}
-          />
-          <Tab.Screen name="Content" component={ContentStackNavigator} />
-          <Tab.Screen
-            name="UserSettings"
-            component={UserSettingsStackNavigator}
-          />
-        </>
-      )}
+        )}
+        <Tab.Screen name="Hotlines" component={SheltersHotlinesTabNavigator} />
+        <Tab.Screen name="Content" component={ContentStackNavigator} />
+        <Tab.Screen
+          name="UserSettings"
+          component={UserSettingsStackNavigator}
+        />
+      </>
     </Tab.Navigator>
   );
 };

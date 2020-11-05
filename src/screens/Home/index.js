@@ -21,10 +21,8 @@ export default function Home({ navigation, route }) {
       );
 
       setDataSource([...response.data.contacts]);
-      // console.log(dataSource);
-      // console.log(dataSource.length);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

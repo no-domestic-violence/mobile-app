@@ -14,8 +14,6 @@ import { Context as AuthContext } from '../../state/AuthContext';
 
 export default function EmergencyScreen({ navigation, route }) {
   const { state } = useContext(AuthContext);
-  console.log(route);
-  console.log(route.params);
 
   const initialContactState = {
     name: '',
@@ -46,14 +44,8 @@ export default function EmergencyScreen({ navigation, route }) {
     appApiClient
       .patch(`/users/${route.params.username}/contacts`, data)
       .then((response) => {
-        // setContact({
-        //   name: response.data.name,
-        //   phone: response.data.phone,
-        //   message: response.data.message,
-        // });
         setSubmitted(true);
         alert(response.data);
-        console.log(response.data);
       })
       .catch((e) => {
         alert(e);
