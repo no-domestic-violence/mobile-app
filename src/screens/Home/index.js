@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Context as AuthContext } from '../../state/AuthContext';
 import appApiClient from '../../api/appApiClient';
+import { useIsFocused } from '@react-navigation/native';
 
 const Item = ({ item, onPress, style }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
@@ -35,11 +36,12 @@ export default function Home({ navigation, route }) {
   const { state } = useContext(AuthContext);
   const { t, i18n } = useTranslation();
   const [dataSource, setDataSource] = useState([]);
-  const [selectedId, setSelectedId] = useState('');
+  const [selectedId, setSelectedId] = useState(null);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     getContacts();
-  }, []);
+  }, [isFocused]);
 
   const getContacts = async () => {
     try {
@@ -53,15 +55,36 @@ export default function Home({ navigation, route }) {
     }
   };
 
+  const deleteContact = () => {
+    appApiClient
+      .delete(`/users/${route.params.username}/delete`, {
+        params: { id: selectedId },
+      })
+      .then((response) => {
+        console.log(response.data);
+        console.log(selectedId);
+      })
+      .catch((e) => {
+        alert(e);
+        console.log(selectedId);
+      });
+    getContacts();
+  };
+
   const renderItem = ({ item }) => {
-    const backgroundColor = item._id === selectedId ? '#6e3b6e' : '#f9c2ff';
+    const backgroundColor = item._id === selectedId ? '#F9A121' : '#f9c2ff';
     return (
-      <Item
-        item={item}
-        /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-        onPress={() => setSelectedId(item._id)}
-        style={{ backgroundColor }}
-      />
+      <>
+        <Item
+          item={item}
+          /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
+          onPress={() => setSelectedId(item._id)}
+          style={{ backgroundColor }}
+        />
+        {item._id === selectedId && (
+          <Button title="Delete" onPress={deleteContact} />
+        )}
+      </>
     );
   };
   return (
@@ -74,9 +97,10 @@ export default function Home({ navigation, route }) {
           })
         }
       />
-      <TouchableOpacity onPress={getContacts}>
+      {/* <TouchableOpacity onPress={getContacts}>
         <Text style={styles.text}>Show contact details</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+      <Text>Emergency Contact List</Text>
       <FlatList
         style={styles.list}
         data={dataSource}
