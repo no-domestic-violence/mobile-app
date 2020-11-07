@@ -25,6 +25,7 @@ export default function HotlinesList() {
     try {
       const response = await appApiClient.get('/hotlines');
       setDataSource([...response.data]);
+      console.log(dataSource.length);
     } catch (error) {
       console.error(error);
     }

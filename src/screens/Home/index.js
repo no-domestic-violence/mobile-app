@@ -1,133 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
-import {
-  View,
-  Button,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import React, { useContext } from 'react';
+import { Button } from 'react-native';
+import SosContactList from '_components/sosContacts/SosContactsList';
+import { Context as AuthContext } from '../../state/AuthContext';
 import { useTranslation } from 'react-i18next';
 
-import { Context as AuthContext } from '../../state/AuthContext';
-import appApiClient from '../../api/appApiClient';
-import { useIsFocused } from '@react-navigation/native';
-
-const Item = ({ item, onPress, style }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-    <Text style={styles.text}>
-      {'\n'}
-      Name:
-      {item.name}
-    </Text>
-    <Text style={styles.text}>
-      Phone Number:
-      {item.phone}
-    </Text>
-    <Text style={styles.text}>
-      Help Message:
-      {item.message}
-      {'\n'}
-    </Text>
-  </TouchableOpacity>
-);
-
-export default function Home({ navigation, route }) {
+export default function Home({ navigation }) {
   const { state } = useContext(AuthContext);
-  const { t, i18n } = useTranslation();
-  const [dataSource, setDataSource] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
-  const isFocused = useIsFocused();
-
-  useEffect(() => {
-    getContacts();
-  }, [isFocused]);
-
-  const getContacts = async () => {
-    try {
-      const response = await appApiClient.get(
-        `/users/${route.params.username}/contacts`,
-      );
-
-      setDataSource([...response.data.contacts]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const deleteContact = () => {
-    appApiClient
-      .delete(`/users/${route.params.username}/delete`, {
-        params: { id: selectedId },
-      })
-      .then((response) => {
-        console.log(response.data);
-        console.log(selectedId);
-      })
-      .catch((e) => {
-        alert(e);
-        console.log(selectedId);
-      });
-    getContacts();
-  };
-
-  const renderItem = ({ item }) => {
-    const backgroundColor = item._id === selectedId ? '#F9A121' : '#f9c2ff';
-    return (
-      <>
-        <Item
-          item={item}
-          /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-          onPress={() => setSelectedId(item._id)}
-          style={{ backgroundColor }}
-        />
-        {item._id === selectedId && (
-          <Button title="Delete" onPress={deleteContact} />
-        )}
-      </>
-    );
-  };
+  const { t } = useTranslation();
   return (
-    <View style={styles.homeView}>
+    <>
+      <SosContactList />
       <Button
         title={t('HomeScreen.emergency-title')}
-        onPress={() =>
-          navigation.navigate('SosContactForm', {
-            username: state.username,
-          })
-        }
+        onPress={() => navigation.navigate('SosContactForm')}
       />
-      {/* <TouchableOpacity onPress={getContacts}>
-        <Text style={styles.text}>Show contact details</Text>
-      </TouchableOpacity> */}
-      <Text>Emergency Contact List</Text>
-      <FlatList
-        style={styles.list}
-        data={dataSource}
-        keyExtractor={(item) => item._id}
-        extraData={selectedId}
-        enableEmptySections
-        renderItem={renderItem}
-      />
-
-      <Text style={styles.text}>SOS button is here</Text>
-    </View>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  homeView: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  list: {
-    flex: 1,
-    padding: 10,
-    color: 'black',
-  },
-  text: {
-    color: 'black',
-    fontFamily: 'Courier',
-  },
-});
