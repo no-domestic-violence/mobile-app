@@ -44,7 +44,18 @@ yarn start
 yarn lint
 ```
 
-**To test with device in development mode or production mode**
+**To test in development mode or production mode**
+
+1. It runs by default in development mode
+
+2. To run in production mode 
+
+```s
+expo start --no-dev --minify
+```
+
+**To test in development mode with device**
+
 
 1. Login to expo with given credentials :
 
@@ -53,3 +64,7 @@ expo login
 ```
 
 2. Open expo app from your device and login with the same credentials and you can start manually testing your work
+
+**To test in production mode with device**
+
+Publish the app in production mode.

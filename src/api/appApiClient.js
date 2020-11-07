@@ -1,6 +1,6 @@
 import axios from 'axios';
+import baseURL from '../config';
 
-// TODO: configure production when we have it
 export default axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL,
 });
