@@ -1,10 +1,18 @@
 {
   "expo": {
-    "name": "mobile-app",
-    "slug": "mobile-app",
+    "name": "Pool",
+    "description": "Fighting against domestic violence",
+    "slug": "pool-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "src/assets/icon.png",
+    "sdkVersion": "39.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "githubUrl": "https://github.com/no-domestic-violence/mobile-app",
     "splash": {
       "image": "src/assets/splash.png",
       "resizeMode": "contain",
@@ -18,11 +26,16 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "pool-ios"
+      "bundleIdentifier": "com.domestic_violence.pool",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.domestic_violence.pool",
+      "versionCode": 1,
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_BACKGROUND_LOCATION", "RECORD_AUDIO", "READ_CONTACTS", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
     },
     "web": {
       "favicon": "src/assets/favicon.png"
-    },
-    "description": ""
+    }
   }
 }

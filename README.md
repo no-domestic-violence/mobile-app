@@ -67,4 +67,13 @@ expo login
 
 **To test in production mode with device**
 
-Publish the app in production mode.
+Publish the app in production mode with expo
+
+**To build bundles**
+```s
+expo build:android -t app-bundle
+```
+
+```s
+expo build:ios (only with paid developer account)
+```
