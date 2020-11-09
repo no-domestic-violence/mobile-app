@@ -26,7 +26,6 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.domestic_violence.pool",
       "buildNumber": "1.0.0"
     },
     "android": {
