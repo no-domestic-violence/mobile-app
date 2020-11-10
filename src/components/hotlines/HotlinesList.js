@@ -50,8 +50,6 @@ export default function HotlinesList() {
   }
   return (
     <>
-      {/* TODO: how to decode location  */}
-      {/* <Text>Current Location</Text> */}
       <SearchBar
         ref={inputRef}
         inputStyle={{ backgroundColor: 'white' }}
