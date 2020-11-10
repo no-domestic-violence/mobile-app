@@ -1,28 +1,52 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
-
+import { Avatar, Icon } from "react-native-elements";
 export default function ListItem({ item, makeCall }) {
+  const [visible, setVisible] = useState(false);
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
   return (
     <TouchableOpacity style={styles.listItem}>
-      <View>
-        <Text style={styles.listItemTitle}>{item.organisation_name}</Text>
-        <Text style={styles.listItemContacts}>
-          {item.city}, tel:{item.phone}
-        </Text>
+      <View style={styles.info}>
+        <Avatar
+          size="medium"
+          icon={{ name: 'info-circle', color: 'grey', type: 'font-awesome' }}
+          activeOpacity={0.7}
+          onPress={toggleOverlay}
+        />
+        <View style={styles.listItemContent}>
+          <Text style={styles.listItemTitle}>{item.organisation_name}</Text>
+          <Text style={styles.listItemContacts} >
+            {item.city}, tel:{item.phone}
+          </Text>
+        </View>
       </View>
+
       <View>
-        <FontAwesomeIcon icon={faPhone} onPress={() => makeCall(item.phone)} />
+        <Icon
+          raised
+          name="phone"
+          type="font-awesome"
+          color="pink"
+          onPress={() => makeCall(item.phone)}
+        />
       </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
+  info: {
+    flexDirection: 'row',
+    alignContent: 'center',
+    alignItems: 'center',
+
+  },
   listItem: {
-    paddingVertical: 20,
-    paddingHorizontal: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 2,
     borderColor: 'grey',
     borderBottomWidth: 1,
     flexShrink: 1,
@@ -33,4 +57,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     flexShrink: 1,
   },
+  listItemContacts: {
+    flexWrap: 'wrap',
+    flexShrink: 1,
+    
+    // flex: 1
+  },
+  listItemContent:{
+    flexWrap: 'wrap',
+    flex: 1
+  }
 });

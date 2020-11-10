@@ -41,7 +41,8 @@ const BottomTabNavigator = () => {
       tabBarOptions={{
         activeTintColor: 'black',
         inactiveTintColor: 'gray',
-      }}>
+      }}
+    >
       <>
         {state.token && (
           <Tab.Screen name="Home" component={HomeStackNavigator} />
