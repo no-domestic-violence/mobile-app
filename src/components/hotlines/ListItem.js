@@ -1,12 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Avatar, Icon } from "react-native-elements";
 export default function ListItem({ item, makeCall }) {
-  const [visible, setVisible] = useState(false);
 
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
   return (
     <TouchableOpacity style={styles.listItem}>
       <View style={styles.info}>
@@ -14,7 +10,6 @@ export default function ListItem({ item, makeCall }) {
           size="medium"
           icon={{ name: 'info-circle', color: 'grey', type: 'font-awesome' }}
           activeOpacity={0.7}
-          onPress={toggleOverlay}
         />
         <View style={styles.listItemContent}>
           <Text style={styles.listItemTitle}>{item.organisation_name}</Text>
@@ -60,8 +55,6 @@ const styles = StyleSheet.create({
   listItemContacts: {
     flexWrap: 'wrap',
     flexShrink: 1,
-    
-    // flex: 1
   },
   listItemContent:{
     flexWrap: 'wrap',
