@@ -11,6 +11,7 @@ import {
   HomeStackNavigator,
   ContentStackNavigator,
   UserSettingsStackNavigator,
+  AssessStackNavigator,
 } from './StackNavigator';
 import { Context as AuthContext } from '../state/AuthContext';
 
@@ -48,10 +49,8 @@ const BottomTabNavigator = () => {
         )}
         <Tab.Screen name="Hotlines" component={SheltersHotlinesTabNavigator} />
         <Tab.Screen name="Content" component={ContentStackNavigator} />
-        <Tab.Screen
-          name="UserSettings"
-          component={UserSettingsStackNavigator}
-        />
+        <Tab.Screen name="UserSettings" component={UserSettingsStackNavigator} />
+        <Tab.Screen name="Assess" component={AssessStackNavigator} />
       </>
     </Tab.Navigator>
   );
