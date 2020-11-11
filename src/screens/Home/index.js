@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Button } from 'react-native';
-import SosContactList from '_components/sosContacts/SosContactsList';
+import SosContactList from 'components/sosContacts/SosContactList';
 import { Context as AuthContext } from '../../state/AuthContext';
 import { useTranslation } from 'react-i18next';
 
