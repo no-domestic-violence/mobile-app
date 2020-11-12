@@ -15,6 +15,7 @@ import {
 import { Context as AuthContext } from '../state/AuthContext';
 
 import SheltersHotlinesTabNavigator from './SheltersHotlinesTabNavigator';
+import ResourcesTabNavigator from './ResourcesTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,6 +42,9 @@ const BottomTabNavigator = () => {
       tabBarOptions={{
         activeTintColor: 'black',
         inactiveTintColor: 'gray',
+        style: {
+          backgroundColor: "#CADEEE",
+        }
       }}
     >
       <>
@@ -48,7 +52,7 @@ const BottomTabNavigator = () => {
           <Tab.Screen name="Home" component={HomeStackNavigator} />
         )}
         <Tab.Screen name="Hotlines" component={SheltersHotlinesTabNavigator} />
-        <Tab.Screen name="Content" component={ContentStackNavigator} />
+        <Tab.Screen name="Content" component={ResourcesTabNavigator} />
         <Tab.Screen
           name="UserSettings"
           component={UserSettingsStackNavigator}

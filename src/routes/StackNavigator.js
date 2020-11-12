@@ -7,7 +7,9 @@ import OnboardingScreen from '_screens/Onboarding';
 import HomeScreen from '_screens/Home';
 import SosContactForm from '_screens/SosContactForm';
 import Hotlines from '_screens/Hotlines';
-import Content from '_screens/Content';
+import ArticlesList from '_screens/ArticlesList';
+import VideoList from '_screens/VideoList';
+import PodcastList from '_screens/PodcastList';
 import UserSettings from '_screens/UserSettings';
 import LoginScreen from '_screens/Login';
 import SignUpScreen from '_screens/SignUp';
@@ -57,18 +59,34 @@ export const MapStackNavigator = () => {
     </Stack.Navigator>
   );
 };
-
-export const ContentStackNavigator = () => {
+export const ArticleStackNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Content" component={Content} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Hotlines" component={ArticlesList} />
     </Stack.Navigator>
   );
 };
+
+export const VideoStackNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Map" component={VideoList} />
+    </Stack.Navigator>
+  );
+};
+
+export const PodcastStackNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Map" component={PodcastList} />
+    </Stack.Navigator>
+  );
+};
+
 export const UserSettingsStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Content" component={UserSettings} />
+      <Stack.Screen name="User" component={UserSettings} />
     </Stack.Navigator>
   );
 };
