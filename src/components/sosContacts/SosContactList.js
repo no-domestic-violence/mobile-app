@@ -4,14 +4,15 @@ import {
   Button,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
+import { useIsFocused } from '@react-navigation/native';
 import { Context as AuthContext } from '../../state/AuthContext';
 import appApiClient from '../../api/appApiClient';
-import { useIsFocused, useFocusEffect } from '@react-navigation/native';
 
 export default function SosContactList({ navigation, route }) {
   const { state } = useContext(AuthContext);
@@ -23,10 +24,6 @@ export default function SosContactList({ navigation, route }) {
   const [isEditable, setEditable] = useState(false);
   const [prevState, setPrevState] = useState([]);
   const [copyOfState, setCopyOfState] = useState([]);
-
-  const handleEditButton = () => {
-    setEditable(true);
-  };
 
   useEffect(() => {
     getContacts();
@@ -41,183 +38,37 @@ export default function SosContactList({ navigation, route }) {
       );
 
       setDataSource([...response.data.contacts]);
-      setPrevState([...dataSource]);
-      setCopyOfState([...dataSource]);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const deleteContact = () => {
-    appApiClient
-      .delete(`/users/${state.username}/delete`, {
-        params: { id: selectedId },
-      })
-      .then((response) => {
-        console.log(response.data);
-        console.log(selectedId);
-      })
-      .catch((e) => {
-        alert(e);
-      });
-    // get updated contacts
-    getContacts();
-  };
-
-  const saveEdit = () => {
-    setDataSource([...copyOfState]);
-    setPrevState([...copyOfState]);
-    setEditable(false);
-
-    console.log(dataSource);
-  };
-
-  const handleCancelEdit = () => {
-    setEditable(false);
-
-    setDataSource([...prevState]);
-    console.log(dataSource);
-  };
-  // const update = (text, i) => {
-  //   const copyOfState = [...dataSource];
-  //   copyOfState[i].value = text;
-  //   setDataSource(copyOfState);
-  // };
-
-  // const handleNameChange = (index, name) => {
-  //   const copyOfState = [...dataSource];
-  //   copyOfState[index] = { ...copyOfState[index], name };
-  //   setDataSource(copyOfState);
-  // };
-
-  const handleInputChange = (index, inputName, inputValue) => {
-    copyOfState[index] = { ...copyOfState[index], [inputName]: inputValue };
-    setCopyOfState([...copyOfState]);
-    console.log(copyOfState);
-  };
-
-  const Item = ({
-    item,
-    onPress,
-    style,
-    onChangeName,
-    onChangePhone,
-    onChangeMessage,
-  }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
+  const Item = ({ item, onPress, style }) => (
+    <TouchableOpacity onPress={onPress} style={[styles.listItem, style]}>
       <Text style={styles.text}>
         {'\n'}
-        Name:
+        {item.name}
       </Text>
-      <TextInput
-        style={styles.text}
-        value={item.name}
-        editable={isEditable}
-        onChangeText={onChangeName}
-      />
-      <Text style={styles.text}>Phone Number:</Text>
-      <TextInput
-        style={styles.text}
-        value={item.phone}
-        editable={isEditable}
-        onChangeText={onChangePhone}
-      />
-      <Text style={styles.text}>Help Message:</Text>
-      <TextInput
-        style={styles.text}
-        value={item.message}
-        editable={isEditable}
-        onChangeText={onChangeMessage}
-      />
-      <Text style={styles.text}>{'\n'}</Text>
+      <FontAwesomeIcon icon={faEnvelope} />
     </TouchableOpacity>
   );
-
-  const renderItem = ({ item, index }) => {
+  const renderItem = ({ item }) => {
     const backgroundColor = item._id === selectedId ? '#F9A121' : '#f9c2ff';
-
-    // firstContact.name = 'Soyoon';
-
-    // console.log(firstContact);
-    // console.log(copiedState);
-
-    // console.log(copiedState[0].name);
-    // const handleChange = () => {
-    //   const items = [...dataSource];
-    //   console.log(items);
-    //   const item1 = { ...dataSource[0] };
-    // };
-    // console.log(newNames);
-
-    // toggleEditable state
-    // const handleNameChange = (name) => {
-    //   console.log(name);
-    //   const id = '5fa625dfd6fd1ecbce9f1714';
-    //   const updatedList = dataSource.map((item) => {
-    //     if (item._id === id) {
-    //       console.log(item);
-    //       return { ...item, name };
-    //     }
-    //     return item;
-    //   });
-    //   console.log(updatedList);
-    //   setDataSource({ updatedList });
-
-    // };
-
-    const enableEdit = () => {
-      switch (isEditable) {
-        case false:
-          return (
-            <>
-              <Button title="Edit" onPress={handleEditButton} />
-              <Button title="Delete" onPress={deleteContact} />
-            </>
-          );
-        case true:
-          return (
-            <>
-              <Button title="Cancel" onPress={handleCancelEdit} />
-              <Button title="Save" onPress={saveEdit} />
-            </>
-          );
-        default:
-          return (
-            <>
-              <Button title="Edit" onPress={handleEditButton} />
-              <Button title="Delete" onPress={deleteContact} />
-            </>
-          );
-      }
-    };
     return (
-      <>
-        <Item
-          item={item}
-          /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-          onPress={() => setSelectedId(item._id)}
-          style={{ backgroundColor }}
-          onChangeName={(value) => handleInputChange(index, 'name', value)}
-          onChangePhone={(value) => handleInputChange(index, 'phone', value)}
-          onChangeMessage={(value) =>
-            handleInputChange(index, 'message', value)
-          }
-        />
-        {item._id === selectedId && enableEdit()}
-      </>
+      <Item
+        item={item}
+        /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
+        onPress={() => setSelectedId(item._id)}
+        style={{ backgroundColor }}
+      />
     );
   };
-
   return (
     <View style={styles.homeView}>
       <Text>Emergency Contact List</Text>
-      {/* <TextInput
-        value={item1.name}
-        onChangeText={(newName) => setDataSource([newName])}
-      /> */}
       <FlatList
         style={styles.list}
-        data={isEditable ? copyOfState : dataSource}
+        data={dataSource}
         keyExtractor={(item) => item._id}
         extraData={selectedId}
         enableEmptySections
@@ -236,11 +87,31 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     padding: 10,
-    color: 'black',
   },
   text: {
     color: 'black',
     fontFamily: 'Courier',
     padding: 3,
+    fontWeight: 'bold',
+    flexShrink: 1,
+  },
+  buttonLabel: {
+    fontSize: 14,
+    color: '#FFF',
+    alignSelf: 'center',
+  },
+  button: {
+    backgroundColor: '#136AC7',
+    borderRadius: 5,
+    padding: 10,
+  },
+  listItem: {
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    borderColor: 'grey',
+    borderBottomWidth: 1,
+    flexShrink: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

@@ -6,6 +6,7 @@ import LanguageScreen from '_screens/Language';
 import OnboardingScreen from '_screens/Onboarding';
 import HomeScreen from '_screens/Home';
 import SosContactForm from '_screens/SosContactForm';
+import SosContactEdit from '_screens/SosContactEdit';
 import Hotlines from '_screens/Hotlines';
 import Content from '_screens/Content';
 import UserSettings from '_screens/UserSettings';
@@ -38,6 +39,7 @@ export const HomeStackNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="SosContactForm" component={SosContactForm} />
+      <Stack.Screen name="SosContactEdit" component={SosContactEdit} />
     </Stack.Navigator>
   );
 };
