@@ -8,8 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
-  HomeStackNavigator,
-  ContentStackNavigator,
+  EmergencyStackNavigator,
   UserSettingsStackNavigator,
 } from './StackNavigator';
 import { Context as AuthContext } from '../state/AuthContext';
@@ -43,13 +42,13 @@ const BottomTabNavigator = () => {
         activeTintColor: 'black',
         inactiveTintColor: 'gray',
         style: {
-          backgroundColor: "#CADEEE",
+          backgroundColor: '#FEF8E3',
         }
       }}
     >
       <>
         {state.token && (
-          <Tab.Screen name="Home" component={HomeStackNavigator} />
+          <Tab.Screen name="Home" component={EmergencyStackNavigator} />
         )}
         <Tab.Screen name="Hotlines" component={SheltersHotlinesTabNavigator} />
         <Tab.Screen name="Content" component={ResourcesTabNavigator} />
