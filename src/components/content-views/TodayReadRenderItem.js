@@ -5,9 +5,11 @@ import {
     Image,
     TouchableOpacity,
   } from 'react-native';
-  import React from 'react';
+  import React, {useRef} from 'react';
 
 const TodayReadRenderItem = ({item}) => {
+  const carouselRef = useRef(null);
+
     return (
         <View>
           <TouchableOpacity

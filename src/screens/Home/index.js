@@ -13,6 +13,7 @@ import Carousel from 'react-native-anchor-carousel';
 import { Feather } from '@expo/vector-icons';
 import WatchListRenderItem from '../../components/content-views/WatchListRenderItem';
 import TodayReadRenderItem from '../../components/content-views/TodayReadRenderItem';
+import {videoData} from '../../mock/video'
 
 const Home = ({ navigation }) => {
 
@@ -50,34 +51,7 @@ const Home = ({ navigation }) => {
     },
   ]);
 
-  // TODO: should get from db (with context api cuz of different screen)
-  const [watchList, setWatchList] = useState([
-    {
-      image:
-        'https://freedesignfile.com/upload/2017/03/Cute-easter-seamless-pattern-design-vector-12.jpg',
-      id: '1',
-    },
-    {
-      image:
-        'https://freedesignfile.com/upload/2017/03/Cute-easter-seamless-pattern-design-vector-12.jpg',
-      id: '2',
-    },
-    {
-      image:
-        'https://freedesignfile.com/upload/2017/03/Cute-easter-seamless-pattern-design-vector-12.jpg',
-      id: '3',
-    },
-    {
-      image:
-        'https://freedesignfile.com/upload/2017/03/Cute-easter-seamless-pattern-design-vector-12.jpg',
-      id: '4',
-    },
-    {
-      image:
-        'https://freedesignfile.com/upload/2017/03/Cute-easter-seamless-pattern-design-vector-12.jpg',
-      id: '5',
-    },
-  ]);
+  const [watchList, setWatchList] = useState(videoData);
 
   const carouselRef = useRef(null);
 
