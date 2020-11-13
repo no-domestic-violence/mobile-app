@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, Image, TouchableOpacity, StyleSheet, Button } from 'react-native';
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-const VideoListRenderItem = ({ item, onPressItem, navigation }) => {
+const VideoListRenderItem = ({ item, navigation }) => {
   return (
-    <TouchableOpacity style={styles.itemContainer} onPress={onPressItem}>
+    <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate('Video Page')}>
       <Image source={{ uri: item.image }} style={styles.itemImage} />
       <View style={styles.itemView}></View>
       <FontAwesome5
@@ -13,13 +18,6 @@ const VideoListRenderItem = ({ item, onPressItem, navigation }) => {
         color="#fff"
         style={styles.itemIcon}
       />
-      {/* TODO : fix it with click on video */}
-      {/* <Button
-            title="Go to video"
-            onPress={() =>
-              navigation.navigate('Video Page')
-            }
-          /> */}
     </TouchableOpacity>
   );
 };
