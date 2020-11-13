@@ -13,10 +13,9 @@ import Carousel from 'react-native-anchor-carousel';
 import { Feather } from '@expo/vector-icons';
 import WatchListRenderItem from '../../components/content-views/WatchListRenderItem';
 import TodayReadRenderItem from '../../components/content-views/TodayReadRenderItem';
-import {videoData} from '../../mock/video'
+import { videoData } from '../../mock/video';
 
 const Home = ({ navigation }) => {
-
   // TODO: should get from db (with context api cuz of different screen)
   const [articles, setArticles] = useState([
     {
@@ -92,6 +91,7 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <FlatList
+          keyExtractor={(item, index) => index.toString()}
           horizontal={true}
           data={watchList}
           renderItem={({ item }) => <WatchListRenderItem item={item} />}

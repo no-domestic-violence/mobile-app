@@ -8,6 +8,7 @@ export default function VideoList({ navigation }) {
   return (
     <View>
       <FlatList
+        keyExtractor={(item, index) => index.toString()}
         data={watchList}
         renderItem={({ item }) => (
           <VideoListRenderItem item={item} navigation={navigation} />
