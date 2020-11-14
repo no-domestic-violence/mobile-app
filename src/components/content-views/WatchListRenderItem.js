@@ -2,10 +2,10 @@ import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-const WatchListRenderItem = ({ item }) => {
+const WatchListRenderItem = ({ item, background}) => {
   return (
     <TouchableOpacity style={styles.itemContainer}>
-      <Image source={{ uri: item.image }} style={styles.itemImage} />
+      <Image source={background} style={styles.itemImage} />
       <View style={styles.itemView}></View>
       <FontAwesome5
         name="play"

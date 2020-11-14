@@ -7,6 +7,7 @@ import {
   ScrollView,
   TextInput,
   FlatList,
+  Image
 } from 'react-native';
 import React, { useRef, useState, useEffect } from 'react';
 import Carousel from 'react-native-anchor-carousel';
@@ -14,37 +15,38 @@ import { Feather } from '@expo/vector-icons';
 import WatchListRenderItem from '../../components/content-views/WatchListRenderItem';
 import TodayReadRenderItem from '../../components/content-views/TodayReadRenderItem';
 import { videoData } from '../../mock/video';
+// import background1 from '../../assets/backgrounds/article1.png'
 
 const Home = ({ navigation }) => {
   // TODO: should get from db (with context api cuz of different screen)
+  const background1 = require('../../assets/backgrounds/article1.png')
+  const background2 = require('../../assets/backgrounds/article2.png')
+  const background6 = require('../../assets/backgrounds/article6.png')
+  const background9 = require('../../assets/backgrounds/article9.png')
+
   const [articles, setArticles] = useState([
     {
-      image:
-        'https://lh3.googleusercontent.com/proxy/RcW5IGnNMa1UlfTQyblDnJ4v6CKl7ggjmUecuwzRh1KVGfO1UVzGIf_Evvc5Jdw94GliaORNTQKn7xyswJk1ESZoI2kHJzets9F8m2wPYykBGEEm6nr-Wgfm3QjE6TCWkn8dYNLB2JII',
+      image: background2,
       title: 'What is toxic relationship?',
       id: '1',
     },
     {
-      image:
-        'https://lh3.googleusercontent.com/proxy/RcW5IGnNMa1UlfTQyblDnJ4v6CKl7ggjmUecuwzRh1KVGfO1UVzGIf_Evvc5Jdw94GliaORNTQKn7xyswJk1ESZoI2kHJzets9F8m2wPYykBGEEm6nr-Wgfm3QjE6TCWkn8dYNLB2JII',
+      image: background6,
       title: 'What is toxic relationship?',
       id: '2',
     },
     {
-      image:
-        'https://lh3.googleusercontent.com/proxy/RcW5IGnNMa1UlfTQyblDnJ4v6CKl7ggjmUecuwzRh1KVGfO1UVzGIf_Evvc5Jdw94GliaORNTQKn7xyswJk1ESZoI2kHJzets9F8m2wPYykBGEEm6nr-Wgfm3QjE6TCWkn8dYNLB2JII',
+      image: background9,
       title: 'What is toxic relationship?',
       id: '3',
     },
     {
-      image:
-        'https://lh3.googleusercontent.com/proxy/RcW5IGnNMa1UlfTQyblDnJ4v6CKl7ggjmUecuwzRh1KVGfO1UVzGIf_Evvc5Jdw94GliaORNTQKn7xyswJk1ESZoI2kHJzets9F8m2wPYykBGEEm6nr-Wgfm3QjE6TCWkn8dYNLB2JII',
+      image: background1,
       title: 'What is toxic relationship?',
       id: '4',
     },
     {
-      image:
-        'https://lh3.googleusercontent.com/proxy/RcW5IGnNMa1UlfTQyblDnJ4v6CKl7ggjmUecuwzRh1KVGfO1UVzGIf_Evvc5Jdw94GliaORNTQKn7xyswJk1ESZoI2kHJzets9F8m2wPYykBGEEm6nr-Wgfm3QjE6TCWkn8dYNLB2JII',
+      image: background6,
       title: 'What is toxic relationship?',
       id: '5',
     },
@@ -94,7 +96,7 @@ const Home = ({ navigation }) => {
           keyExtractor={(item, index) => index.toString()}
           horizontal={true}
           data={watchList}
-          renderItem={({ item }) => <WatchListRenderItem item={item} />}
+          renderItem={({ item }) => <WatchListRenderItem item={item} background = {background1} />}
         />
       </View>
     </ScrollView>

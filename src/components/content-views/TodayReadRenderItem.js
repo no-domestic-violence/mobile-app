@@ -16,7 +16,7 @@ const TodayReadRenderItem = ({item}) => {
             onPress={() => {
               carouselRef.current.scrollToIndex(index);
             }}>
-            <Image source={{ uri: item.image }} style={styles.carouselImage} />
+            <Image source={item.image} style={styles.carouselImage} />
             <Text style={styles.carouselText}>{item.title}</Text>
           </TouchableOpacity>
         </View>
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
       height: 200,
       borderRadius: 20,
       alignSelf: 'center',
+      backgroundColor:'#fff'
     },
     carouselText: {
       paddingLeft: 10,
