@@ -3047,6 +3047,14 @@ expo-asset@~8.2.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
+expo-av@~8.6.0:
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-8.6.0.tgz#ab434c05241c1dcdca0edd57acb03aa21a3e46cc"
+  integrity sha512-ZZJtCLCDigeDMu2fyv76Kyifu2quhTn6ViYjM2ku/HvFSvUxlb5kK9imuLog3kR+LRxeIiVS9F29r3PCOqI+rQ==
+  dependencies:
+    lodash "^4.17.15"
+    nullthrows "^1.1.0"
+
 expo-constants@~9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.2.0.tgz#e86a38793deaff9018878afac65bce2543c80a4c"
@@ -5547,7 +5555,7 @@ promise@^8.0.3:
   dependencies:
     asap "~2.0.6"
 
-prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5629,6 +5637,13 @@ react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-anchor-carousel@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-anchor-carousel/-/react-native-anchor-carousel-3.1.2.tgz#d2ede7d51569b1a78b96665d0fd35da2c46c23a6"
+  integrity sha512-LPnK0mIK+/+t6gki14fQWMSMA2NbiG9gLGayuw2sNCegTnQQGl+NYbvyHinAH7WEm26dZe1YHlRnNPOaEzqKUQ==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-elements@^3.0.0-alpha.1:
   version "3.0.0-alpha.1"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-3.0.0-alpha.1.tgz#03b9d5cbfc413226cee209dbbce2d22077fe3b1f"
@@ -5645,6 +5660,11 @@ react-native-elements@^3.0.0-alpha.1:
     react-native-ratings "^7.3.0"
     react-native-size-matters "^0.3.1"
     react-native-status-bar-height "^2.5.0"
+
+react-native-fullscreen-player@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/react-native-fullscreen-player/-/react-native-fullscreen-player-0.1.7.tgz#7415e05098079b57be41ed9c06c186188118bbc3"
+  integrity sha512-7MEuq3LeeRijUo1wnLGi97itV9Lm7d3IZaybqTy6n9YD9sn4/RP7Uoultp1l5zQGzJpLT8BhfPppl0Pk+3G+0A==
 
 react-native-gesture-handler@~1.7.0:
   version "1.7.0"
