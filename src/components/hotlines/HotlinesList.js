@@ -1,31 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import appApiClient from '../../api/appApiClient';
-
-import { View, StyleSheet, FlatList, Linking, TextInput } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Linking,
+  ActivityIndicator,
+} from 'react-native';
 import ListItem from './ListItem';
-
+import { SearchBar } from 'react-native-elements';
 export default function HotlinesList() {
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
+  const inputRef = useRef();
 
   useEffect(() => {
+    setLoading(true);
     getHotlinesData();
-  }, []);
+  }, [search]);
 
   const makeCall = (phoneNumber) => {
     const iosPhoneNumber = `tel:${phoneNumber}`;
     Linking.openURL(iosPhoneNumber);
   };
 
-  const searchFilterFunction = () => {
-    setSearch(search);
-  };
-
   const getHotlinesData = async () => {
     try {
-      const response = await appApiClient.get('/hotlines');
+      const response = await appApiClient.get(`/hotlines`, {
+        params: { searchTerm: search },
+      });
       setDataSource([...response.data]);
-      console.log(dataSource.length);
+      setLoading(false);
+      inputRef.current.focus();
     } catch (error) {
       console.error(error);
     }
@@ -34,18 +41,27 @@ export default function HotlinesList() {
   const ItemSeparatorView = () => {
     return <View style={styles.itemSeparator} />;
   };
-
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#00ff00" />
+      </View>
+    );
+  }
   return (
     <>
-      {/* TODO: how to decode location  */}
-      {/* <Text>Current Location</Text> */}
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => searchFilterFunction(text)}
-        onClear={(text) => searchFilterFunction('')}
-        placeholder="City..."
+      <SearchBar
+        ref={inputRef}
+        inputStyle={{ backgroundColor: 'white' }}
+        inputContainerStyle={{ backgroundColor: 'white' }}
+        containerStyle={{ backgroundColor: 'white' }}
+        autoCorrect={false}
+        autoCapitalize="none"
+        onChangeText={setSearch}
+        placeholder="Type city or name"
         value={search}
       />
+
       <FlatList
         style={styles.list}
         data={dataSource}
@@ -66,20 +82,13 @@ const styles = StyleSheet.create({
     padding: 10,
     color: 'black',
   },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   text: {
     color: 'black',
     fontFamily: 'Courier',
-  },
-  input: {
-    width: 350,
-    height: 55,
-    margin: 10,
-    padding: 8,
-    color: '#000',
-    borderRadius: 14,
-    borderBottomWidth: 1,
-    fontSize: 18,
-    fontWeight: '500',
   },
   footer: {
     padding: 10,
