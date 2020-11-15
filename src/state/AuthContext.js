@@ -18,6 +18,16 @@ const authReducer = (state, action) => {
         username: action.payload.user.username,
         errorMessage: '',
       };
+    case 'CHANGE_PASSWORD_SUCCESS':
+      return {
+        ...state,
+        successMessage: action.payload,
+      };
+    case 'CHANGE PASSWORD_ERROR':
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
     case 'AUTH_SUCCESS':
       return {
         ...state,
@@ -32,6 +42,11 @@ const authReducer = (state, action) => {
       return {
         ...state,
         errorMessage: '',
+      };
+    case 'REMOVE_MESSAGES':
+      return {
+        ...state,
+        successMessage: '',
       };
     default:
       return state;
@@ -80,9 +95,33 @@ const authentication = (dispatch) => async () => {
     dispatch({ type: 'AUTH_SUCCESS', payload: user });
   }
 };
-
 const removeErrors = (dispatch) => () => {
   dispatch({ type: 'REMOVE_ERRORS' });
+};
+
+const removeMessages = (dispatch) => () => {
+  dispatch({ type: 'REMOVE_MESSAGES' });
+};
+
+const changePassword = (dispatch) => async ({
+  email,
+  password,
+  oldPassword,
+}) => {
+  try {
+    const response = await appApiClient.post('/changePassword', {
+      email,
+      oldPassword,
+      password,
+    });
+    removeErrors();
+    dispatch({ type: 'CHANGE_PASSWORD_SUCCESS', payload: response.data });
+  } catch (error) {
+    dispatch({
+      type: 'CHANGE PASSWORD_ERROR',
+      payload: error.response.data.message,
+    });
+  }
 };
 
 const signout = (dispatch) => async () => {
@@ -97,7 +136,9 @@ export const { Provider, Context } = createAppContext(
     login,
     signout,
     removeErrors,
+    removeMessages,
     authentication,
+    changePassword,
   },
   { isLoggedIn: false, errorMessage: '' },
 );
