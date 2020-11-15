@@ -17,7 +17,6 @@ export default function ContactEditView() {
   const { state } = useContext(AuthContext);
   const [dataSource, setDataSource] = useState([]);
   const [prevState, setPrevState] = useState([]);
-  const [copyOfState, setCopyOfState] = useState([]);
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -60,22 +59,44 @@ export default function ContactEditView() {
         item={item}
         /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
         onRemove={handleRemove}
+        onChangeName={(value) => handleInputChange(index, 'name', value)}
+        onChangePhone={(value) => handleInputChange(index, 'phone', value)}
+        onChangeMessage={(value) => handleInputChange(index, 'message', value)}
       />
     );
   };
 
-  const Item = ({ item, onRemove }) => (
+  const Item = ({
+    item,
+    onRemove,
+    index,
+    onChangeName,
+    onChangePhone,
+    onChangeMessage,
+  }) => (
     <>
       <TouchableOpacity style={styles.list}>
         <Text style={styles.text}>
           {'\n'}
           Name:
         </Text>
-        <TextInput style={styles.text} value={item.name} />
+        <TextInput
+          style={styles.text}
+          value={item.name}
+          onChangeText={onChangeName}
+        />
         <Text style={styles.text}>Phone Number:</Text>
-        <TextInput style={styles.text} value={item.phone} />
+        <TextInput
+          style={styles.text}
+          value={item.phone}
+          onChangeText={onChangePhone}
+        />
         <Text style={styles.text}>Help Message:</Text>
-        <TextInput style={styles.text} value={item.message} />
+        <TextInput
+          style={styles.text}
+          value={item.message}
+          onChangeText={onChangeMessage}
+        />
         <Text style={styles.text}>{'\n'}</Text>
         <FontAwesomeIcon
           icon={faTrash}
@@ -87,10 +108,22 @@ export default function ContactEditView() {
     </>
   );
 
-  //   const handleInputChange = (index, inputName, inputValue) => {
-  //     copyOfState[index] = { ...copyOfState[index], [inputName]: inputValue };
-  //     setCopyOfState([...copyOfState]);
+  //   const handleNameChange = (index, name) => {
+  //     const newSource = [...dataSource];
+  //     newSource[index] = { ...newSource[index], name };
+  //     setDataSource(newSource);
   //   };
+
+  const handleInputChange = (index, inputName, inputValue) => {
+    // make a copy of array of objects
+    const copyOfState = [...dataSource];
+    // an object from the array = updated object
+    copyOfState[index] = {
+      ...copyOfState[index],
+      [inputName]: inputValue,
+    };
+    setDataSource([...copyOfState]);
+  };
 
   //   const toggleDone = () => {
   //     setDataSource([...copyOfState]);

@@ -1,34 +1,31 @@
-import React, { useContext, useEffect, useState, useCallback } from 'react';
+/* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
+import React, { useContext, useEffect, useState } from 'react';
 import {
   View,
-  Button,
   StyleSheet,
+  Button,
   Text,
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 import { useIsFocused } from '@react-navigation/native';
 import { Context as AuthContext } from '../../state/AuthContext';
 import appApiClient from '../../api/appApiClient';
 
-export default function SosContactList({ navigation, route }) {
+export default function SosContactList() {
+  const navigation = useNavigation();
   const { state } = useContext(AuthContext);
 
   const [dataSource, setDataSource] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
   const isFocused = useIsFocused();
-  // TODO: remember why i need to use isFocused
-  const [isEditable, setEditable] = useState(false);
-  const [prevState, setPrevState] = useState([]);
-  const [copyOfState, setCopyOfState] = useState([]);
 
   useEffect(() => {
     getContacts();
     console.log('useEffect fired');
-    console.log(dataSource);
   }, [isFocused]);
 
   const getContacts = async () => {
@@ -43,38 +40,45 @@ export default function SosContactList({ navigation, route }) {
     }
   };
 
-  const Item = ({ item, onPress, style }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.listItem, style]}>
-      <Text style={styles.text}>
-        {'\n'}
-        {item.name}
-      </Text>
-      <FontAwesomeIcon icon={faEnvelope} />
-    </TouchableOpacity>
-  );
-  const renderItem = ({ item }) => {
-    const backgroundColor = item._id === selectedId ? '#F9A121' : '#f9c2ff';
-    return (
-      <Item
-        item={item}
-        /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-        onPress={() => setSelectedId(item._id)}
-        style={{ backgroundColor }}
-      />
-    );
-  };
   return (
-    <View style={styles.homeView}>
-      <Text>Emergency Contact List</Text>
-      <FlatList
-        style={styles.list}
-        data={dataSource}
-        keyExtractor={(item) => item._id}
-        extraData={selectedId}
-        enableEmptySections
-        renderItem={renderItem}
-      />
-    </View>
+    <>
+      <TouchableOpacity>
+        <Text style={styles.text}>
+          {dataSource.length !== 0 ? dataSource[0].name : 'add contact'}
+        </Text>
+        <FontAwesomeIcon
+          icon={faPen}
+          onPress={
+            dataSource.length !== 0
+              ? () =>
+                  navigation.navigate('SosContactEdit', {
+                    id: dataSource[0]._id,
+                  })
+              : () => navigation.navigate('SosContactForm')
+          }
+        />
+      </TouchableOpacity>
+
+      <TouchableOpacity>
+        <Text style={styles.text}>
+          {dataSource.length !== 0 && dataSource.length !== 1
+            ? dataSource[1].name
+            : 'add contact'}
+        </Text>
+        <FontAwesomeIcon
+          icon={faPen}
+          onPress={
+            dataSource.length !== 0 && dataSource.length !== 1
+              ? () =>
+                  navigation.navigate('SosContactEdit', {
+                    id: dataSource[1]._id,
+                  })
+              : () => navigation.navigate('SosContactForm')
+          }
+        />
+      </TouchableOpacity>
+      <Button title="Send emergency text" />
+    </>
   );
 }
 

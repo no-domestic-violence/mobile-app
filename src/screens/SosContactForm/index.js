@@ -52,11 +52,6 @@ export default function SosContactForm({ navigation }) {
       });
   };
 
-  const newContact = () => {
-    setContact(initialContactState);
-    setSubmitted(false);
-  };
-
   return (
     //TODO: add form validation
     //TODO: implement send SMS button
@@ -64,11 +59,6 @@ export default function SosContactForm({ navigation }) {
       {submitted ? (
         <>
           <Text>Emergency Contact was successfully added!</Text>
-          <TouchableOpacity>
-            <Text style={styles.button} onPress={newContact}>
-              Add second contact
-            </Text>
-          </TouchableOpacity>
           <Button title="Go back" onPress={() => navigation.navigate('Home')} />
         </>
       ) : (
