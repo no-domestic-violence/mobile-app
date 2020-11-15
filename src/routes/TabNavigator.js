@@ -3,13 +3,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   faPhone,
   faHome,
-  faBook,
   faUserCog,
+  faMapPin,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
-  EmergencyStackNavigator,
   UserSettingsStackNavigator,
+  SosContactStackNavigator,
 } from './StackNavigator';
 import { Context as AuthContext } from '../state/AuthContext';
 
@@ -19,7 +19,7 @@ import ResourcesTabNavigator from './ResourcesTabNavigator';
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
-  const { state, authentication } = useContext(AuthContext);
+  const { state } = useContext(AuthContext);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -29,9 +29,9 @@ const BottomTabNavigator = () => {
           if (route.name === 'Home') {
             iconName = faHome;
           } else if (route.name === 'Hotlines') {
+            iconName = faMapPin;
+          } else if (route.name === 'Emergency') {
             iconName = faPhone;
-          } else if (route.name === 'Content') {
-            iconName = faBook;
           } else if (route.name === 'UserSettings') {
             iconName = faUserCog;
           }
@@ -43,15 +43,14 @@ const BottomTabNavigator = () => {
         inactiveTintColor: 'gray',
         style: {
           backgroundColor: '#FEF8E3',
-        }
-      }}
-    >
+        },
+      }}>
       <>
-        {state.token && (
-          <Tab.Screen name="Home" component={EmergencyStackNavigator} />
-        )}
+        <Tab.Screen name="Home" component={ResourcesTabNavigator} />
         <Tab.Screen name="Hotlines" component={SheltersHotlinesTabNavigator} />
-        <Tab.Screen name="Content" component={ResourcesTabNavigator} />
+        {state.token && (
+          <Tab.Screen name="Emergency" component={SosContactStackNavigator} />
+        )}
         <Tab.Screen
           name="UserSettings"
           component={UserSettingsStackNavigator}

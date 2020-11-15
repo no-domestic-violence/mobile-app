@@ -12,7 +12,7 @@ import {
 import appApiClient from '../../api/appApiClient';
 import { Context as AuthContext } from '../../state/AuthContext';
 
-export default function EmergencyScreen({ navigation, route }) {
+export default function SosContactForm({ navigation }) {
   const { state } = useContext(AuthContext);
 
   const initialContactState = {
@@ -42,7 +42,7 @@ export default function EmergencyScreen({ navigation, route }) {
       message: contact.message,
     };
     appApiClient
-      .patch(`/users/${route.params.username}/contacts`, data)
+      .patch(`/users/${state.username}/contacts`, data)
       .then((response) => {
         setSubmitted(true);
         alert(response.data);
@@ -52,11 +52,6 @@ export default function EmergencyScreen({ navigation, route }) {
       });
   };
 
-  const newContact = () => {
-    setContact(initialContactState);
-    setSubmitted(false);
-  };
-
   return (
     //TODO: add form validation
     //TODO: implement send SMS button
@@ -64,18 +59,9 @@ export default function EmergencyScreen({ navigation, route }) {
       {submitted ? (
         <>
           <Text>Emergency Contact was successfully added!</Text>
-          <TouchableOpacity>
-            <Text style={styles.button} onPress={newContact}>
-              Add second contact
-            </Text>
-          </TouchableOpacity>
           <Button
             title="Go back"
-            onPress={() =>
-              navigation.navigate('Home', {
-                username: state.username,
-              })
-            }
+            onPress={() => navigation.navigate('SosContactHome')}
           />
         </>
       ) : (
@@ -109,11 +95,7 @@ export default function EmergencyScreen({ navigation, route }) {
           </TouchableOpacity>
           <Button
             title="Go back"
-            onPress={() =>
-              navigation.navigate('Home', {
-                username: state.username,
-              })
-            }
+            onPress={() => navigation.navigate('SosContactHome')}
           />
         </>
       )}

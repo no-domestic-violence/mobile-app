@@ -7,7 +7,7 @@ import {
   ScrollView,
   TextInput,
   FlatList,
-  Image
+  Image,
 } from 'react-native';
 import React, { useRef, useState, useEffect } from 'react';
 import Carousel from 'react-native-anchor-carousel';
@@ -19,10 +19,10 @@ import { videoData } from '../../mock/video';
 
 const Home = ({ navigation }) => {
   // TODO: should get from db (with context api cuz of different screen)
-  const background1 = require('../../assets/backgrounds/article1.png')
-  const background2 = require('../../assets/backgrounds/article2.png')
-  const background6 = require('../../assets/backgrounds/article6.png')
-  const background9 = require('../../assets/backgrounds/article9.png')
+  const background1 = require('../../assets/backgrounds/article1.png');
+  const background2 = require('../../assets/backgrounds/article2.png');
+  const background6 = require('../../assets/backgrounds/article6.png');
+  const background9 = require('../../assets/backgrounds/article9.png');
 
   const [articles, setArticles] = useState([
     {
@@ -96,7 +96,9 @@ const Home = ({ navigation }) => {
           keyExtractor={(item, index) => index.toString()}
           horizontal={true}
           data={watchList}
-          renderItem={({ item }) => <WatchListRenderItem item={item} background = {background1} />}
+          renderItem={({ item }) => (
+            <WatchListRenderItem item={item} background={background1} />
+          )}
         />
       </View>
     </ScrollView>

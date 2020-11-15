@@ -5,19 +5,19 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LanguageScreen from '_screens/Language';
 import OnboardingScreen from '_screens/Onboarding';
 import HomeScreen from '_screens/Home';
-// import SosContactForm from '_screens/SosContactForm';
+import SosContactHome from '_screens/SosContactHome';
+import SosContactForm from '_screens/SosContactForm';
+import SosContactEdit from '_screens/SosContactEdit';
 import Hotlines from '_screens/Hotlines';
 import ArticlesList from '_screens/ArticlesList';
 import VideoList from '_screens/VideoList';
 import VideoPage from '_screens/VideoPage';
 import PodcastList from '_screens/PodcastList';
-import Emergency from '_screens/Emergency';
 import UserSettings from '_screens/UserSettings';
 import LoginScreen from '_screens/Login';
 import SignUpScreen from '_screens/SignUp';
 import MapScreen from '_screens/Map';
 import TermsAndConditionsScreen from '_screens/TermsAndConditions';
-import BottomTabNavigator from './TabNavigator';
 
 const Stack = createStackNavigator();
 
@@ -32,7 +32,7 @@ export const OnboardingNavigator = () => {
       <Stack.Screen name="Onboarding" component={OnboardingScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Sign Up" component={SignUpScreen} />
-      <Stack.Screen name="Home" component={BottomTabNavigator} />
+      <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
   );
 };
@@ -41,14 +41,6 @@ export const HomeStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={HomeScreen} />
-    </Stack.Navigator>
-  );
-};
-export const EmergencyStackNavigator = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={Emergency} />
-      {/* <Stack.Screen name="SosContactForm" component={SosContactForm} /> */}
     </Stack.Navigator>
   );
 };
@@ -89,6 +81,16 @@ export const PodcastStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Map" component={PodcastList} />
+    </Stack.Navigator>
+  );
+};
+
+export const SosContactStackNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="SosContactHome" component={SosContactHome} />
+      <Stack.Screen name="SosContactEdit" component={SosContactEdit} />
+      <Stack.Screen name="SosContactForm" component={SosContactForm} />
     </Stack.Navigator>
   );
 };
