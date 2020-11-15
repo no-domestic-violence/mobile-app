@@ -18,6 +18,7 @@ import LoginScreen from '_screens/Login';
 import SignUpScreen from '_screens/SignUp';
 import MapScreen from '_screens/Map';
 import ChangePassword from '_screens/ChangePassword';
+import DeleteAccount from '_screens/DeleteAccount';
 import TermsAndConditionsScreen from '_screens/TermsAndConditions';
 
 const Stack = createStackNavigator();
@@ -101,6 +102,7 @@ export const UserSettingsStackNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen name="User" component={UserSettings} />
       <Stack.Screen name="Change Password" component={ChangePassword} />
+      <Stack.Screen name="Delete Account" component={DeleteAccount} />
     </Stack.Navigator>
   );
 };

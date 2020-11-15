@@ -38,7 +38,7 @@ export default function UserSettings({ navigation }) {
             <TouchableOpacity>
               <Text style={styles.userSettingsActions}>change languige</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Delete Account')}>
               <Text style={styles.userSettingsActions}>delete account</Text>
             </TouchableOpacity>
           </>

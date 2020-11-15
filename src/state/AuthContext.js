@@ -37,6 +37,13 @@ const authReducer = (state, action) => {
     case 'LOGOUT':
       return {
         token: '',
+        username: '',
+      };
+    case 'DELETE_ACCOUNT':
+      return {
+        token: '',
+        username: '',
+        successMessage: action.payload.data,
       };
     case 'REMOVE_ERRORS':
       return {
@@ -118,7 +125,7 @@ const changePassword = (dispatch) => async ({
     dispatch({ type: 'CHANGE_PASSWORD_SUCCESS', payload: response.data });
   } catch (error) {
     dispatch({
-      type: 'CHANGE PASSWORD_ERROR',
+      type: 'CHANGE_PASSWORD_ERROR',
       payload: error.response.data.message,
     });
   }
@@ -127,6 +134,23 @@ const changePassword = (dispatch) => async ({
 const signout = (dispatch) => async () => {
   await AsyncStorage.removeItem('token');
   dispatch({ type: 'LOGOUT' });
+};
+
+const deleteAccount = (dispatch) => async ({ username }) => {
+  try {
+    // TODO: fix sending params so it is more readable
+    const response = await appApiClient.delete('/deleteUser', {
+      params: username,
+    });
+    await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem('username');
+    dispatch({ type: 'DELETE_ACCOUNT', payload: response.data });
+  } catch (error) {
+    dispatch({
+      type: 'CHANGE_PASSWORD_ERROR',
+      payload: error.response.data.message,
+    });
+  }
 };
 
 export const { Provider, Context } = createAppContext(
@@ -139,6 +163,7 @@ export const { Provider, Context } = createAppContext(
     removeMessages,
     authentication,
     changePassword,
+    deleteAccount
   },
   { isLoggedIn: false, errorMessage: '' },
 );
