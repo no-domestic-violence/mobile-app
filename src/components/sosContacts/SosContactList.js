@@ -1,13 +1,6 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
 import React, { useContext, useEffect, useState } from 'react';
-import {
-  View,
-  StyleSheet,
-  Button,
-  Text,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, Button, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
@@ -25,7 +18,6 @@ export default function SosContactList() {
 
   useEffect(() => {
     getContacts();
-    console.log('useEffect fired');
   }, [isFocused]);
 
   const getContacts = async () => {

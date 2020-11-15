@@ -59,7 +59,10 @@ export default function SosContactForm({ navigation }) {
       {submitted ? (
         <>
           <Text>Emergency Contact was successfully added!</Text>
-          <Button title="Go back" onPress={() => navigation.navigate('Home')} />
+          <Button
+            title="Go back"
+            onPress={() => navigation.navigate('SosContactHome')}
+          />
         </>
       ) : (
         <>
@@ -90,7 +93,10 @@ export default function SosContactForm({ navigation }) {
               Save
             </Text>
           </TouchableOpacity>
-          <Button title="Go back" onPress={() => navigation.navigate('Home')} />
+          <Button
+            title="Go back"
+            onPress={() => navigation.navigate('SosContactHome')}
+          />
         </>
       )}
     </View>

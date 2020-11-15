@@ -91,8 +91,8 @@ export const SosContactStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="SosContactHome" component={SosContactHome} />
-      <Stack.Screen name="SosContactForm" component={SosContactForm} />
       <Stack.Screen name="SosContactEdit" component={SosContactEdit} />
+      <Stack.Screen name="SosContactForm" component={SosContactForm} />
     </Stack.Navigator>
   );
 };

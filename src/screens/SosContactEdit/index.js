@@ -20,7 +20,6 @@ export default function SosContactEdit({ navigation, route }) {
 
   useEffect(() => {
     getContact();
-    console.log('useEffect fired');
   }, [isFocused]);
 
   // find the selected contact and add it in contact state
