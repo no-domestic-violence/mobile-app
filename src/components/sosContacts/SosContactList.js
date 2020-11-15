@@ -1,11 +1,10 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
 import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, Button, Text, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 
-import { useIsFocused } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Context as AuthContext } from '../../state/AuthContext';
 import appApiClient from '../../api/appApiClient';
 

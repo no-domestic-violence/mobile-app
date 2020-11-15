@@ -3,13 +3,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   faPhone,
   faHome,
-  faBook,
   faUserCog,
   faMapPin,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
-  HomeStackNavigator,
   UserSettingsStackNavigator,
   SosContactStackNavigator,
 } from './StackNavigator';
@@ -21,7 +19,7 @@ import ResourcesTabNavigator from './ResourcesTabNavigator';
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
-  const { state, authentication } = useContext(AuthContext);
+  const { state } = useContext(AuthContext);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -32,8 +30,6 @@ const BottomTabNavigator = () => {
             iconName = faHome;
           } else if (route.name === 'Hotlines') {
             iconName = faMapPin;
-          } else if (route.name === 'Content') {
-            iconName = faBook;
           } else if (route.name === 'Emergency') {
             iconName = faPhone;
           } else if (route.name === 'UserSettings') {
@@ -50,9 +46,8 @@ const BottomTabNavigator = () => {
         },
       }}>
       <>
-        <Tab.Screen name="Home" component={HomeStackNavigator} />
+        <Tab.Screen name="Home" component={ResourcesTabNavigator} />
         <Tab.Screen name="Hotlines" component={SheltersHotlinesTabNavigator} />
-        <Tab.Screen name="Content" component={ResourcesTabNavigator} />
         {state.token && (
           <Tab.Screen name="Emergency" component={SosContactStackNavigator} />
         )}

@@ -50,7 +50,7 @@ export default function SosContactEdit({ navigation, route }) {
     setContact({ ...contact, message });
   };
 
-  const saveEdit = () => {
+  const saveEdit = (navigation) => {
     const data = {
       name: contact.name,
       phone: contact.phone,
@@ -66,13 +66,13 @@ export default function SosContactEdit({ navigation, route }) {
       });
   };
 
-  const handleRemove = async (id) => {
+  const handleRemove = async (id, navigation) => {
     appApiClient
       .delete(`/users/${state.username}/contacts`, {
         params: { id },
       })
       .then((response) => {
-        console.log(response.data);
+        alert(response.data);
       })
       .catch((e) => {
         alert(e);
@@ -106,11 +106,18 @@ export default function SosContactEdit({ navigation, route }) {
         <FontAwesomeIcon
           icon={faTrash}
           onPress={() => {
-            handleRemove(contact._id);
+            handleRemove(contact._id, navigation);
+            navigation.navigate('SosContactHome');
+            // TODO: Fix navigation and api call order
           }}
         />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={saveEdit}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          saveEdit(navigation);
+          navigation.navigate('SosContactHome');
+        }}>
         <Text style={styles.buttonLabel}>Save</Text>
       </TouchableOpacity>
       <TouchableOpacity

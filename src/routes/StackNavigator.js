@@ -13,13 +13,11 @@ import ArticlesList from '_screens/ArticlesList';
 import VideoList from '_screens/VideoList';
 import VideoPage from '_screens/VideoPage';
 import PodcastList from '_screens/PodcastList';
-import Emergency from '_screens/Emergency';
 import UserSettings from '_screens/UserSettings';
 import LoginScreen from '_screens/Login';
 import SignUpScreen from '_screens/SignUp';
 import MapScreen from '_screens/Map';
 import TermsAndConditionsScreen from '_screens/TermsAndConditions';
-import BottomTabNavigator from './TabNavigator';
 
 const Stack = createStackNavigator();
 
@@ -34,7 +32,7 @@ export const OnboardingNavigator = () => {
       <Stack.Screen name="Onboarding" component={OnboardingScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Sign Up" component={SignUpScreen} />
-      <Stack.Screen name="Home" component={BottomTabNavigator} />
+      <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
   );
 };
