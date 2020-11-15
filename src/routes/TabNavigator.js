@@ -5,12 +5,14 @@ import {
   faHome,
   faBook,
   faUserCog,
+  faMapPin,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   HomeStackNavigator,
   ContentStackNavigator,
   UserSettingsStackNavigator,
+  SosContactStackNavigator,
 } from './StackNavigator';
 import { Context as AuthContext } from '../state/AuthContext';
 
@@ -29,9 +31,11 @@ const BottomTabNavigator = () => {
           if (route.name === 'Home') {
             iconName = faHome;
           } else if (route.name === 'Hotlines') {
-            iconName = faPhone;
+            iconName = faMapPin;
           } else if (route.name === 'Content') {
             iconName = faBook;
+          } else if (route.name === 'Emergency') {
+            iconName = faPhone;
           } else if (route.name === 'UserSettings') {
             iconName = faUserCog;
           }
@@ -43,11 +47,12 @@ const BottomTabNavigator = () => {
         inactiveTintColor: 'gray',
       }}>
       <>
-        {state.token && (
-          <Tab.Screen name="Home" component={HomeStackNavigator} />
-        )}
+        <Tab.Screen name="Home" component={HomeStackNavigator} />
         <Tab.Screen name="Hotlines" component={SheltersHotlinesTabNavigator} />
         <Tab.Screen name="Content" component={ContentStackNavigator} />
+        {state.token && (
+          <Tab.Screen name="Emergency" component={SosContactStackNavigator} />
+        )}
         <Tab.Screen
           name="UserSettings"
           component={UserSettingsStackNavigator}
