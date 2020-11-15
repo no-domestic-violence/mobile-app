@@ -17,6 +17,7 @@ import UserSettings from '_screens/UserSettings';
 import LoginScreen from '_screens/Login';
 import SignUpScreen from '_screens/SignUp';
 import MapScreen from '_screens/Map';
+import ChangePassword from '_screens/ChangePassword';
 import TermsAndConditionsScreen from '_screens/TermsAndConditions';
 
 const Stack = createStackNavigator();
@@ -99,6 +100,7 @@ export const UserSettingsStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="User" component={UserSettings} />
+      <Stack.Screen name="Change Password" component={ChangePassword} />
     </Stack.Navigator>
   );
 };
