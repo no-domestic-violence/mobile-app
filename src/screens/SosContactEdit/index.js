@@ -115,7 +115,7 @@ export default function SosContactEdit({ navigation, route }) {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Home')}>
+        onPress={() => navigation.navigate('SosContactHome')}>
         <Text style={styles.buttonLabel}>Cancel</Text>
       </TouchableOpacity>
     </>
