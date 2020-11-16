@@ -1,13 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
 
-export default function SignUpScreen({ navigation }) {
+export default function SignUpScreen({}) {
   const { state, deleteAccount } = useContext(AuthContext);
   const username = state.username;
 
@@ -23,12 +18,6 @@ export default function SignUpScreen({ navigation }) {
       <TouchableOpacity onPress={() => handleDeleteAccount()}>
         <Text style={styles.button}>Delete Account</Text>
       </TouchableOpacity>
-      {state.errorMessage ? (
-        <Text style={styles.textError}>{state.errorMessage}</Text>
-      ) : null}
-      {state.successMessage ? (
-        <Text style={styles.textSuccess}>{state.successMessage}</Text>
-      ) : null}
     </View>
   );
 }

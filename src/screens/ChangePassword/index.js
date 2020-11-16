@@ -5,7 +5,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
-  Button
+  Button,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import { Context as AuthContext } from '../../state/AuthContext';
@@ -18,12 +18,12 @@ export default function SignUpScreen({ navigation }) {
   const [password, setPassword] = useState('');
   const [oldPassword, setOldPassword] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
-  
+
   const handleChangePassword = () => {
     changePassword({ email, password, oldPassword });
   };
   useEffect(() => {
-    state.successMessage && setModalVisible(true)
+    state.successMessage && setModalVisible(true);
     const unsubscribe = navigation.addListener('blur', () => {
       removeErrors();
       removeMessages();
@@ -81,10 +81,13 @@ export default function SignUpScreen({ navigation }) {
               <Text style={styles.textSuccess}>
                 Your password was successfully changed!
               </Text>
-              <Button title="Ok" onPress={() => {
-                setModalVisible(false)
-                navigation.navigate('User')
-                }} />
+              <Button
+                title="Ok"
+                onPress={() => {
+                  setModalVisible(false);
+                  navigation.navigate('User');
+                }}
+              />
             </View>
           </View>
         </Modal>
@@ -134,27 +137,27 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginLeft: 30,
     marginBottom: 40,
-    marginTop: 40
+    marginTop: 40,
   },
   text: {
     fontSize: 14,
     color: '#000',
     marginTop: 20,
-    marginBottom: 80
+    marginBottom: 80,
   },
   textError: {
     marginTop: 20,
-    color: 'darkred'
+    color: 'darkred',
   },
   textSuccess: {
-    color: 'darkgreen'
+    color: 'darkgreen',
   },
   modalContainer: {
-    backgroundColor:"#f9fafb",
-    width:"80%",
+    backgroundColor: '#f9fafb',
+    width: '80%',
     borderRadius: 5,
-    alignContent: "center",
-    justifyContent: "center",
+    alignContent: 'center',
+    justifyContent: 'center',
     padding: 20,
-  }
+  },
 });

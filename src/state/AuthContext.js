@@ -163,7 +163,7 @@ export const { Provider, Context } = createAppContext(
     removeMessages,
     authentication,
     changePassword,
-    deleteAccount
+    deleteAccount,
   },
   { isLoggedIn: false, errorMessage: '' },
 );

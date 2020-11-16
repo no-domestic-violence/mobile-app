@@ -1,9 +1,7 @@
-import React, {useContext} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import { Avatar } from "react-native-elements";
-import {Context as AuthContext} from '../../state/AuthContext';
-
-
+import React, { useContext } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Avatar } from 'react-native-elements';
+import { Context as AuthContext } from '../../state/AuthContext';
 
 export default function UserSettings({ navigation }) {
   const { state, signout } = useContext(AuthContext);
@@ -32,13 +30,15 @@ export default function UserSettings({ navigation }) {
         </TouchableOpacity>
         {state.token ? (
           <>
-            <TouchableOpacity onPress={() => navigation.navigate('Change Password')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Change Password')}>
               <Text style={styles.userSettingsActions}>change password</Text>
             </TouchableOpacity>
             <TouchableOpacity>
               <Text style={styles.userSettingsActions}>change languige</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Delete Account')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Delete Account')}>
               <Text style={styles.userSettingsActions}>delete account</Text>
             </TouchableOpacity>
           </>
@@ -65,31 +65,31 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 14,
     color: '#000',
-    fontWeight: "500",
+    fontWeight: '500',
     fontSize: 20,
     overflow: 'hidden',
     textAlign: 'center',
-    width: "40%",
+    width: '40%',
   },
   username: {
-    textTransform: "capitalize",
+    textTransform: 'capitalize',
     fontSize: 28,
     marginLeft: 15,
   },
   userInfo: {
-    flexDirection: "row",
-    alignItems: 'center'
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   userSettingsContainer: {
     padding: 10,
-    marginHorizontal: 10
-  }, 
+    marginHorizontal: 10,
+  },
   userSettingsActions: {
     fontSize: 20,
-    fontWeight: "500",
-    lineHeight: 40
+    fontWeight: '500',
+    lineHeight: 40,
   },
   userSettingsActionsView: {
-    marginVertical: 50
-  }
+    marginVertical: 50,
+  },
 });

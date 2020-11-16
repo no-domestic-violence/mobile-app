@@ -5,7 +5,6 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
-  Button,
 } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
 
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     alignSelf: 'flex-start',
     marginLeft: 30,
-    marginBottom: 40
+    marginBottom: 40,
   },
   text: {
     fontSize: 14,
@@ -122,6 +121,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   actionsContainer: {
-    marginBottom: 70
-  }
+    marginBottom: 70,
+  },
 });

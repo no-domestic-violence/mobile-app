@@ -3,14 +3,11 @@ import { Context as AuthContext } from '../../state/AuthContext';
 import {
   View,
   Text,
-  Button,
   TextInput,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
-
-
 
 export default function LoginScreen({ navigation }) {
   const { t, i18n } = useTranslation();
@@ -55,14 +52,16 @@ export default function LoginScreen({ navigation }) {
         <Text style={styles.button}>Login</Text>
       </TouchableOpacity>
       <View style={styles.text}>
-      <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
-        <Text>Do not have an account? Go to sign up</Text>
-      </TouchableOpacity>
-      <Text>or</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-        <Text>Proceed without login</Text>
-      </TouchableOpacity>
-      {state.errorMessage ? <Text style={styles.textError} >{state.errorMessage}</Text> : null}
+        <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
+          <Text>Do not have an account? Go to sign up</Text>
+        </TouchableOpacity>
+        <Text>or</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <Text>Proceed without login</Text>
+        </TouchableOpacity>
+        {state.errorMessage ? (
+          <Text style={styles.textError}>{state.errorMessage}</Text>
+        ) : null}
       </View>
     </View>
   );
@@ -108,17 +107,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     alignSelf: 'flex-start',
     marginLeft: 30,
-    marginBottom: 40
+    marginBottom: 40,
   },
   text: {
     fontSize: 14,
     color: '#000',
     marginTop: 20,
     marginBottom: 80,
-    alignItems: "center"
+    alignItems: 'center',
   },
   textError: {
     marginTop: 20,
-    color: 'darkred'
-  }
+    color: 'darkred',
+  },
 });
