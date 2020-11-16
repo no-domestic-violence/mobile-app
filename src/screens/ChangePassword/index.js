@@ -10,7 +10,7 @@ import {
 import Modal from 'react-native-modal';
 import { Context as AuthContext } from '../../state/AuthContext';
 
-export default function SignUpScreen({ navigation }) {
+export default function ChangePasswordScreen({ navigation }) {
   const { state, changePassword, removeErrors, removeMessages } = useContext(
     AuthContext,
   );

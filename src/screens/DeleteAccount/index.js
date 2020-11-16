@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
 
-export default function SignUpScreen({}) {
+export default function DeleteAccountScreen({}) {
   const { state, deleteAccount } = useContext(AuthContext);
   const username = state.username;
 
