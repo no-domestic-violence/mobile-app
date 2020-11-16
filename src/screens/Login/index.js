@@ -59,7 +59,7 @@ export default function LoginScreen({ navigation }) {
         <Text>Do not have an account? Go to sign up</Text>
       </TouchableOpacity>
       <Text>or</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Main Screen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <Text>Proceed without login</Text>
       </TouchableOpacity>
       {state.errorMessage ? <Text style={styles.textError} >{state.errorMessage}</Text> : null}

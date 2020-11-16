@@ -53,7 +53,7 @@ export default function SignUpScreen({ navigation }) {
       <TextInput
         style={styles.input}
         placeholder="Password"
-        secureTextEntry={true}
+        // secureTextEntry={true} TODO: fix it
         autoCapitalize="none"
         autoCorrect={false}
         // secureTextEntry
@@ -61,14 +61,15 @@ export default function SignUpScreen({ navigation }) {
         onChangeText={setPassword}
         value={password}
       />
-
-      <TouchableOpacity onPress={() => handleSignUp()}>
-        <Text style={styles.button}>SIGN UP</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.text}> Have an account? Go to login</Text>
-      </TouchableOpacity>
-      {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
+      <View style={styles.actionsContainer}>
+        <TouchableOpacity onPress={() => handleSignUp()}>
+          <Text style={styles.button}>SIGN UP</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.text}> Have an account? Go to login</Text>
+        </TouchableOpacity>
+        {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
+      </View>
     </View>
   );
 }
@@ -119,6 +120,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#000',
     marginTop: 20,
-    marginBottom: 80
   },
+  actionsContainer: {
+    marginBottom: 70
+  }
 });

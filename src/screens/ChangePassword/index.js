@@ -5,29 +5,32 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Button
 } from 'react-native';
+import Modal from 'react-native-modal';
 import { Context as AuthContext } from '../../state/AuthContext';
 
 export default function SignUpScreen({ navigation }) {
-  const { state, changePassword, removeErrors, removeMessages } = useContext(AuthContext);
+  const { state, changePassword, removeErrors, removeMessages } = useContext(
+    AuthContext,
+  );
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [oldPassword, setOldPassword] = useState('');
-
+  const [isModalVisible, setModalVisible] = useState(false);
+  
   const handleChangePassword = () => {
     changePassword({ email, password, oldPassword });
   };
-  
-  //TODO: how to clean errors and messages
-
   useEffect(() => {
+    state.successMessage && setModalVisible(true)
     const unsubscribe = navigation.addListener('blur', () => {
       removeErrors();
       removeMessages();
     });
 
     return unsubscribe;
-  }, [navigation, removeErrors, removeMessages, state]);
+  }, [navigation, removeErrors, removeMessages]);
 
   return (
     <View style={styles.view}>
@@ -62,8 +65,30 @@ export default function SignUpScreen({ navigation }) {
       <TouchableOpacity onPress={() => handleChangePassword()}>
         <Text style={styles.button}>Submit Change</Text>
       </TouchableOpacity>
-      {state.errorMessage ? <Text style={styles.textError} >{state.errorMessage}</Text> : null}
-      {state.successMessage ? <Text style={styles.textSuccess} >{state.successMessage}</Text> : null}
+      {state.errorMessage && !state.successMessage ? (
+        <Text style={styles.textError}>{state.errorMessage}</Text>
+      ) : null}
+      <View style={{ flex: 1 }}>
+        <Modal isVisible={isModalVisible}>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <View style={styles.modalContainer}>
+              <Text style={styles.textSuccess}>
+                Your password was successfully changed!
+              </Text>
+              <Button title="Ok" onPress={() => {
+                setModalVisible(false)
+                navigation.navigate('User')
+                }} />
+            </View>
+          </View>
+        </Modal>
+      </View>
     </View>
   );
 }
@@ -108,7 +133,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     alignSelf: 'flex-start',
     marginLeft: 30,
-    marginBottom: 40
+    marginBottom: 40,
+    marginTop: 40
   },
   text: {
     fontSize: 14,
@@ -121,9 +147,14 @@ const styles = StyleSheet.create({
     color: 'darkred'
   },
   textSuccess: {
-    marginTop: 20,
     color: 'darkgreen'
   },
-
-
+  modalContainer: {
+    backgroundColor:"#f9fafb",
+    width:"80%",
+    borderRadius: 5,
+    alignContent: "center",
+    justifyContent: "center",
+    padding: 20,
+  }
 });

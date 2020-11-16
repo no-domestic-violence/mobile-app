@@ -23,7 +23,7 @@ const authReducer = (state, action) => {
         ...state,
         successMessage: action.payload,
       };
-    case 'CHANGE PASSWORD_ERROR':
+    case 'CHANGE_PASSWORD_ERROR':
       return {
         ...state,
         errorMessage: action.payload,
