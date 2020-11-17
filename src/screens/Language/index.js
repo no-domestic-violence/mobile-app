@@ -27,7 +27,7 @@ export default function LanguageScreen({ navigation }) {
               type="solid"
               raised
               containerStyle={styles.button}
-              buttonStyle={{ backgroundColor: '#FFFFFF' }}
+              buttonStyle={styles.buttonText}
               key={i}
               onPress={() => handleLanguageChange(item.lang)}
             />
@@ -49,11 +49,14 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '80%',
-    height: 84,
     backgroundColor: '#FFFFFF',
     borderRadius: 50,
-    margin: 25,
+    margin: 20,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonText: {
+    backgroundColor: '#FFFFFF',
+    padding: 30,
   },
 });
