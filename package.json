@@ -27,6 +27,7 @@
     "expo-status-bar": "~1.0.2",
     "i18next": "^19.7.0",
     "lodash.memoize": "^4.1.2",
+    "metro-config": "^0.64.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-i18next": "^11.7.3",
@@ -58,7 +59,8 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "eslint-plugin-react-native": "^3.10.0",
     "metro-react-native-babel-preset": "^0.63.0",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "react-native-svg-transformer": "^0.14.3"
   },
   "private": true
 }
