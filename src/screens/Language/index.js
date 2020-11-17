@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
-import { TouchableOpacity, StyleSheet, View, Text } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import LanguageSVG from '_assets/svg/language.svg';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../services/i18n';
 import { LanguageContext } from '../../state/LanguageContext';
-import { withTheme } from 'react-native-elements';
 
 export default function LanguageScreen({ navigation }) {
   const { t, i18n } = useTranslation();
@@ -16,20 +16,23 @@ export default function LanguageScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.homePageView}>
-      {availableLanguages.map((item, i) => (
-        <Button
-          title={item.name}
-          titleStyle={{ color: '#000000' }}
-          type="solid"
-          raised
-          containerStyle={styles.button}
-          buttonStyle={{ backgroundColor: '#FFFFFF' }}
-          key={i}
-          onPress={() => handleLanguageChange(item.lang)}
-        />
-      ))}
-    </View>
+    <>
+      <View style={styles.homePageView}>
+        {availableLanguages.map((item, i) => (
+          <Button
+            title={item.name}
+            titleStyle={{ color: '#000000' }}
+            type="solid"
+            raised
+            containerStyle={styles.button}
+            buttonStyle={{ backgroundColor: '#FFFFFF' }}
+            key={i}
+            onPress={() => handleLanguageChange(item.lang)}
+          />
+        ))}
+        <LanguageSVG />
+      </View>
+    </>
   );
 }
 
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    width: '90%',
+    width: '80%',
     height: 84,
     backgroundColor: '#FFFFFF',
     borderRadius: 50,
