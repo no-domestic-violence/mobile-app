@@ -9,7 +9,7 @@ import {
 
 const Tab = createMaterialTopTabNavigator();
 
-const SheltersHotlinesTabNavigator = () => {
+const ResourcesTabNavigator = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -26,4 +26,4 @@ const SheltersHotlinesTabNavigator = () => {
   );
 };
 
-export default SheltersHotlinesTabNavigator;
+export default ResourcesTabNavigator;

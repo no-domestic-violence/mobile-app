@@ -5,43 +5,8 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
-  Button,
 } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
-
-const styles = StyleSheet.create({
-  input: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#fff',
-    margin: 10,
-    padding: 8,
-    color: '#000',
-    borderRadius: 14,
-    fontSize: 18,
-    fontWeight: '500',
-  },
-  view: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 250,
-  },
-  button: {
-    backgroundColor: '#009688',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 5,
-    paddingBottom: 5,
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 12,
-    color: 'white',
-    fontSize: 20,
-    overflow: 'hidden',
-    textAlign: 'center',
-  },
-});
 
 export default function SignUpScreen({ navigation }) {
   const { state, signup, removeErrors } = useContext(AuthContext);
@@ -65,6 +30,7 @@ export default function SignUpScreen({ navigation }) {
   //TODO: refactor togerther with login
   return (
     <View style={styles.view}>
+      <Text style={styles.header}>Sign Up</Text>
       <TextInput
         style={styles.input}
         placeholder="Username"
@@ -86,7 +52,7 @@ export default function SignUpScreen({ navigation }) {
       <TextInput
         style={styles.input}
         placeholder="Password"
-        secureTextEntry={true}
+        // secureTextEntry={true} TODO: fix it
         autoCapitalize="none"
         autoCorrect={false}
         // secureTextEntry
@@ -94,15 +60,67 @@ export default function SignUpScreen({ navigation }) {
         onChangeText={setPassword}
         value={password}
       />
-
-      <TouchableOpacity onPress={() => handleSignUp()}>
-        <Text style={styles.button}>Sign Up</Text>
-      </TouchableOpacity>
-      <Button
-        title="Have an account? Go to login"
-        onPress={() => navigation.navigate('Login')}
-      />
-      {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
+      <View style={styles.actionsContainer}>
+        <TouchableOpacity onPress={() => handleSignUp()}>
+          <Text style={styles.button}>SIGN UP</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.text}> Have an account? Go to login</Text>
+        </TouchableOpacity>
+        {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  input: {
+    width: 350,
+    height: 55,
+    backgroundColor: '#fff',
+    margin: 10,
+    padding: 8,
+    color: '#000',
+    borderRadius: 5,
+    fontSize: 18,
+    fontWeight: '500',
+  },
+  view: {
+    backgroundColor: '#cadeee',
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: '100%',
+  },
+  button: {
+    backgroundColor: '#415889',
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 12,
+    color: 'white',
+    fontSize: 14,
+    overflow: 'hidden',
+    textAlign: 'center',
+    marginTop: 40,
+    fontWeight: '600',
+  },
+  header: {
+    fontSize: 35,
+    fontWeight: '600',
+    alignSelf: 'flex-start',
+    marginLeft: 30,
+    marginBottom: 40,
+  },
+  text: {
+    fontSize: 14,
+    color: '#000',
+    marginTop: 20,
+  },
+  actionsContainer: {
+    marginBottom: 70,
+  },
+});
