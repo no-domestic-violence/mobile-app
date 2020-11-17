@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
-
+import { Colors } from '../../styles'
 export default function DeleteAccountScreen({}) {
   const { state, deleteAccount } = useContext(AuthContext);
   const username = state.username;
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   view: {
-    backgroundColor: '#cadeee',
+    backgroundColor: Colors.primary,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

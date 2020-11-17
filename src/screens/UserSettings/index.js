@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { Context as AuthContext } from '../../state/AuthContext';
+import { Colors } from '../../styles'
 
 export default function UserSettings({ navigation }) {
   const { state, signout } = useContext(AuthContext);
@@ -59,7 +60,7 @@ export default function UserSettings({ navigation }) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#cadeee',
+    backgroundColor: Colors.primary,
     paddingTop: 5,
     paddingBottom: 5,
     borderWidth: 0,

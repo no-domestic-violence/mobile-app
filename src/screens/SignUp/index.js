@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
+import { Colors } from '../../styles'
+
 
 export default function SignUpScreen({ navigation }) {
   const { state, signup, removeErrors } = useContext(AuthContext);
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   view: {
-    backgroundColor: '#cadeee',
+    backgroundColor: Colors.primary,
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',

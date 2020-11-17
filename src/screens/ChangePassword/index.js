@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Button,
 } from 'react-native';
+import { Colors } from '../../styles/'
 import Modal from 'react-native-modal';
 import { Context as AuthContext } from '../../state/AuthContext';
 
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   view: {
-    backgroundColor: '#cadeee',
+    backgroundColor: Colors.primary,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

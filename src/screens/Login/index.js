@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import { Colors } from '../../styles'
 import { useTranslation } from 'react-i18next';
 
 export default function LoginScreen({ navigation }) {
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   view: {
-    backgroundColor: '#cadeee',
+    backgroundColor: Colors.primary,
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
