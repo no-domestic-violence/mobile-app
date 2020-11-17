@@ -18,19 +18,21 @@ export default function LanguageScreen({ navigation }) {
   return (
     <>
       <View style={styles.homePageView}>
-        {availableLanguages.map((item, i) => (
-          <Button
-            title={item.name}
-            titleStyle={{ color: '#000000' }}
-            type="solid"
-            raised
-            containerStyle={styles.button}
-            buttonStyle={{ backgroundColor: '#FFFFFF' }}
-            key={i}
-            onPress={() => handleLanguageChange(item.lang)}
-          />
-        ))}
-        <LanguageSVG />
+        <LanguageSVG style={{ position: 'absolute' }} />
+        <View style={styles.buttonsView}>
+          {availableLanguages.map((item, i) => (
+            <Button
+              title={item.name}
+              titleStyle={{ color: '#000000' }}
+              type="solid"
+              raised
+              containerStyle={styles.button}
+              buttonStyle={{ backgroundColor: '#FFFFFF' }}
+              key={i}
+              onPress={() => handleLanguageChange(item.lang)}
+            />
+          ))}
+        </View>
       </View>
     </>
   );
@@ -41,6 +43,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#CADEEE',
     flex: 1,
     justifyContent: 'center',
+  },
+  buttonsView: {
     alignItems: 'center',
   },
   button: {
