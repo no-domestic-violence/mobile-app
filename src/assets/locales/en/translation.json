@@ -2,7 +2,7 @@
     "common": {
         "welcome": "Welcome",
         "language" : "Select Your Language",
-        "login": "Please Log In"
+        "login": "Log In"
     },
     "OnboardingScreen" : {
         "privacy-title" : "Terms of Privacy",

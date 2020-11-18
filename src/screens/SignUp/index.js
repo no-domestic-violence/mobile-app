@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
-import { Colors } from '../../styles'
-
+import { Colors } from '../../styles';
+import AuthSVG from '_assets/svg/login.svg';
 
 export default function SignUpScreen({ navigation }) {
   const { state, signup, removeErrors } = useContext(AuthContext);
@@ -32,6 +32,7 @@ export default function SignUpScreen({ navigation }) {
   //TODO: refactor togerther with login
   return (
     <View style={styles.view}>
+      <AuthSVG style={styles.background} />
       <Text style={styles.header}>Sign Up</Text>
       <TextInput
         style={styles.input}

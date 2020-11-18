@@ -7,8 +7,13 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import { Colors } from '../../styles'
+import { StyledView } from '../../styles/shared/StyledView';
+import {
+  StyledButton,
+  StyledButtonText,
+} from '../../styles/shared/StyledButton';
 import { useTranslation } from 'react-i18next';
+import AuthSVG from '_assets/svg/login.svg';
 
 export default function LoginScreen({ navigation }) {
   const { t, i18n } = useTranslation();
@@ -30,7 +35,8 @@ export default function LoginScreen({ navigation }) {
   }, [navigation, removeErrors]);
 
   return (
-    <View style={styles.view}>
+    <StyledView style={styles.view}>
+      <AuthSVG style={styles.background} />
       <Text style={styles.header}>{t('common.login')}</Text>
       <TextInput
         style={styles.input}
@@ -49,9 +55,9 @@ export default function LoginScreen({ navigation }) {
         onChangeText={setPassword}
         value={password}
       />
-      <TouchableOpacity onPress={handleLogIn}>
-        <Text style={styles.button}>Login</Text>
-      </TouchableOpacity>
+      <StyledButton onPress={handleLogIn}>
+        <StyledButtonText>LOG IN</StyledButtonText>
+      </StyledButton>
       <View style={styles.text}>
         <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
           <Text>Do not have an account? Go to sign up</Text>
@@ -64,7 +70,7 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.textError}>{state.errorMessage}</Text>
         ) : null}
       </View>
-    </View>
+    </StyledView>
   );
 }
 
@@ -81,10 +87,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   view: {
-    backgroundColor: Colors.primary,
-    flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center',
     height: '100%',
   },
   button: {
