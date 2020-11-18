@@ -1,28 +1,34 @@
 # Pool Project
 
-[![Contributors](https://img.shields.io/github/contributors-anon/creyD/prettier_action)](https://github.com/no-domestic-violence/mobile-app/graphs/contributors)
 [![CodeFactor](https://www.codefactor.io/repository/github/no-domestic-violence/mobile-app/badge)](https://www.codefactor.io/repository/github/no-domestic-violence/mobile-app)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-### Description:
+## Table of contents
 
-React Native app which helps to fight domestic violence
+- [Project Description](#project-description)
+- [Tech Stack](#tech-stack)
+- [Application architecture diagram](#application-architecture-diagram)
+- [Setup](#setup)
+- [Authors of the project](#authors-of-the-project)
+
+## Project Description
+POOL project is a mobile application that aims to help the survivors of domestic violence. The main features of the app are: resources in forms of curated articles, videos & podcasts about intimate partner violence, finding shelters and hotlines. Signed up users can have additional access to emergency contact features. 
 
 **Tech Stack**
-
 - React Native with Expo
-
-We use:
-
-- the latest version of React Navigation v5
+- The latest version of React Navigation v5
 - Context API + hooks for state management
-- font awesome for icons
-- axios for API calls
-- i18next and expo-localization for localization
-- react-native-maps for maps(goggle maps for android, native maps for ios)
-- expo-location for reading geolocation information from the device.
-- react-native-elements for material ui styling (could be changed later)
+- Font Awesome for icons
+- Axios for API calls
+- I18next and expo-localization for localization
+- React-native-maps for maps
+- Expo-location for reading geolocation information from the device
+- React-native-elements for material ui styling ans Styled components
 ---
+
+## Application architecture diagram
+
+![Architecture diagram](app_architecture.png)
 
 **To run locally**
 
@@ -77,3 +83,10 @@ expo build:android -t app-bundle
 ```s
 expo build:ios (only with paid developer account)
 ```
+
+---
+## Authors of the project:
+
+- Soyoon Choi  
+- Irina Baeva
+- Behnaz Derakhshani 
