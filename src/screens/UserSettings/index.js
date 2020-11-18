@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { Context as AuthContext } from '../../state/AuthContext';
 import { Colors } from '../../styles'
+import { StyledView } from '../../styles/shared/StyledView';
 
 export default function UserSettings({ navigation }) {
   const { state, signout } = useContext(AuthContext);
@@ -11,7 +12,7 @@ export default function UserSettings({ navigation }) {
     signout();
   };
   return (
-    <View style={styles.userSettingsContainer}>
+    <StyledView style={styles.userSettingsContainer}>
       <View style={styles.userInfo}>
         <Avatar
           size="large"
@@ -54,7 +55,7 @@ export default function UserSettings({ navigation }) {
           <Text style={styles.button}>log out</Text>
         </TouchableOpacity>
       )}
-    </View>
+    </StyledView>
   );
 }
 
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     textAlign: 'center',
     width: '40%',
+    marginLeft: 10,
   },
   username: {
     textTransform: 'capitalize',
@@ -80,10 +82,11 @@ const styles = StyleSheet.create({
   userInfo: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginLeft: 10,
+    marginTop: 10
   },
   userSettingsContainer: {
-    padding: 10,
-    marginHorizontal: 10,
+    alignItems: 'flex-start'
   },
   userSettingsActions: {
     fontSize: 20,
@@ -92,5 +95,6 @@ const styles = StyleSheet.create({
   },
   userSettingsActionsView: {
     marginVertical: 50,
+    marginLeft: 10
   },
 });
