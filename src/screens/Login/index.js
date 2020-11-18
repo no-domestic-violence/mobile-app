@@ -31,7 +31,7 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <StyledView style={styles.view}>
-      <AuthSVG style={styles.background} />
+      <AuthSVG />
       <Text style={styles.header}>{t('common.login')}</Text>
       <StyledInputAuth
         placeholder="Email"

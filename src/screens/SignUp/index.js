@@ -37,7 +37,7 @@ export default function SignUpScreen({ navigation }) {
 
   return (
     <StyledView style={styles.view}>
-      <AuthSVG style={styles.background} />
+      <AuthSVG/>
       <Text style={styles.header}>Sign Up</Text>
       <StyledInputAuth
         placeholder="Username"
