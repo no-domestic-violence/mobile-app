@@ -1,13 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Context as AuthContext } from '../../state/AuthContext';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { StyledView } from '../../styles/shared/StyledView';
 import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+  StyledButton,
+  StyledButtonText,
+} from '../../styles/shared/StyledButton';
+import { StyledInputAuth } from '../../styles/shared/StyledInputAuth';
+
 import { useTranslation } from 'react-i18next';
+import AuthSVG from '_assets/svg/login.svg';
 
 export default function LoginScreen({ navigation }) {
   const { t, i18n } = useTranslation();
@@ -24,23 +26,21 @@ export default function LoginScreen({ navigation }) {
     const unsubscribe = navigation.addListener('blur', () => {
       removeErrors();
     });
-
     return unsubscribe;
   }, [navigation, removeErrors]);
 
   return (
-    <View style={styles.view}>
+    <StyledView style={styles.view}>
+      <AuthSVG />
       <Text style={styles.header}>{t('common.login')}</Text>
-      <TextInput
-        style={styles.input}
+      <StyledInputAuth
         placeholder="Email"
         autoCapitalize="none"
         placeholderTextColor="#6c757d"
         onChangeText={setEmail}
         value={email}
       />
-      <TextInput
-        style={styles.input}
+      <StyledInputAuth
         placeholder="Password"
         secureTextEntry={true}
         autoCapitalize="none"
@@ -48,14 +48,13 @@ export default function LoginScreen({ navigation }) {
         onChangeText={setPassword}
         value={password}
       />
-      <TouchableOpacity onPress={handleLogIn}>
-        <Text style={styles.button}>Login</Text>
-      </TouchableOpacity>
+      <StyledButton onPress={handleLogIn}>
+        <StyledButtonText>LOG IN</StyledButtonText>
+      </StyledButton>
       <View style={styles.text}>
         <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
           <Text>Do not have an account? Go to sign up</Text>
         </TouchableOpacity>
-        <Text>or</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Text>Proceed without login</Text>
         </TouchableOpacity>
@@ -63,27 +62,13 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.textError}>{state.errorMessage}</Text>
         ) : null}
       </View>
-    </View>
+    </StyledView>
   );
 }
 
 const styles = StyleSheet.create({
-  input: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#fff',
-    margin: 10,
-    padding: 8,
-    color: '#000',
-    borderRadius: 5,
-    fontSize: 18,
-    fontWeight: '500',
-  },
   view: {
-    backgroundColor: '#cadeee',
-    flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center',
     height: '100%',
   },
   button: {

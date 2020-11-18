@@ -2,11 +2,19 @@ import React, { useContext, useState, useEffect } from 'react';
 import {
   View,
   Text,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
+import AuthSVG from '_assets/svg/login.svg';
+import { StyledView } from '../../styles/shared/StyledView';
+import {
+  StyledButton,
+  StyledButtonText,
+} from '../../styles/shared/StyledButton';
+import {
+  StyledInputAuth,
+} from '../../styles/shared/StyledInputAuth';
 
 export default function SignUpScreen({ navigation }) {
   const { state, signup, removeErrors } = useContext(AuthContext);
@@ -27,12 +35,11 @@ export default function SignUpScreen({ navigation }) {
     return unsubscribe;
   }, [navigation, removeErrors]);
 
-  //TODO: refactor togerther with login
   return (
-    <View style={styles.view}>
+    <StyledView style={styles.view}>
+      <AuthSVG/>
       <Text style={styles.header}>Sign Up</Text>
-      <TextInput
-        style={styles.input}
+      <StyledInputAuth
         placeholder="Username"
         autoCapitalize="none"
         autoCorrect={false}
@@ -40,8 +47,7 @@ export default function SignUpScreen({ navigation }) {
         onChangeText={setUsername}
         value={username}
       />
-      <TextInput
-        style={styles.input}
+      <StyledInputAuth
         placeholder="Email"
         autoCorrect={false}
         autoCapitalize="none"
@@ -49,8 +55,7 @@ export default function SignUpScreen({ navigation }) {
         onChangeText={setEmail}
         value={email}
       />
-      <TextInput
-        style={styles.input}
+      <StyledInputAuth
         placeholder="Password"
         // secureTextEntry={true} TODO: fix it
         autoCapitalize="none"
@@ -61,52 +66,22 @@ export default function SignUpScreen({ navigation }) {
         value={password}
       />
       <View style={styles.actionsContainer}>
-        <TouchableOpacity onPress={() => handleSignUp()}>
-          <Text style={styles.button}>SIGN UP</Text>
-        </TouchableOpacity>
+        <StyledButton onPress={() => handleSignUp()}>
+          <StyledButtonText>SIGN UP</StyledButtonText>
+        </StyledButton>
         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Text style={styles.text}> Have an account? Go to login</Text>
         </TouchableOpacity>
         {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
       </View>
-    </View>
+    </StyledView>
   );
 }
 
 const styles = StyleSheet.create({
-  input: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#fff',
-    margin: 10,
-    padding: 8,
-    color: '#000',
-    borderRadius: 5,
-    fontSize: 18,
-    fontWeight: '500',
-  },
   view: {
-    backgroundColor: '#cadeee',
-    flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center',
     height: '100%',
-  },
-  button: {
-    backgroundColor: '#415889',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 5,
-    paddingBottom: 5,
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 12,
-    color: 'white',
-    fontSize: 14,
-    overflow: 'hidden',
-    textAlign: 'center',
-    marginTop: 40,
-    fontWeight: '600',
   },
   header: {
     fontSize: 35,
@@ -121,6 +96,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   actionsContainer: {
-    marginBottom: 70,
+    marginBottom: 20,
   },
 });
