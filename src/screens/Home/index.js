@@ -15,6 +15,8 @@ import { Feather } from '@expo/vector-icons';
 import WatchListRenderItem from '../../components/content-views/WatchListRenderItem';
 import TodayReadRenderItem from '../../components/content-views/TodayReadRenderItem';
 import { videoData } from '../../mock/video';
+import { Colors } from '../../styles';
+
 // import background1 from '../../assets/backgrounds/article1.png'
 
 const Home = ({ navigation }) => {
@@ -107,7 +109,7 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   homePageView: {
-    backgroundColor: '#CADEEE',
+    backgroundColor: Colors.primary,
     flex: 1,
   },
   headers: {
