@@ -6,6 +6,8 @@ import {
   ArticleStackNavigator,
   HomeStackNavigator
 } from './StackNavigator';
+import { Colors } from '../styles/'
+
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -13,9 +15,9 @@ const ResourcesTabNavigator = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        labelStyle: { fontSize: 12 },
-        style: { backgroundColor: '#88C4FA' },
-        indicatorStyle: { backgroundColor: '#cc0e74' },
+        labelStyle: { fontSize: 14, color: '#fff' },
+        style: { backgroundColor: Colors.darkBlue },
+        indicatorStyle: { backgroundColor: '#fff' },
       }}
     >
       <Tab.Screen name="Home" component={HomeStackNavigator} />

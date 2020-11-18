@@ -53,7 +53,7 @@ export default function HotlinesList() {
         ref={inputRef}
         inputStyle={{ backgroundColor: Colors.primary, width: '70%' }}
         inputContainerStyle={{ backgroundColor: Colors.primary, width: '90%' }}
-        containerStyle={{ backgroundColor: Colors.primary }}
+        containerStyle={{ backgroundColor: Colors.primary, borderTopWidth: 0 }}
         autoCorrect={false}
         autoCapitalize="none"
         onChangeText={setSearch}
