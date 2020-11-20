@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import SVG from '_assets/svg/language.svg';
 import {
   StyledButton,
@@ -23,13 +24,14 @@ const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
 };
 
 export default function TermsAndConditionsScreen({ navigation }) {
+  const { t, i18n } = useTranslation();
   const [isRead, setRead] = useState(false);
   const handleRead = () => setRead(true);
 
   return (
     <StyledView style={{ justifyContent: 'center' }}>
       <SVG style={{ position: 'absolute' }} />
-      <Text style={styles.title}>TERMS AND CONDITIONS</Text>
+      <Text style={styles.title}>{t('TermsAndConditions.title')}</Text>
       <ScrollView
         style={styles.tcContainer}
         onScroll={({ nativeEvent }) => {
@@ -114,7 +116,7 @@ export default function TermsAndConditionsScreen({ navigation }) {
         disabled={!isRead}
         onPress={() => navigation.navigate('Onboarding')}
         style={!isRead ? styles.buttonDisabled : styles.button}>
-        <StyledButtonText>AGREE</StyledButtonText>
+        <StyledButtonText>{t('TermsAndConditions.button')}</StyledButtonText>
       </StyledButton>
     </StyledView>
   );
@@ -130,11 +132,14 @@ const styles = StyleSheet.create({
   },
   tcContainer: {
     marginTop: 30,
-    marginLeft: 30,
-    marginRight: 30,
+    width: width * 0.85,
     height: height * 0.7,
     backgroundColor: 'rgba(255, 255, 255, 0.71)',
     borderRadius: 31,
+  },
+
+  textContainer: {
+    padding: 20,
   },
   tcP: {
     marginTop: 10,
@@ -147,9 +152,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 12,
   },
-  textContainer: {
-    padding: 20,
-  },
 
   button: {
     marginBottom: 40,
@@ -158,11 +160,5 @@ const styles = StyleSheet.create({
   buttonDisabled: {
     backgroundColor: '#999',
     marginBottom: 40,
-  },
-
-  buttonLabel: {
-    fontSize: 14,
-    color: '#FFF',
-    alignSelf: 'center',
   },
 });
