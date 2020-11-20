@@ -1,7 +1,5 @@
 {
     "common": {
-        "welcome": "Welcome",
-        "language" : "Select Your Language",
         "login": "Log In"
     },
 
@@ -19,9 +17,6 @@
         "questions-title": "TEST YOUR KNOWLEDGE",
         "questions-subtitle": "Find out where your knowledge stands with our questionnaire",
         "button": "GET STARTED"
-    },
-    "Home" : {
-        "emergency-title": "Set your emergency message."
     }
-    
+
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncStorage, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import { useTranslation } from 'react-i18next';
 import { Colors } from '../../styles/index';
@@ -14,6 +14,9 @@ export default function OnboardingScreen({ navigation }) {
     <Onboarding
       onSkip={() => navigation.navigate('Login')}
       onDone={() => navigation.navigate('Login')}
+      titleStyles={styles.title}
+      imageContainerStyles={styles.image}
+      bottomBarHighlight={false}
       pages={[
         {
           backgroundColor: Colors.primary,
@@ -43,3 +46,15 @@ export default function OnboardingScreen({ navigation }) {
     />
   );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 20,
+    fontWeight: '700',
+  },
+
+  // TODO: Resizing doesn't work
+  image: {
+    width: '70%',
+  },
+});
