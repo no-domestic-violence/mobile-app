@@ -15,7 +15,7 @@ export default function UserSettings({ navigation }) {
     <StyledView style={styles.userSettingsContainer}>
       <UserInfo username={username} />
       <View style={styles.userSettingsActionsView}>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity onPress={() => navigation.navigate('How to use')}>
           <Text style={styles.userSettingsActions}>how to use</Text>
         </TouchableOpacity>
         {state.token ? (
@@ -24,7 +24,7 @@ export default function UserSettings({ navigation }) {
               onPress={() => navigation.navigate('Change Password')}>
               <Text style={styles.userSettingsActions}>change password</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Change Language')}>
               <Text style={styles.userSettingsActions}>change language</Text>
             </TouchableOpacity>
             <TouchableOpacity
