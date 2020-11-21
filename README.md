@@ -6,6 +6,7 @@
 ## Table of contents
 
 - [Project Description](#project-description)
+- [Backend](#backend)
 - [Tech Stack](#tech-stack)
 - [Application architecture diagram](#application-architecture-diagram)
 - [Setup](#setup)
@@ -14,11 +15,14 @@
 ## Project Description
 POOL project is a mobile application that aims to help the survivors of domestic violence. The main features of the app are: resources in forms of curated articles, videos & podcasts about intimate partner violence, finding shelters and hotlines. Signed up users can have additional access to emergency contact features. 
 
-**Tech Stack**
+## Backend
+Implementation of backend can be found here https://github.com/no-domestic-violence/backend
+
+## Tech Stack
 - React Native with Expo
 - The latest version of React Navigation v5
 - Context API + hooks for state management
-- Font Awesome for icons
+- Font Awesome
 - Axios for API calls
 - I18next and expo-localization for localization
 - React-native-maps for maps
@@ -29,6 +33,8 @@ POOL project is a mobile application that aims to help the survivors of domestic
 ## Application architecture diagram
 
 ![Architecture diagram](app_architecture.png)
+
+## Setup
 
 **To run locally**
 
