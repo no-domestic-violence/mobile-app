@@ -15,7 +15,7 @@ useEffect(() => {
     try {
       const response = await appApiClient.get(`/articles/${route.params.id}`);
       setUniqueArticle(response.data);
-      console.log(response.data);
+      
     } catch (error) {
       console.error(error);
     }

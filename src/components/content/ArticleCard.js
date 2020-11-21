@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, Image, Dimensions, TouchableOpacity } from 'rea
 const { width, height } = Dimensions.get('window')
 
 const ArticleCard = ({ item, navigation }) => {
-    console.log(item)
+    
     return (
         <View style={styles.cardView}>
             <TouchableOpacity onPress={() => navigation.navigate('Article Page', {id: item._id})}>
