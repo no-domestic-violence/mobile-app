@@ -10,10 +10,10 @@ const ArticleCard = ({ item, navigation }) => {
             <TouchableOpacity onPress={() => navigation.navigate('Article Page', {id: item._id})}>
                 <Text style={styles.title}> {item.title}</Text>
                 <Text style={styles.author}>{item.author} </Text>
-                <Image style={styles.image} source={item.urlToImage ? { uri: item.urlToImage } : null} />
-                <Text style={styles.description}>{item.description}</Text>
-                <Text style={styles.violence_type}>{item.violence_type}</Text>
-                <Text style={styles.created_at}>{item.created_at}</Text>
+                <Text style={styles.violence_type}>Tags: {item.violence_type}</Text>
+                <Image style={styles.image} source={item.url_to_image ? { uri: item.url_to_image } : null} />
+                <Text style={styles.text}>{item.text.substring(0,150)} ...</Text>
+                <Text style={styles.created_at}>Date: {item.created_at}</Text>
             </TouchableOpacity>
         </View>
     )
@@ -37,11 +37,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
 
     },
-    description: {
+    text: {
         marginVertical: width * 0.05,
         marginHorizontal: width * 0.02,
-        color: 'gray',
-        fontSize: 18
+        color: 'black',
+        fontSize: 18,
+        textAlign: 'justify',
+        marginLeft: 20,
+        marginRight: 20,
     },
     image: {
         height: height / 6,
@@ -51,24 +54,27 @@ const styles = StyleSheet.create({
     },
     author: {
         marginBottom: width * 0.0,
-        marginHorizontal: width * 0.05,
+        marginHorizontal: width * 0.0,
         fontSize: 15,
-        color: 'gray'
-
+        color: 'black',
+        marginLeft: 20,
     },
     violence_type: {
-        marginTop: width * 0.0,
-        marginHorizontal: width * 0.03,
-        fontSize: 10,
-        color: 'gray'
-
-    },
-    created_at: {
-
         marginBottom: width * 0.0,
         marginHorizontal: width * 0.05,
-        fontSize: 8,
-        color: 'gray'
+        fontSize: 12,
+        color: 'dimgray',
+        textAlign: 'right',
+    },
+    created_at: {
+        marginHorizontal: width * 0.5,
+        marginBottom: 20,
+        fontSize: 11,
+        color: 'dimgray',
+        textAlign: 'left',
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: -8,
 
     }
 })
