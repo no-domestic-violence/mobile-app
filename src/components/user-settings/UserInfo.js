@@ -1,22 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Avatar } from 'react-native-elements';
 import UserSettingsSVG from '_assets/svg/userSettings.svg';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 export default function UserInfo({ username }) {
   return (
     <View>
       <UserSettingsSVG style={{ position: 'absolute'}} />
       <View style={styles.userInfo}>
-        <Avatar
-          size="large"
-          rounded
-          icon={{ name: 'user', color: 'white', type: 'font-awesome' }}
-          activeOpacity={0.7}
-          containerStyle={{
-            backgroundColor: 'grey',
-            textTransform: 'capitalize',
-          }}
+      <FontAwesomeIcon
+          icon={faUserCircle}
+          size={80}
+          color={'grey'}
+          style={styles.arrow}
         />
         <Text style={styles.username}>{username}</Text>
       </View>
