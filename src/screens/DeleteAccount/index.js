@@ -1,8 +1,16 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
-import { Colors } from '../../styles'
-export default function DeleteAccountScreen({}) {
+import { StyledView } from '../../styles/shared/StyledView';
+import UserInfo from '_components/user-settings/UserInfo';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {
+  StyledButton,
+  StyledButtonText,
+} from '../../styles/shared/StyledButton';
+
+export default function DeleteAccountScreen({ navigation }) {
   const { state, deleteAccount } = useContext(AuthContext);
   const username = state.username;
 
@@ -10,70 +18,60 @@ export default function DeleteAccountScreen({}) {
     deleteAccount({ username });
   };
   return (
-    <View style={styles.view}>
-      <Text style={styles.header}>Delete Account</Text>
-      <Text style={styles.text}>
-        Are you sure that you want to delete account??
-      </Text>
-      <TouchableOpacity onPress={() => handleDeleteAccount()}>
-        <Text style={styles.button}>Delete Account</Text>
-      </TouchableOpacity>
-    </View>
+    <StyledView style={styles.userSettingsContainer}>
+      <UserInfo username={username} />
+      <View style={styles.view}>
+        <FontAwesomeIcon
+          onPress={() => navigation.goBack()}
+          icon={faAngleLeft}
+          size={40}
+          color={'#000'}
+          style={styles.arrow}
+        />
+        <Text style={styles.header}>Delete Account</Text>
+        <Text style={styles.text}>
+          Are you certain you want to delete your account?
+        </Text>
+        <StyledButton onPress={() => handleDeleteAccount()}>
+          <StyledButtonText style={styles.button}>
+            Delete Account
+          </StyledButtonText>
+        </StyledButton>
+      </View>
+    </StyledView>
   );
 }
 
 const styles = StyleSheet.create({
-  input: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#fff',
-    margin: 10,
-    padding: 8,
-    color: '#000',
-    borderRadius: 5,
-    fontSize: 18,
-    fontWeight: '500',
+  userSettingsContainer: {
+    alignItems: 'flex-start',
   },
-  view: {
-    backgroundColor: Colors.primary,
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
+  arrow: {
+    alignSelf: 'flex-start',
+    marginTop: 50,
+    marginLeft: 10,
   },
   button: {
     backgroundColor: 'red',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 5,
-    paddingBottom: 5,
-    borderRadius: 12,
-    color: 'white',
-    fontSize: 14,
-    overflow: 'hidden',
-    textAlign: 'center',
-    marginTop: 40,
-    fontWeight: '600',
+    fontWeight: '800',
+  },
+  view: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
   },
   header: {
-    fontSize: 35,
+    fontSize: 20,
     fontWeight: '600',
     alignSelf: 'flex-start',
     marginLeft: 30,
     marginBottom: 40,
+    marginTop: 40,
   },
   text: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#000',
     alignSelf: 'flex-start',
     marginLeft: 30,
-  },
-  textError: {
-    marginTop: 20,
-    color: 'darkred',
-  },
-  textSuccess: {
-    marginTop: 20,
-    color: 'darkgreen',
   },
 });

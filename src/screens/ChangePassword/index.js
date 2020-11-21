@@ -1,26 +1,29 @@
 import React, { useContext, useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  Button,
-} from 'react-native';
-import { Colors } from '../../styles/'
+import { View, Text, StyleSheet, Button } from 'react-native';
 import Modal from 'react-native-modal';
 import { Context as AuthContext } from '../../state/AuthContext';
+import UserInfo from '_components/user-settings/UserInfo';
+import {
+  StyledButton,
+  StyledButtonText,
+} from '../../styles/shared/StyledButton';
+import { StyledInputAuth } from '../../styles/shared/StyledInputAuth';
+import { StyledView } from '../../styles/shared/StyledView';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 export default function ChangePasswordScreen({ navigation }) {
   const { state, changePassword, removeErrors, removeMessages } = useContext(
     AuthContext,
   );
+  const { username } = state;
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [oldPassword, setOldPassword] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const handleChangePassword = () => {
+  const handleChangePassword = ({ navigation }) => {
     changePassword({ email, password, oldPassword });
   };
   useEffect(() => {
@@ -34,106 +37,94 @@ export default function ChangePasswordScreen({ navigation }) {
   }, [navigation, removeErrors, removeMessages]);
 
   return (
-    <View style={styles.view}>
-      <Text style={styles.header}>Change Password</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        autoCorrect={false}
-        autoCapitalize="none"
-        placeholderTextColor="#6c757d"
-        onChangeText={setEmail}
-        value={email}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Your old password"
-        autoCapitalize="none"
-        autoCorrect={false}
-        placeholderTextColor="#6c757d"
-        onChangeText={setOldPassword}
-        value={oldPassword}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="New Password"
-        autoCorrect={false}
-        autoCapitalize="none"
-        placeholderTextColor="#6c757d"
-        onChangeText={setPassword}
-        value={password}
-      />
-      <TouchableOpacity onPress={() => handleChangePassword()}>
-        <Text style={styles.button}>Submit Change</Text>
-      </TouchableOpacity>
-      {state.errorMessage && !state.successMessage ? (
-        <Text style={styles.textError}>{state.errorMessage}</Text>
-      ) : null}
-      <View style={{ flex: 1 }}>
-        <Modal isVisible={isModalVisible}>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <View style={styles.modalContainer}>
-              <Text style={styles.textSuccess}>
-                Your password was successfully changed!
-              </Text>
-              <Button
-                title="Ok"
-                onPress={() => {
-                  setModalVisible(false);
-                  navigation.navigate('User');
-                }}
-              />
+    <StyledView style={styles.userSettingsContainer}>
+      <UserInfo username={username} />
+      <View style={styles.view}>
+        <FontAwesomeIcon
+          onPress={() => navigation.goBack()}
+          icon={faAngleLeft}
+          size={40}
+          color={'#000'}
+          style={styles.arrow}
+        />
+        <Text style={styles.header}>Change Password</Text>
+        <StyledInputAuth
+          placeholder="Email"
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholderTextColor="#6c757d"
+          onChangeText={setEmail}
+          value={email}
+        />
+        <StyledInputAuth
+          placeholder="Your old password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholderTextColor="#6c757d"
+          onChangeText={setOldPassword}
+          value={oldPassword}
+          secureTextEntry={true}
+        />
+        <StyledInputAuth
+          placeholder="New Password"
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholderTextColor="#6c757d"
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry={true}
+        />
+        <StyledButton onPress={() => handleChangePassword()}>
+          <StyledButtonText>confirm</StyledButtonText>
+        </StyledButton>
+        {state.errorMessage && !state.successMessage ? (
+          <Text style={styles.textError}>{state.errorMessage}</Text>
+        ) : null}
+        <View style={{ flex: 1 }}>
+          <Modal isVisible={isModalVisible}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <View style={styles.modalContainer}>
+                <Text style={styles.textSuccess}>
+                  Your password was successfully changed!
+                </Text>
+                <Button
+                  title="Ok"
+                  onPress={() => {
+                    setModalVisible(false);
+                    navigation.navigate('User');
+                  }}
+                />
+              </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
+        </View>
       </View>
-    </View>
+    </StyledView>
   );
 }
 
 const styles = StyleSheet.create({
-  input: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#fff',
-    margin: 10,
-    padding: 8,
-    color: '#000',
-    borderRadius: 5,
-    fontSize: 18,
-    fontWeight: '500',
+  userSettingsContainer: {
+    alignItems: 'flex-start',
   },
   view: {
-    backgroundColor: Colors.primary,
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%',
+    width: '100%',
   },
-  button: {
-    backgroundColor: '#415889',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 5,
-    paddingBottom: 5,
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 12,
-    color: 'white',
-    fontSize: 14,
-    overflow: 'hidden',
-    textAlign: 'center',
-    marginTop: 40,
-    fontWeight: '600',
+  arrow: {
+    alignSelf: 'flex-start',
+    marginTop: 50,
+    marginLeft: 10,
   },
   header: {
-    fontSize: 35,
+    fontSize: 20,
     fontWeight: '600',
     alignSelf: 'flex-start',
     marginLeft: 30,

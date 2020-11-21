@@ -1,10 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
 import AuthSVG from '_assets/svg/login.svg';
 import { StyledView } from '../../styles/shared/StyledView';
@@ -12,9 +7,7 @@ import {
   StyledButton,
   StyledButtonText,
 } from '../../styles/shared/StyledButton';
-import {
-  StyledInputAuth,
-} from '../../styles/shared/StyledInputAuth';
+import { StyledInputAuth } from '../../styles/shared/StyledInputAuth';
 
 export default function SignUpScreen({ navigation }) {
   const { state, signup, removeErrors } = useContext(AuthContext);
@@ -37,7 +30,7 @@ export default function SignUpScreen({ navigation }) {
 
   return (
     <StyledView style={styles.view}>
-      <AuthSVG/>
+      <AuthSVG />
       <Text style={styles.header}>Sign Up</Text>
       <StyledInputAuth
         placeholder="Username"
@@ -57,10 +50,9 @@ export default function SignUpScreen({ navigation }) {
       />
       <StyledInputAuth
         placeholder="Password"
-        // secureTextEntry={true} TODO: fix it
+        secureTextEntry={true}
         autoCapitalize="none"
         autoCorrect={false}
-        // secureTextEntry
         placeholderTextColor="#6c757d"
         onChangeText={setPassword}
         value={password}

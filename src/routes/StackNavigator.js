@@ -99,7 +99,7 @@ export const SosContactStackNavigator = () => {
 
 export const UserSettingsStackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="User" component={UserSettings} />
       <Stack.Screen name="Change Password" component={ChangePassword} />
       <Stack.Screen name="Delete Account" component={DeleteAccount} />
