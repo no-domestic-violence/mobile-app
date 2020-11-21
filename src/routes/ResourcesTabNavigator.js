@@ -6,17 +6,15 @@ import {
   ArticleStackNavigator,
   HomeStackNavigator,
 } from './StackNavigator';
+import { Colors } from '../styles/'
+
 
 const Tab = createMaterialTopTabNavigator();
 
-const SheltersHotlinesTabNavigator = () => {
+const ResourcesTabNavigator = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        labelStyle: { fontSize: 12 },
-        style: { backgroundColor: '#88C4FA' },
-        indicatorStyle: { backgroundColor: '#cc0e74' },
-      }}>
       <Tab.Screen name="Home" component={HomeStackNavigator} />
       <Tab.Screen name="Article" component={ArticleStackNavigator} />
       <Tab.Screen name="Video" component={VideoStackNavigator} />
@@ -25,4 +23,4 @@ const SheltersHotlinesTabNavigator = () => {
   );
 };
 
-export default SheltersHotlinesTabNavigator;
+export default ResourcesTabNavigator;

@@ -1,31 +1,28 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Avatar, Icon } from "react-native-elements";
-export default function ListItem({ item, makeCall }) {
+import { Colors } from '../../styles/index';
+import {
+  faPhone,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
+export default function ListItem({ item, makeCall }) {
   return (
     <TouchableOpacity style={styles.listItem}>
       <View style={styles.info}>
-        <Avatar
-          size="medium"
-          icon={{ name: 'info-circle', color: 'grey', type: 'font-awesome' }}
-          activeOpacity={0.7}
-        />
         <View style={styles.listItemContent}>
           <Text style={styles.listItemTitle}>{item.organisation_name}</Text>
-          <Text style={styles.listItemContacts} >
+          <Text style={styles.listItemContacts}>
             {item.city}, tel:{item.phone}
           </Text>
         </View>
       </View>
-
-      <View>
-        <Icon
-          raised
-          name="phone"
-          type="font-awesome"
-          color="pink"
+      <View style={styles.iconContainer}>
+        <FontAwesomeIcon
           onPress={() => makeCall(item.phone)}
+          icon={faPhone}
+          size={25}
+          color={'#000'}
         />
       </View>
     </TouchableOpacity>
@@ -34,19 +31,23 @@ export default function ListItem({ item, makeCall }) {
 
 const styles = StyleSheet.create({
   info: {
+    alignContent: 'center',
+    alignItems: 'center',
+  },
+  iconContainer: {
     flexDirection: 'row',
     alignContent: 'center',
     alignItems: 'center',
-
   },
   listItem: {
-    paddingVertical: 10,
-    paddingHorizontal: 2,
-    borderColor: 'grey',
-    borderBottomWidth: 1,
+    paddingVertical: 20,
+    paddingHorizontal: 20,
     flexShrink: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: Colors.secondary,
+    margin: 20,
+    borderRadius: 30,
   },
   listItemTitle: {
     fontWeight: 'bold',
@@ -56,8 +57,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexShrink: 1,
   },
-  listItemContent:{
+  listItemContent: {
     flexWrap: 'wrap',
-    flex: 1
-  }
+    flex: 1,
+  },
 });

@@ -5,15 +5,17 @@ import {
   MapStackNavigator,
 } from './StackNavigator';
 
+import { Colors } from '../styles/'
+
 const Tab = createMaterialTopTabNavigator();
 
 const SheltersHotlinesTabNavigator = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        labelStyle: { fontSize: 12 },
-        style: { backgroundColor: '#f1d4d4' },
-        indicatorStyle: { backgroundColor: '#cc0e74' },
+        labelStyle: { fontSize: 14, color: '#fff' },
+        style: { backgroundColor: Colors.darkBlue },
+        indicatorStyle: { backgroundColor: '#fff' },
       }}
     >
       <Tab.Screen name="Hotlines" component={HotlinesStackNavigator} />
