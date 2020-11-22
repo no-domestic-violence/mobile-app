@@ -10,6 +10,7 @@ import SosContactForm from '_screens/SosContactForm';
 import SosContactEdit from '_screens/SosContactEdit';
 import Hotlines from '_screens/Hotlines';
 import ArticlesList from '_screens/ArticlesList';
+import ArticlePage from '_screens/ArticlePage';
 import VideoList from '_screens/VideoList';
 import VideoPage from '_screens/VideoPage';
 import PodcastList from '_screens/PodcastList';
@@ -67,7 +68,8 @@ export const MapStackNavigator = () => {
 export const ArticleStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Hotlines" component={ArticlesList} />
+      <Stack.Screen name="Article List" component={ArticlesList} />
+      <Stack.Screen name="Article Page" component={ArticlePage} />
     </Stack.Navigator>
   );
 };

@@ -1,11 +1,7 @@
 module.exports = {
   root: true,
   extends: 'airbnb',
-  plugins: [
-    'react',
-    'react-native',
-    'react-hooks'
-  ],
+  plugins: ['react', 'react-native', 'react-hooks'],
   parser: 'babel-eslint',
   env: {
     jest: true,
@@ -28,20 +24,26 @@ module.exports = {
     'react-native/no-single-element-style-arrays': 2,
   },
   settings: {
-    "import/resolver": {
-      "babel-module": {},
+    'import/resolver': {
+      'babel-module': {},
       node: {
-        paths: ["src"],
+        paths: ['src'],
         alias: {
-          _assets: "./src/assets/",
-          _components: "./src/components/",
-          _routes: "./src/routes/",
-          _screens: "./src/screens/"
-        }
-      }
-    }
+          _assets: './src/assets/',
+          _components: './src/components/',
+          _routes: './src/routes/',
+          _screens: './src/screens/',
+          _styles: './src/styles/',
+          _api: './src/api',
+          _config: './src/config',
+          _mock: './src/mock',
+          _state: './src/state',
+          _services: './src/services',
+        },
+      },
+    },
   },
   globals: {
-    fetch: false
-  }
+    fetch: false,
+  },
 };

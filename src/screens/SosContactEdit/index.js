@@ -1,17 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { View, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Input } from 'react-native-elements';
+import EmergencySVG from '_assets/svg/emergency.svg';
 import { useIsFocused } from '@react-navigation/native';
-import appApiClient from '../../api/appApiClient';
+import { StyledView } from 'styles/shared/StyledView';
+import appApiClient from 'api/appApiClient';
 
-import { Context as AuthContext } from '../../state/AuthContext';
+import { Context as AuthContext } from 'state/AuthContext';
 
 export default function SosContactEdit({ navigation, route }) {
   const [contact, setContact] = useState({});
@@ -80,80 +76,98 @@ export default function SosContactEdit({ navigation, route }) {
   };
   return (
     <>
-      <TouchableOpacity style={styles.list}>
-        <Text style={styles.text}>
-          {'\n'}
-          Name:
-        </Text>
-        <TextInput
-          style={styles.text}
-          value={contact.name}
-          onChangeText={handleNameChange}
-        />
-        <Text style={styles.text}>Phone Number:</Text>
-        <TextInput
-          style={styles.text}
-          value={contact.phone}
-          onChangeText={handleNumberChange}
-        />
-        <Text style={styles.text}>Help Message:</Text>
-        <TextInput
-          style={styles.text}
-          value={contact.message}
-          onChangeText={handleMessageChange}
-        />
-        <Text style={styles.text}>{'\n'}</Text>
-        <FontAwesomeIcon
-          icon={faTrash}
-          onPress={() => {
-            handleRemove(contact._id, navigation);
-            navigation.navigate('SosContactHome');
-            // TODO: Fix navigation and api call order
-          }}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          saveEdit(navigation);
-          navigation.navigate('SosContactHome');
-        }}>
-        <Text style={styles.buttonLabel}>Save</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('SosContactHome')}>
-        <Text style={styles.buttonLabel}>Cancel</Text>
-      </TouchableOpacity>
+      <StyledView style={styles.homeView}>
+        <EmergencySVG style={styles.svg} />
+        <View style={styles.container}>
+          <Icon
+            name="times"
+            size={20}
+            raised
+            onPress={() => {
+              navigation.navigate('SosContactHome');
+            }}
+          />
+          <Input
+            placeholder="Name"
+            value={contact.name}
+            onChangeText={handleNameChange}
+            leftIcon={<Icon name="user" size={20} color="black" />}
+            leftIconContainerStyle={styles.icon}
+          />
+          <Input
+            placeholder="Phone Number"
+            value={contact.phone}
+            onChangeText={handleNumberChange}
+            leftIcon={<Icon name="phone" size={20} color="black" />}
+            leftIconContainerStyle={styles.icon}
+          />
+          <Input
+            placeholder="Help Message"
+            value={contact.message}
+            onChangeText={handleMessageChange}
+            leftIcon={<Icon name="envelope" size={20} color="black" />}
+            leftIconContainerStyle={styles.icon}
+          />
+        </View>
+        <View style={styles.buttonRow}>
+          <Icon
+            name="trash"
+            size={30}
+            containerStyle={styles.iconContainer}
+            raised
+            onPress={() => {
+              handleRemove(contact._id, navigation);
+              navigation.navigate('SosContactHome');
+              // TODO: Fix navigation and api call order
+            }}
+          />
+          <Icon
+            name="check"
+            size={30}
+            containerStyle={styles.iconContainer}
+            raised
+            onPress={() => {
+              saveEdit(navigation);
+              navigation.navigate('SosContactHome');
+            }}
+          />
+        </View>
+      </StyledView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   homeView: {
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
   },
-  list: {
-    flex: 1,
-    padding: 10,
+  container: {
+    backgroundColor: '#FEF8E3',
+    width: '80%',
+    height: '40%',
+    borderRadius: 48,
+    justifyContent: 'center',
+    paddingTop: 40,
+    paddingBottom: 40,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
-  text: {
-    color: 'black',
-    fontFamily: 'Courier',
-    padding: 3,
-    fontWeight: 'bold',
-    flexShrink: 1,
+  icon: {
+    paddingRight: 15,
   },
-  buttonLabel: {
-    fontSize: 14,
-    color: '#FFF',
-    alignSelf: 'center',
+  iconContainer: {
+    backgroundColor: '#FECE1F',
+    borderRadius: 50,
+    padding: 30,
+    textAlign: 'center',
   },
-  button: {
-    backgroundColor: '#136AC7',
-    borderRadius: 5,
-    padding: 10,
+  svg: {
+    position: 'absolute',
+  },
+  buttonRow: {
+    paddingTop: 80,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    width: '60%',
   },
 });

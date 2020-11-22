@@ -1,16 +1,22 @@
 {
     "common": {
-        "welcome": "Welcome",
-        "language" : "Select Your Language",
         "login": "Log In"
     },
-    "OnboardingScreen" : {
-        "privacy-title" : "Terms of Privacy",
-        "privacy-subtitle": "Here is the terms of privacy translated.",
-        "question-title" : "Check your relationship status with our questionnaire."
+
+    "TermsAndConditions" : {
+        "title": "TERMS AND CONDITIONS",
+        "button": "AGREE"
     },
-    "HomeScreen" : {
-        "emergency-title": "Set your emergency message."
+    "Onboarding" : {
+        "emergency-title" : "EMERGENCY CONTACTS",
+        "emergency-subtitle": "Add three trusted contacts that you can reach out to at critical moments",
+        "map-title" : "LOCATE NEAREST SHELTERS",
+        "map-subtitle": "Find help anywhere you are",
+        "resources-title": "LEARN WITH OUR CURATED RESOURCES",
+        "resources-subtitle": "Be curious. Be open. Learn.",
+        "questions-title": "TEST YOUR KNOWLEDGE",
+        "questions-subtitle": "Find out where your knowledge stands with our questionnaire",
+        "button": "GET STARTED"
     }
-    
+
 }

@@ -4,7 +4,7 @@ import {
   VideoStackNavigator,
   PodcastStackNavigator,
   ArticleStackNavigator,
-  HomeStackNavigator
+  HomeStackNavigator,
 } from './StackNavigator';
 import { Colors } from '../styles/'
 
