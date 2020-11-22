@@ -5,18 +5,19 @@ import { StyledView } from '../../styles/shared/StyledView';
 import UserInfo from '_components/user-settings/UserInfo';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {
-  StyledButton,
-  StyledButtonText,
-} from '../../styles/shared/StyledButton';
+import { LanguageContext } from '../../state/LanguageContext';
+import { Button } from 'react-native-elements';
 
-export default function DeleteAccountScreen({ navigation }) {
-  const { state, deleteAccount } = useContext(AuthContext);
+export default function ChangeLanguage({ navigation }) {
+  const { state } = useContext(AuthContext);
+  const { availableLanguages, setAppLanguage } = useContext(LanguageContext);
   const username = state.username;
 
-  const handleDeleteAccount = () => {
-    deleteAccount({ username });
+  const handleLanguageChange = async (language) => {
+    await setAppLanguage(language);
+    navigation.goBack();
   };
+
   return (
     <StyledView style={styles.userSettingsContainer}>
       <UserInfo username={username} />
@@ -28,15 +29,21 @@ export default function DeleteAccountScreen({ navigation }) {
           color={'#000'}
           style={styles.arrow}
         />
-        <Text style={styles.header}>Delete Account</Text>
-        <Text style={styles.text}>
-          Are you certain you want to delete your account?
-        </Text>
-        <StyledButton onPress={() => handleDeleteAccount()}>
-          <StyledButtonText style={styles.button}>
-            Delete Account
-          </StyledButtonText>
-        </StyledButton>
+        <Text style={styles.header}>Change Language</Text>
+        <View style={styles.buttonsView}>
+          {availableLanguages.map((item, i) => (
+            <Button
+              title={item.name}
+              titleStyle={{ color: '#000000' }}
+              type="solid"
+              raised
+              containerStyle={styles.button}
+              buttonStyle={styles.buttonText}
+              key={i}
+              onPress={() => handleLanguageChange(item.lang)}
+            />
+          ))}
+        </View>
       </View>
     </StyledView>
   );
@@ -52,8 +59,16 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   button: {
-    backgroundColor: 'red',
-    fontWeight: '800',
+    margin: 20,
+    alignItems: 'center',
+  },
+  buttonText: {
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 20,
+    paddingHorizontal: 90,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   view: {
     justifyContent: 'center',
@@ -67,11 +82,5 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginBottom: 40,
     marginTop: 40,
-  },
-  text: {
-    fontSize: 16,
-    color: '#000',
-    alignSelf: 'flex-start',
-    marginLeft: 30,
   },
 });

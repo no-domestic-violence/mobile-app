@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Avatar } from 'react-native-elements';
 import { Context as AuthContext } from '../../state/AuthContext';
-import { Colors } from '../../styles'
+import { Colors } from '../../styles';
 import { StyledView } from '../../styles/shared/StyledView';
+import UserInfo from '_components/user-settings/UserInfo';
 
 export default function UserSettings({ navigation }) {
   const { state, signout } = useContext(AuthContext);
@@ -13,21 +13,9 @@ export default function UserSettings({ navigation }) {
   };
   return (
     <StyledView style={styles.userSettingsContainer}>
-      <View style={styles.userInfo}>
-        <Avatar
-          size="large"
-          rounded
-          icon={{ name: 'user', color: 'white', type: 'font-awesome' }}
-          activeOpacity={0.7}
-          containerStyle={{
-            backgroundColor: 'grey',
-            textTransform: 'capitalize',
-          }}
-        />
-        <Text style={styles.username}>{username}</Text>
-      </View>
+      <UserInfo username={username} />
       <View style={styles.userSettingsActionsView}>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity onPress={() => navigation.navigate('How to use')}>
           <Text style={styles.userSettingsActions}>how to use</Text>
         </TouchableOpacity>
         {state.token ? (
@@ -36,8 +24,9 @@ export default function UserSettings({ navigation }) {
               onPress={() => navigation.navigate('Change Password')}>
               <Text style={styles.userSettingsActions}>change password</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.userSettingsActions}>change languige</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Change Language')}>
+              <Text style={styles.userSettingsActions}>change language</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate('Delete Account')}>
@@ -62,8 +51,8 @@ export default function UserSettings({ navigation }) {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: Colors.primary,
-    paddingTop: 5,
-    paddingBottom: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 15,
     borderWidth: 0,
     borderRadius: 14,
     color: '#000',
@@ -74,19 +63,8 @@ const styles = StyleSheet.create({
     width: '40%',
     marginLeft: 10,
   },
-  username: {
-    textTransform: 'capitalize',
-    fontSize: 28,
-    marginLeft: 15,
-  },
-  userInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 10,
-    marginTop: 10
-  },
   userSettingsContainer: {
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   userSettingsActions: {
     fontSize: 20,
@@ -95,6 +73,6 @@ const styles = StyleSheet.create({
   },
   userSettingsActionsView: {
     marginVertical: 50,
-    marginLeft: 10
+    marginLeft: 10,
   },
 });

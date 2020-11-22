@@ -19,6 +19,8 @@ import LoginScreen from '_screens/Login';
 import SignUpScreen from '_screens/SignUp';
 import MapScreen from '_screens/Map';
 import ChangePassword from '_screens/ChangePassword';
+import ChangeLanguage from '_screens/ChangeLang';
+import HowToUse from '_screens/HowToUse';
 import DeleteAccount from '_screens/DeleteAccount';
 import TermsAndConditionsScreen from '_screens/TermsAndConditions';
 
@@ -101,10 +103,12 @@ export const SosContactStackNavigator = () => {
 
 export const UserSettingsStackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="User" component={UserSettings} />
       <Stack.Screen name="Change Password" component={ChangePassword} />
       <Stack.Screen name="Delete Account" component={DeleteAccount} />
+      <Stack.Screen name="Change Language" component={ChangeLanguage} />
+      <Stack.Screen name="How to use" component={HowToUse} />
     </Stack.Navigator>
   );
 };

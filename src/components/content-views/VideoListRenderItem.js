@@ -1,50 +1,46 @@
 import React from 'react';
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
-
-const background1 = require('../../assets/backgrounds/article1.png')
+import { View, Image, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const VideoListRenderItem = ({ item, navigation }) => {
   return (
-    <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate('Video Page')}>
-      <Image source={background1} style={styles.itemImage} />
-      <View style={styles.itemView}></View>
-      <FontAwesome5
-        name="play"
+    <TouchableOpacity
+      style={styles.itemContainer}
+      onPress={() => navigation.navigate('Video Page', { params: item })}>
+      <Image source={item.image} style={styles.itemImage} />
+      <FontAwesomeIcon
+        icon={faPlay}
         size={38}
-        color="#fff"
+        color="#415889"
         style={styles.itemIcon}
       />
+      <Text style={styles.title}>{item.title}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   itemContainer: {
-    marginHorizontal: 20,
+    margin: 20,
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    paddingBottom: 20,
+    borderColor: 'grey',
   },
   itemIcon: {
     position: 'absolute',
     top: '45%',
     left: '45%',
-    opacity: 0.9,
-  },
-  itemView: {
-    position: 'absolute',
-    height: 5,
-    width: '100%',
-    opacity: 0.8,
-    marginBottom: 20,
   },
   itemImage: {
     height: 200,
     width: '100%',
     marginBottom: 20,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '500',
   },
 });
 
