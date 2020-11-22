@@ -103,8 +103,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   contactContainer: {
-    marginBottom: 20,
-    height: '23%',
+    height: '25%',
     width: '75%',
     flexDirection: 'column',
     justifyContent: 'space-between',

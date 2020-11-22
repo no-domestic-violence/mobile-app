@@ -7,6 +7,8 @@ import {
   Linking,
   ActivityIndicator,
 } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import ListItem from '../../components/hotlines/ListItem';
 import { SearchBar } from 'react-native-elements';
 import { StyledView } from '../../styles/shared/StyledView';
@@ -51,6 +53,7 @@ export default function HotlinesList() {
     <StyledView>
       <SearchBar
         ref={inputRef}
+        searchIcon={<FontAwesomeIcon icon={faSearch} size={20} />}
         inputStyle={{ backgroundColor: Colors.primary, width: '70%' }}
         inputContainerStyle={{ backgroundColor: Colors.primary, width: '90%' }}
         containerStyle={{ backgroundColor: Colors.primary, borderTopWidth: 0 }}
