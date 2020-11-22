@@ -6,7 +6,7 @@ import { Colors } from '../../styles/index';
 import FirstSVG from '../../assets/svg/onboarding/emergency.svg';
 import SecondSVG from '../../assets/svg/onboarding/map.svg';
 import ThirdSVG from '../../assets/svg/onboarding/resources.svg';
-import FourthSVG from '../../assets/svg/onboarding/questionaire.svg';
+import FourthSVG from '../../assets/svg/onboarding/questions.svg';
 
 export default function OnboardingScreen({ navigation }) {
   const { t, i18n } = useTranslation();

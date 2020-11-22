@@ -12,7 +12,13 @@
            "_assets": "./src/assets",
            "_components": "./src/components",
            "_routes": "./src/routes",
-           "_screens": "./src/screens"
+           "_screens": "./src/screens",
+           "_styles": "./src/styles",
+           "_api": "./src/api",
+           "_config": "./src/config",
+           "_mock": "./src/mock",
+           "_state": "./src/state",
+           "_services": "./src/services"
          }
         } 
       ] 
