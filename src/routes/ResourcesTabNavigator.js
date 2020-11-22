@@ -6,8 +6,7 @@ import {
   ArticleStackNavigator,
   HomeStackNavigator,
 } from './StackNavigator';
-import { Colors } from '../styles/'
-
+import { Colors } from '../styles';
 
 const Tab = createMaterialTopTabNavigator();
 
