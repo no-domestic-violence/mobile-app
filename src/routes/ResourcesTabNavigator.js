@@ -4,7 +4,7 @@ import {
   VideoStackNavigator,
   PodcastStackNavigator,
   ArticleStackNavigator,
-  HomeStackNavigator
+  HomeStackNavigator,
 } from './StackNavigator';
 import { Colors } from '../styles/'
 
@@ -15,11 +15,6 @@ const ResourcesTabNavigator = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        labelStyle: { fontSize: 14, color: '#fff' },
-        style: { backgroundColor: Colors.darkBlue },
-        indicatorStyle: { backgroundColor: '#fff' },
-      }}
-    >
       <Tab.Screen name="Home" component={HomeStackNavigator} />
       <Tab.Screen name="Article" component={ArticleStackNavigator} />
       <Tab.Screen name="Video" component={VideoStackNavigator} />
