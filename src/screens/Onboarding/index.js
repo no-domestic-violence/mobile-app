@@ -1,44 +1,60 @@
 import React from 'react';
-import {AsyncStorage, Image} from 'react-native';
+import { StyleSheet } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import { useTranslation } from 'react-i18next';
+import { Colors } from 'styles/index';
+import FirstSVG from 'assets/svg/onboarding/emergency.svg';
+import SecondSVG from 'assets/svg/onboarding/map.svg';
+import ThirdSVG from 'assets/svg/onboarding/resources.svg';
+import FourthSVG from 'assets/svg/onboarding/questions.svg';
 
-
-export default function OnboardingScreen ({navigation}) {
-  const {t, i18n} = useTranslation();
+export default function OnboardingScreen({ navigation }) {
+  const { t, i18n } = useTranslation();
   return (
     <Onboarding
       onSkip={() => navigation.navigate('Login')}
       onDone={() => navigation.navigate('Login')}
+      titleStyles={styles.title}
+      imageContainerStyles={styles.image}
+      bottomBarHighlight={false}
       pages={[
-        
         {
-          backgroundColor: '#fe6e58',
-          image: <Image source={require('assets/images/square.png')} />,
-          title:  t('OnboardingScreen.privacy-title'),
-          subtitle: t('OnboardingScreen.privacy-subtitle'),
+          backgroundColor: Colors.primary,
+          image: <FirstSVG />,
+          title: t('Onboarding.emergency-title'),
+          subtitle: t('Onboarding.emergency-subtitle'),
         },
         {
-          backgroundColor: '#999',
-          image: <Image source={require('assets/images/toxic-screen.png')} />,
-          title: t('OnboardingScreen.question-title'),
-          subtitle:
-            'Everyone deserves to be in a healthy relationship. Do you know if your relationship is healthy?',
+          backgroundColor: Colors.primary,
+          image: <SecondSVG />,
+          title: t('Onboarding.map-title'),
+          subtitle: t('Onboarding.map-subtitle'),
         },
         {
-          backgroundColor: '#020202',
-          image: <Image source={require('assets/images/toxic-screen.png')} />,
-          title: 'testtest',
-          subtitle: 'testtest',
+          backgroundColor: Colors.primary,
+          image: <ThirdSVG />,
+          title: t('Onboarding.resources-title'),
+          subtitle: t('Onboarding.resources-subtitle'),
         },
         {
-          backgroundColor: '#999',
-          image: <Image source={require('assets/images/danger-screen.jpeg')} />,
-          title: 'Do you feel in danger?',
-          subtitle: 'Send SOS alerts to friends or family on sensing danger',
+          backgroundColor: Colors.primary,
+          image: <FourthSVG />,
+          title: t('Onboarding.questions-title'),
+          subtitle: t('Onboarding.questions-subtitle'),
         },
       ]}
-    />)
+    />
+  );
 }
 
-  
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 20,
+    fontWeight: '700',
+  },
+
+  // TODO: Resizing doesn't work
+  image: {
+    width: '70%',
+  },
+});

@@ -1,16 +1,13 @@
-import React, { useState, useContext, useParams } from 'react';
+import React, { useState, useContext } from 'react';
 
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Input } from 'react-native-elements';
+import EmergencySVG from '_assets/svg/emergency.svg';
+import { StyledView } from 'styles/shared/StyledView';
 
-import appApiClient from '../../api/appApiClient';
-import { Context as AuthContext } from '../../state/AuthContext';
+import appApiClient from 'api/appApiClient';
+import { Context as AuthContext } from 'state/AuthContext';
 
 export default function SosContactForm({ navigation }) {
   const { state } = useContext(AuthContext);
@@ -21,7 +18,6 @@ export default function SosContactForm({ navigation }) {
     message: '',
   };
   const [contact, setContact] = useState(initialContactState);
-  const [submitted, setSubmitted] = useState(false);
 
   const handleNameChange = (name) => {
     setContact({ ...contact, name });
@@ -44,7 +40,6 @@ export default function SosContactForm({ navigation }) {
     appApiClient
       .patch(`/users/${state.username}/contacts`, data)
       .then((response) => {
-        setSubmitted(true);
         alert(response.data);
       })
       .catch((e) => {
@@ -53,85 +48,91 @@ export default function SosContactForm({ navigation }) {
   };
 
   return (
-    //TODO: add form validation
-    //TODO: implement send SMS button
-    <View style={styles.view}>
-      {submitted ? (
-        <>
-          <Text>Emergency Contact was successfully added!</Text>
-          <Button
-            title="Go back"
-            onPress={() => navigation.navigate('SosContactHome')}
+    <>
+      <StyledView style={styles.homeView}>
+        <EmergencySVG style={styles.svg} />
+        <View style={styles.container}>
+          <Icon
+            name="times"
+            size={20}
+            raised
+            onPress={() => {
+              navigation.navigate('SosContactHome');
+            }}
           />
-        </>
-      ) : (
-        <>
-          <Text>Add Emergency Contact</Text>
-          <TextInput
-            style={styles.input}
+          <Input
             placeholder="Name"
-            placeholderTextColor="#6c757d"
-            onChangeText={handleNameChange}
             value={contact.name}
+            autoCompleteType="off"
+            onChangeText={handleNameChange}
+            leftIcon={<Icon name="user" size={20} color="black" />}
+            leftIconContainerStyle={styles.icon}
           />
-          <TextInput
-            style={styles.input}
+          <Input
             placeholder="Phone Number"
-            placeholderTextColor="#6c757d"
+            value={contact.phone}
+            autoCompleteType="off"
             onChangeText={handleNumberChange}
-            value={contact.number}
+            leftIcon={<Icon name="phone" size={20} color="black" />}
+            leftIconContainerStyle={styles.icon}
           />
-          <TextInput
-            style={styles.input}
-            placeholder="Write custom emergency message"
-            placeholderTextColor="#6c757d"
-            onChangeText={handleMessageChange}
+          <Input
+            placeholder="Help Message"
             value={contact.message}
+            autoCompleteType="off"
+            onChangeText={handleMessageChange}
+            leftIcon={<Icon name="envelope" size={20} color="black" />}
+            leftIconContainerStyle={styles.icon}
           />
-          <TouchableOpacity>
-            <Text style={styles.button} onPress={saveContact}>
-              Save
-            </Text>
-          </TouchableOpacity>
-          <Button
-            title="Go back"
-            onPress={() => navigation.navigate('SosContactHome')}
+        </View>
+        <View style={styles.buttonRow}>
+          <Icon
+            name="check"
+            size={30}
+            containerStyle={styles.iconContainer}
+            raised
+            onPress={() => {
+              saveContact(navigation);
+              navigation.navigate('SosContactHome');
+            }}
           />
-        </>
-      )}
-    </View>
+        </View>
+      </StyledView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  input: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#fff',
-    margin: 10,
-    padding: 8,
-    color: '#000',
-    borderRadius: 14,
-    fontSize: 18,
-    fontWeight: '500',
-  },
-  view: {
-    flex: 1,
+  homeView: {
     justifyContent: 'center',
-    alignItems: 'center',
   },
-  button: {
-    backgroundColor: '#009688',
+  container: {
+    backgroundColor: '#FEF8E3',
+    width: '80%',
+    height: '40%',
+    borderRadius: 48,
+    justifyContent: 'center',
+    paddingTop: 40,
+    paddingBottom: 40,
     paddingLeft: 30,
     paddingRight: 30,
-    paddingTop: 5,
-    paddingBottom: 5,
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 12,
-    color: 'white',
-    fontSize: 20,
-    overflow: 'hidden',
+  },
+  icon: {
+    paddingRight: 15,
+  },
+  iconContainer: {
+    backgroundColor: '#FECE1F',
+    borderRadius: 50,
+    padding: 30,
     textAlign: 'center',
+  },
+  svg: {
+    position: 'absolute',
+  },
+  buttonRow: {
+    paddingTop: 80,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    width: '60%',
   },
 });

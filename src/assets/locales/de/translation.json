@@ -1,15 +1,22 @@
 {
     "common": {
-        "welcome": "Wilkommen",
-        "language" : "Wähle deine Sprache",
-        "login" : "Bitte Anmelden"
+        "login" : "Anmeldung"
     },
-    "OnboardingScreen" : {
-        "privacy-title" : "Datenschutzbestimmungen",
-        "privacy-subtitle": "Hier sind die Datenschutzbestimmungen.",
-        "question-title" : "Überprüfen Sie Ihre Beziehung zu unserem Fragebogen"
+    "TermsAndConditions" : {
+        "title": "GESCHÄFTSBEDINGUNGEN",
+        "button": "ZUSTIMMEN"
     },
-    "HomeScreen" : {
-        "emergency-title": "Stellen Sie Ihre Notfallnachricht ein."
+
+    "Onboarding" : {
+        "emergency-title" : "NOTKONTAKTE",
+        "emergency-subtitle": "Füg drei vertrauenswürdige Kontakte hinzu, die Sie in kritischen Momenten erreichen können",
+        "map-title" : "FRAUENHAUS FINDEN",
+        "map-subtitle": "Hilfe finden, wo immer Sie sind",
+        "resources-title": "LERNEN SIE MIT UNSEREN KURIERTEN RESSOURCEN",
+        "resources-subtitle": "Sei neugierig. Sei offen. Lernen",
+        "questions-title": "TESTEN SIE IHR WISSEN",
+        "questions-subtitle": "Finden Sie mit unserem Fragebogen heraus, wo Ihr Wissen steht",
+        "button": "LOS!"
     }
+    
 }
