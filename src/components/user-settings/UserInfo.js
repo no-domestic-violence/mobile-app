@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 export default function UserInfo({ username }) {
   return (
     <View>
-      <UserSettingsSVG style={{ position: 'absolute'}} />
+      <UserSettingsSVG style={{ position: 'absolute' }} />
       <View style={styles.userInfo}>
-      <FontAwesomeIcon
+        <FontAwesomeIcon
           icon={faUserCircle}
           size={80}
           color={'grey'}

@@ -18,8 +18,6 @@ import TodayReadRenderItem from '../../components/content-views/TodayReadRenderI
 import { videoData } from '../../mock/video';
 import { Colors } from '../../styles';
 
-// import background1 from '../../assets/backgrounds/article1.png'
-
 const Home = ({ navigation }) => {
   // TODO: should get from db (with context api cuz of different screen)
   const background1 = require('../../assets/backgrounds/article1.png');
@@ -30,34 +28,34 @@ const Home = ({ navigation }) => {
   const [articles, setArticles] = useState([
     {
       image: background2,
-      title: 'What is toxic relationship?',
+      title: 'Why do we have violence?',
       id: '1',
     },
     {
       image: background6,
-      title: 'What is toxic relationship?',
+      title: 'Sexual violence in teenagers',
       id: '2',
     },
     {
       image: background9,
-      title: 'What is toxic relationship?',
+      title: 'Financial violence in life',
       id: '3',
     },
     {
       image: background1,
-      title: 'What is toxic relationship?',
+      title: 'Digital violence in social media',
       id: '4',
     },
     {
       image: background6,
-      title: 'What is toxic relationship?',
+      title: 'Physical violence is increasing in Germany',
       id: '5',
     },
   ]);
 
   const [watchList, setWatchList] = useState(videoData);
-
-  const carouselRef = useRef(null);
+  // TODO: fix use ref hook
+  // const carouselRef = useRef(null);
 
   const { width } = Dimensions.get('window');
 
@@ -80,11 +78,13 @@ const Home = ({ navigation }) => {
         <Carousel
           style={styles.carousel}
           data={articles}
-          renderItem={({ item }) => <TodayReadRenderItem item={item} />}
+          renderItem={({ item }) => (
+            <TodayReadRenderItem item={item} navigation={navigation} />
+          )}
           itemWidth={200}
           containerWidth={width - 20}
           separatorWidth={0}
-          ref={carouselRef}
+          // ref={carouselRef}
           inActiveOpacity={0.7}
         />
       </View>

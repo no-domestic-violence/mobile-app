@@ -140,7 +140,7 @@ const deleteAccount = (dispatch) => async ({ username }) => {
   try {
     // TODO: fix sending params so it is more readable
     const response = await appApiClient.delete('/deleteUser', {
-      params: {username},
+      params: { username },
     });
     await AsyncStorage.removeItem('token');
     await AsyncStorage.removeItem('username');
