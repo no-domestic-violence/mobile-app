@@ -9,6 +9,7 @@
           ],
           "extensions": [".ios.js", ".android.js", ".js", ".json"],
         "alias": {
+          "":"./src",
            "_assets": "./src/assets",
            "_components": "./src/components",
            "_routes": "./src/routes",

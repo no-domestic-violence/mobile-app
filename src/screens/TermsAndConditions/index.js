@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import SVG from '_assets/svg/language.svg';
 import {
   StyledButton,
   StyledButtonText,
 } from '../../styles/shared/StyledButton';
+import { Window } from 'styles/index.js';
 import { StyledView } from '../../styles/shared/StyledView';
 
 const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
@@ -122,8 +116,6 @@ export default function TermsAndConditionsScreen({ navigation }) {
   );
 }
 
-const { width, height } = Dimensions.get('window');
-
 const styles = StyleSheet.create({
   title: {
     fontSize: 21,
@@ -132,8 +124,8 @@ const styles = StyleSheet.create({
   },
   tcContainer: {
     marginTop: 30,
-    width: width * 0.85,
-    height: height * 0.7,
+    width: Window.width * 0.85,
+    height: Window.height * 0.7,
     backgroundColor: 'rgba(255, 255, 255, 0.71)',
     borderRadius: 31,
   },

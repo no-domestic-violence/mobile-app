@@ -3,10 +3,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { Button, Icon } from 'react-native-elements';
+import { Button, Icon, Input } from 'react-native-elements';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Context as AuthContext } from '_state/AuthContext';
 import appApiClient from '_api/appApiClient';
+import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
 
 export default function SosContactList() {
   const navigation = useNavigation();
@@ -14,6 +15,9 @@ export default function SosContactList() {
 
   const [dataSource, setDataSource] = useState([]);
   const isFocused = useIsFocused();
+
+  const hasFirstContact = dataSource.length !== 0;
+  const hasSecondContact = dataSource.length !== 0 && dataSource.length !== 1;
 
   useEffect(() => {
     getContacts();
@@ -33,51 +37,61 @@ export default function SosContactList() {
 
   return (
     <>
-      <Button
-        title={
-          dataSource.length !== 0
-            ? dataSource[0].name
-            : 'Please add your trusted contact'
-        }
-        titleStyle={{ color: '#000000' }}
-        type="solid"
-        raised
-        containerStyle={styles.buttonContainer}
-        buttonStyle={styles.buttonText}
-        iconContainerStyle={{ position: 'absolute', left: 10 }}
-        onPress={
-          dataSource.length !== 0
-            ? () =>
-                navigation.navigate('SosContactEdit', {
-                  id: dataSource[0]._id,
-                })
-            : () => navigation.navigate('SosContactForm')
-        }
-        icon={<FontAwesomeIcon icon={faPen} />}></Button>
+      <View style={styles.contactContainer}>
+        <Button
+          title={
+            hasFirstContact
+              ? dataSource[0].name
+              : 'Please add your trusted contact'
+          }
+          titleStyle={
+            hasFirstContact ? styles.contactText : styles.contactPlaceholder
+          }
+          type="solid"
+          raised
+          iconContainerStyle={styles.icon}
+          buttonStyle={styles.buttonText}
+          onPress={
+            hasFirstContact
+              ? () =>
+                  navigation.navigate('SosContactEdit', {
+                    id: dataSource[0]._id,
+                  })
+              : () => navigation.navigate('SosContactForm')
+          }
+          icon={<FontAwesomeIcon icon={faPen} />}
+        />
 
-      <Button
-        titleStyle={{ color: '#000000' }}
-        title={
-          dataSource.length !== 0 && dataSource.length !== 1
-            ? dataSource[1].name
-            : 'Please add your trusted contact'
-        }
-        type="solid"
-        raised
-        containerStyle={styles.buttonContainer}
-        iconContainerStyle={{ position: 'absolute', left: 10, fontSize: 14 }}
-        buttonStyle={styles.buttonText}
-        onPress={
-          dataSource.length !== 0 && dataSource.length !== 1
-            ? () =>
-                navigation.navigate('SosContactEdit', {
-                  id: dataSource[1]._id,
-                })
-            : () => navigation.navigate('SosContactForm')
-        }
-        icon={<FontAwesomeIcon icon={faPen} />}></Button>
-
-      <Button title="Send emergency text" />
+        <Button
+          titleStyle={
+            hasSecondContact ? styles.contactText : styles.contactPlaceholder
+          }
+          title={
+            hasSecondContact
+              ? dataSource[1].name
+              : 'Please add your trusted contact'
+          }
+          type="solid"
+          raised
+          iconContainerStyle={styles.icon}
+          buttonStyle={styles.buttonText}
+          onPress={
+            hasSecondContact
+              ? () =>
+                  navigation.navigate('SosContactEdit', {
+                    id: dataSource[1]._id,
+                  })
+              : () => navigation.navigate('SosContactForm')
+          }
+          icon={<FontAwesomeIcon icon={faPen} />}></Button>
+      </View>
+      {dataSource.length > 0 && (
+        <StyledButton style={styles.messageButtonContainer}>
+          <StyledButtonText style={styles.messageButtonText}>
+            Ask for help to your contacts
+          </StyledButtonText>
+        </StyledButton>
+      )}
     </>
   );
 }
@@ -88,17 +102,44 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  buttonContainer: {
-    width: '80%',
-    backgroundColor: '#FEF8E3',
-    borderRadius: 50,
-    margin: 20,
-    alignItems: 'center',
+  contactContainer: {
+    marginBottom: 20,
+    height: '23%',
+    width: '75%',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  contactText: {
+    color: '#000000',
+    marginLeft: 10,
+    fontWeight: '600',
+  },
+  contactPlaceholder: {
+    color: '#000000',
+    opacity: 0.34,
+    marginLeft: 10,
+    fontWeight: '400',
+    fontSize: 16,
+  },
+  messageButtonContainer: {
+    marginTop: 100,
+    height: '10%',
+    borderRadius: 41,
+    backgroundColor: '#D65137',
     justifyContent: 'center',
-    position: 'relative',
+  },
+  messageButtonText: {
+    fontSize: 16,
+  },
+  icon: {
+    position: 'absolute',
+    left: 10,
+    fontSize: 14,
+    paddingRight: 15,
   },
   buttonText: {
     backgroundColor: '#FEF8E3',
     padding: 18,
+    borderRadius: 41,
   },
 });

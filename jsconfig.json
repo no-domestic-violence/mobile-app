@@ -12,7 +12,8 @@
            "_config/*": ["src/config/*"],
            "_mock/*":["src/mock/*"],
            "_state/*":["src/state/*"],
-           "_services/*":["src/services/*"]
+           "_services/*":["src/services/*"],
+           "":["src/*"],
       }
     }
   }
