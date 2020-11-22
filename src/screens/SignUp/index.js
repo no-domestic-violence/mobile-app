@@ -30,7 +30,7 @@ export default function SignUpScreen({ navigation }) {
 
   return (
     <StyledView style={styles.view}>
-      <AuthSVG />
+      <AuthSVG style={{ position: 'absolute', top: 0}}/>
       <Text style={styles.header}>Sign Up</Text>
       <StyledInputAuth
         placeholder="Username"
@@ -56,6 +56,7 @@ export default function SignUpScreen({ navigation }) {
         placeholderTextColor="#6c757d"
         onChangeText={setPassword}
         value={password}
+        // secureTextEntry={true}
       />
       <View style={styles.actionsContainer}>
         <StyledButton onPress={() => handleSignUp()}>
@@ -64,7 +65,7 @@ export default function SignUpScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Text style={styles.text}> Have an account? Go to login</Text>
         </TouchableOpacity>
-        {state.errorMessage ? <Text>{state.errorMessage}</Text> : null}
+        {state.errorMessage ? <Text style={styles.errorMessage}>{state.errorMessage}</Text> : null}
       </View>
     </StyledView>
   );
@@ -86,8 +87,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#000',
     marginTop: 20,
+    fontStyle: 'italic'
   },
   actionsContainer: {
-    marginBottom: 20,
+    marginBottom: 60,
   },
+  errorMessage: {
+    color: 'red',
+    marginTop: 20
+  }
 });

@@ -24,7 +24,8 @@ export default function UserSettings({ navigation }) {
               onPress={() => navigation.navigate('Change Password')}>
               <Text style={styles.userSettingsActions}>change password</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Change Language')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Change Language')}>
               <Text style={styles.userSettingsActions}>change language</Text>
             </TouchableOpacity>
             <TouchableOpacity

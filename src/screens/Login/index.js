@@ -21,7 +21,6 @@ export default function LoginScreen({ navigation }) {
     login({ email, password });
   };
 
-  //TODO: reuse it
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
       removeErrors();
@@ -31,7 +30,7 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <StyledView style={styles.view}>
-      <AuthSVG />
+      <AuthSVG style={{ position: 'absolute', top: 0}} />
       <Text style={styles.header}>{t('common.login')}</Text>
       <StyledInputAuth
         placeholder="Email"
@@ -51,12 +50,12 @@ export default function LoginScreen({ navigation }) {
       <StyledButton onPress={handleLogIn}>
         <StyledButtonText>LOG IN</StyledButtonText>
       </StyledButton>
-      <View style={styles.text}>
+      <View style={styles.textView}>
         <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
-          <Text>Do not have an account? Go to sign up</Text>
+          <Text style={styles.text}>Do not have an account? Go to sign up</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Text>Proceed without login</Text>
+          <Text style={styles.text}>Proceed without login</Text>
         </TouchableOpacity>
         {state.errorMessage ? (
           <Text style={styles.textError}>{state.errorMessage}</Text>
@@ -94,12 +93,16 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginBottom: 40,
   },
+  textView: {
+    marginVertical: 30,
+    alignItems: "center"
+  },
   text: {
     fontSize: 14,
     color: '#000',
-    marginTop: 20,
-    marginBottom: 80,
     alignItems: 'center',
+    fontStyle: 'italic',
+    marginBottom: 10
   },
   textError: {
     marginTop: 20,

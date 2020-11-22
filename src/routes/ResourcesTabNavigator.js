@@ -15,7 +15,7 @@ const ResourcesTabNavigator = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        labelStyle: { fontSize: 14, color: '#fff' },
+        labelStyle: { fontSize: 13, color: '#fff' },
         style: { backgroundColor: Colors.darkBlue },
         indicatorStyle: { backgroundColor: '#fff' },
       }}
