@@ -5,7 +5,7 @@
     "slug": "pool-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "src/assets/icon1.png",
+    "icon": "src/assets/icon.png",
     "sdkVersion": "39.0.0",
     "platforms": [
       "ios",
