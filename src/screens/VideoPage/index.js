@@ -1,10 +1,24 @@
 import React from 'react';
+
+import { WebView } from 'react-native-webview';
+
+export default function VideoPage({ route }) {
+  const { url } = route.params.params;
+  return (
+    <WebView
+      source={{ uri: url }}
+      style={{ marginTop: 20 }}
+      javaScriptEnabled={true}
+    />
+  );
+}
+
+//TODO : to reuse this for own video
+/*   
 import { View } from 'react-native';
 import { Video } from 'expo-av';
 
-export default function VideoPage() {
-  return (
-    <View>
+<View>
       <Video
         source={{
           uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
@@ -19,5 +33,5 @@ export default function VideoPage() {
         resizeMode="contain"
       />
     </View>
-  );
-}
+
+  */
