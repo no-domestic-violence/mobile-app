@@ -1,14 +1,14 @@
 import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
-import { FontAwesome5 } from '@expo/vector-icons';
-
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 const WatchListRenderItem = ({ item, background}) => {
   return (
     <TouchableOpacity style={styles.itemContainer}>
       <Image source={background} style={styles.itemImage} />
       <View style={styles.itemView}></View>
-      <FontAwesome5
-        name="play"
+      <FontAwesomeIcon
+        icon={faPlay}
         size={38}
         color="#fff"
         style={styles.itemIcon}

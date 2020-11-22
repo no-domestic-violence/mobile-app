@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import React, { useRef, useState, useEffect } from 'react';
 import Carousel from 'react-native-anchor-carousel';
-import { Feather } from '@expo/vector-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import WatchListRenderItem from '../../components/content-views/WatchListRenderItem';
 import TodayReadRenderItem from '../../components/content-views/TodayReadRenderItem';
 import { videoData } from '../../mock/video';
@@ -67,8 +68,8 @@ const Home = ({ navigation }) => {
           placeholder="What are u looking for?"
           placeholderTextColor="grey"
           style={styles.searchbox}></TextInput>
-        <Feather
-          name="search"
+        <FontAwesomeIcon
+          icon={faSearch}
           size={22}
           color="grey"
           style={styles.searchboxIcon}
