@@ -15,7 +15,7 @@ export default function AppNavigation() {
 
   return (
     <NavigationContainer>
-      {!AsyncStorage.getItem('token') ? (
+      {!state.token ? (
         <OnboardingNavigator />
       ) : (
         <>

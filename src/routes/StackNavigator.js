@@ -109,6 +109,7 @@ export const UserSettingsStackNavigator = () => {
       <Stack.Screen name="Delete Account" component={DeleteAccount} />
       <Stack.Screen name="Change Language" component={ChangeLanguage} />
       <Stack.Screen name="How to use" component={HowToUse} />
+      <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
   );
 };
