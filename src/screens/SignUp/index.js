@@ -50,7 +50,6 @@ export default function SignUpScreen({ navigation }) {
       />
       <StyledInputAuth
         placeholder="Password"
-        secureTextEntry={true}
         autoCapitalize="none"
         autoCorrect={false}
         placeholderTextColor="#6c757d"

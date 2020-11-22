@@ -63,7 +63,7 @@ export default function ChangePasswordScreen({ navigation }) {
           placeholderTextColor="#6c757d"
           onChangeText={setOldPassword}
           value={oldPassword}
-          secureTextEntry={true}
+          // secureTextEntry={true} TODO: fix secure password
         />
         <StyledInputAuth
           placeholder="New Password"
@@ -72,7 +72,7 @@ export default function ChangePasswordScreen({ navigation }) {
           placeholderTextColor="#6c757d"
           onChangeText={setPassword}
           value={password}
-          secureTextEntry={true}
+          // secureTextEntry={true}
         />
         <StyledButton onPress={() => handleChangePassword()}>
           <StyledButtonText>confirm</StyledButtonText>
