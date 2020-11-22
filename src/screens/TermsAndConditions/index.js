@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import SVG from '_assets/svg/language.svg';
-import {
-  StyledButton,
-  StyledButtonText,
-} from '../../styles/shared/StyledButton';
-import { Window } from 'styles/index.js';
-import { StyledView } from '../../styles/shared/StyledView';
+import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
+import { Window } from 'styles/index';
+import { StyledView } from 'styles/shared/StyledView';
 import TermsAndConditionsText from 'components/termsAndConditions/text';
 
 const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {

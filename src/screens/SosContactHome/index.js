@@ -4,8 +4,8 @@ import SosContactList from 'components/sosContacts/SosContactList';
 
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { useTranslation } from 'react-i18next';
-import { Context as AuthContext } from '../../state/AuthContext';
-import { StyledView } from '../../styles/shared/StyledView';
+import { Context as AuthContext } from 'state/AuthContext';
+import { StyledView } from 'styles/shared/StyledView';
 
 export default function SosContactHome() {
   const { state } = useContext(AuthContext);

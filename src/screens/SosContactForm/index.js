@@ -4,10 +4,10 @@ import { View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
-import { StyledView } from '../../styles/shared/StyledView';
+import { StyledView } from 'styles/shared/StyledView';
 
-import appApiClient from '../../api/appApiClient';
-import { Context as AuthContext } from '../../state/AuthContext';
+import appApiClient from 'api/appApiClient';
+import { Context as AuthContext } from 'state/AuthContext';
 
 export default function SosContactForm({ navigation }) {
   const { state } = useContext(AuthContext);
