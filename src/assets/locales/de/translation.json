@@ -1,6 +1,11 @@
 {
     "common": {
-        "login" : "Anmeldung"
+        "login" : "Anmelden",
+        "how-to-use" : "Wie man es benutzt",
+        "change-password" : "Passwort ändern",
+        "change-language" : "Sprache ändern",
+        "delete-account" : "Konto löschen",
+        "logout" : "Ausloggen"
     },
     "TermsAndConditions" : {
         "title": "GESCHÄFTSBEDINGUNGEN",

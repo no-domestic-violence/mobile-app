@@ -1,6 +1,11 @@
 {
     "common": {
-        "login": "Log In"
+        "login": "Log In",
+        "how-to-use" : "How to use",
+        "change-password" : "Change Password",
+        "change-language" : "Change Language",
+        "delete-account" : "Delete Account",
+        "logout" : "Log Out"
     },
 
     "TermsAndConditions" : {
@@ -18,5 +23,6 @@
         "questions-subtitle": "Find out where your knowledge stands with our questionnaire",
         "button": "GET STARTED"
     }
+
 
 }
