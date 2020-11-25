@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faTimes,
@@ -24,7 +23,10 @@ export default function SosContactEdit({ navigation, route }) {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    getContact();
+    getContact().then((foundContact) => {
+      setContact(foundContact || {});
+      // empty object if not foundContact
+    });
   }, [isFocused]);
 
   // find the selected contact and add it in contact state
@@ -33,11 +35,10 @@ export default function SosContactEdit({ navigation, route }) {
       const response = await appApiClient.get(
         `/users/${state.username}/contacts/`,
       );
-
-      const foundContact = response.data.contacts.find(
+      const foundContact = await response.data.contacts.find(
         (item) => item._id === route.params.id,
       );
-      setContact(foundContact);
+      return foundContact;
     } catch (error) {
       console.error(error);
     }
