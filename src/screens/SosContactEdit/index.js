@@ -23,13 +23,18 @@ export default function SosContactEdit({ navigation, route }) {
   const isFocused = useIsFocused();
 
   useEffect(() => {
+    let isMounted = true;
     getContact().then((foundContact) => {
-      setContact(foundContact || {});
-      // empty object if not foundContact
+      if (isMounted) {
+        setContact(foundContact || {});
+      }
     });
+    return () => {
+      isMounted = false;
+    };
+    // empty object if not foundContact
   }, [isFocused]);
 
-  // find the selected contact and add it in contact state
   const getContact = async () => {
     try {
       const response = await appApiClient.get(
@@ -56,7 +61,7 @@ export default function SosContactEdit({ navigation, route }) {
     setContact({ ...contact, message });
   };
 
-  const saveEdit = (navigation) => {
+  const saveEdit = () => {
     const data = {
       name: contact.name,
       phone: contact.phone,
@@ -72,7 +77,7 @@ export default function SosContactEdit({ navigation, route }) {
       });
   };
 
-  const handleRemove = async (id, navigation) => {
+  const handleRemove = async (id) => {
     appApiClient
       .delete(`/users/${state.username}/contacts`, {
         params: { id },
@@ -129,7 +134,6 @@ export default function SosContactEdit({ navigation, route }) {
             onPress={() => {
               handleRemove(contact._id, navigation);
               navigation.navigate('SosContactHome');
-              // TODO: Fix navigation and api call order
             }}
           />
           <FontAwesomeIcon
