@@ -63,6 +63,7 @@ export default function SosContactForm({ navigation }) {
               name="times"
               size={20}
               raised
+              style={{ marginLeft: 'auto' }}
               onPress={() => {
                 navigation.navigate('SosContactHome');
               }}

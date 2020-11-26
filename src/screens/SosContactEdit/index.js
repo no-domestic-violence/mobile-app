@@ -103,6 +103,7 @@ export default function SosContactEdit({ navigation, route }) {
             <FontAwesomeIcon
               icon={faTimes}
               size={20}
+              style={{ marginLeft: 'auto' }}
               onPress={() => {
                 navigation.navigate('SosContactHome');
               }}
