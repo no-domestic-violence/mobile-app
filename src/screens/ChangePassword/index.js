@@ -30,9 +30,9 @@ export default function ChangePasswordScreen({ navigation }) {
   const [oldPassword, setOldPassword] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const emailInputRef = React.createRef();
-  const oldPasswordInputRef = React.createRef();
-  const newPasswordInputRef = React.createRef();
+  const emailInputRef = React.useRef();
+  const oldPasswordInputRef = React.useRef();
+  const newPasswordInputRef = React.useRef();
 
   const handleChangePassword = ({ navigation }) => {
     changePassword({ email, password, oldPassword });

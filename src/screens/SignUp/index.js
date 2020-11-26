@@ -23,9 +23,9 @@ export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const usernameInputRef = React.createRef();
-  const emailInputRef = React.createRef();
-  const passwordInputRef = React.createRef();
+  const usernameInputRef = React.useRef();
+  const emailInputRef = React.useRef();
+  const passwordInputRef = React.useRef();
 
   const handleSignUp = () => {
     signup({ email, password, username });

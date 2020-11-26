@@ -10,9 +10,9 @@ import appApiClient from 'api/appApiClient';
 import { Context as AuthContext } from 'state/AuthContext';
 
 export default function SosContactForm({ navigation }) {
-  const nameInputRef = React.createRef();
-  const phoneInputRef = React.createRef();
-  const messageInputRef = React.createRef();
+  const nameInputRef = React.useRef();
+  const phoneInputRef = React.useRef();
+  const messageInputRef = React.useRef();
 
   const { state } = useContext(AuthContext);
 

@@ -23,8 +23,8 @@ export default function LoginScreen({ navigation }) {
   const { state, login, removeErrors } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const emailInputRef = React.createRef();
-  const passwordInputRef = React.createRef();
+  const emailInputRef = React.useRef();
+  const passwordInputRef = React.useRef();
 
   const handleLogIn = () => {
     login({ email, password });

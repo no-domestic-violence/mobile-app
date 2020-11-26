@@ -21,9 +21,9 @@ export default function SosContactEdit({ navigation, route }) {
   const [contact, setContact] = useState({});
   const { state } = useContext(AuthContext);
   const isFocused = useIsFocused();
-  const nameInputRef = React.createRef();
-  const phoneInputRef = React.createRef();
-  const messageInputRef = React.createRef();
+  const nameInputRef = React.useRef();
+  const phoneInputRef = React.useRef();
+  const messageInputRef = React.useRef();
 
   useEffect(() => {
     let isMounted = true;
