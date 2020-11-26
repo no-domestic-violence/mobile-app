@@ -14,9 +14,6 @@ export default function SosContactForm({ navigation }) {
   const phoneInputRef = React.createRef();
   const messageInputRef = React.createRef();
 
-  useEffect(() => {
-    console.log(nameInputRef.current);
-  }, []);
   const { state } = useContext(AuthContext);
 
   const initialContactState = {
@@ -56,7 +53,9 @@ export default function SosContactForm({ navigation }) {
 
   return (
     <>
-      <KeyboardAvoidingView style={{ flex: 1 }} enabled>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS == 'ios' ? 'padding' : null}>
         <StyledView style={styles.homeView}>
           <EmergencySVG style={styles.svg} />
           <View style={styles.container}>
