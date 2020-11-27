@@ -254,14 +254,16 @@ export default function SosContactForm({ navigation, route }) {
               raised
               onPress={handleSubmit(onSubmit)}
             />
-            <FontAwesomeIcon
-              icon={faTrash}
-              size={30}
-              onPress={() => {
-                handleRemove(contact._id, navigation);
-                navigation.navigate('SosContactHome');
-              }}
-            />
+            {!isAddMode && (
+              <FontAwesomeIcon
+                icon={faTrash}
+                size={30}
+                onPress={() => {
+                  handleRemove(contact._id, navigation);
+                  navigation.navigate('SosContactHome');
+                }}
+              />
+            )}
           </View>
         </StyledView>
       </KeyboardAvoidingView>
