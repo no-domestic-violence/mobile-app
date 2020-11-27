@@ -36,7 +36,7 @@ export default function SosContactEdit({ navigation, route }) {
       isMounted = false;
     };
     // empty object if not foundContact
-  }, [isFocused]);
+  }, [getContact]);
 
   const getContact = async () => {
     try {

@@ -4,12 +4,16 @@ import { StyleSheet, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { Button, Icon, Input } from 'react-native-elements';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import {
+  useIsFocused,
+  useNavigation,
+  setParams,
+} from '@react-navigation/native';
 import { Context as AuthContext } from '_state/AuthContext';
 import appApiClient from '_api/appApiClient';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
 
-export default function SosContactList() {
+export default function SosContactList(route) {
   const navigation = useNavigation();
   const { state } = useContext(AuthContext);
 
@@ -21,6 +25,7 @@ export default function SosContactList() {
 
   useEffect(() => {
     getContacts();
+    navigation.setParams({ id: '' });
   }, [isFocused]);
 
   const getContacts = async () => {
@@ -54,7 +59,7 @@ export default function SosContactList() {
           onPress={
             hasFirstContact
               ? () =>
-                  navigation.navigate('SosContactEdit', {
+                  navigation.navigate('SosContactForm', {
                     id: dataSource[0]._id,
                   })
               : () => navigation.navigate('SosContactForm')
@@ -78,10 +83,13 @@ export default function SosContactList() {
           onPress={
             hasSecondContact
               ? () =>
-                  navigation.navigate('SosContactEdit', {
+                  navigation.navigate('SosContactForm', {
                     id: dataSource[1]._id,
                   })
-              : () => navigation.navigate('SosContactForm')
+              : () =>
+                  navigation.navigate('SosContactForm', {
+                    id: '',
+                  })
           }
           icon={<FontAwesomeIcon icon={faPen} />}></Button>
       </View>
