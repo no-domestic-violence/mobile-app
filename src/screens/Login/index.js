@@ -1,6 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Context as AuthContext } from '../../state/AuthContext';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Keyboard,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { StyledView } from '../../styles/shared/StyledView';
 import {
   StyledButton,
@@ -16,6 +23,8 @@ export default function LoginScreen({ navigation }) {
   const { state, login, removeErrors } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const emailInputRef = React.useRef();
+  const passwordInputRef = React.useRef();
 
   const handleLogIn = () => {
     login({ email, password });
@@ -29,39 +38,55 @@ export default function LoginScreen({ navigation }) {
   }, [navigation, removeErrors]);
 
   return (
-    <StyledView style={styles.view}>
-      <AuthSVG style={{ position: 'absolute', top: 0}} />
-      <Text style={styles.header}>{t('common.login')}</Text>
-      <StyledInputAuth
-        placeholder="Email"
-        autoCapitalize="none"
-        placeholderTextColor="#6c757d"
-        onChangeText={setEmail}
-        value={email}
-      />
-      <StyledInputAuth
-        placeholder="Password"
-        secureTextEntry={true}
-        autoCapitalize="none"
-        placeholderTextColor="#6c757d"
-        onChangeText={setPassword}
-        value={password}
-      />
-      <StyledButton onPress={handleLogIn}>
-        <StyledButtonText>LOG IN</StyledButtonText>
-      </StyledButton>
-      <View style={styles.textView}>
-        <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
-          <Text style={styles.text}>Do not have an account? Go to sign up</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Text style={styles.text}>Proceed without login</Text>
-        </TouchableOpacity>
-        {state.errorMessage ? (
-          <Text style={styles.textError}>{state.errorMessage}</Text>
-        ) : null}
-      </View>
-    </StyledView>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS == 'ios' ? 'padding' : null}>
+      <StyledView style={styles.view}>
+        <AuthSVG style={{ position: 'absolute', top: 0 }} />
+        <Text style={styles.header}>{t('common.login')}</Text>
+        <StyledInputAuth
+          placeholder="Email"
+          autoCapitalize="none"
+          placeholderTextColor="#6c757d"
+          onChangeText={setEmail}
+          value={email}
+          ref={emailInputRef}
+          returnKeyType="next"
+          onSubmitEditing={() =>
+            passwordInputRef.current && passwordInputRef.current.focus()
+          }
+          blurOnSubmit={false}
+        />
+        <StyledInputAuth
+          placeholder="Password"
+          secureTextEntry={true}
+          autoCapitalize="none"
+          placeholderTextColor="#6c757d"
+          onChangeText={setPassword}
+          value={password}
+          ref={passwordInputRef}
+          returnKeyType="done"
+          onSubmitEditing={Keyboard.dismiss}
+          blurOnSubmit={false}
+        />
+        <StyledButton onPress={handleLogIn}>
+          <StyledButtonText>LOG IN</StyledButtonText>
+        </StyledButton>
+        <View style={styles.textView}>
+          <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
+            <Text style={styles.text}>
+              Do not have an account? Go to sign up
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.text}>Proceed without login</Text>
+          </TouchableOpacity>
+          {state.errorMessage ? (
+            <Text style={styles.textError}>{state.errorMessage}</Text>
+          ) : null}
+        </View>
+      </StyledView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -95,14 +120,14 @@ const styles = StyleSheet.create({
   },
   textView: {
     marginVertical: 30,
-    alignItems: "center"
+    alignItems: 'center',
   },
   text: {
     fontSize: 14,
     color: '#000',
     alignItems: 'center',
     fontStyle: 'italic',
-    marginBottom: 10
+    marginBottom: 10,
   },
   textError: {
     marginTop: 20,

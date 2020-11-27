@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, StyleSheet, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faTimes,
@@ -22,22 +21,32 @@ export default function SosContactEdit({ navigation, route }) {
   const [contact, setContact] = useState({});
   const { state } = useContext(AuthContext);
   const isFocused = useIsFocused();
+  const nameInputRef = React.useRef();
+  const phoneInputRef = React.useRef();
+  const messageInputRef = React.useRef();
 
   useEffect(() => {
-    getContact();
+    let isMounted = true;
+    getContact().then((foundContact) => {
+      if (isMounted) {
+        setContact(foundContact || {});
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+    // empty object if not foundContact
   }, [isFocused]);
 
-  // find the selected contact and add it in contact state
   const getContact = async () => {
     try {
       const response = await appApiClient.get(
         `/users/${state.username}/contacts/`,
       );
-
-      const foundContact = response.data.contacts.find(
+      const foundContact = await response.data.contacts.find(
         (item) => item._id === route.params.id,
       );
-      setContact(foundContact);
+      return foundContact;
     } catch (error) {
       console.error(error);
     }
@@ -55,7 +64,7 @@ export default function SosContactEdit({ navigation, route }) {
     setContact({ ...contact, message });
   };
 
-  const saveEdit = (navigation) => {
+  const saveEdit = () => {
     const data = {
       name: contact.name,
       phone: contact.phone,
@@ -71,7 +80,7 @@ export default function SosContactEdit({ navigation, route }) {
       });
   };
 
-  const handleRemove = async (id, navigation) => {
+  const handleRemove = async (id) => {
     appApiClient
       .delete(`/users/${state.username}/contacts`, {
         params: { id },
@@ -85,62 +94,86 @@ export default function SosContactEdit({ navigation, route }) {
   };
   return (
     <>
-      <StyledView style={styles.homeView}>
-        <EmergencySVG style={styles.svg} />
-        <View style={styles.container}>
-          <FontAwesomeIcon
-            icon={faTimes}
-            size={20}
-            onPress={() => {
-              navigation.navigate('SosContactHome');
-            }}
-          />
-          <Input
-            placeholder="Name"
-            value={contact.name}
-            onChangeText={handleNameChange}
-            leftIcon={<FontAwesomeIcon icon={faUser} size={20} color="black" />}
-            leftIconContainerStyle={styles.icon}
-          />
-          <Input
-            placeholder="Phone Number"
-            value={contact.phone}
-            onChangeText={handleNumberChange}
-            leftIcon={
-              <FontAwesomeIcon icon={faPhone} size={20} color="black" />
-            }
-            leftIconContainerStyle={styles.icon}
-          />
-          <Input
-            placeholder="Help Message"
-            value={contact.message}
-            onChangeText={handleMessageChange}
-            leftIcon={
-              <FontAwesomeIcon icon={faEnvelope} size={20} color="black" />
-            }
-            leftIconContainerStyle={styles.icon}
-          />
-        </View>
-        <View style={styles.buttonRow}>
-          <FontAwesomeIcon
-            icon={faTrash}
-            size={30}
-            onPress={() => {
-              handleRemove(contact._id, navigation);
-              navigation.navigate('SosContactHome');
-              // TODO: Fix navigation and api call order
-            }}
-          />
-          <FontAwesomeIcon
-            icon={faCheck}
-            size={30}
-            onPress={() => {
-              saveEdit(navigation);
-              navigation.navigate('SosContactHome');
-            }}
-          />
-        </View>
-      </StyledView>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS == 'ios' ? 'padding' : null}>
+        <StyledView style={styles.homeView}>
+          <EmergencySVG style={styles.svg} />
+          <View style={styles.container}>
+            <FontAwesomeIcon
+              icon={faTimes}
+              size={20}
+              style={{ marginLeft: 'auto' }}
+              onPress={() => {
+                navigation.navigate('SosContactHome');
+              }}
+            />
+            <Input
+              placeholder="Name"
+              value={contact.name}
+              onChangeText={handleNameChange}
+              leftIcon={
+                <FontAwesomeIcon icon={faUser} size={20} color="black" />
+              }
+              leftIconContainerStyle={styles.icon}
+              ref={nameInputRef}
+              returnKeyType="next"
+              onSubmitEditing={() =>
+                phoneInputRef.current && phoneInputRef.current.focus()
+              }
+              blurOnSubmit={false}
+            />
+            <Input
+              placeholder="Phone Number"
+              value={contact.phone}
+              onChangeText={handleNumberChange}
+              leftIcon={
+                <FontAwesomeIcon icon={faPhone} size={20} color="black" />
+              }
+              leftIconContainerStyle={styles.icon}
+              ref={phoneInputRef}
+              keyboardType="numeric"
+              returnKeyType="done"
+              onSubmitEditing={() =>
+                messageInputRef.current && messageInputRef.current.focus()
+              }
+              blurOnSubmit={false}
+            />
+            <Input
+              placeholder="Help Message"
+              value={contact.message}
+              onChangeText={handleMessageChange}
+              leftIcon={
+                <FontAwesomeIcon icon={faEnvelope} size={20} color="black" />
+              }
+              leftIconContainerStyle={styles.icon}
+              ref={messageInputRef}
+              returnKeyType="done"
+              autoCompleteType="off"
+              blurOnSubmit={false}
+              onSubmitEditing={Keyboard.dismiss}
+            />
+          </View>
+          <View style={styles.buttonRow}>
+            <FontAwesomeIcon
+              icon={faTrash}
+              size={30}
+              onPress={() => {
+                handleRemove(contact._id, navigation);
+                navigation.navigate('SosContactHome');
+              }}
+            />
+            <FontAwesomeIcon
+              icon={faCheck}
+              size={30}
+              onPress={() => {
+                saveEdit(navigation);
+                navigation.navigate('SosContactHome');
+              }}
+            />
+          </View>
+        </StyledView>
+      </KeyboardAvoidingView>
     </>
   );
 }

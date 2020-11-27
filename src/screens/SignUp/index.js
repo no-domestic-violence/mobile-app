@@ -1,5 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Keyboard,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
 import AuthSVG from '_assets/svg/login.svg';
 import { StyledView } from '../../styles/shared/StyledView';
@@ -16,6 +23,10 @@ export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const usernameInputRef = React.useRef();
+  const emailInputRef = React.useRef();
+  const passwordInputRef = React.useRef();
+
   const handleSignUp = () => {
     signup({ email, password, username });
   };
@@ -29,44 +40,66 @@ export default function SignUpScreen({ navigation }) {
   }, [navigation, removeErrors]);
 
   return (
-    <StyledView style={styles.view}>
-      <AuthSVG style={{ position: 'absolute', top: 0}}/>
-      <Text style={styles.header}>Sign Up</Text>
-      <StyledInputAuth
-        placeholder="Username"
-        autoCapitalize="none"
-        autoCorrect={false}
-        placeholderTextColor="#6c757d"
-        onChangeText={setUsername}
-        value={username}
-      />
-      <StyledInputAuth
-        placeholder="Email"
-        autoCorrect={false}
-        autoCapitalize="none"
-        placeholderTextColor="#6c757d"
-        onChangeText={setEmail}
-        value={email}
-      />
-      <StyledInputAuth
-        placeholder="Password"
-        autoCapitalize="none"
-        autoCorrect={false}
-        placeholderTextColor="#6c757d"
-        onChangeText={setPassword}
-        value={password}
-        // secureTextEntry={true}
-      />
-      <View style={styles.actionsContainer}>
-        <StyledButton onPress={() => handleSignUp()}>
-          <StyledButtonText>SIGN UP</StyledButtonText>
-        </StyledButton>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.text}> Have an account? Go to login</Text>
-        </TouchableOpacity>
-        {state.errorMessage ? <Text style={styles.errorMessage}>{state.errorMessage}</Text> : null}
-      </View>
-    </StyledView>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS == 'ios' ? 'padding' : null}>
+      <StyledView style={styles.view}>
+        <AuthSVG style={{ position: 'absolute', top: 0 }} />
+        <Text style={styles.header}>Sign Up</Text>
+        <StyledInputAuth
+          placeholder="Username"
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholderTextColor="#6c757d"
+          onChangeText={setUsername}
+          value={username}
+          ref={usernameInputRef}
+          returnKeyType="next"
+          onSubmitEditing={() =>
+            emailInputRef.current && emailInputRef.current.focus()
+          }
+          blurOnSubmit={false}
+        />
+        <StyledInputAuth
+          placeholder="Email"
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholderTextColor="#6c757d"
+          onChangeText={setEmail}
+          value={email}
+          ref={emailInputRef}
+          returnKeyType="next"
+          onSubmitEditing={() =>
+            passwordInputRef.current && passwordInputRef.current.focus()
+          }
+          blurOnSubmit={false}
+        />
+        <StyledInputAuth
+          placeholder="Password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholderTextColor="#6c757d"
+          onChangeText={setPassword}
+          value={password}
+          ref={passwordInputRef}
+          returnKeyType="done"
+          onSubmitEditing={Keyboard.dismiss}
+          blurOnSubmit={false}
+          // secureTextEntry={true}
+        />
+        <View style={styles.actionsContainer}>
+          <StyledButton onPress={() => handleSignUp()}>
+            <StyledButtonText>SIGN UP</StyledButtonText>
+          </StyledButton>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.text}> Have an account? Go to login</Text>
+          </TouchableOpacity>
+          {state.errorMessage ? (
+            <Text style={styles.errorMessage}>{state.errorMessage}</Text>
+          ) : null}
+        </View>
+      </StyledView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -86,13 +119,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#000',
     marginTop: 20,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
   },
   actionsContainer: {
     marginBottom: 60,
   },
   errorMessage: {
     color: 'red',
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
 });

@@ -1,5 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Keyboard,
+  KeyboardAvoidingView,
+} from 'react-native';
 import Modal from 'react-native-modal';
 import { Context as AuthContext } from '../../state/AuthContext';
 import UserInfo from '_components/user-settings/UserInfo';
@@ -23,6 +30,10 @@ export default function ChangePasswordScreen({ navigation }) {
   const [oldPassword, setOldPassword] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
 
+  const emailInputRef = React.useRef();
+  const oldPasswordInputRef = React.useRef();
+  const newPasswordInputRef = React.useRef();
+
   const handleChangePassword = ({ navigation }) => {
     changePassword({ email, password, oldPassword });
   };
@@ -37,75 +48,95 @@ export default function ChangePasswordScreen({ navigation }) {
   }, [navigation, removeErrors, removeMessages]);
 
   return (
-    <StyledView style={styles.userSettingsContainer}>
-      <UserInfo username={username} />
-      <View style={styles.view}>
-        <FontAwesomeIcon
-          onPress={() => navigation.goBack()}
-          icon={faAngleLeft}
-          size={40}
-          color={'#000'}
-          style={styles.arrow}
-        />
-        <Text style={styles.header}>Change Password</Text>
-        <StyledInputAuth
-          placeholder="Email"
-          autoCorrect={false}
-          autoCapitalize="none"
-          placeholderTextColor="#6c757d"
-          onChangeText={setEmail}
-          value={email}
-        />
-        <StyledInputAuth
-          placeholder="Your old password"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholderTextColor="#6c757d"
-          onChangeText={setOldPassword}
-          value={oldPassword}
-          // secureTextEntry={true} TODO: fix secure password
-        />
-        <StyledInputAuth
-          placeholder="New Password"
-          autoCorrect={false}
-          autoCapitalize="none"
-          placeholderTextColor="#6c757d"
-          onChangeText={setPassword}
-          value={password}
-          // secureTextEntry={true}
-        />
-        <StyledButton onPress={() => handleChangePassword()}>
-          <StyledButtonText>confirm</StyledButtonText>
-        </StyledButton>
-        {state.errorMessage && !state.successMessage ? (
-          <Text style={styles.textError}>{state.errorMessage}</Text>
-        ) : null}
-        <View style={{ flex: 1 }}>
-          <Modal isVisible={isModalVisible}>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <View style={styles.modalContainer}>
-                <Text style={styles.textSuccess}>
-                  Your password was successfully changed!
-                </Text>
-                <Button
-                  title="Ok"
-                  onPress={() => {
-                    setModalVisible(false);
-                    navigation.navigate('User');
-                  }}
-                />
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS == 'ios' ? 'padding' : null}>
+      <StyledView style={styles.userSettingsContainer}>
+        <UserInfo username={username} />
+        <View style={styles.view}>
+          <FontAwesomeIcon
+            onPress={() => navigation.goBack()}
+            icon={faAngleLeft}
+            size={40}
+            color={'#000'}
+            style={styles.arrow}
+          />
+          <Text style={styles.header}>Change Password</Text>
+          <StyledInputAuth
+            placeholder="Email"
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholderTextColor="#6c757d"
+            onChangeText={setEmail}
+            value={email}
+            ref={emailInputRef}
+            returnKeyType="next"
+            onSubmitEditing={() =>
+              oldPasswordInputRef.current && oldPasswordInputRef.current.focus()
+            }
+            blurOnSubmit={false}
+          />
+          <StyledInputAuth
+            placeholder="Your old password"
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholderTextColor="#6c757d"
+            onChangeText={setOldPassword}
+            value={oldPassword}
+            ref={oldPasswordInputRef}
+            returnKeyType="next"
+            onSubmitEditing={() =>
+              newPasswordInputRef.current && newPasswordInputRef.current.focus()
+            }
+            blurOnSubmit={false}
+            // secureTextEntry={true} TODO: fix secure password
+          />
+          <StyledInputAuth
+            placeholder="New Password"
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholderTextColor="#6c757d"
+            onChangeText={setPassword}
+            value={password}
+            ref={newPasswordInputRef}
+            returnKeyType="done"
+            onSubmitEditing={Keyboard.dismiss}
+            blurOnSubmit={false}
+            // secureTextEntry={true}
+          />
+          <StyledButton onPress={() => handleChangePassword()}>
+            <StyledButtonText>confirm</StyledButtonText>
+          </StyledButton>
+          {state.errorMessage && !state.successMessage ? (
+            <Text style={styles.textError}>{state.errorMessage}</Text>
+          ) : null}
+          <View style={{ flex: 1 }}>
+            <Modal isVisible={isModalVisible}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <View style={styles.modalContainer}>
+                  <Text style={styles.textSuccess}>
+                    Your password was successfully changed!
+                  </Text>
+                  <Button
+                    title="Ok"
+                    onPress={() => {
+                      setModalVisible(false);
+                      navigation.navigate('User');
+                    }}
+                  />
+                </View>
               </View>
-            </View>
-          </Modal>
+            </Modal>
+          </View>
         </View>
-      </View>
-    </StyledView>
+      </StyledView>
+    </KeyboardAvoidingView>
   );
 }
 

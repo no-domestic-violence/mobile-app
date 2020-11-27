@@ -1,7 +1,22 @@
-import React, { useState, useContext } from 'react';
-
-import { View, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React, { useContext } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {
+  faTimes,
+  faCheck,
+  faEnvelope,
+  faUser,
+  faPhone,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Keyboard,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
@@ -9,35 +24,31 @@ import { StyledView } from 'styles/shared/StyledView';
 import appApiClient from 'api/appApiClient';
 import { Context as AuthContext } from 'state/AuthContext';
 
+const schema = yup.object().shape({
+  name: yup.string().required('Please enter a name'),
+  phone: yup
+    .number()
+    .min(3, ({ min }) => `Phone Number must be at least ${min} characters`)
+    .required('Please enter a phone number'),
+  message: yup.string().required('Please enter a message'),
+});
+
 export default function SosContactForm({ navigation }) {
+  const nameInputRef = React.useRef();
+  const phoneInputRef = React.useRef();
+  const messageInputRef = React.useRef();
+
   const { state } = useContext(AuthContext);
 
-  const initialContactState = {
-    name: '',
-    phone: '',
-    message: '',
-  };
-  const [contact, setContact] = useState(initialContactState);
+  const { control, handleSubmit, errors, getValues } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const handleNameChange = (name) => {
-    setContact({ ...contact, name });
-  };
+  // const [contact, setContact] = useState(initialContactState);
 
-  const handleNumberChange = (phone) => {
-    setContact({ ...contact, phone });
-  };
-
-  const handleMessageChange = (message) => {
-    setContact({ ...contact, message });
-  };
-
-  const saveContact = () => {
-    const data = {
-      name: contact.name,
-      phone: contact.phone,
-      message: contact.message,
-    };
-    appApiClient
+  const saveContact = async () => {
+    const data = getValues();
+    await appApiClient
       .patch(`/users/${state.username}/contacts`, data)
       .then((response) => {
         alert(response.data);
@@ -45,59 +56,136 @@ export default function SosContactForm({ navigation }) {
       .catch((e) => {
         alert(e);
       });
+    navigation.navigate('SosContactHome');
   };
 
   return (
     <>
-      <StyledView style={styles.homeView}>
-        <EmergencySVG style={styles.svg} />
-        <View style={styles.container}>
-          <Icon
-            name="times"
-            size={20}
-            raised
-            onPress={() => {
-              navigation.navigate('SosContactHome');
-            }}
-          />
-          <Input
-            placeholder="Name"
-            value={contact.name}
-            autoCompleteType="off"
-            onChangeText={handleNameChange}
-            leftIcon={<Icon name="user" size={20} color="black" />}
-            leftIconContainerStyle={styles.icon}
-          />
-          <Input
-            placeholder="Phone Number"
-            value={contact.phone}
-            autoCompleteType="off"
-            onChangeText={handleNumberChange}
-            leftIcon={<Icon name="phone" size={20} color="black" />}
-            leftIconContainerStyle={styles.icon}
-          />
-          <Input
-            placeholder="Help Message"
-            value={contact.message}
-            autoCompleteType="off"
-            onChangeText={handleMessageChange}
-            leftIcon={<Icon name="envelope" size={20} color="black" />}
-            leftIconContainerStyle={styles.icon}
-          />
-        </View>
-        <View style={styles.buttonRow}>
-          <Icon
-            name="check"
-            size={30}
-            containerStyle={styles.iconContainer}
-            raised
-            onPress={() => {
-              saveContact(navigation);
-              navigation.navigate('SosContactHome');
-            }}
-          />
-        </View>
-      </StyledView>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS == 'ios' ? 'padding' : null}>
+        <StyledView style={styles.homeView}>
+          <EmergencySVG style={styles.svg} />
+          <View style={styles.container}>
+            <FontAwesomeIcon
+              icon={faTimes}
+              size={20}
+              raised
+              style={{ marginLeft: 'auto' }}
+              onPress={() => {
+                navigation.navigate('SosContactHome');
+              }}
+            />
+            <Controller
+              name="name"
+              control={control}
+              // focuses when there is error
+              onFocus={() => {
+                nameInputRef.current.focus();
+              }}
+              defaultValue=""
+              render={({ onChange, value }) => (
+                <Input
+                  placeholder="Name"
+                  ref={nameInputRef}
+                  returnKeyType="next"
+                  onSubmitEditing={() =>
+                    phoneInputRef.current && phoneInputRef.current.focus()
+                  }
+                  blurOnSubmit={false}
+                  autoCompleteType="off"
+                  onChangeText={(value) => onChange(value)}
+                  value={value}
+                  leftIcon={
+                    <FontAwesomeIcon icon={faUser} size={20} color="black" />
+                  }
+                  leftIconContainerStyle={styles.icon}
+                />
+              )}
+            />
+            {errors.name && (
+              <Text style={{ fontSize: 10, color: 'red' }}>
+                {errors.name.message}
+              </Text>
+            )}
+            <Controller
+              name="phone"
+              control={control}
+              onFocus={() => {
+                phoneInputRef.current.focus();
+              }}
+              defaultValue=""
+              render={({ onChange, value }) => (
+                <Input
+                  placeholder="Phone Number"
+                  ref={phoneInputRef}
+                  keyboardType="numeric"
+                  // RN not supporting 'next' on ios, 'done' does the same thing tho
+                  returnKeyType={Platform.OS === 'ios' ? 'done' : 'next'}
+                  onSubmitEditing={() =>
+                    messageInputRef.current && messageInputRef.current.focus()
+                  }
+                  blurOnSubmit={false}
+                  value={value}
+                  autoCompleteType="off"
+                  onChangeText={(value) => onChange(value)}
+                  leftIcon={
+                    <FontAwesomeIcon icon={faPhone} size={20} color="black" />
+                  }
+                  leftIconContainerStyle={styles.icon}
+                />
+              )}
+            />
+            {errors.phone && (
+              <Text style={{ fontSize: 10, color: 'red' }}>
+                {errors.phone.message}
+              </Text>
+            )}
+            <Controller
+              name="message"
+              control={control}
+              onFocus={() => {
+                messageInputRef.current.focus();
+              }}
+              defaultValue=""
+              render={({ onChange, value }) => (
+                <Input
+                  placeholder="Help Message"
+                  ref={messageInputRef}
+                  value={value}
+                  returnKeyType="done"
+                  autoCompleteType="off"
+                  blurOnSubmit={false}
+                  onChangeText={(value) => onChange(value)}
+                  onSubmitEditing={Keyboard.dismiss}
+                  leftIcon={
+                    <FontAwesomeIcon
+                      icon={faEnvelope}
+                      size={20}
+                      color="black"
+                    />
+                  }
+                  leftIconContainerStyle={styles.icon}
+                />
+              )}
+            />
+            {errors.message && (
+              <Text style={{ fontSize: 10, color: 'red' }}>
+                {errors.message.message}
+              </Text>
+            )}
+          </View>
+          <View style={styles.buttonRow}>
+            <FontAwesomeIcon
+              icon={faCheck}
+              size={30}
+              containerStyle={styles.iconContainer}
+              raised
+              onPress={handleSubmit(saveContact)}
+            />
+          </View>
+        </StyledView>
+      </KeyboardAvoidingView>
     </>
   );
 }

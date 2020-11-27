@@ -13,6 +13,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-native-fontawesome": "^0.2.5",
+    "@hookform/resolvers": "^1.0.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.8.0",
     "@react-navigation/compat": "^5.3.1",
@@ -30,6 +31,7 @@
     "metro-config": "^0.64.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-hook-form": "^6.11.5",
     "react-i18next": "^11.7.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.2.tar.gz",
     "react-native-anchor-carousel": "^3.1.2",
@@ -46,7 +48,8 @@
     "react-native-vector-icons": "^7.1.0",
     "react-native-web": "~0.13.12",
     "react-native-webview": "^10.10.2",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "yup": "^0.31.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
