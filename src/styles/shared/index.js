@@ -1,4 +1,5 @@
-import StyledView from './StyledView';
-import StyledButton from './StyledButton';
+import { StyledView } from './StyledView';
+import { StyledButton, StyledButtonText } from './StyledButton';
+import { StyledInputAuth } from './StyledInputAuth';
 
-export { StyledView, StyledButton }; 
+export { StyledView, StyledButton, StyledButtonText, StyledInputAuth };

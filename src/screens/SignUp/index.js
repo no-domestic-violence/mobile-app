@@ -1,35 +1,18 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
-  Keyboard,
   KeyboardAvoidingView,
 } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
 import AuthSVG from '_assets/svg/login.svg';
-import { StyledView } from '../../styles/shared/StyledView';
-import {
-  StyledButton,
-  StyledButtonText,
-} from '../../styles/shared/StyledButton';
-import { StyledInputAuth } from '../../styles/shared/StyledInputAuth';
+import { StyledView } from '_styles/shared/';
+import AuthForm from '_components/authenticationForm/AuthForm';
 
 export default function SignUpScreen({ navigation }) {
   const { state, signup, removeErrors } = useContext(AuthContext);
-
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const usernameInputRef = React.useRef();
-  const emailInputRef = React.useRef();
-  const passwordInputRef = React.useRef();
-
-  const handleSignUp = () => {
-    signup({ email, password, username });
-  };
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
@@ -45,52 +28,13 @@ export default function SignUpScreen({ navigation }) {
       behavior={Platform.OS == 'ios' ? 'padding' : null}>
       <StyledView style={styles.view}>
         <AuthSVG style={{ position: 'absolute', top: 0 }} />
-        <Text style={styles.header}>Sign Up</Text>
-        <StyledInputAuth
-          placeholder="Username"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholderTextColor="#6c757d"
-          onChangeText={setUsername}
-          value={username}
-          ref={usernameInputRef}
-          returnKeyType="next"
-          onSubmitEditing={() =>
-            emailInputRef.current && emailInputRef.current.focus()
-          }
-          blurOnSubmit={false}
-        />
-        <StyledInputAuth
-          placeholder="Email"
-          autoCorrect={false}
-          autoCapitalize="none"
-          placeholderTextColor="#6c757d"
-          onChangeText={setEmail}
-          value={email}
-          ref={emailInputRef}
-          returnKeyType="next"
-          onSubmitEditing={() =>
-            passwordInputRef.current && passwordInputRef.current.focus()
-          }
-          blurOnSubmit={false}
-        />
-        <StyledInputAuth
-          placeholder="Password"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholderTextColor="#6c757d"
-          onChangeText={setPassword}
-          value={password}
-          ref={passwordInputRef}
-          returnKeyType="done"
-          onSubmitEditing={Keyboard.dismiss}
-          blurOnSubmit={false}
-          // secureTextEntry={true}
+        <AuthForm
+          formType="sign up"
+          headerForm="Sign Up"
+          onSubmit={signup}
+          buttonText="sign up"
         />
         <View style={styles.actionsContainer}>
-          <StyledButton onPress={() => handleSignUp()}>
-            <StyledButtonText>SIGN UP</StyledButtonText>
-          </StyledButton>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <Text style={styles.text}> Have an account? Go to login</Text>
           </TouchableOpacity>
@@ -107,13 +51,6 @@ const styles = StyleSheet.create({
   view: {
     justifyContent: 'flex-end',
     height: '100%',
-  },
-  header: {
-    fontSize: 35,
-    fontWeight: '600',
-    alignSelf: 'flex-start',
-    marginLeft: 30,
-    marginBottom: 40,
   },
   text: {
     fontSize: 14,

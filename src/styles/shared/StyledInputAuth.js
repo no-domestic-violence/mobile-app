@@ -5,7 +5,6 @@ export const StyledInputAuth = styled.TextInput`
     backgroundColor: #fff;
     color: #000;
     borderRadius: 5;
-    marginTop: 20;
     fontSize: 18;
     fontWeight: 400;
     paddingLeft: 8;
