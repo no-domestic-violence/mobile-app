@@ -13,7 +13,7 @@ import { Context as AuthContext } from '_state/AuthContext';
 import appApiClient from '_api/appApiClient';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
 
-export default function SosContactList(route) {
+export default function SosContactList() {
   const navigation = useNavigation();
   const { state } = useContext(AuthContext);
 
@@ -56,13 +56,10 @@ export default function SosContactList(route) {
           raised
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
-          onPress={
-            hasFirstContact
-              ? () =>
-                  navigation.navigate('SosContactForm', {
-                    id: dataSource[0]._id,
-                  })
-              : () => navigation.navigate('SosContactForm')
+          onPress={() =>
+            navigation.navigate('SosContactForm', {
+              id: hasFirstContact && dataSource[0]._id,
+            })
           }
           icon={<FontAwesomeIcon icon={faPen} />}
         />
@@ -80,16 +77,10 @@ export default function SosContactList(route) {
           raised
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
-          onPress={
-            hasSecondContact
-              ? () =>
-                  navigation.navigate('SosContactForm', {
-                    id: dataSource[1]._id,
-                  })
-              : () =>
-                  navigation.navigate('SosContactForm', {
-                    id: '',
-                  })
+          onPress={() =>
+            navigation.navigate('SosContactForm', {
+              id: hasSecondContact && dataSource[1]._id,
+            })
           }
           icon={<FontAwesomeIcon icon={faPen} />}></Button>
       </View>

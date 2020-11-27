@@ -36,7 +36,6 @@ const schema = yup.object().shape({
 
 export default function SosContactForm({ navigation, route }) {
   const { id } = route.params;
-  // const id = 'yum';
   // if there is a id in route.params -> isEditMode
   const isAddMode = !id;
 
