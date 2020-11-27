@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -24,11 +25,12 @@ import { StyledView } from 'styles/shared/StyledView';
 import appApiClient from 'api/appApiClient';
 import { Context as AuthContext } from 'state/AuthContext';
 
+const phoneRegExp = /(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .\-–\/]?)([\d]+))/;
 const schema = yup.object().shape({
   name: yup.string().required('Please enter a name'),
   phone: yup
-    .number()
-    .min(3, ({ min }) => `Phone Number must be at least ${min} characters`)
+    .string()
+    .matches(phoneRegExp, 'Phone number is not valid')
     .required('Please enter a phone number'),
   message: yup.string().required('Please enter a message'),
 });
@@ -44,11 +46,9 @@ export default function SosContactForm({ navigation, route }) {
   const [contact, setContact] = useState({});
   const { state } = useContext(AuthContext);
 
-  const { control, handleSubmit, errors, getValues, setValue, reset } = useForm(
-    {
-      resolver: yupResolver(schema),
-    },
-  );
+  const { control, handleSubmit, errors, getValues, setValue } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   // run getContact on mount -> setContact when foundContact
   useEffect(() => {
@@ -56,6 +56,7 @@ export default function SosContactForm({ navigation, route }) {
     if (!isAddMode) {
       getContact().then((foundContact) => {
         if (isMounted) {
+          // empty object if not foundContact
           setContact(foundContact || {});
           setValue('name', foundContact.name);
           setValue('phone', foundContact.phone);
@@ -63,12 +64,10 @@ export default function SosContactForm({ navigation, route }) {
         }
       });
     }
-
     return () => {
       isMounted = false;
     };
-    // empty object if not foundContact
-  }, [getContact]);
+  }, []);
 
   const getContact = async () => {
     try {
@@ -115,7 +114,7 @@ export default function SosContactForm({ navigation, route }) {
   };
 
   const handleRemove = async (id) => {
-    appApiClient
+    await appApiClient
       .delete(`/users/${state.username}/contacts`, {
         params: { id },
       })
@@ -125,6 +124,7 @@ export default function SosContactForm({ navigation, route }) {
       .catch((e) => {
         alert(e);
       });
+    navigation.navigate('SosContactHome');
   };
 
   return (
@@ -173,9 +173,7 @@ export default function SosContactForm({ navigation, route }) {
               )}
             />
             {errors.name && (
-              <Text style={{ fontSize: 10, color: 'red' }}>
-                {errors.name.message}
-              </Text>
+              <Text style={styles.error}>{errors.name.message}</Text>
             )}
             <Controller
               name="phone"
@@ -206,9 +204,7 @@ export default function SosContactForm({ navigation, route }) {
               )}
             />
             {errors.phone && (
-              <Text style={{ fontSize: 10, color: 'red' }}>
-                {errors.phone.message}
-              </Text>
+              <Text style={styles.error}>{errors.phone.message}</Text>
             )}
             <Controller
               name="message"
@@ -239,29 +235,25 @@ export default function SosContactForm({ navigation, route }) {
               )}
             />
             {errors.message && (
-              <Text style={{ fontSize: 10, color: 'red' }}>
-                {errors.message.message}
-              </Text>
+              <Text style={styles.error}>{errors.message.message}</Text>
             )}
           </View>
           <View style={styles.buttonRow}>
-            <FontAwesomeIcon
-              icon={faCheck}
-              size={30}
-              // containerStyle={styles.iconContainer}
-              raised
-              onPress={handleSubmit(onSubmit)}
-            />
             {!isAddMode && (
               <FontAwesomeIcon
                 icon={faTrash}
                 size={30}
                 onPress={() => {
-                  handleRemove(contact._id, navigation);
-                  navigation.navigate('SosContactHome');
+                  handleRemove(contact._id);
                 }}
               />
             )}
+            <FontAwesomeIcon
+              icon={faCheck}
+              size={30}
+              raised
+              onPress={handleSubmit(onSubmit)}
+            />
           </View>
         </StyledView>
       </KeyboardAvoidingView>
@@ -301,5 +293,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     width: '60%',
+  },
+  error: {
+    fontSize: 10,
+    color: 'red',
   },
 });

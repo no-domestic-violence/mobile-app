@@ -3,12 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { Button, Icon, Input } from 'react-native-elements';
-import {
-  useIsFocused,
-  useNavigation,
-  setParams,
-} from '@react-navigation/native';
+import { Button } from 'react-native-elements';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Context as AuthContext } from '_state/AuthContext';
 import appApiClient from '_api/appApiClient';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
@@ -21,7 +17,7 @@ export default function SosContactList() {
   const isFocused = useIsFocused();
 
   const hasFirstContact = dataSource.length !== 0;
-  const hasSecondContact = dataSource.length !== 0 && dataSource.length !== 1;
+  const hasSecondContact = dataSource.length === 2;
 
   useEffect(() => {
     getContacts();
@@ -33,7 +29,6 @@ export default function SosContactList() {
       const response = await appApiClient.get(
         `/users/${state.username}/contacts`,
       );
-
       setDataSource([...response.data.contacts]);
     } catch (error) {
       console.error(error);
