@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -120,7 +120,8 @@ export default function SosContactForm({ navigation }) {
                   placeholder="Phone Number"
                   ref={phoneInputRef}
                   keyboardType="numeric"
-                  returnKeyType="done"
+                  // RN not supporting 'next' on ios, 'done' does the same thing tho
+                  returnKeyType={Platform.OS === 'ios' ? 'done' : 'next'}
                   onSubmitEditing={() =>
                     messageInputRef.current && messageInputRef.current.focus()
                   }
@@ -180,11 +181,7 @@ export default function SosContactForm({ navigation }) {
               size={30}
               containerStyle={styles.iconContainer}
               raised
-              onPress={
-                handleSubmit(saveContact)
-                // saveContact(navigation);
-                // navigation.navigate('SosContactHome');
-              }
+              onPress={handleSubmit(saveContact)}
             />
           </View>
         </StyledView>
