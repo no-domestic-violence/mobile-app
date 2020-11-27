@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
-import { Context as AuthContext } from '../../state/AuthContext';
+import { Context as AuthContext } from '_state/AuthContext';
 import AuthSVG from '_assets/svg/login.svg';
 import { StyledView } from '_styles/shared/';
 import AuthForm from '_components/authenticationForm/AuthForm';
