@@ -21,7 +21,6 @@ import {
 import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
-import { useIsFocused } from '@react-navigation/native';
 import appApiClient from 'api/appApiClient';
 import { Context as AuthContext } from 'state/AuthContext';
 
@@ -43,7 +42,6 @@ export default function SosContactForm({ navigation, route }) {
   const phoneInputRef = React.useRef();
   const messageInputRef = React.useRef();
   const [contact, setContact] = useState({});
-  const isFocused = useIsFocused();
   const { state } = useContext(AuthContext);
 
   const { control, handleSubmit, errors, getValues, setValue, reset } = useForm(
