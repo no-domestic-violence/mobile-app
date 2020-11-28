@@ -24,6 +24,7 @@ import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
 import appApiClient from 'api/appApiClient';
 import { Context as AuthContext } from 'state/AuthContext';
+import Error from 'components/Error';
 
 const phoneRegExp = /(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .\-–\/]?)([\d]+))/;
 const schema = yup.object().shape({
@@ -172,9 +173,10 @@ export default function SosContactForm({ navigation, route }) {
                 />
               )}
             />
-            {errors.name && (
+            <Error errors={errors.name} />
+            {/* {errors.name && (
               <Text style={styles.error}>{errors.name.message}</Text>
-            )}
+            )} */}
             <Controller
               name="phone"
               control={control}
@@ -203,9 +205,7 @@ export default function SosContactForm({ navigation, route }) {
                 />
               )}
             />
-            {errors.phone && (
-              <Text style={styles.error}>{errors.phone.message}</Text>
-            )}
+            <Error errors={errors.phone} />
             <Controller
               name="message"
               control={control}
@@ -234,9 +234,7 @@ export default function SosContactForm({ navigation, route }) {
                 />
               )}
             />
-            {errors.message && (
-              <Text style={styles.error}>{errors.message.message}</Text>
-            )}
+            <Error errors={errors.message} />
           </View>
           <View style={styles.buttonRow}>
             {!isAddMode && (
