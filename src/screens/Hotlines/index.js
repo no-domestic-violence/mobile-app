@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import ListItem from '../../components/hotlines/ListItem';
+import ListItem from '_components/hotlines/ListItem';
 import { SearchBar } from 'react-native-elements';
-import { StyledView } from '../../styles/shared/StyledView';
-import { Colors } from '../../styles/';
+import { StyledView } from '_styles/shared/StyledView';
+import { Colors } from '_styles/';
+import useDebounce from '_hooks/useDebounce';
 
 export default function HotlinesList() {
   const [search, setSearch] = useState('');
@@ -20,10 +21,16 @@ export default function HotlinesList() {
   const [dataSource, setDataSource] = useState([]);
   const inputRef = useRef();
 
+const handleClear = () => {
+  setSearch('')
+}
+
+  const debouncedValue = useDebounce(search, 500);
+  
   useEffect(() => {
     setLoading(true);
     getHotlinesData();
-  }, [search]);
+  }, [debouncedValue]);
 
   const makeCall = (phoneNumber) => {
     const iosPhoneNumber = `tel:${phoneNumber}`;
@@ -54,12 +61,14 @@ export default function HotlinesList() {
       <SearchBar
         ref={inputRef}
         searchIcon={<FontAwesomeIcon icon={faSearch} size={20} />}
+        clearIcon={{name: 'times', type: 'font-awesome'}}
         inputStyle={{ backgroundColor: Colors.primary, width: '70%' }}
         inputContainerStyle={{ backgroundColor: Colors.primary, width: '90%' }}
         containerStyle={{ backgroundColor: Colors.primary, borderTopWidth: 0 }}
         autoCorrect={false}
         autoCapitalize="none"
         onChangeText={setSearch}
+        onClear={handleClear}
         placeholder="Type city or name"
         value={search}
       />
