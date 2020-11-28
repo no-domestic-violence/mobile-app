@@ -8,7 +8,7 @@ import {
 import { withNavigationFocus } from '@react-navigation/compat';
 
 import MapContainer from '_components/map/MapContainer';
-import { Context as LocationContext } from '../../state/LocationContext';
+import { Context as LocationContext } from '_state/LocationContext';
 
 const MapScreen = ({ isFocused }) => {
   const {
@@ -42,18 +42,22 @@ const MapScreen = ({ isFocused }) => {
   useEffect(() => {
       askForLocation();
       fetchShelters();
-  }, []);
+  }, [isFocused]);
 
   if (!currentLocation) {
     return <View><ActivityIndicator size="large" style={styles.loader} /></View>
   }
   return (
-      <View>
+      <View style={styles.container}>
         <MapContainer currentLocation={currentLocation} sheltersList = {state.shelters_list}/>
       </View>
   );
 };
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   loader: {
     flex: 1
   }

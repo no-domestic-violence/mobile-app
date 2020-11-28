@@ -7,10 +7,11 @@ import {
   Linking,
   ActivityIndicator,
 } from 'react-native';
+import { Divider } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { SearchBar } from 'react-native-elements';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import ListItem from '_components/hotlines/ListItem';
-import { SearchBar } from 'react-native-elements';
 import { StyledView } from '_styles/shared/StyledView';
 import { Colors } from '_styles/';
 import useDebounce from '_hooks/useDebounce';
@@ -21,12 +22,8 @@ export default function HotlinesList() {
   const [dataSource, setDataSource] = useState([]);
   const inputRef = useRef();
 
-const handleClear = () => {
-  setSearch('')
-}
-
   const debouncedValue = useDebounce(search, 500);
-  
+
   useEffect(() => {
     setLoading(true);
     getHotlinesData();
@@ -52,27 +49,26 @@ const handleClear = () => {
   if (loading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#00ff00" />
+        <ActivityIndicator size="large" color={Colors.darkBlue} />
       </View>
     );
   }
   return (
-    <StyledView>
+    <StyledView style={styles.container}>
       <SearchBar
         ref={inputRef}
         searchIcon={<FontAwesomeIcon icon={faSearch} size={20} />}
-        clearIcon={{name: 'times', type: 'font-awesome'}}
+        clearIcon={{ name: 'times', type: 'font-awesome' }}
         inputStyle={{ backgroundColor: Colors.primary, width: '70%' }}
         inputContainerStyle={{ backgroundColor: Colors.primary, width: '90%' }}
         containerStyle={{ backgroundColor: Colors.primary, borderTopWidth: 0 }}
         autoCorrect={false}
         autoCapitalize="none"
         onChangeText={setSearch}
-        onClear={handleClear}
-        placeholder="Type city or name"
+        placeholder="Type city or orgaisation name"
         value={search}
       />
-
+      <Divider style={{ height: 10, backgroundColor: Colors.primary }} />
       <FlatList
         style={styles.list}
         data={dataSource}
@@ -89,26 +85,11 @@ const handleClear = () => {
 const styles = StyleSheet.create({
   list: {
     flex: 1,
-    padding: 10,
-    color: 'black',
   },
   container: {
     flex: 1,
     justifyContent: 'center',
-  },
-  text: {
-    color: 'black',
-    fontFamily: 'Courier',
-  },
-  footer: {
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  itemSeparator: {
-    height: 0.5,
-    width: '100%',
-    backgroundColor: '#c8c8c8',
+    alignItems: 'stretch',
+    paddingHorizontal: 20
   },
 });
