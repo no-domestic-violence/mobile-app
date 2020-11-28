@@ -11,23 +11,28 @@ import {
 import { Colors } from '_styles/';
 import { Divider } from 'react-native-elements';
 
+
 export default function AuthForm({
   formType,
   headerForm,
   onSubmitForm,
   buttonText,
 }) {
-
   const AuthSchema = yup.object().shape({
     username: yup.string().when(formType, () => {
       if (formType === 'sign up')
         return yup.string().required('Please enter your username');
       else return yup.string().notRequired();
     }),
+    oldPassword: yup.string().when(formType, () => {
+      if (formType === 'change password')
+        return yup.string().required('Please enter your old password here');
+      else return yup.string().notRequired();
+    }),
     email: yup.string().required('Please enter an email'),
     password: yup
       .string()
-      .min(8)
+      .min(8, 'Please enter 8 characters password')
       .required('Please enter 8 characters password'),
   });
 
@@ -38,6 +43,7 @@ export default function AuthForm({
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const usernameInputRef = useRef();
+  const oldPasswordInputRef = React.useRef();
 
   const renderUsername = () => {
     return (
@@ -75,6 +81,43 @@ export default function AuthForm({
     );
   };
 
+  const renderOldpasswordInput = () => {
+    return (
+      <>
+        <Controller
+          name="oldPassword"
+          defaultValue=""
+          control={control}
+          onFocus={() => {
+            password.current.focus();
+          }}
+          render={({ onChange, value }) => (
+            <StyledInputAuth
+              placeholder="Your old password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              placeholderTextColor="#6c757d"
+              onChangeText={(value) => onChange(value)}
+              value={value}
+              ref={oldPasswordInputRef}
+              returnKeyType="next"
+              onSubmitEditing={() =>
+                newPasswordInputRef.current &&
+                newPasswordInputRef.current.focus()
+              }
+              blurOnSubmit={false}
+              // secureTextEntry={true} TODO: fix secure password
+            />
+          )}
+        />
+        <Divider style={{ height: 5, backgroundColor: Colors.primary }} />
+        {errors.oldPassword && (
+          <Text style={{ color: 'red' }}>{errors.oldPassword.message}</Text>
+        )}
+        <Divider style={{ height: 20, backgroundColor: Colors.primary }} />
+      </>
+    );
+  };
   return (
     <>
       <Text style={styles.header}>{headerForm}</Text>
@@ -107,7 +150,8 @@ export default function AuthForm({
       {errors.email && (
         <Text style={{ color: 'red' }}>{errors.email.message}</Text>
       )}
-      <Divider style={{ height: 20, backgroundColor: '#cadeee' }} />
+      <Divider style={{ height: 20, backgroundColor: Colors.primary }} />
+      {formType === 'change password' ? renderOldpasswordInput() : null}
       <Controller
         name="password"
         defaultValue=""
