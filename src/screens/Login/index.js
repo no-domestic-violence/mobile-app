@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+
 import { Context as AuthContext } from '_state/AuthContext';
 import {
   View,
@@ -17,12 +18,16 @@ export default function LoginScreen({ navigation }) {
   const { t, i18n } = useTranslation();
   const { state, login, removeErrors } = useContext(AuthContext);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('blur', () => {
-      removeErrors();
-    });
-    return unsubscribe;
-  }, [navigation, removeErrors]);
+  const handleLogin = ({ email, password }) => {
+    login({ email, password });
+  };
+  //: TODO: handle errors removing from BE
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('blur', () => {
+  //     removeErrors();
+  //   });
+  //   return unsubscribe;
+  // }, [navigation, removeErrors]);
 
   return (
     <KeyboardAvoidingView
@@ -33,7 +38,7 @@ export default function LoginScreen({ navigation }) {
         <AuthForm
           formType="log in"
           headerForm={t('common.login')}
-          onSubmit={login}
+          onSubmitForm={handleLogin}
           buttonText="log in"
         />
         <View style={styles.textView}>
@@ -45,6 +50,7 @@ export default function LoginScreen({ navigation }) {
           <TouchableOpacity onPress={() => navigation.navigate('Home')}>
             <Text style={styles.text}>Proceed without login</Text>
           </TouchableOpacity>
+          {/* //TODO: fix messages from BE validatiton */}
           {state.errorMessage ? (
             <Text style={styles.textError}>{state.errorMessage}</Text>
           ) : null}

@@ -14,13 +14,18 @@ import AuthForm from '_components/authenticationForm/AuthForm';
 export default function SignUpScreen({ navigation }) {
   const { state, signup, removeErrors } = useContext(AuthContext);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('blur', () => {
-      removeErrors();
-    });
+  const handleSignup = ({ email, password, username }) => {
+    signup({ email, password, username });
+  };
 
-    return unsubscribe;
-  }, [navigation, removeErrors]);
+  //TODO: find other way to remove messages from BE
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('blur', () => {
+  //     removeErrors();
+  //   });
+
+  //   return unsubscribe;
+  // }, [navigation, removeErrors]);
 
   return (
     <KeyboardAvoidingView
@@ -31,7 +36,7 @@ export default function SignUpScreen({ navigation }) {
         <AuthForm
           formType="sign up"
           headerForm="Sign Up"
-          onSubmit={signup}
+          onSubmitForm={handleSignup}
           buttonText="sign up"
         />
         <View style={styles.actionsContainer}>
