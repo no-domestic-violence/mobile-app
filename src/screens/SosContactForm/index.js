@@ -12,13 +12,7 @@ import {
   faUser,
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Keyboard,
-  KeyboardAvoidingView,
-} from 'react-native';
+import { View, StyleSheet, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
@@ -38,7 +32,7 @@ const schema = yup.object().shape({
 
 export default function SosContactForm({ navigation, route }) {
   const { id } = route.params;
-  // if there is a id in route.params -> isEditMode
+  // if there is no id in route.params -> isAddMode
   const isAddMode = !id;
 
   const nameInputRef = React.useRef();

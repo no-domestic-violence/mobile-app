@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import React, { useContext, useEffect } from 'react';
-import { AsyncStorage } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import BottomTabNavigator from './TabNavigator';
 import { OnboardingNavigator } from './StackNavigator';
