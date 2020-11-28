@@ -22,12 +22,12 @@ export default function LoginScreen({ navigation }) {
     login({ email, password });
   };
   //: TODO: handle errors removing from BE
-  // useEffect(() => {
-  //   const unsubscribe = navigation.addListener('blur', () => {
-  //     removeErrors();
-  //   });
-  //   return unsubscribe;
-  // }, [navigation, removeErrors]);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      removeErrors();
+    });
+    return unsubscribe;
+  }, [navigation, removeErrors]);
 
   return (
     <KeyboardAvoidingView

@@ -19,13 +19,13 @@ export default function SignUpScreen({ navigation }) {
   };
 
   //TODO: find other way to remove messages from BE
-  // useEffect(() => {
-  //   const unsubscribe = navigation.addListener('blur', () => {
-  //     removeErrors();
-  //   });
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      removeErrors();
+    });
 
-  //   return unsubscribe;
-  // }, [navigation, removeErrors]);
+    return unsubscribe;
+  }, [navigation, removeErrors]);
 
   return (
     <KeyboardAvoidingView

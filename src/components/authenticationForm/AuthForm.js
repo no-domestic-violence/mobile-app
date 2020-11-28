@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Text, StyleSheet, Keyboard } from 'react-native';
-import { Input } from 'react-native-elements';
 import {
   StyledInputAuth,
   StyledButton,
@@ -12,18 +11,25 @@ import {
 import { Colors } from '_styles/';
 import { Divider } from 'react-native-elements';
 
-const AuthSchema = yup.object().shape({
-  username: yup.string().required('Please enter your username'),
-  email: yup.string().required("Please enter an email"),
-  password: yup.string().min(8).required('Please enter 8 characters password'),
-});
-
 export default function AuthForm({
   formType,
   headerForm,
   onSubmitForm,
   buttonText,
 }) {
+
+  const AuthSchema = yup.object().shape({
+    username: yup.string().when(formType, () => {
+      if (formType === 'sign up')
+        return yup.string().required('Please enter your username');
+      else return yup.string().notRequired();
+    }),
+    email: yup.string().required('Please enter an email'),
+    password: yup
+      .string()
+      .min(8)
+      .required('Please enter 8 characters password'),
+  });
 
   const { control, handleSubmit, errors, getValues } = useForm({
     resolver: yupResolver(AuthSchema),
@@ -33,7 +39,6 @@ export default function AuthForm({
   const passwordInputRef = useRef();
   const usernameInputRef = useRef();
 
-  const { email, password, username } = getValues();
   const renderUsername = () => {
     return (
       <>
@@ -61,10 +66,9 @@ export default function AuthForm({
             />
           )}
         />
+        <Divider style={{ height: 5, backgroundColor: Colors.primary }} />
         {errors.username && (
-          <Text style={{color: 'red' }}>
-            {errors.username.message}
-          </Text>
+          <Text style={{ color: 'red' }}>{errors.username.message}</Text>
         )}
         <Divider style={{ height: 20, backgroundColor: Colors.primary }} />
       </>
@@ -99,7 +103,10 @@ export default function AuthForm({
           />
         )}
       />
-      {errors.email && <Text>{errors.email.message}</Text>}
+      <Divider style={{ height: 5, backgroundColor: Colors.primary }} />
+      {errors.email && (
+        <Text style={{ color: 'red' }}>{errors.email.message}</Text>
+      )}
       <Divider style={{ height: 20, backgroundColor: '#cadeee' }} />
       <Controller
         name="password"
@@ -117,15 +124,16 @@ export default function AuthForm({
             returnKeyType="done"
             onSubmitEditing={Keyboard.dismiss}
             blurOnSubmit={false}
-            //   secureTextEntry={true}
+            // secureTextEntry={true}
           />
         )}
       />
-      {errors.password && <Text>{errors.password.message}</Text>}
+      <Divider style={{ height: 5, backgroundColor: Colors.primary }} />
+      {errors.password && (
+        <Text style={{ color: 'red' }}>{errors.password.message}</Text>
+      )}
 
-      <StyledButton
-        onPress={handleSubmit(onSubmitForm({ email, password, username }))
-        }>
+      <StyledButton onPress={handleSubmit(onSubmitForm)}>
         <StyledButtonText>{buttonText.toUpperCase()}</StyledButtonText>
       </StyledButton>
     </>
