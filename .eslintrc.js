@@ -39,6 +39,7 @@ module.exports = {
           _mock: './src/mock',
           _state: './src/state',
           _services: './src/services',
+          _hooks: './src/hooks',
         },
       },
     },

@@ -63,3 +63,6 @@ buck-out/
 .expo/packager-info.json
 __generated__
 web-build
+# tests
+__snapshots__/
+coverage/\*\*/*
