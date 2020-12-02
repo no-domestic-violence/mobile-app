@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { Button, Icon, Input } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Context as AuthContext } from '_state/AuthContext';
 import appApiClient from '_api/appApiClient';
@@ -17,10 +17,11 @@ export default function SosContactList() {
   const isFocused = useIsFocused();
 
   const hasFirstContact = dataSource.length !== 0;
-  const hasSecondContact = dataSource.length !== 0 && dataSource.length !== 1;
+  const hasSecondContact = dataSource.length === 2;
 
   useEffect(() => {
     getContacts();
+    navigation.setParams({ id: '' });
   }, [isFocused]);
 
   const getContacts = async () => {
@@ -28,7 +29,6 @@ export default function SosContactList() {
       const response = await appApiClient.get(
         `/users/${state.username}/contacts`,
       );
-
       setDataSource([...response.data.contacts]);
     } catch (error) {
       console.error(error);
@@ -51,13 +51,10 @@ export default function SosContactList() {
           raised
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
-          onPress={
-            hasFirstContact
-              ? () =>
-                  navigation.navigate('SosContactEdit', {
-                    id: dataSource[0]._id,
-                  })
-              : () => navigation.navigate('SosContactForm')
+          onPress={() =>
+            navigation.navigate('SosContactForm', {
+              id: hasFirstContact && dataSource[0]._id,
+            })
           }
           icon={<FontAwesomeIcon icon={faPen} />}
         />
@@ -75,13 +72,10 @@ export default function SosContactList() {
           raised
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
-          onPress={
-            hasSecondContact
-              ? () =>
-                  navigation.navigate('SosContactEdit', {
-                    id: dataSource[1]._id,
-                  })
-              : () => navigation.navigate('SosContactForm')
+          onPress={() =>
+            navigation.navigate('SosContactForm', {
+              id: hasSecondContact && dataSource[1]._id,
+            })
           }
           icon={<FontAwesomeIcon icon={faPen} />}></Button>
       </View>

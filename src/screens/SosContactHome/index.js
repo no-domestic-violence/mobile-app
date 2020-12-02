@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SosContactList from 'components/sosContacts/SosContactList';
 
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { useTranslation } from 'react-i18next';
-import { Context as AuthContext } from 'state/AuthContext';
 import { StyledView } from 'styles/shared/StyledView';
 
 export default function SosContactHome() {
-  const { state } = useContext(AuthContext);
   const { t } = useTranslation();
   return (
     <>
