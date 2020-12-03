@@ -5,14 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-native-elements';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { Context as AuthContext } from '_state/AuthContext';
-import appApiClient from '_api/appApiClient';
+// import { Context as AuthContext } from '_state/AuthContext';
+import { Context as SosContext } from 'state/SosContext';
+// import appApiClient from '_api/appApiClient';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
 
 export default function SosContactList() {
   const navigation = useNavigation();
-  const { state } = useContext(AuthContext);
-
+  // const { state } = useContext(AuthContext);
+  const { state, getContacts } = useContext(SosContext);
+  // code i was using before with useState
   const [dataSource, setDataSource] = useState([]);
   const isFocused = useIsFocused();
 
@@ -20,20 +22,20 @@ export default function SosContactList() {
   const hasSecondContact = dataSource.length === 2;
 
   useEffect(() => {
-    getContacts();
+    getContacts().then(console.log(state));
     navigation.setParams({ id: '' });
   }, [isFocused]);
 
-  const getContacts = async () => {
-    try {
-      const response = await appApiClient.get(
-        `/users/${state.username}/contacts`,
-      );
-      setDataSource([...response.data.contacts]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const getContacts = async () => {
+  //   try {
+  //     const response = await appApiClient.get(
+  //       `/users/${state.username}/contacts`,
+  //     );
+  //     setDataSource([...response.data.contacts]);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <>

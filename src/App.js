@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Provider as SosProvider } from 'state/SosContext';
 import AppNavigation from './routes/AppNavigator';
 import { Provider as AuthProvider } from './state/AuthContext';
 import { Provider as LocationProvider } from './state/LocationContext';
@@ -13,9 +14,11 @@ const App = () => {
     <LanguageProvider>
       <LocationProvider>
         <AuthProvider>
-          <View style={styles.container}>
-            <AppNavigation />
-          </View>
+          <SosProvider>
+            <View style={styles.container}>
+              <AppNavigation />
+            </View>
+          </SosProvider>
         </AuthProvider>
       </LocationProvider>
     </LanguageProvider>
