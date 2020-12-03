@@ -12,7 +12,13 @@ import {
   faUser,
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
-import { View, StyleSheet, Keyboard, KeyboardAvoidingView } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Keyboard,
+  KeyboardAvoidingView,
+  AsyncStorage,
+} from 'react-native';
 import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
@@ -66,8 +72,10 @@ export default function SosContactForm({ navigation, route }) {
 
   const getContact = async () => {
     try {
+      const token = await AsyncStorage.getItem('token');
       const response = await appApiClient.get(
         `/users/${state.username}/contacts/`,
+        { headers: { 'auth-token': token } },
       );
       const foundContact = await response.data.contacts.find(
         (item) => item._id === route.params.id,
@@ -84,8 +92,11 @@ export default function SosContactForm({ navigation, route }) {
 
   const saveContact = async () => {
     const data = getValues();
+    const token = await AsyncStorage.getItem('token');
     await appApiClient
-      .patch(`/users/${state.username}/contacts/`, data)
+      .patch(`/users/${state.username}/contacts/`, data, {
+        headers: { 'auth-token': token },
+      })
       .then((response) => {
         alert(response.data);
       })
@@ -97,8 +108,11 @@ export default function SosContactForm({ navigation, route }) {
 
   const saveEdit = async () => {
     const data = getValues();
+    const token = await AsyncStorage.getItem('token');
     await appApiClient
-      .patch(`/users/${state.username}/contacts/${route.params.id}`, data)
+      .patch(`/users/${state.username}/contacts/${route.params.id}`, data, {
+        headers: { 'auth-token': token },
+      })
       .then((response) => {
         alert(response.data);
       })
@@ -109,10 +123,16 @@ export default function SosContactForm({ navigation, route }) {
   };
 
   const handleRemove = async (id) => {
+    const token = await AsyncStorage.getItem('token');
     await appApiClient
-      .delete(`/users/${state.username}/contacts`, {
-        params: { id },
-      })
+      .delete(
+        `/users/${state.username}/contacts/`,
+
+        {
+          params: { id },
+          headers: { 'auth-token': token },
+        },
+      )
       .then((response) => {
         alert(response.data);
       })
