@@ -25,6 +25,7 @@ import { StyledView } from 'styles/shared/StyledView';
 import appApiClient from 'api/appApiClient';
 import { Context as AuthContext } from 'state/AuthContext';
 import Error from 'components/Error';
+import { Context as SosContext } from 'state/SosContext';
 
 const phoneRegExp = /(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .\-–\/]?)([\d]+))/;
 const schema = yup.object().shape({
@@ -37,6 +38,9 @@ const schema = yup.object().shape({
 });
 
 export default function SosContactForm({ navigation, route }) {
+  const {
+    state: { contacts },
+  } = useContext(SosContext);
   const { id } = route.params;
   // if there is no id in route.params -> isAddMode
   const isAddMode = !id;
@@ -45,7 +49,6 @@ export default function SosContactForm({ navigation, route }) {
   const phoneInputRef = React.useRef();
   const messageInputRef = React.useRef();
   const [contact, setContact] = useState({});
-  const { state } = useContext(AuthContext);
 
   const { control, handleSubmit, errors, getValues, setValue } = useForm({
     resolver: yupResolver(schema),
@@ -71,19 +74,10 @@ export default function SosContactForm({ navigation, route }) {
   }, []);
 
   const getContact = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      const response = await appApiClient.get(
-        `/users/${state.username}/contacts/`,
-        { headers: { 'auth-token': token } },
-      );
-      const foundContact = await response.data.contacts.find(
-        (item) => item._id === route.params.id,
-      );
-      return foundContact;
-    } catch (error) {
-      console.error(error);
-    }
+    const foundContact = await contacts.find(
+      (item) => item._id === route.params.id,
+    );
+    return foundContact;
   };
 
   function onSubmit() {
@@ -91,10 +85,11 @@ export default function SosContactForm({ navigation, route }) {
   }
 
   const saveContact = async () => {
+    const username = await AsyncStorage.getItem('username');
     const data = getValues();
     const token = await AsyncStorage.getItem('token');
     await appApiClient
-      .patch(`/users/${state.username}/contacts/`, data, {
+      .patch(`/users/${username}/contacts/`, data, {
         headers: { 'auth-token': token },
       })
       .then((response) => {
@@ -107,10 +102,11 @@ export default function SosContactForm({ navigation, route }) {
   };
 
   const saveEdit = async () => {
+    const username = await AsyncStorage.getItem('username');
     const data = getValues();
     const token = await AsyncStorage.getItem('token');
     await appApiClient
-      .patch(`/users/${state.username}/contacts/${route.params.id}`, data, {
+      .patch(`/users/${username}/contacts/${route.params.id}`, data, {
         headers: { 'auth-token': token },
       })
       .then((response) => {
@@ -123,10 +119,11 @@ export default function SosContactForm({ navigation, route }) {
   };
 
   const handleRemove = async (id) => {
+    const username = await AsyncStorage.getItem('username');
     const token = await AsyncStorage.getItem('token');
     await appApiClient
       .delete(
-        `/users/${state.username}/contacts/`,
+        `/users/${username}/contacts/`,
 
         {
           params: { id },

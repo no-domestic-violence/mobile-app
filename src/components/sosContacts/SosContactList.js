@@ -5,19 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-native-elements';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-// import { Context as AuthContext } from '_state/AuthContext';
 import { Context as SosContext } from 'state/SosContext';
-// import appApiClient from '_api/appApiClient';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
 
 export default function SosContactList() {
   const navigation = useNavigation();
-  // const { state } = useContext(AuthContext);
   const {
     getContacts,
     state: { contacts },
   } = useContext(SosContext);
-  // code i was using before with useState
   const isFocused = useIsFocused();
 
   const hasFirstContact = contacts.length !== 0;
@@ -27,17 +23,6 @@ export default function SosContactList() {
     getContacts();
     navigation.setParams({ id: '' });
   }, [isFocused]);
-
-  // const getContacts = async () => {
-  //   try {
-  //     const response = await appApiClient.get(
-  //       `/users/${state.username}/contacts`,
-  //     );
-  //     setDataSource([...response.data.contacts]);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   return (
     <>
