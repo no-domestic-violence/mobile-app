@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import PropTypes from 'prop-types';
+
 import * as yup from 'yup';
 import { Text, StyleSheet, Keyboard } from 'react-native';
 import {
@@ -196,3 +198,10 @@ const styles = StyleSheet.create({
     marginLeft: 30,
   },
 });
+
+AuthForm.propTypes = {
+  formType: PropTypes.string.isRequired,
+  headerForm: PropTypes.string.isRequired,
+  onSubmitForm: PropTypes.func.isRequired,
+  buttonText: PropTypes.string.isRequired,
+}
