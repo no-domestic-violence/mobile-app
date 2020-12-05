@@ -1,6 +1,6 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, AsyncStorage } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-native-elements';

@@ -40,7 +40,7 @@ export const { Provider, Context } = createAppContext(
   {
     getContacts,
   },
-  // { contacts: [] },
+  { contacts: [] },
 );
 
 // const saveContact = async () => {
