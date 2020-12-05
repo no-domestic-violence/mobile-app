@@ -23,7 +23,6 @@ import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
 import appApiClient from 'api/appApiClient';
-import { Context as AuthContext } from 'state/AuthContext';
 import Error from 'components/Error';
 import { Context as SosContext } from 'state/SosContext';
 
@@ -119,9 +118,9 @@ export default function SosContactForm({ navigation, route }) {
     navigation.navigate('SosContactHome');
   };
 
-  const handleRemove = () => {
-    deleteContact({ id });
-    alert(successMessage);
+  const handleRemove = async () => {
+    await deleteContact({ id });
+    await alert(successMessage);
     navigation.navigate('SosContactHome');
   };
 

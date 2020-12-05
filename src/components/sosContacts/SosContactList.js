@@ -68,7 +68,7 @@ export default function SosContactList() {
           }
           icon={<FontAwesomeIcon icon={faPen} />}></Button>
       </View>
-      {contacts !== undefined && (
+      {contacts !== undefined && contacts.length > 0 && (
         <StyledButton style={styles.messageButtonContainer}>
           <StyledButtonText style={styles.messageButtonText}>
             Ask for help to your contacts
