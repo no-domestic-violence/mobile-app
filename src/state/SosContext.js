@@ -16,8 +16,8 @@ const sosReducer = (state, action) => {
     //     return [...contact, newContact(action.payload)]
     // case ACTIONS.EDIT_CONTACT :
     //     return
-    // case ACTIONS.DELETE_CONTACT:
-    //     return
+    case ACTIONS.DELETE_CONTACT:
+      return { successMessage: action.payload };
     case ACTIONS.GET_CONTACTS:
       return { ...state, contacts: action.payload };
 
@@ -39,52 +39,31 @@ const getContacts = (dispatch) => async () => {
   }
 };
 
+const deleteContact = (dispatch) => async ({ id }) => {
+  const username = await AsyncStorage.getItem('username');
+  const token = await AsyncStorage.getItem('token');
+  await appApiClient
+    .delete(
+      `/users/${username}/contacts/`,
+
+      {
+        params: { id },
+        headers: { 'auth-token': token },
+      },
+    )
+    .then((response) => {
+      dispatch({ type: ACTIONS.DELETE_CONTACT, payload: response.data });
+    })
+    .catch((e) => {
+      alert(e);
+    });
+};
+
 export const { Provider, Context } = createAppContext(
   sosReducer,
   {
     getContacts,
+    deleteContact,
   },
   { contacts: [] },
 );
-
-// const saveContact = async () => {
-//     const data = getValues();
-//     await appApiClient
-//       .patch(`/users/${state.username}/contacts/`, data)
-//       .then((response) => {
-//         alert(response.data);
-//       })
-//       .catch((e) => {
-//         alert(e);
-//       });
-//     navigation.navigate('SosContactHome');
-//   };
-
-// const newContact = (dispatch) => async ({ name, phone, message}) => {
-//     const response = await appApiClient
-//     .patch(`/users/${state.username}/contacts/`, {
-//         name,
-//         phone,
-//         message
-//     })
-//       .then((response) => {
-//         alert(response.data);
-//       })
-//       .catch((e) => {
-//         alert(e);
-//       });
-//     dispatch( { type: ACTIONS.ADD_CONTACT, payload: response.data });
-// }
-
-// const [ contact , dispatch ] = useReducer(sosReducer, [] )
-// const [ name, setName ] = useState('')
-// // dispatch: what we call to update the state
-
-// function handleSubmit(){
-//     dispatch({ type: ACTIONS.ADD_TODO})
-// }
-
-// return (
-//     <>
-//     <
-// )

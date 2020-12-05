@@ -39,7 +39,8 @@ const schema = yup.object().shape({
 
 export default function SosContactForm({ navigation, route }) {
   const {
-    state: { contacts },
+    state: { contacts, successMessage },
+    deleteContact,
   } = useContext(SosContext);
   const { id } = route.params;
   // if there is no id in route.params -> isAddMode
@@ -118,24 +119,9 @@ export default function SosContactForm({ navigation, route }) {
     navigation.navigate('SosContactHome');
   };
 
-  const handleRemove = async (id) => {
-    const username = await AsyncStorage.getItem('username');
-    const token = await AsyncStorage.getItem('token');
-    await appApiClient
-      .delete(
-        `/users/${username}/contacts/`,
-
-        {
-          params: { id },
-          headers: { 'auth-token': token },
-        },
-      )
-      .then((response) => {
-        alert(response.data);
-      })
-      .catch((e) => {
-        alert(e);
-      });
+  const handleRemove = () => {
+    deleteContact({ id });
+    alert(successMessage);
     navigation.navigate('SosContactHome');
   };
 

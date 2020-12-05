@@ -16,8 +16,8 @@ export default function SosContactList() {
   } = useContext(SosContext);
   const isFocused = useIsFocused();
 
-  const hasFirstContact = contacts.length !== 0;
-  const hasSecondContact = contacts.length === 2;
+  const hasFirstContact = contacts !== undefined && contacts.length !== 0;
+  const hasSecondContact = contacts !== undefined && contacts.length === 2;
 
   useEffect(() => {
     getContacts();
@@ -68,7 +68,7 @@ export default function SosContactList() {
           }
           icon={<FontAwesomeIcon icon={faPen} />}></Button>
       </View>
-      {contacts.length > 0 && (
+      {contacts !== undefined && (
         <StyledButton style={styles.messageButtonContainer}>
           <StyledButtonText style={styles.messageButtonText}>
             Ask for help to your contacts
