@@ -13,16 +13,18 @@ import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
 export default function SosContactList() {
   const navigation = useNavigation();
   // const { state } = useContext(AuthContext);
-  const { state, getContacts } = useContext(SosContext);
+  const {
+    getContacts,
+    state: { contacts },
+  } = useContext(SosContext);
   // code i was using before with useState
-  const [dataSource, setDataSource] = useState([]);
   const isFocused = useIsFocused();
 
-  const hasFirstContact = dataSource.length !== 0;
-  const hasSecondContact = dataSource.length === 2;
+  const hasFirstContact = contacts.length !== 0;
+  const hasSecondContact = contacts.length === 2;
 
   useEffect(() => {
-    getContacts().then(console.log(state));
+    getContacts();
     navigation.setParams({ id: '' });
   }, [isFocused]);
 
@@ -43,7 +45,7 @@ export default function SosContactList() {
         <Button
           title={
             hasFirstContact
-              ? dataSource[0].name
+              ? contacts[0].name
               : 'Please add your trusted contact'
           }
           titleStyle={
@@ -55,7 +57,7 @@ export default function SosContactList() {
           buttonStyle={styles.buttonText}
           onPress={() =>
             navigation.navigate('SosContactForm', {
-              id: hasFirstContact && dataSource[0]._id,
+              id: hasFirstContact && contacts[0]._id,
             })
           }
           icon={<FontAwesomeIcon icon={faPen} />}
@@ -67,7 +69,7 @@ export default function SosContactList() {
           }
           title={
             hasSecondContact
-              ? dataSource[1].name
+              ? contacts[1].name
               : 'Please add your trusted contact'
           }
           type="solid"
@@ -76,12 +78,12 @@ export default function SosContactList() {
           buttonStyle={styles.buttonText}
           onPress={() =>
             navigation.navigate('SosContactForm', {
-              id: hasSecondContact && dataSource[1]._id,
+              id: hasSecondContact && contacts[1]._id,
             })
           }
           icon={<FontAwesomeIcon icon={faPen} />}></Button>
       </View>
-      {dataSource.length > 0 && (
+      {contacts.length > 0 && (
         <StyledButton style={styles.messageButtonContainer}>
           <StyledButtonText style={styles.messageButtonText}>
             Ask for help to your contacts

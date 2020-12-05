@@ -20,6 +20,7 @@ const sosReducer = (state, action) => {
     //     return
     case ACTIONS.GET_CONTACTS:
       return { ...state, contacts: action.payload };
+
     default:
       return state;
   }
@@ -28,8 +29,11 @@ const sosReducer = (state, action) => {
 const getContacts = (dispatch) => async () => {
   try {
     const username = await AsyncStorage.getItem('username');
-    const response = await appApiClient.get(`/users/${username}/contacts`);
-    dispatch({ type: ACTIONS.ADD_CONTACT, payload: response.data.contacts });
+    const token = await AsyncStorage.getItem('token');
+    const response = await appApiClient.get(`/users/${username}/contacts`, {
+      headers: { 'auth-token': token },
+    });
+    dispatch({ type: ACTIONS.GET_CONTACTS, payload: response.data.contacts });
   } catch (error) {
     console.error(error);
   }
