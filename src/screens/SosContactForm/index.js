@@ -31,7 +31,6 @@ const schema = yup.object().shape({
 
 export default function SosContactForm({ navigation, route }) {
   const {
-    state,
     state: { contacts },
     deleteContact,
     addContact,

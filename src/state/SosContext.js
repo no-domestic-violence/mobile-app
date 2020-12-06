@@ -13,6 +13,7 @@ const sosReducer = (state, action) => {
   // (current state, action to pass to dispatch )
   switch (action.type) {
     case ACTIONS.ADD_CONTACT:
+      // TODO: how to restrict add more than 2
       return {
         ...state,
         addSuccess: action.payload,
@@ -20,7 +21,7 @@ const sosReducer = (state, action) => {
     case ACTIONS.EDIT_CONTACT:
       return { ...state, editSuccess: action.payload };
     case ACTIONS.DELETE_CONTACT:
-      return { ...state, deleteSuccess: action.payload };
+      return { deleteSuccess: action.payload };
     case ACTIONS.GET_CONTACTS:
       return { ...state, contacts: action.payload };
 
@@ -85,7 +86,7 @@ const editContact = (dispatch) => async ({ data, id }) => {
       headers: { 'auth-token': token },
     })
     .then((response) => {
-      dispatch({ type: ACTIONS.DELETE_CONTACT, payload: response.data });
+      dispatch({ type: ACTIONS.EDIT_CONTACT, payload: response.data });
     })
     .catch((e) => {
       alert(e);
