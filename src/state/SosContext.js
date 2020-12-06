@@ -12,12 +12,15 @@ const ACTIONS = {
 const sosReducer = (state, action) => {
   // (current state, action to pass to dispatch )
   switch (action.type) {
-    // case ACTIONS.ADD_CONTACT :
-    //     return [...contact, newContact(action.payload)]
-    // case ACTIONS.EDIT_CONTACT :
-    //     return
+    case ACTIONS.ADD_CONTACT:
+      return {
+        ...state,
+        addSuccess: action.payload,
+      };
+    case ACTIONS.EDIT_CONTACT:
+      return { ...state, editSuccess: action.payload };
     case ACTIONS.DELETE_CONTACT:
-      return { successMessage: action.payload };
+      return { ...state, deleteSuccess: action.payload };
     case ACTIONS.GET_CONTACTS:
       return { ...state, contacts: action.payload };
 
@@ -59,11 +62,43 @@ const deleteContact = (dispatch) => async ({ id }) => {
     });
 };
 
+const addContact = (dispatch) => async (data) => {
+  const username = await AsyncStorage.getItem('username');
+  const token = await AsyncStorage.getItem('token');
+  await appApiClient
+    .patch(`/users/${username}/contacts/`, data, {
+      headers: { 'auth-token': token },
+    })
+    .then((response) => {
+      dispatch({ type: ACTIONS.ADD_CONTACT, payload: response.data });
+    })
+    .catch((e) => {
+      alert(e);
+    });
+};
+
+const editContact = (dispatch) => async ({ data, id }) => {
+  const username = await AsyncStorage.getItem('username');
+  const token = await AsyncStorage.getItem('token');
+  await appApiClient
+    .patch(`/users/${username}/contacts/${id}`, data, {
+      headers: { 'auth-token': token },
+    })
+    .then((response) => {
+      dispatch({ type: ACTIONS.DELETE_CONTACT, payload: response.data });
+    })
+    .catch((e) => {
+      alert(e);
+    });
+};
+
 export const { Provider, Context } = createAppContext(
   sosReducer,
   {
     getContacts,
     deleteContact,
+    addContact,
+    editContact,
   },
   { contacts: [] },
 );

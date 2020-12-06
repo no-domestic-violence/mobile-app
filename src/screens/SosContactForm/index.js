@@ -12,17 +12,10 @@ import {
   faUser,
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  View,
-  StyleSheet,
-  Keyboard,
-  KeyboardAvoidingView,
-  AsyncStorage,
-} from 'react-native';
+import { View, StyleSheet, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
-import appApiClient from 'api/appApiClient';
 import Error from 'components/Error';
 import { Context as SosContext } from 'state/SosContext';
 
@@ -38,8 +31,11 @@ const schema = yup.object().shape({
 
 export default function SosContactForm({ navigation, route }) {
   const {
-    state: { contacts, successMessage },
+    state,
+    state: { contacts },
     deleteContact,
+    addContact,
+    editContact,
   } = useContext(SosContext);
   const { id } = route.params;
   // if there is no id in route.params -> isAddMode
@@ -84,43 +80,20 @@ export default function SosContactForm({ navigation, route }) {
     return isAddMode ? saveContact() : saveEdit();
   }
 
-  const saveContact = async () => {
-    const username = await AsyncStorage.getItem('username');
+  const saveContact = () => {
     const data = getValues();
-    const token = await AsyncStorage.getItem('token');
-    await appApiClient
-      .patch(`/users/${username}/contacts/`, data, {
-        headers: { 'auth-token': token },
-      })
-      .then((response) => {
-        alert(response.data);
-      })
-      .catch((e) => {
-        alert(e);
-      });
+    addContact(data);
     navigation.navigate('SosContactHome');
   };
 
-  const saveEdit = async () => {
-    const username = await AsyncStorage.getItem('username');
+  const saveEdit = () => {
     const data = getValues();
-    const token = await AsyncStorage.getItem('token');
-    await appApiClient
-      .patch(`/users/${username}/contacts/${route.params.id}`, data, {
-        headers: { 'auth-token': token },
-      })
-      .then((response) => {
-        alert(response.data);
-      })
-      .catch((e) => {
-        alert(e);
-      });
+    editContact({ data, id });
+
     navigation.navigate('SosContactHome');
   };
-
   const handleRemove = async () => {
     await deleteContact({ id });
-    await alert(successMessage);
     navigation.navigate('SosContactHome');
   };
 
@@ -151,10 +124,11 @@ export default function SosContactForm({ navigation, route }) {
               defaultValue=""
               render={({ onChange, value }) => (
                 <Input
-                  name="name"
                   placeholder="Name"
                   ref={nameInputRef}
                   returnKeyType="next"
+                  autoCapitalize="none"
+                  autoCorrect={false}
                   onSubmitEditing={() =>
                     phoneInputRef.current && phoneInputRef.current.focus()
                   }
@@ -187,6 +161,8 @@ export default function SosContactForm({ navigation, route }) {
                   keyboardType="numeric"
                   // RN not supporting 'next' on ios, 'done' does the same thing tho
                   returnKeyType={Platform.OS === 'ios' ? 'done' : 'next'}
+                  autoCapitalize="none"
+                  autoCorrect={false}
                   onSubmitEditing={() =>
                     messageInputRef.current && messageInputRef.current.focus()
                   }
@@ -215,6 +191,8 @@ export default function SosContactForm({ navigation, route }) {
                   ref={messageInputRef}
                   value={value}
                   returnKeyType="done"
+                  autoCapitalize="none"
+                  autoCorrect={false}
                   autoCompleteType="off"
                   blurOnSubmit={false}
                   onChangeText={(text) => onChange(text)}
