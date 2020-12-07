@@ -18,21 +18,19 @@ export default function SosContactList() {
 
   const hasFirstContact = contacts !== undefined && contacts.length !== 0;
   const hasSecondContact = contacts !== undefined && contacts.length === 2;
-
+  const contactPlaceholder = 'Please add your trusted contact';
   useEffect(() => {
     getContacts();
+    console.log('contacts', contacts);
     navigation.setParams({ id: '' });
-  }, [isFocused]);
+  }, []);
 
   return (
     <>
       <View style={styles.contactContainer}>
         <Button
-          title={
-            hasFirstContact
-              ? contacts[0].name
-              : 'Please add your trusted contact'
-          }
+          title={hasFirstContact ? contacts[0].name : contactPlaceholder}
+          //title="hmm"
           titleStyle={
             hasFirstContact ? styles.contactText : styles.contactPlaceholder
           }
@@ -52,11 +50,8 @@ export default function SosContactList() {
           titleStyle={
             hasSecondContact ? styles.contactText : styles.contactPlaceholder
           }
-          title={
-            hasSecondContact
-              ? contacts[1].name
-              : 'Please add your trusted contact'
-          }
+          title={hasSecondContact ? contacts[1].name : contactPlaceholder}
+          // title="yoyo"
           type="solid"
           raised
           iconContainerStyle={styles.icon}

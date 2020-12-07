@@ -51,6 +51,7 @@ export default function SosContactForm({ navigation, route }) {
 
   // run getContact on mount -> setContact when foundContact
   useEffect(() => {
+    console.log(contacts);
     let isMounted = true;
     if (!isAddMode) {
       getContact().then((foundContact) => {
@@ -88,9 +89,9 @@ export default function SosContactForm({ navigation, route }) {
   const saveEdit = () => {
     const data = getValues();
     editContact({ data, id });
-
     navigation.navigate('SosContactHome');
   };
+
   const handleRemove = async () => {
     await deleteContact({ id });
     navigation.navigate('SosContactHome');

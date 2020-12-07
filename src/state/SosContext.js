@@ -9,22 +9,35 @@ const ACTIONS = {
   GET_CONTACTS: 'GET_CONTACTS',
 };
 
+// const updateContacts = (contacts, payload) => {
+//   const updatedArray = contacts.push(payload);
+//   return updatedArray;
+// };
+
 const sosReducer = (state, action) => {
+  const { contacts } = state;
   // (current state, action to pass to dispatch )
   switch (action.type) {
     case ACTIONS.ADD_CONTACT:
       // TODO: how to restrict add more than 2
-      return {
-        ...state,
-        addSuccess: action.payload,
-      };
+      return { contacts: [...contacts, action.payload] };
+    // return { ...state, addSuccess: action.payload };
     case ACTIONS.EDIT_CONTACT:
-      return { ...state, editSuccess: action.payload };
+      const { id, data } = action.payload;
+      //return { ...state, editSuccess: action.payload };
+      return {
+        ...contacts,
+        contacts: contacts.map((contact) =>
+          contact._id === id ? data : contact,
+        ),
+      };
     case ACTIONS.DELETE_CONTACT:
-      return { deleteSuccess: action.payload };
+      return {
+        ...contacts,
+        contacts: contacts.filter((contact) => contact._id !== action.payload),
+      };
     case ACTIONS.GET_CONTACTS:
-      return { ...state, contacts: action.payload };
-
+      return { contacts: action.payload };
     default:
       return state;
   }
@@ -37,6 +50,7 @@ const getContacts = (dispatch) => async () => {
     const response = await appApiClient.get(`/users/${username}/contacts`, {
       headers: { 'auth-token': token },
     });
+    console.log('get contacts');
     dispatch({ type: ACTIONS.GET_CONTACTS, payload: response.data.contacts });
   } catch (error) {
     console.error(error);
@@ -47,16 +61,12 @@ const deleteContact = (dispatch) => async ({ id }) => {
   const username = await AsyncStorage.getItem('username');
   const token = await AsyncStorage.getItem('token');
   await appApiClient
-    .delete(
-      `/users/${username}/contacts/`,
-
-      {
-        params: { id },
-        headers: { 'auth-token': token },
-      },
-    )
+    .delete(`/users/${username}/contacts/`, {
+      params: { id },
+      headers: { 'auth-token': token },
+    })
     .then((response) => {
-      dispatch({ type: ACTIONS.DELETE_CONTACT, payload: response.data });
+      dispatch({ type: ACTIONS.DELETE_CONTACT, payload: id });
     })
     .catch((e) => {
       alert(e);
@@ -71,7 +81,8 @@ const addContact = (dispatch) => async (data) => {
       headers: { 'auth-token': token },
     })
     .then((response) => {
-      dispatch({ type: ACTIONS.ADD_CONTACT, payload: response.data });
+      dispatch({ type: ACTIONS.ADD_CONTACT, payload: data });
+      console.log('addContact', data);
     })
     .catch((e) => {
       alert(e);
@@ -86,7 +97,7 @@ const editContact = (dispatch) => async ({ data, id }) => {
       headers: { 'auth-token': token },
     })
     .then((response) => {
-      dispatch({ type: ACTIONS.EDIT_CONTACT, payload: response.data });
+      dispatch({ type: ACTIONS.EDIT_CONTACT, payload: { id, data } });
     })
     .catch((e) => {
       alert(e);

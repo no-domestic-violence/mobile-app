@@ -19,7 +19,6 @@ const MapScreen = ({ isFocused }) => {
   } = useContext(LocationContext);
   //TODO: handle errros
   const [error, setError] = useState({});
-  
 
   const askForLocation = async () => {
     try {
@@ -40,17 +39,24 @@ const MapScreen = ({ isFocused }) => {
   };
 
   useEffect(() => {
-      askForLocation();
-      fetchShelters();
+    askForLocation();
+    fetchShelters();
   }, [isFocused]);
 
   if (!currentLocation) {
-    return <View><ActivityIndicator size="large" style={styles.loader} /></View>
+    return (
+      <View>
+        <ActivityIndicator size="large" style={styles.loader} />
+      </View>
+    );
   }
   return (
-      <View style={styles.container}>
-        <MapContainer currentLocation={currentLocation} sheltersList = {state.shelters_list}/>
-      </View>
+    <View style={styles.container}>
+      <MapContainer
+        currentLocation={currentLocation}
+        sheltersList={state.shelters_list}
+      />
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -59,8 +65,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   loader: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default withNavigationFocus(MapScreen);
