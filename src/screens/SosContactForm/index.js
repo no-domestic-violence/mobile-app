@@ -12,19 +12,12 @@ import {
   faUser,
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  View,
-  StyleSheet,
-  Keyboard,
-  KeyboardAvoidingView,
-  AsyncStorage,
-} from 'react-native';
+import { View, StyleSheet, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
-import appApiClient from 'api/appApiClient';
-import { Context as AuthContext } from 'state/AuthContext';
 import Error from 'components/Error';
+import { Context as SosContext } from 'state/SosContext';
 
 const phoneRegExp = /(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .\-–\/]?)([\d]+))/;
 const schema = yup.object().shape({
@@ -37,6 +30,13 @@ const schema = yup.object().shape({
 });
 
 export default function SosContactForm({ navigation, route }) {
+  const {
+    state: { contacts },
+    deleteContact,
+    addContact,
+    editContact,
+    getContacts,
+  } = useContext(SosContext);
   const { id } = route.params;
   // if there is no id in route.params -> isAddMode
   const isAddMode = !id;
@@ -45,7 +45,6 @@ export default function SosContactForm({ navigation, route }) {
   const phoneInputRef = React.useRef();
   const messageInputRef = React.useRef();
   const [contact, setContact] = useState({});
-  const { state } = useContext(AuthContext);
 
   const { control, handleSubmit, errors, getValues, setValue } = useForm({
     resolver: yupResolver(schema),
@@ -71,75 +70,34 @@ export default function SosContactForm({ navigation, route }) {
   }, []);
 
   const getContact = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      const response = await appApiClient.get(
-        `/users/${state.username}/contacts/`,
-        { headers: { 'auth-token': token } },
-      );
-      const foundContact = await response.data.contacts.find(
-        (item) => item._id === route.params.id,
-      );
-      return foundContact;
-    } catch (error) {
-      console.error(error);
-    }
+    const foundContact = await contacts.find((item) => item._id === id);
+    return foundContact;
   };
 
   function onSubmit() {
     return isAddMode ? saveContact() : saveEdit();
   }
 
+  const updateAndGoBack = async () => {
+    await getContacts();
+    navigation.navigate('SosContactHome');
+  };
+
   const saveContact = async () => {
     const data = getValues();
-    const token = await AsyncStorage.getItem('token');
-    await appApiClient
-      .patch(`/users/${state.username}/contacts/`, data, {
-        headers: { 'auth-token': token },
-      })
-      .then((response) => {
-        alert(response.data);
-      })
-      .catch((e) => {
-        alert(e);
-      });
-    navigation.navigate('SosContactHome');
+    await addContact(data);
+    updateAndGoBack();
   };
 
   const saveEdit = async () => {
     const data = getValues();
-    const token = await AsyncStorage.getItem('token');
-    await appApiClient
-      .patch(`/users/${state.username}/contacts/${route.params.id}`, data, {
-        headers: { 'auth-token': token },
-      })
-      .then((response) => {
-        alert(response.data);
-      })
-      .catch((e) => {
-        alert(e);
-      });
-    navigation.navigate('SosContactHome');
+    await editContact({ data, id });
+    updateAndGoBack();
   };
 
-  const handleRemove = async (id) => {
-    const token = await AsyncStorage.getItem('token');
-    await appApiClient
-      .delete(
-        `/users/${state.username}/contacts/`,
-
-        {
-          params: { id },
-          headers: { 'auth-token': token },
-        },
-      )
-      .then((response) => {
-        alert(response.data);
-      })
-      .catch((e) => {
-        alert(e);
-      });
-    navigation.navigate('SosContactHome');
+  const handleRemove = async () => {
+    await deleteContact({ id });
+    updateAndGoBack();
   };
 
   return (
@@ -169,10 +127,11 @@ export default function SosContactForm({ navigation, route }) {
               defaultValue=""
               render={({ onChange, value }) => (
                 <Input
-                  name="name"
                   placeholder="Name"
                   ref={nameInputRef}
                   returnKeyType="next"
+                  autoCapitalize="none"
+                  autoCorrect={false}
                   onSubmitEditing={() =>
                     phoneInputRef.current && phoneInputRef.current.focus()
                   }
@@ -205,6 +164,8 @@ export default function SosContactForm({ navigation, route }) {
                   keyboardType="numeric"
                   // RN not supporting 'next' on ios, 'done' does the same thing tho
                   returnKeyType={Platform.OS === 'ios' ? 'done' : 'next'}
+                  autoCapitalize="none"
+                  autoCorrect={false}
                   onSubmitEditing={() =>
                     messageInputRef.current && messageInputRef.current.focus()
                   }
@@ -233,6 +194,8 @@ export default function SosContactForm({ navigation, route }) {
                   ref={messageInputRef}
                   value={value}
                   returnKeyType="done"
+                  autoCapitalize="none"
+                  autoCorrect={false}
                   autoCompleteType="off"
                   blurOnSubmit={false}
                   onChangeText={(text) => onChange(text)}
