@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
+import PropTypes from 'prop-types';
+
 import MapView, { Circle, Marker } from 'react-native-maps';
 
 const MapContainer = ({ currentLocation, sheltersList }) => {
@@ -21,9 +23,7 @@ const MapContainer = ({ currentLocation, sheltersList }) => {
         //   longitudeDelta: 0.1,
         // }}
       >
-        <Marker
-          coordinate={currentLocation.coords}
-        >
+        <Marker coordinate={currentLocation.coords}>
           <Image
             source={require('../../assets/images/here.png')}
             style={styles.currentLocation}
@@ -56,3 +56,8 @@ const styles = StyleSheet.create({
 });
 
 export default MapContainer;
+
+MapContainer.propTypes = {
+  currentLocation: PropTypes.object.isRequired,
+  sheltersList: PropTypes.array,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import UserSettingsSVG from '_assets/svg/userSettings.svg';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
@@ -33,3 +34,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
+
+UserInfo.propTypes = {
+  username: PropTypes.string.isRequired,
+};

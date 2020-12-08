@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { Colors } from '../../styles/index';
 import { Divider } from 'react-native-elements';
@@ -56,3 +57,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+ListItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  makeCall: PropTypes.func,
+};

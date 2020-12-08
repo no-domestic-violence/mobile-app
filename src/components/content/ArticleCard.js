@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   View,
   StyleSheet,
@@ -88,3 +90,7 @@ const styles = StyleSheet.create({
 });
 
 export default ArticleCard;
+
+ArticleCard.propTypes = {
+  item: PropTypes.object.isRequired,
+};
