@@ -35,6 +35,7 @@ export default function SosContactForm({ navigation, route }) {
     deleteContact,
     addContact,
     editContact,
+    getContacts,
   } = useContext(SosContext);
   const { id } = route.params;
   // if there is no id in route.params -> isAddMode
@@ -51,7 +52,6 @@ export default function SosContactForm({ navigation, route }) {
 
   // run getContact on mount -> setContact when foundContact
   useEffect(() => {
-    console.log(contacts);
     let isMounted = true;
     if (!isAddMode) {
       getContact().then((foundContact) => {
@@ -70,9 +70,7 @@ export default function SosContactForm({ navigation, route }) {
   }, []);
 
   const getContact = async () => {
-    const foundContact = await contacts.find(
-      (item) => item._id === route.params.id,
-    );
+    const foundContact = await contacts.find((item) => item._id === id);
     return foundContact;
   };
 
@@ -80,21 +78,26 @@ export default function SosContactForm({ navigation, route }) {
     return isAddMode ? saveContact() : saveEdit();
   }
 
-  const saveContact = () => {
-    const data = getValues();
-    addContact(data);
+  const updateAndGoBack = async () => {
+    await getContacts();
     navigation.navigate('SosContactHome');
   };
 
-  const saveEdit = () => {
+  const saveContact = async () => {
     const data = getValues();
-    editContact({ data, id });
-    navigation.navigate('SosContactHome');
+    await addContact(data);
+    updateAndGoBack();
+  };
+
+  const saveEdit = async () => {
+    const data = getValues();
+    await editContact({ data, id });
+    updateAndGoBack();
   };
 
   const handleRemove = async () => {
     await deleteContact({ id });
-    navigation.navigate('SosContactHome');
+    updateAndGoBack();
   };
 
   return (

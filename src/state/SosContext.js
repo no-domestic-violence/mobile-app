@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
 import { AsyncStorage } from 'react-native';
 import createAppContext from './CreateAppContext';
 import appApiClient from '../api/appApiClient';
@@ -9,22 +10,14 @@ const ACTIONS = {
   GET_CONTACTS: 'GET_CONTACTS',
 };
 
-// const updateContacts = (contacts, payload) => {
-//   const updatedArray = contacts.push(payload);
-//   return updatedArray;
-// };
-
 const sosReducer = (state, action) => {
-  const { contacts } = state;
   // (current state, action to pass to dispatch )
+  const { contacts } = state;
+  const { id, data } = action.payload;
   switch (action.type) {
     case ACTIONS.ADD_CONTACT:
-      // TODO: how to restrict add more than 2
-      return { contacts: [...contacts, action.payload] };
-    // return { ...state, addSuccess: action.payload };
+      return { contacts: [...contacts, data] };
     case ACTIONS.EDIT_CONTACT:
-      const { id, data } = action.payload;
-      //return { ...state, editSuccess: action.payload };
       return {
         ...contacts,
         contacts: contacts.map((contact) =>
@@ -34,7 +27,7 @@ const sosReducer = (state, action) => {
     case ACTIONS.DELETE_CONTACT:
       return {
         ...contacts,
-        contacts: contacts.filter((contact) => contact._id !== action.payload),
+        contacts: contacts.filter((contact) => contact._id !== id),
       };
     case ACTIONS.GET_CONTACTS:
       return { contacts: action.payload };
@@ -50,7 +43,6 @@ const getContacts = (dispatch) => async () => {
     const response = await appApiClient.get(`/users/${username}/contacts`, {
       headers: { 'auth-token': token },
     });
-    console.log('get contacts');
     dispatch({ type: ACTIONS.GET_CONTACTS, payload: response.data.contacts });
   } catch (error) {
     console.error(error);
@@ -66,7 +58,7 @@ const deleteContact = (dispatch) => async ({ id }) => {
       headers: { 'auth-token': token },
     })
     .then((response) => {
-      dispatch({ type: ACTIONS.DELETE_CONTACT, payload: id });
+      dispatch({ type: ACTIONS.DELETE_CONTACT, payload: { id } });
     })
     .catch((e) => {
       alert(e);
@@ -81,8 +73,7 @@ const addContact = (dispatch) => async (data) => {
       headers: { 'auth-token': token },
     })
     .then((response) => {
-      dispatch({ type: ACTIONS.ADD_CONTACT, payload: data });
-      console.log('addContact', data);
+      dispatch({ type: ACTIONS.ADD_CONTACT, payload: { data } });
     })
     .catch((e) => {
       alert(e);

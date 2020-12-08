@@ -4,7 +4,7 @@ import { StyleSheet, View, AsyncStorage } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-native-elements';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { Context as SosContext } from 'state/SosContext';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
 
@@ -14,14 +14,13 @@ export default function SosContactList() {
     getContacts,
     state: { contacts },
   } = useContext(SosContext);
-  const isFocused = useIsFocused();
 
   const hasFirstContact = contacts !== undefined && contacts.length !== 0;
   const hasSecondContact = contacts !== undefined && contacts.length === 2;
   const contactPlaceholder = 'Please add your trusted contact';
+
   useEffect(() => {
     getContacts();
-    console.log('contacts', contacts);
     navigation.setParams({ id: '' });
   }, []);
 
@@ -30,7 +29,6 @@ export default function SosContactList() {
       <View style={styles.contactContainer}>
         <Button
           title={hasFirstContact ? contacts[0].name : contactPlaceholder}
-          //title="hmm"
           titleStyle={
             hasFirstContact ? styles.contactText : styles.contactPlaceholder
           }
@@ -45,13 +43,11 @@ export default function SosContactList() {
           }
           icon={<FontAwesomeIcon icon={faPen} />}
         />
-
         <Button
           titleStyle={
             hasSecondContact ? styles.contactText : styles.contactPlaceholder
           }
           title={hasSecondContact ? contacts[1].name : contactPlaceholder}
-          // title="yoyo"
           type="solid"
           raised
           iconContainerStyle={styles.icon}
@@ -61,7 +57,8 @@ export default function SosContactList() {
               id: hasSecondContact && contacts[1]._id,
             })
           }
-          icon={<FontAwesomeIcon icon={faPen} />}></Button>
+          icon={<FontAwesomeIcon icon={faPen} />}
+        />
       </View>
       {contacts !== undefined && contacts.length > 0 && (
         <StyledButton style={styles.messageButtonContainer}>
