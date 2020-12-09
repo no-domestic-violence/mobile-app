@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import MapView, { Circle, Marker } from 'react-native-maps';
 
-const MapContainer = ({ currentLocation, sheltersList }) => {
+const MapContainer = React.memo(({ currentLocation, sheltersList }) => {
   return (
     <View>
       <MapView
@@ -44,7 +44,7 @@ const MapContainer = ({ currentLocation, sheltersList }) => {
       </MapView>
     </View>
   );
-};
+});
 const styles = StyleSheet.create({
   mapContainer: {
     height: '100%',

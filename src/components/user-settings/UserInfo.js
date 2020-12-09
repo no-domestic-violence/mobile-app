@@ -5,7 +5,7 @@ import UserSettingsSVG from '_assets/svg/userSettings.svg';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
-export default function UserInfo({ username }) {
+const UserInfo = React.memo(({ username }) => {
   return (
     <View>
       <UserSettingsSVG style={{ position: 'absolute' }} />
@@ -20,7 +20,8 @@ export default function UserInfo({ username }) {
       </View>
     </View>
   );
-}
+})
+export default UserInfo;
 const styles = StyleSheet.create({
   username: {
     textTransform: 'capitalize',

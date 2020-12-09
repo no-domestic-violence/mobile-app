@@ -4,7 +4,7 @@ const background3 = require('../assets/backgrounds/video3.png');
 const background4 = require('../assets/backgrounds/video4.png');
 const background5 = require('../assets/backgrounds/video5.png');
 
-export const videoData = [
+const videoData = [
   {
     image: background1,
     id: 1,
@@ -37,3 +37,4 @@ export const videoData = [
     url: 'https://www.youtube.com/embed/ON4iy8hq2hM',
   },
 ];
+export default videoData;

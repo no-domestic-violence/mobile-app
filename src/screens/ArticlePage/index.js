@@ -13,7 +13,6 @@ import appApiClient from '../../api/appApiClient';
 const { width, height } = Dimensions.get('window');
 
 export default function ArticlePage({ route, navigation }) {
-  console.log(route.params.id);
   const [uniqueArticle, setUniqueArticle] = useState({});
   useEffect(() => {
     findOneArticle();
