@@ -8,9 +8,15 @@ export default (reducer, actions, defaultValue) => {
   const Provider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, defaultValue);
 
-    //actions is object for ex {updateCurrentLocation: (dispatch)=> (location) => { dispatch({ type: 'UPDATE_LOCATION', payload: location });}
+    /* actions is object for ex {updateCurrentLocation: (dispatch)=> (location) =>
+     { dispatch({ type: 'UPDATE_LOCATION', payload: location });}
+     */
     const boundActions = {};
-    //we need to loop through each action in object and for every key(which is function) we call it with dispatch argument and it gives back function. this function we pass down to all children like ...boundActions
+    /* we need to loop through each action in object and for every key(which is function)
+  we call it with dispatch argument and it gives back function.
+   this function we pass down to all children like ...boundActions
+   */
+    // eslint-disable-next-line
     for (const key in actions) {
       boundActions[key] = actions[key](dispatch);
     }

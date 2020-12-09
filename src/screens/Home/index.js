@@ -15,7 +15,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import WatchListRenderItem from '../../components/content-views/WatchListRenderItem';
 import TodayReadRenderItem from '../../components/content-views/TodayReadRenderItem';
-import { videoData } from '../../mock/video';
+import videoData from '../../mock/video';
 import { Colors } from '../../styles';
 
 const Home = ({ navigation }) => {
