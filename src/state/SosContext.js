@@ -20,9 +20,7 @@ const sosReducer = (state, action) => {
     case ACTIONS.EDIT_CONTACT:
       return {
         ...contacts,
-        contacts: contacts.map((contact) =>
-          contact._id === id ? data : contact,
-        ),
+        contacts: contacts.map((contact) => (contact._id === id ? data : contact),),
       };
     case ACTIONS.DELETE_CONTACT:
       return {
@@ -57,7 +55,7 @@ const deleteContact = (dispatch) => async ({ id }) => {
       params: { id },
       headers: { 'auth-token': token },
     })
-    .then((response) => {
+    .then(() => {
       dispatch({ type: ACTIONS.DELETE_CONTACT, payload: { id } });
     })
     .catch((e) => {
@@ -72,7 +70,7 @@ const addContact = (dispatch) => async (data) => {
     .patch(`/users/${username}/contacts/`, data, {
       headers: { 'auth-token': token },
     })
-    .then((response) => {
+    .then(() => {
       dispatch({ type: ACTIONS.ADD_CONTACT, payload: { data } });
     })
     .catch((e) => {
@@ -87,7 +85,7 @@ const editContact = (dispatch) => async ({ data, id }) => {
     .patch(`/users/${username}/contacts/${id}`, data, {
       headers: { 'auth-token': token },
     })
-    .then((response) => {
+    .then(() => {
       dispatch({ type: ACTIONS.EDIT_CONTACT, payload: { id, data } });
     })
     .catch((e) => {
