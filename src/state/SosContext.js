@@ -1,5 +1,5 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import createAppContext from './CreateAppContext';
 import appApiClient from '../api/appApiClient';
 
@@ -20,7 +20,9 @@ const sosReducer = (state, action) => {
     case ACTIONS.EDIT_CONTACT:
       return {
         ...contacts,
-        contacts: contacts.map((contact) => (contact._id === id ? data : contact),),
+        contacts: contacts.map((contact) =>
+          contact._id === id ? data : contact,
+        ),
       };
     case ACTIONS.DELETE_CONTACT:
       return {
