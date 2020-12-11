@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import { Context as AuthContext } from '_state/AuthContext';
 import AuthSVG from '_assets/svg/login.svg';
@@ -30,7 +31,7 @@ export default function SignUpScreen({ navigation }) {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS == 'ios' ? 'padding' : null}>
+      behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <StyledView style={styles.view}>
         <AuthSVG style={{ position: 'absolute', top: 0 }} />
         <AuthForm

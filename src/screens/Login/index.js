@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import { StyledView } from '_styles/shared/';
 
@@ -32,7 +33,7 @@ export default function LoginScreen({ navigation }) {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS == 'ios' ? 'padding' : null}>
+      behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <StyledView style={styles.view}>
         <AuthSVG style={{ position: 'absolute', top: 0 }} />
         <AuthForm

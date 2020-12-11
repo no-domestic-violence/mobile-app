@@ -12,7 +12,13 @@ import {
   faUser,
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
-import { View, StyleSheet, Keyboard, KeyboardAvoidingView } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
@@ -104,7 +110,7 @@ export default function SosContactForm({ navigation, route }) {
     <>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
-        behavior={Platform.OS == 'ios' ? 'padding' : null}>
+        behavior={Platform.OS === 'ios' ? 'padding' : null}>
         <StyledView style={styles.homeView}>
           <EmergencySVG style={styles.svg} />
           <View style={styles.container}>
