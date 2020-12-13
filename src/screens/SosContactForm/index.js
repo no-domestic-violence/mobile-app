@@ -58,26 +58,17 @@ export default function SosContactForm({ navigation, route }) {
 
   // run getContact on mount -> setContact when foundContact
   useEffect(() => {
-    let isMounted = true;
     if (!isAddMode) {
-      getContact().then((foundContact) => {
-        if (isMounted) {
-          // empty object if not foundContact
-          setContact(foundContact || {});
-          setValue('name', foundContact.name);
-          setValue('phone', foundContact.phone);
-          setValue('message', foundContact.message);
-        }
-      });
+      getContact();
     }
-    return () => {
-      isMounted = false;
-    };
   }, []);
 
   const getContact = async () => {
     const foundContact = await contacts.find((item) => item._id === id);
-    return foundContact;
+    setContact(foundContact || {});
+    setValue('name', foundContact.name);
+    setValue('phone', foundContact.phone);
+    setValue('message', foundContact.message);
   };
 
   function onSubmit() {
