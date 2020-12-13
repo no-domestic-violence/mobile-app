@@ -32,6 +32,7 @@
     "expo-location": "^9.0.1",
     "expo-status-bar": "~1.0.2",
     "i18next": "^19.7.0",
+    "jest-fetch-mock": "^3.0.3",
     "jest-svg-transformer": "^1.0.0",
     "lodash.memoize": "^4.1.2",
     "metro-config": "^0.64.0",
@@ -92,7 +93,9 @@
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*45)"
     ],
-    "setupFiles": ["./jestSetupFile.js"]
+    "setupFiles": [
+      "<rootDir>/jest/setup.js"
+    ]
   },
   "private": true
 }

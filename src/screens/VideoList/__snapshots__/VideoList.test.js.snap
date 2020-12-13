@@ -1,0 +1,421 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing should match snapshot 1`] = `
+<View>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "id": 1,
+          "image": 1,
+          "title": "7 Early Signs of A Toxic Relationship",
+          "url": "https://www.youtube.com/embed/HDNMvuQrcGk",
+        },
+        Object {
+          "id": 2,
+          "image": 1,
+          "title": "Why domestic violence victims do not leave | Leslie Morgan Steiner",
+          "url": "https://www.youtube.com/embed/V1yW5IsnSjo",
+        },
+        Object {
+          "id": 3,
+          "image": 1,
+          "title": "I broke my silence: My story of domestic violence | Emma Murphy | TEDxUniversityofNicosia",
+          "url": "https://www.youtube.com/embed/frFEdN7aMh8",
+        },
+        Object {
+          "id": 4,
+          "image": 1,
+          "title": "Dangerous Love (Domestic Abuse Documentary) | Real Stories",
+          "url": "https://www.youtube.com/embed/0yIAY2tbnOE",
+        },
+        Object {
+          "id": 5,
+          "image": 1,
+          "title": "The difference between healthy and unhealthy love | Katie Hood",
+          "url": "https://www.youtube.com/embed/ON4iy8hq2hM",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "grey",
+              "margin": 20,
+              "opacity": 1,
+              "paddingBottom": 20,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 200,
+                "marginBottom": 20,
+                "width": "100%",
+              }
+            }
+          />
+          <
+            color="#415889"
+            icon={
+              Object {
+                "icon": Array [
+                  448,
+                  512,
+                  Array [],
+                  "f04b",
+                  "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z",
+                ],
+                "iconName": "play",
+                "prefix": "fas",
+              }
+            }
+            size={38}
+            style={
+              Object {
+                "left": "45%",
+                "position": "absolute",
+                "top": "45%",
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "500",
+              }
+            }
+          >
+            7 Early Signs of A Toxic Relationship
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "grey",
+              "margin": 20,
+              "opacity": 1,
+              "paddingBottom": 20,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 200,
+                "marginBottom": 20,
+                "width": "100%",
+              }
+            }
+          />
+          <
+            color="#415889"
+            icon={
+              Object {
+                "icon": Array [
+                  448,
+                  512,
+                  Array [],
+                  "f04b",
+                  "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z",
+                ],
+                "iconName": "play",
+                "prefix": "fas",
+              }
+            }
+            size={38}
+            style={
+              Object {
+                "left": "45%",
+                "position": "absolute",
+                "top": "45%",
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "500",
+              }
+            }
+          >
+            Why domestic violence victims do not leave | Leslie Morgan Steiner
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "grey",
+              "margin": 20,
+              "opacity": 1,
+              "paddingBottom": 20,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 200,
+                "marginBottom": 20,
+                "width": "100%",
+              }
+            }
+          />
+          <
+            color="#415889"
+            icon={
+              Object {
+                "icon": Array [
+                  448,
+                  512,
+                  Array [],
+                  "f04b",
+                  "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z",
+                ],
+                "iconName": "play",
+                "prefix": "fas",
+              }
+            }
+            size={38}
+            style={
+              Object {
+                "left": "45%",
+                "position": "absolute",
+                "top": "45%",
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "500",
+              }
+            }
+          >
+            I broke my silence: My story of domestic violence | Emma Murphy | TEDxUniversityofNicosia
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "grey",
+              "margin": 20,
+              "opacity": 1,
+              "paddingBottom": 20,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 200,
+                "marginBottom": 20,
+                "width": "100%",
+              }
+            }
+          />
+          <
+            color="#415889"
+            icon={
+              Object {
+                "icon": Array [
+                  448,
+                  512,
+                  Array [],
+                  "f04b",
+                  "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z",
+                ],
+                "iconName": "play",
+                "prefix": "fas",
+              }
+            }
+            size={38}
+            style={
+              Object {
+                "left": "45%",
+                "position": "absolute",
+                "top": "45%",
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "500",
+              }
+            }
+          >
+            Dangerous Love (Domestic Abuse Documentary) | Real Stories
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "grey",
+              "margin": 20,
+              "opacity": 1,
+              "paddingBottom": 20,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 200,
+                "marginBottom": 20,
+                "width": "100%",
+              }
+            }
+          />
+          <
+            color="#415889"
+            icon={
+              Object {
+                "icon": Array [
+                  448,
+                  512,
+                  Array [],
+                  "f04b",
+                  "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z",
+                ],
+                "iconName": "play",
+                "prefix": "fas",
+              }
+            }
+            size={38}
+            style={
+              Object {
+                "left": "45%",
+                "position": "absolute",
+                "top": "45%",
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "500",
+              }
+            }
+          >
+            The difference between healthy and unhealthy love | Katie Hood
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

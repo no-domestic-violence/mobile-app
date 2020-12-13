@@ -64,5 +64,4 @@ buck-out/
 __generated__
 web-build
 # tests
-__snapshots__/
 coverage/\*\*/*

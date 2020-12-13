@@ -34,6 +34,7 @@ export default function TermsAndConditionsScreen({ navigation }) {
         <TermsAndConditionsText />
       </ScrollView>
       <StyledButton
+        testID="terms-conditions-button"
         disabled={!isRead}
         onPress={() => navigation.navigate('Onboarding')}
         style={!isRead ? styles.buttonDisabled : styles.button}>
