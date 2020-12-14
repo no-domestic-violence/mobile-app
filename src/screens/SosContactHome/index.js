@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SosContactList from 'components/sosContacts/SosContactList';
 
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { useTranslation } from 'react-i18next';
 import { StyledView } from 'styles/shared/StyledView';
+import { Context as SosContext } from 'state/SosContext';
 
-export default function SosContactHome() {
+export default function SosContactHome({ navigation }) {
+  const {
+    getContacts,
+    state: { contacts },
+  } = useContext(SosContext);
+
+  useEffect(() => {
+    getContacts();
+    navigation.setParams({ id: '' });
+  }, []);
+
   const { t } = useTranslation();
   return (
     <>
@@ -15,7 +26,7 @@ export default function SosContactHome() {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Emergency Contacts</Text>
         </View>
-        <SosContactList />
+        <SosContactList contacts={contacts} navigation={navigation} />
       </StyledView>
     </>
   );

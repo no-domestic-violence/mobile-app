@@ -1,5 +1,5 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -61,15 +61,15 @@ export default function SosContactForm({ navigation, route }) {
     if (!isAddMode) {
       getContact();
     }
-  }, []);
+  }, [isAddMode, getContact]);
 
-  const getContact = async () => {
+  const getContact = useCallback(async () => {
     const foundContact = await contacts.find((item) => item._id === id);
     setContact(foundContact || {});
     setValue('name', foundContact.name);
     setValue('phone', foundContact.phone);
     setValue('message', foundContact.message);
-  };
+  }, [contacts, id, setValue]);
 
   function onSubmit() {
     return isAddMode ? saveContact() : saveEdit();
