@@ -5,7 +5,8 @@
         "change-password" : "Passwort ändern",
         "change-language" : "Sprache ändern",
         "delete-account" : "Konto löschen",
-        "logout" : "Ausloggen"
+        "logout" : "Ausloggen",
+        "hello_user" : "Hallo, {{ username }}"
     },
     "TermsAndConditions" : {
         "title": "GESCHÄFTSBEDINGUNGEN",

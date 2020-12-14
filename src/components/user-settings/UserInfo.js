@@ -5,7 +5,7 @@ import UserSettingsSVG from '_assets/svg/userSettings.svg';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
-const UserInfo = React.memo(({ username }) => {
+const UserInfo = React.memo(({ t, username }) => {
   return (
     <View>
       <UserSettingsSVG style={{ position: 'absolute' }} />
@@ -16,11 +16,13 @@ const UserInfo = React.memo(({ username }) => {
           color={'grey'}
           style={styles.arrow}
         />
-        <Text style={styles.username}>{username}</Text>
+        <Text style={styles.username}>
+          {t('common.hello_user', { username })}
+        </Text>
       </View>
     </View>
   );
-})
+});
 export default UserInfo;
 const styles = StyleSheet.create({
   username: {
