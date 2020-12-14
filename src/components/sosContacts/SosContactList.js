@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-native-elements';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
+import PropTypes from 'prop-types';
 
 export default function SosContactList({ contacts, navigation }) {
   const hasFirstContact = contacts !== undefined && contacts.length !== 0;
@@ -106,3 +107,19 @@ const styles = StyleSheet.create({
     borderRadius: 41,
   },
 });
+
+SosContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      phone: PropTypes.string,
+      message: PropTypes.string,
+    }),
+  ),
+};
+
+SosContactList.defaultProps = {
+  contacts: [
+    { name: 'defaultname', phone: '0123456789', message: 'defaultmessage' },
+  ],
+};
