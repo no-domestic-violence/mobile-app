@@ -15,6 +15,7 @@ export default function SosContactList({ contacts, navigation }) {
     <>
       <View style={styles.contactContainer}>
         <Button
+          testID="first-contact"
           title={hasFirstContact ? contacts[0].name : contactPlaceholder}
           titleStyle={
             hasFirstContact ? styles.contactText : styles.contactPlaceholder
@@ -31,6 +32,7 @@ export default function SosContactList({ contacts, navigation }) {
           icon={<FontAwesomeIcon icon={faPen} />}
         />
         <Button
+          testID="second-contact"
           titleStyle={
             hasSecondContact ? styles.contactText : styles.contactPlaceholder
           }
