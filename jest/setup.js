@@ -1,8 +1,4 @@
 import 'react-native-gesture-handler/jestSetup';
-import 'jest-fetch-mock';
-
-// have fetch and fetchMock available on global scope
-global.fetch = require('jest-fetch-mock');
 
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock');

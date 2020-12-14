@@ -81,20 +81,6 @@ Array [
               }
             }
           />
-          <Text
-            style={
-              Object {
-                "color": "#000000",
-                "fontSize": 18,
-                "fontWeight": "600",
-                "marginLeft": 10,
-                "paddingVertical": 1,
-                "textAlign": "center",
-              }
-            }
-          >
-            defaultname
-          </Text>
         </View>
       </View>
     </View>

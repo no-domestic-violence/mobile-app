@@ -119,7 +119,5 @@ SosContactList.propTypes = {
 };
 
 SosContactList.defaultProps = {
-  contacts: [
-    { name: 'defaultname', phone: '0123456789', message: 'defaultmessage' },
-  ],
+  contacts: [{ name: '', phone: '', message: '' }],
 };
