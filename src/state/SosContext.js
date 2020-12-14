@@ -1,5 +1,5 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import createAppContext from './CreateAppContext';
 import appApiClient from '../api/appApiClient';
 

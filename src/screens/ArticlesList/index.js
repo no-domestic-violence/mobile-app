@@ -11,7 +11,7 @@ export default function Content({ navigation }) {
 
   const getArticles = async () => {
     try {
-      const response = await appApiClient.get(`/articles`);
+      const response = await appApiClient.get('/articles');
       setBlog([...response.data]);
     } catch (error) {
       console.error(error);

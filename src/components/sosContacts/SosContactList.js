@@ -1,33 +1,22 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, AsyncStorage } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
-import { Context as SosContext } from 'state/SosContext';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
+import PropTypes from 'prop-types';
 
-export default function SosContactList() {
-  const navigation = useNavigation();
-  const {
-    getContacts,
-    state: { contacts },
-  } = useContext(SosContext);
-
+export default function SosContactList({ contacts, navigation }) {
   const hasFirstContact = contacts !== undefined && contacts.length !== 0;
   const hasSecondContact = contacts !== undefined && contacts.length === 2;
   const contactPlaceholder = 'Please add your trusted contact';
-
-  useEffect(() => {
-    getContacts();
-    navigation.setParams({ id: '' });
-  }, []);
 
   return (
     <>
       <View style={styles.contactContainer}>
         <Button
+          testID="first-contact"
           title={hasFirstContact ? contacts[0].name : contactPlaceholder}
           titleStyle={
             hasFirstContact ? styles.contactText : styles.contactPlaceholder
@@ -44,6 +33,7 @@ export default function SosContactList() {
           icon={<FontAwesomeIcon icon={faPen} />}
         />
         <Button
+          testID="second-contact"
           titleStyle={
             hasSecondContact ? styles.contactText : styles.contactPlaceholder
           }
@@ -117,3 +107,17 @@ const styles = StyleSheet.create({
     borderRadius: 41,
   },
 });
+
+SosContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      phone: PropTypes.string,
+      message: PropTypes.string,
+    }),
+  ),
+};
+
+SosContactList.defaultProps = {
+  contacts: [{ name: '', phone: '', message: '' }],
+};

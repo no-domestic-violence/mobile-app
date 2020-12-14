@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from 'services/i18n';
 import { DEFAULT_LANGUAGE } from '../services/i18n/language-detector';
 

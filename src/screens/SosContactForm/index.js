@@ -1,5 +1,5 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -12,7 +12,13 @@ import {
   faUser,
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
-import { View, StyleSheet, Keyboard, KeyboardAvoidingView } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
@@ -52,27 +58,18 @@ export default function SosContactForm({ navigation, route }) {
 
   // run getContact on mount -> setContact when foundContact
   useEffect(() => {
-    let isMounted = true;
     if (!isAddMode) {
-      getContact().then((foundContact) => {
-        if (isMounted) {
-          // empty object if not foundContact
-          setContact(foundContact || {});
-          setValue('name', foundContact.name);
-          setValue('phone', foundContact.phone);
-          setValue('message', foundContact.message);
-        }
-      });
+      getContact();
     }
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  }, [isAddMode, getContact]);
 
-  const getContact = async () => {
+  const getContact = useCallback(async () => {
     const foundContact = await contacts.find((item) => item._id === id);
-    return foundContact;
-  };
+    setContact(foundContact || {});
+    setValue('name', foundContact.name);
+    setValue('phone', foundContact.phone);
+    setValue('message', foundContact.message);
+  }, [contacts, id, setValue]);
 
   function onSubmit() {
     return isAddMode ? saveContact() : saveEdit();
@@ -104,7 +101,7 @@ export default function SosContactForm({ navigation, route }) {
     <>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
-        behavior={Platform.OS == 'ios' ? 'padding' : null}>
+        behavior={Platform.OS === 'ios' ? 'padding' : null}>
         <StyledView style={styles.homeView}>
           <EmergencySVG style={styles.svg} />
           <View style={styles.container}>

@@ -1,3 +1,6 @@
 module.exports = {
-  preset: 'jest-expo'
+  preset: 'jest-expo',
+  transform: {
+    '^.+\\.svg$': 'jest-svg-transformer',
+  },
 };
