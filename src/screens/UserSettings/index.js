@@ -15,7 +15,7 @@ export default function UserSettings({ navigation }) {
   };
   return (
     <StyledView style={styles.userSettingsContainer}>
-      <UserInfo t={t} username={username} />
+      <UserInfo username={t('common.hello_user', { username })} />
       <View style={styles.userSettingsActionsView}>
         <TouchableOpacity onPress={() => navigation.navigate('How to use')}>
           <Text style={styles.userSettingsActions}>
