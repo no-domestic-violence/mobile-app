@@ -1,5 +1,5 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-import React, { useContext, useState, useEffect, useCallback } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -46,30 +46,23 @@ export default function SosContactForm({ navigation, route }) {
   const { id } = route.params;
   // if there is no id in route.params -> isAddMode
   const isAddMode = !id;
+  const foundContact = contacts.find((item) => item._id === id);
 
   const nameInputRef = React.useRef();
   const phoneInputRef = React.useRef();
   const messageInputRef = React.useRef();
-  const [contact, setContact] = useState({});
 
   const { control, handleSubmit, errors, getValues, setValue } = useForm({
     resolver: yupResolver(schema),
   });
 
-  // run getContact on mount -> setContact when foundContact
   useEffect(() => {
     if (!isAddMode) {
-      getContact();
+      setValue('name', foundContact.name);
+      setValue('phone', foundContact.phone);
+      setValue('message', foundContact.message);
     }
-  }, [isAddMode, getContact]);
-
-  const getContact = useCallback(async () => {
-    const foundContact = await contacts.find((item) => item._id === id);
-    setContact(foundContact || {});
-    setValue('name', foundContact.name);
-    setValue('phone', foundContact.phone);
-    setValue('message', foundContact.message);
-  }, [contacts, id, setValue]);
+  }, [isAddMode]);
 
   function onSubmit() {
     return isAddMode ? saveContact() : saveEdit();
@@ -215,7 +208,7 @@ export default function SosContactForm({ navigation, route }) {
                 icon={faTrash}
                 size={30}
                 onPress={() => {
-                  handleRemove(contact._id);
+                  handleRemove(foundContact._id);
                 }}
               />
             )}
