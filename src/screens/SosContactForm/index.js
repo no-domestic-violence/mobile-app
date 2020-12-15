@@ -78,13 +78,14 @@ export default function SosContactForm({ navigation, route }) {
   const saveContact = async () => {
     const data = getValues();
     await addContact(data);
+    // need this step since mongodb generates the _id
     await getContacts();
     navigation.navigate('SosContactHome');
   };
 
   const saveEdit = async () => {
     const data = getValues();
-    // insert the contact id into form values
+    // insert the contact id into form values object
     data._id = id;
     await editContact({ data, id });
     navigation.navigate('SosContactHome');
@@ -219,6 +220,7 @@ export default function SosContactForm({ navigation, route }) {
               />
             )}
             <FontAwesomeIcon
+              testID="contact-submit-button"
               icon={faCheck}
               size={30}
               raised
