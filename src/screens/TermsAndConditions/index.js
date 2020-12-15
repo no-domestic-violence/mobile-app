@@ -7,6 +7,11 @@ import { Window } from 'styles/index';
 import { StyledView } from 'styles/shared/StyledView';
 import TermsAndConditionsText from 'components/termsAndConditions/text';
 
+/* contentOffset : where the user has currently scrolled within the scrollview
+  the part that you dont see. 
+  layoutMeasurement : size of the layout
+  contentSize : size of the text */
+
 const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
   const paddingToBottom = 20;
   return (
