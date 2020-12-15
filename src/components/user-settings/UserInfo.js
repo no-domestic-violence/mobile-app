@@ -20,7 +20,7 @@ const UserInfo = React.memo(({ username }) => {
       </View>
     </View>
   );
-})
+});
 export default UserInfo;
 const styles = StyleSheet.create({
   username: {

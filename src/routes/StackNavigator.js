@@ -28,7 +28,7 @@ const Stack = createStackNavigator();
 export const OnboardingNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Language" component={LanguageScreen} />
+      {/* <Stack.Screen name="Language" component={LanguageScreen} /> */}
       <Stack.Screen
         name="TermsAndConditions"
         component={TermsAndConditionsScreen}

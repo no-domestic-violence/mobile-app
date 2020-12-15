@@ -5,7 +5,8 @@
         "change-password" : "Change Password",
         "change-language" : "Change Language",
         "delete-account" : "Delete Account",
-        "logout" : "Log Out"
+        "logout" : "Log Out",
+        "hello_user" : "Hello, {{ username }}"
     },
 
     "TermsAndConditions" : {

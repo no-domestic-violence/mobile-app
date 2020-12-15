@@ -10,7 +10,7 @@ export default function AppNavigation() {
 
   useEffect(() => {
     authentication();
-  }, [authentication]);
+  }, []);
 
   return (
     <NavigationContainer>

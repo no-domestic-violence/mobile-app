@@ -75,26 +75,25 @@ export default function SosContactForm({ navigation, route }) {
     return isAddMode ? saveContact() : saveEdit();
   }
 
-  const updateAndGoBack = async () => {
+  const saveContact = async () => {
+    const data = getValues();
+    await addContact(data);
+    // need this step since mongodb generates the _id
     await getContacts();
     navigation.navigate('SosContactHome');
   };
 
-  const saveContact = async () => {
-    const data = getValues();
-    await addContact(data);
-    updateAndGoBack();
-  };
-
   const saveEdit = async () => {
     const data = getValues();
+    // insert the contact id into form values object
+    data._id = id;
     await editContact({ data, id });
-    updateAndGoBack();
+    navigation.navigate('SosContactHome');
   };
 
   const handleRemove = async () => {
     await deleteContact({ id });
-    updateAndGoBack();
+    navigation.navigate('SosContactHome');
   };
 
   return (
@@ -221,6 +220,7 @@ export default function SosContactForm({ navigation, route }) {
               />
             )}
             <FontAwesomeIcon
+              testID="contact-submit-button"
               icon={faCheck}
               size={30}
               raised
