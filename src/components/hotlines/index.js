@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
-import { Colors } from '../../styles/index';
+import { Colors } from '_styles/index';
 import { Divider } from 'react-native-elements';
 
 import { faPhone } from '@fortawesome/free-solid-svg-icons';

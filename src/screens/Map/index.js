@@ -7,7 +7,7 @@ import {
 } from 'expo-location';
 import { withNavigationFocus } from '@react-navigation/compat';
 
-import MapContainer from '_components/map/MapContainer';
+import MapContainer from '_components/map/';
 import { Context as LocationContext } from '_state/LocationContext';
 import { styles } from './Map.styles';
 

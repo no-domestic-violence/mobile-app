@@ -106,7 +106,7 @@ export default function AuthForm({
                 newPasswordInputRef.current.focus()
               }
               blurOnSubmit={false}
-              secureTextEntry={true}
+              // secureTextEntry={true}
               // TODO:fix secure password
             />
           )}
@@ -169,7 +169,7 @@ export default function AuthForm({
             returnKeyType="done"
             onSubmitEditing={Keyboard.dismiss}
             blurOnSubmit={false}
-            secureTextEntry={true}
+            // secureTextEntry={true}
           />
         )}
       />

@@ -7,7 +7,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import AuthForm from '_components/authenticationForm/';
 import { styles } from './ChangePassword.styles';
-import ModalComponent from '_components/Modal';
+import ModalComponent from '_components/modal';
 
 export default function ChangePasswordScreen({ navigation }) {
   const { state, changePassword, removeErrors, removeMessages } = useContext(
