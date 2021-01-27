@@ -19,7 +19,7 @@ import SignUpScreen from '_screens/SignUp';
 import MapScreen from '_screens/Map';
 import ChangePassword from '_screens/ChangePassword';
 import ChangeLanguage from '_screens/ChangeLang';
-import HowToUse from '_screens/HowToUse';
+import UsageInstructions from '_screens/UsageInstructions';
 import DeleteAccount from '_screens/DeleteAccount';
 import TermsAndConditionsScreen from '_screens/TermsAndConditions';
 
@@ -106,7 +106,7 @@ export const UserSettingsStackNavigator = () => {
       <Stack.Screen name="Change Password" component={ChangePassword} />
       <Stack.Screen name="Delete Account" component={DeleteAccount} />
       <Stack.Screen name="Change Language" component={ChangeLanguage} />
-      <Stack.Screen name="How to use" component={HowToUse} />
+      <Stack.Screen name="How to use" component={UsageInstructions} />
       <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
   );
