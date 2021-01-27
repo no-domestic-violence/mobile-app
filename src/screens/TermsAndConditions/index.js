@@ -30,6 +30,7 @@ export default function TermsAndConditionsScreen({ navigation }) {
       <SVG style={{ position: 'absolute' }} />
       <Text style={styles.title}>{t('TermsAndConditions.title')}</Text>
       <ScrollView
+        scrollEventThrottle={16}
         style={styles.tcContainer}
         onScroll={({ nativeEvent }) => {
           if (isCloseToBottom(nativeEvent)) {

@@ -60,7 +60,7 @@ const Home = ({ navigation }) => {
   const { width } = Dimensions.get('window');
 
   return (
-    <ScrollView style={styles.homePageView}>
+    <ScrollView style={styles.homePageView} scrollEventThrottle={16}>
       <View style={styles.searchBoxView}>
         <TextInput
           placeholder="What are u looking for?"
