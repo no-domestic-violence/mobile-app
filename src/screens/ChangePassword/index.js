@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, KeyboardAvoidingView } from 'react-native';
 import { Context as AuthContext } from '_state/AuthContext';
-import UserInfo from '_components/user-settings/UserInfo';
+import UserInfo from '_components/user-settings/';
 import { StyledView } from '_styles/shared/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';

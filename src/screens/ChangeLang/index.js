@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Context as AuthContext } from '../../state/AuthContext';
 import { StyledView } from '../../styles/shared/StyledView';
-import UserInfo from '_components/user-settings/UserInfo';
+import UserInfo from '_components/user-settings/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { LanguageContext } from '../../state/LanguageContext';

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Context as AuthContext } from 'state/AuthContext';
 import { Colors } from 'styles';
 import { StyledView } from 'styles/shared/StyledView';
-import UserInfo from '_components/user-settings/UserInfo';
+import UserInfo from '_components/user-settings/';
 import { useTranslation } from 'react-i18next';
 
 export default function UserSettings({ navigation }) {
