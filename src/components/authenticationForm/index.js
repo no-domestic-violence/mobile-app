@@ -2,9 +2,8 @@ import React, { useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import PropTypes from 'prop-types';
-
 import * as yup from 'yup';
-import { Text, StyleSheet, Keyboard } from 'react-native';
+import { Text, Keyboard } from 'react-native';
 import {
   StyledInputAuth,
   StyledButton,
@@ -12,7 +11,7 @@ import {
 } from '_styles/shared/';
 import { Colors } from '_styles/';
 import { Divider } from 'react-native-elements';
-
+import { styles } from './AuthForm.styles';
 
 export default function AuthForm({
   formType,
@@ -82,7 +81,6 @@ export default function AuthForm({
       </>
     );
   };
-
   const renderOldpasswordInput = () => {
     return (
       <>
@@ -108,7 +106,8 @@ export default function AuthForm({
                 newPasswordInputRef.current.focus()
               }
               blurOnSubmit={false}
-              // secureTextEntry={true} TODO: fix secure password
+              secureTextEntry={true}
+              // TODO:fix secure password
             />
           )}
         />
@@ -170,7 +169,7 @@ export default function AuthForm({
             returnKeyType="done"
             onSubmitEditing={Keyboard.dismiss}
             blurOnSubmit={false}
-            // secureTextEntry={true}
+            secureTextEntry={true}
           />
         )}
       />
@@ -185,23 +184,10 @@ export default function AuthForm({
     </>
   );
 }
-const styles = StyleSheet.create({
-  view: {
-    justifyContent: 'flex-end',
-    height: '100%',
-  },
-  header: {
-    fontSize: 35,
-    fontWeight: '600',
-    alignSelf: 'flex-start',
-    marginBottom: 40,
-    marginLeft: 30,
-  },
-});
 
 AuthForm.propTypes = {
   formType: PropTypes.string.isRequired,
   headerForm: PropTypes.string.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,
-}
+};
