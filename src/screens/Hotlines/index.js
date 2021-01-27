@@ -5,11 +5,12 @@ import { Divider } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SearchBar } from 'react-native-elements';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import ListItem from '_components/hotlines/ListItem';
+import HotlinesItem from '_components/hotlines/';
 import { StyledView } from '_styles/shared/StyledView';
 import { Colors } from '_styles/';
 import useDebounce from '_hooks/useDebounce';
 import { styles } from './Hotlines.styles';
+
 export default function HotlinesList() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
@@ -69,7 +70,7 @@ export default function HotlinesList() {
         keyExtractor={(item, index) => index.toString()}
         enableEmptySections={true}
         renderItem={({ item }) => (
-          <ListItem item={item} makeCall={makeCall} title={item.phone} />
+          <HotlinesItem item={item} makeCall={makeCall} title={item.phone} />
         )}
       />
     </StyledView>
