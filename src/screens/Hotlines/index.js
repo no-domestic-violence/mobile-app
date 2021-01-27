@@ -1,12 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import appApiClient from '../../api/appApiClient';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Linking,
-  ActivityIndicator,
-} from 'react-native';
+import { View, FlatList, Linking, ActivityIndicator } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SearchBar } from 'react-native-elements';
@@ -15,7 +9,7 @@ import ListItem from '_components/hotlines/ListItem';
 import { StyledView } from '_styles/shared/StyledView';
 import { Colors } from '_styles/';
 import useDebounce from '_hooks/useDebounce';
-
+import { styles } from './Hotlines.styles';
 export default function HotlinesList() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
@@ -82,14 +76,4 @@ export default function HotlinesList() {
   );
 }
 
-const styles = StyleSheet.create({
-  list: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    paddingHorizontal: 20
-  },
-});
+

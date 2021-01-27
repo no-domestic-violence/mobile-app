@@ -1,18 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  KeyboardAvoidingView,
-} from 'react-native';
+import { View, Text, Button, KeyboardAvoidingView } from 'react-native';
 import Modal from 'react-native-modal';
 import { Context as AuthContext } from '_state/AuthContext';
 import UserInfo from '_components/user-settings/UserInfo';
 import { StyledView } from '_styles/shared/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import AuthForm from '_components/authenticationForm/AuthForm';
+import AuthForm from '_components/authenticationForm/';
+import { styles } from './ChangePassword.styles';
 
 export default function ChangePasswordScreen({ navigation }) {
   const { state, changePassword, removeErrors, removeMessages } = useContext(
@@ -87,33 +82,4 @@ export default function ChangePasswordScreen({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
-const styles = StyleSheet.create({
-  userSettingsContainer: {
-    alignItems: 'flex-start',
-  },
-  view: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-  },
-  arrow: {
-    alignSelf: 'flex-start',
-    marginTop: 50,
-    marginLeft: 10,
-  },
-  textError: {
-    marginTop: 20,
-    color: 'darkred',
-  },
-  textSuccess: {
-    color: 'darkgreen',
-  },
-  modalContainer: {
-    backgroundColor: '#f9fafb',
-    width: '80%',
-    borderRadius: 5,
-    alignContent: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-});
+

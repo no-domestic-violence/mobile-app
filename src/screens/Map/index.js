@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import {
   requestPermissionsAsync,
   watchPositionAsync,
@@ -9,6 +9,7 @@ import { withNavigationFocus } from '@react-navigation/compat';
 
 import MapContainer from '_components/map/MapContainer';
 import { Context as LocationContext } from '_state/LocationContext';
+import { styles } from './Map.styles';
 
 const MapScreen = ({ isFocused }) => {
   const {
@@ -59,14 +60,5 @@ const MapScreen = ({ isFocused }) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  loader: {
-    flex: 1,
-  },
-});
 
 export default withNavigationFocus(MapScreen);

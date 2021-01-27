@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
@@ -10,7 +9,8 @@ import {
 import { Context as AuthContext } from '_state/AuthContext';
 import AuthSVG from '_assets/svg/login.svg';
 import { StyledView } from '_styles/shared/';
-import AuthForm from '_components/authenticationForm/AuthForm';
+import AuthForm from '_components/authenticationForm/';
+import { styles } from './SignUp.styles';
 
 export default function SignUpScreen({ navigation }) {
   const { state, signup, removeErrors } = useContext(AuthContext);
@@ -53,22 +53,4 @@ export default function SignUpScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  view: {
-    justifyContent: 'flex-end',
-    height: '100%',
-  },
-  text: {
-    fontSize: 14,
-    color: '#000',
-    marginTop: 20,
-    fontStyle: 'italic',
-  },
-  actionsContainer: {
-    marginBottom: 60,
-  },
-  errorMessage: {
-    color: 'red',
-    marginTop: 20,
-  },
-});
+
