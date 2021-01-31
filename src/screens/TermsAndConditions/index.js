@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import SVG from '_assets/svg/language.svg';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
-import { Window } from 'styles/index';
 import { StyledView } from 'styles/shared/StyledView';
 import TermsAndConditionsText from 'components/termsAndConditions/text';
+import { styles } from './TermsAndConditions.styles';
 
 /* contentOffset : where the user has currently scrolled within the scrollview
   the part that you dont see. 
@@ -49,27 +49,3 @@ export default function TermsAndConditionsScreen({ navigation }) {
     </StyledView>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 21,
-    alignSelf: 'center',
-    marginTop: 40,
-  },
-  tcContainer: {
-    marginTop: 30,
-    width: Window.width * 0.85,
-    height: Window.height * 0.7,
-    backgroundColor: 'rgba(255, 255, 255, 0.71)',
-    borderRadius: 31,
-  },
-
-  button: {
-    marginBottom: 40,
-  },
-
-  buttonDisabled: {
-    backgroundColor: '#999',
-    marginBottom: 40,
-  },
-});
