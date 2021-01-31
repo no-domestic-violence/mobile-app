@@ -80,22 +80,5 @@
     "react-native-svg-transformer": "^0.14.3",
     "react-test-renderer": "^17.0.1"
   },
-  "jest": {
-    "preset": "jest-expo",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/coverage/**",
-      "!**/node_modules/**",
-      "!**/babel.config.js",
-      "!**/jest.setup.js"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*45)"
-    ],
-    "setupFiles": [
-      "<rootDir>/jest/setup.js"
-    ]
-  },
   "private": true
 }
