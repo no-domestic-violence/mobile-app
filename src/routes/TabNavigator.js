@@ -45,7 +45,8 @@ const BottomTabNavigator = () => {
         style: {
           backgroundColor: '#FEF8E3',
         },
-      }}>
+      }}
+    >
       <>
         <Tab.Screen name="Home" component={ResourcesTabNavigator} />
         <Tab.Screen name="Hotlines" component={SheltersHotlinesTabNavigator} />

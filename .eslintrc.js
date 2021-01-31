@@ -9,12 +9,9 @@ module.exports = {
   },
   rules: {
     'react/jsx-filename-extension': 'off',
-    "no-console": [
-      "warn",
-      { "allow": ["clear", "info", "error"] }
-     ],
-     'arrow-body-style': 'off',
-     'comma-dangle': 'off',
+    'no-console': ['warn', { allow: ['clear', 'info', 'error'] }],
+    'arrow-body-style': 'off',
+    'comma-dangle': 'off',
     'padded-blocks': 'off',
     'arrow-body-style': 'off',
     'react-hooks/exhaustive-deps': 'warn',
