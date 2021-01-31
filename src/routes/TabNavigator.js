@@ -23,6 +23,7 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        // eslint-disable-next-line
         tabBarIcon: ({ color, size }) => {
           let iconName;
 
@@ -44,8 +45,7 @@ const BottomTabNavigator = () => {
         style: {
           backgroundColor: '#FEF8E3',
         },
-      }}
-    >
+      }}>
       <>
         <Tab.Screen name="Home" component={ResourcesTabNavigator} />
         <Tab.Screen name="Hotlines" component={SheltersHotlinesTabNavigator} />

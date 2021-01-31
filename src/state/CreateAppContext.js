@@ -4,7 +4,7 @@ import React, { useReducer } from 'react';
 // does not to be changed
 export default (reducer, actions, defaultValue) => {
   const Context = React.createContext();
-
+  // eslint-disable-next-line
   const Provider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, defaultValue);
 

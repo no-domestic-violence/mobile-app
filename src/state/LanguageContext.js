@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from 'services/i18n';
+import PropTypes from 'prop-types';
 import { DEFAULT_LANGUAGE } from '../services/i18n/language-detector';
 
 const APP_LANGUAGE = 'lang';
@@ -47,4 +48,7 @@ export const LanguageProvider = ({ children }) => {
       {children}
     </LanguageContext.Provider>
   );
+};
+LanguageProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
