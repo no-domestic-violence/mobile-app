@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import appApiClient from '../../api/appApiClient';
+import { getHotlinesData } from '../../api/';
 import { View, FlatList, Linking, ActivityIndicator } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -21,7 +21,7 @@ export default function HotlinesList() {
 
   useEffect(() => {
     setLoading(true);
-    getHotlinesData();
+    getHotlinesData(setDataSource, setLoading, search, inputRef);
   }, [debouncedValue]);
 
   const makeCall = (phoneNumber) => {
@@ -29,18 +29,6 @@ export default function HotlinesList() {
     Linking.openURL(iosPhoneNumber);
   };
 
-  const getHotlinesData = async () => {
-    try {
-      const response = await appApiClient.get(`/hotlines`, {
-        params: { searchTerm: search },
-      });
-      setDataSource([...response.data]);
-      setLoading(false);
-      inputRef.current.focus();
-    } catch (error) {
-      console.error(error);
-    }
-  };
   if (loading) {
     return (
       <View style={styles.container}>
@@ -76,5 +64,3 @@ export default function HotlinesList() {
     </StyledView>
   );
 }
-
-
