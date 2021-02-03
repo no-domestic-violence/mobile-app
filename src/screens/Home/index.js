@@ -12,8 +12,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import Carousel from 'react-native-anchor-carousel';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import WatchListRenderItem from '../../components/content-views/WatchListRenderItem';
-import TodayReadRenderItem from '../../components/content-views/TodayReadRenderItem';
+import {
+  WatchListRenderItem,
+  TodayReadRenderItem,
+} from '_components/content-views/';
 import videoData from '../../mock/video';
 import { styles } from './Home.styles';
 

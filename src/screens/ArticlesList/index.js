@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList } from 'react-native';
-import ArticleCard from 'components/content/ArticleCard';
+import ArticleCard from 'components/content/';
 import appApiClient from '../../api/appApiClient';
 
 export default function Content({ navigation }) {

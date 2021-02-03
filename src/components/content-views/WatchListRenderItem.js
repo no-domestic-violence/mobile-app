@@ -2,42 +2,22 @@ import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { styles } from './index.styles';
+
 const WatchListRenderItem = ({ item, background }) => {
   return (
-    <TouchableOpacity style={styles.itemContainer}>
-      <Image source={background} style={styles.itemImage} />
-      <View style={styles.itemView}></View>
+    <TouchableOpacity style={styles.watchItemContainer}>
+      <Image source={background} style={styles.watchItemImage} />
+      <View style={styles.watchItemView}></View>
       <FontAwesomeIcon
         icon={faPlay}
         size={38}
         color='#fff'
-        style={styles.itemIcon}
+        style={styles.watchItemImage}
       />
     </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({
-  itemContainer: {
-    marginRight: 20,
-  },
-  itemIcon: {
-    position: 'absolute',
-    top: '45%',
-    left: '45%',
-    opacity: 0.9,
-  },
-  itemView: {
-    position: 'absolute',
-    height: 5,
-    width: '100%',
-    backgroundColor: '#02ad94',
-    opacity: 0.8,
-  },
-  itemImage: {
-    height: 300,
-    width: 200,
-  },
-});
 
 export default WatchListRenderItem;
