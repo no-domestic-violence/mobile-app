@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import UserInfo from '_components/user-settings/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -7,6 +7,7 @@ import { Button } from 'react-native-elements';
 import { LanguageContext } from '../../state/LanguageContext';
 import { StyledView } from '../../styles/shared/StyledView';
 import { Context as AuthContext } from '../../state/AuthContext';
+import { styles } from './ChangeLang.styles';
 
 export default function ChangeLanguage({ navigation }) {
   const { state } = useContext(AuthContext);
@@ -49,38 +50,4 @@ export default function ChangeLanguage({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  userSettingsContainer: {
-    alignItems: 'flex-start',
-  },
-  arrow: {
-    alignSelf: 'flex-start',
-    marginTop: 50,
-    marginLeft: 10,
-  },
-  button: {
-    margin: 20,
-    alignItems: 'center',
-  },
-  buttonText: {
-    backgroundColor: '#FFFFFF',
-    paddingVertical: 20,
-    paddingHorizontal: 90,
-    borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  view: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-  },
-  header: {
-    fontSize: 20,
-    fontWeight: '600',
-    alignSelf: 'flex-start',
-    marginLeft: 30,
-    marginBottom: 40,
-    marginTop: 40,
-  },
-});
+

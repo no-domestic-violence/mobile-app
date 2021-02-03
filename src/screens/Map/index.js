@@ -18,8 +18,7 @@ const MapScreen = ({ isFocused }) => {
     state: { currentLocation },
     updateCurrentLocation,
   } = useContext(LocationContext);
-  // TODO: handle errros
-  const [error, setError] = useState({});
+  const [error, setError] = useState('');
 
   const askForLocation = async () => {
     try {
@@ -34,8 +33,8 @@ const MapScreen = ({ isFocused }) => {
           updateCurrentLocation(location);
         }
       );
-    } catch (error) {
-      setError(error);
+    } catch (responseError) {
+      setError(responseError);
     }
   };
 
@@ -44,7 +43,7 @@ const MapScreen = ({ isFocused }) => {
     fetchShelters();
   }, [isFocused]);
 
-  if (!currentLocation) {
+  if (!currentLocation || error) {
     return (
       <View>
         <ActivityIndicator size='large' style={styles.loader} />

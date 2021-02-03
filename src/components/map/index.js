@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image } from 'react-native';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import MapView, { Marker } from 'react-native-maps';
 import { styles } from './MapContainer.styles';
 
@@ -25,6 +25,7 @@ const MapContainer = React.memo(({ currentLocation, sheltersList }) => {
       >
         <Marker coordinate={currentLocation.coords}>
           <Image
+            // eslint-disable-next-line
             source={require('../../assets/images/here.png')}
             style={styles.currentLocation}
           />
@@ -48,7 +49,7 @@ const MapContainer = React.memo(({ currentLocation, sheltersList }) => {
 
 export default MapContainer;
 
-MapContainer.propTypes = {
-  currentLocation: PropTypes.object.isRequired,
-  sheltersList: PropTypes.array,
-};
+// MapContainer.propTypes = {
+//   currentLocation: PropTypes.object.isRequired,
+//   sheltersList: PropTypes.array,
+// };

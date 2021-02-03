@@ -12,20 +12,15 @@ import {
   faUser,
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  View,
-  StyleSheet,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import { View, Keyboard, KeyboardAvoidingView, Platform } from 'react-native';
 import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
 import Error from 'components/Error';
 import { Context as SosContext } from 'state/SosContext';
+import { styles } from './SosContactForm.styles';
 
-const phoneRegExp = /(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .\-–\/]?)([\d]+))/;
+const phoneRegExp = /(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .\-–\/]?)([\d]+))/; // eslint-disable-line
 const schema = yup.object().shape({
   name: yup.string().required('Please enter a name'),
   phone: yup
@@ -64,10 +59,6 @@ export default function SosContactForm({ navigation, route }) {
     }
   }, [isAddMode]);
 
-  function onSubmit() {
-    return isAddMode ? saveContact() : saveEdit();
-  }
-
   const saveContact = async () => {
     const data = getValues();
     await addContact(data);
@@ -83,6 +74,9 @@ export default function SosContactForm({ navigation, route }) {
     await editContact({ data, id });
     navigation.navigate('SosContactHome');
   };
+  function onSubmit() {
+    return isAddMode ? saveContact() : saveEdit();
+  }
 
   const handleRemove = async () => {
     await deleteContact({ id });
@@ -226,41 +220,3 @@ export default function SosContactForm({ navigation, route }) {
   );
 }
 
-const styles = StyleSheet.create({
-  homeView: {
-    justifyContent: 'center',
-  },
-  container: {
-    backgroundColor: '#FEF8E3',
-    width: '80%',
-    height: '40%',
-    borderRadius: 48,
-    justifyContent: 'center',
-    paddingTop: 40,
-    paddingBottom: 40,
-    paddingLeft: 30,
-    paddingRight: 30,
-  },
-  icon: {
-    paddingRight: 15,
-  },
-  iconContainer: {
-    backgroundColor: '#FECE1F',
-    borderRadius: 50,
-    padding: 30,
-    textAlign: 'center',
-  },
-  svg: {
-    position: 'absolute',
-  },
-  buttonRow: {
-    paddingTop: 80,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    width: '60%',
-  },
-  error: {
-    fontSize: 10,
-    color: 'red',
-  },
-});

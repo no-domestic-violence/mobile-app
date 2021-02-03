@@ -21,7 +21,7 @@ const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
 };
 
 export default function TermsAndConditionsScreen({ navigation }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [isRead, setRead] = useState(false);
   const handleRead = () => setRead(true);
 

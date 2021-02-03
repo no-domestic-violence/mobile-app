@@ -6,9 +6,8 @@ import {
   ScrollView,
   TextInput,
   FlatList,
-  Image,
 } from 'react-native';
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import Carousel from 'react-native-anchor-carousel';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -21,12 +20,16 @@ import { styles } from './Home.styles';
 
 const Home = ({ navigation }) => {
   // TODO: should get from db (with context api cuz of different screen)
+  // eslint-disable-next-line
   const background1 = require('../../assets/backgrounds/article1.png');
+  // eslint-disable-next-line
   const background2 = require('../../assets/backgrounds/article2.png');
+  // eslint-disable-next-line
   const background6 = require('../../assets/backgrounds/article6.png');
+  // eslint-disable-next-line
   const background9 = require('../../assets/backgrounds/article9.png');
 
-  const [articles, setArticles] = useState([
+  const articles = [
     {
       image: background2,
       title: 'Why do we have violence?',
@@ -52,11 +55,9 @@ const Home = ({ navigation }) => {
       title: 'Physical violence is increasing in Germany',
       id: '5',
     },
-  ]);
+  ];
 
-  const [watchList, setWatchList] = useState(videoData);
-  // TODO: fix use ref hook
-  // const carouselRef = useRef(null);
+  const watchList = videoData;
 
   const { width } = Dimensions.get('window');
 
@@ -66,7 +67,8 @@ const Home = ({ navigation }) => {
         <TextInput
           placeholder='What are u looking for?'
           placeholderTextColor='grey'
-          style={styles.searchbox} />
+          style={styles.searchbox}
+        />
         <FontAwesomeIcon
           icon={faSearch}
           size={22}
@@ -74,7 +76,7 @@ const Home = ({ navigation }) => {
           style={styles.searchboxIcon}
         />
       </View>
-      <Text style={styles.headers}>Today's Read</Text>
+      <Text style={styles.headers}>Today&#39;s Read</Text>
       <View style={styles.carouselContainer}>
         <Carousel
           style={styles.carousel}
@@ -107,6 +109,6 @@ const Home = ({ navigation }) => {
       </View>
     </ScrollView>
   );
-};
+};;
 
 export default Home;

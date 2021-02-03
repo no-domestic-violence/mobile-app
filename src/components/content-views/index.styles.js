@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
   watchItemContainer: {
     marginRight: 20,
   },
-  watchItemImage: {
+  watchItemIcon: {
     position: 'absolute',
     top: '45%',
     left: '45%',

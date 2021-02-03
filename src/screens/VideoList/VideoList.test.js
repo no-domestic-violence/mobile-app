@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import VideoListRenderItem from '_components/content-views/VideoListRenderItem';
 import VideoList from './index';
 
 export const mockDataVideos = [

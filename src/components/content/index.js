@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './ArticleCard.styles';
@@ -24,8 +23,3 @@ const ArticleCard = ({ item, navigation }) => {
   );
 };
 export default ArticleCard;
-
-
-ArticleCard.propTypes = {
-  item: PropTypes.object.isRequired,
-};

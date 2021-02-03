@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import { Colors } from '_styles/index';
 import { Divider } from 'react-native-elements';
@@ -34,8 +33,3 @@ export default function HotlinesItem({ item, makeCall }) {
     </>
   );
 }
-
-HotlinesItem.propTypes = {
-  item: PropTypes.object.isRequired,
-  makeCall: PropTypes.func,
-};

@@ -37,14 +37,15 @@ export default function AuthForm({
       .required('Please enter 8 characters password'),
   });
 
-  const { control, handleSubmit, errors, getValues } = useForm({
+  const { control, handleSubmit, errors } = useForm({
     resolver: yupResolver(AuthSchema),
   });
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const usernameInputRef = useRef();
-  const oldPasswordInputRef = React.useRef();
+  const oldPasswordInputRef = useRef();
+  const newPasswordInputRef = useRef();
 
   const renderUsername = () => {
     return (
@@ -58,7 +59,7 @@ export default function AuthForm({
           }}
           render={({ onChange, value }) => (
             <StyledInputAuth
-              onChangeText={(value) => onChange(value)}
+              onChangeText={(inputValue) => onChange(inputValue)}
               value={value}
               placeholder='Username'
               autoCapitalize='none'
@@ -89,7 +90,7 @@ export default function AuthForm({
           defaultValue=''
           control={control}
           onFocus={() => {
-            password.current.focus();
+            oldPasswordInputRef.current.focus();
           }}
           render={({ onChange, value }) => (
             <StyledInputAuth
@@ -97,7 +98,7 @@ export default function AuthForm({
               autoCapitalize='none'
               autoCorrect={false}
               placeholderTextColor='#6c757d'
-              onChangeText={(value) => onChange(value)}
+              onChangeText={(inputValue) => onChange(inputValue)}
               value={value}
               ref={oldPasswordInputRef}
               returnKeyType='next'
@@ -136,7 +137,7 @@ export default function AuthForm({
             autoCorrect={false}
             autoCapitalize='none'
             placeholderTextColor='#6c757d'
-            onChangeText={(value) => onChange(value)}
+            onChangeText={(inputValue) => onChange(inputValue)}
             value={value}
             ref={emailInputRef}
             returnKeyType='next'
@@ -163,7 +164,7 @@ export default function AuthForm({
             autoCapitalize='none'
             autoCorrect={false}
             placeholderTextColor='#6c757d'
-            onChangeText={(value) => onChange(value)}
+            onChangeText={(inputValue) => onChange(inputValue)}
             value={value}
             ref={passwordInputRef}
             returnKeyType='done'

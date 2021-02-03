@@ -33,7 +33,7 @@ export default function ChangePasswordScreen({ navigation }) {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS == 'ios' ? 'padding' : null}>
+      behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <StyledView style={styles.userSettingsContainer}>
         <UserInfo username={username} />
         <View style={styles.view}>
@@ -41,7 +41,7 @@ export default function ChangePasswordScreen({ navigation }) {
             onPress={() => navigation.goBack()}
             icon={faAngleLeft}
             size={40}
-            color="#000"
+            color='#000'
             style={styles.arrow}
           />
           <AuthForm

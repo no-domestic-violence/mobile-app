@@ -9,7 +9,7 @@ import FourthSVG from 'assets/svg/onboarding/questions.svg';
 import { styles } from './Onboarding.styles';
 
 export default function OnboardingScreen({ navigation }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <Onboarding
       onSkip={() => navigation.navigate('Login')}
