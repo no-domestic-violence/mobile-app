@@ -24,7 +24,7 @@ describe('<SosContactHome />', () => {
     const result = await render(
       <SosProvider>
         <SosContactHome />
-      </SosProvider>,
+      </SosProvider>
     ).toJSON();
     await expect(result).toMatchSnapshot();
   });

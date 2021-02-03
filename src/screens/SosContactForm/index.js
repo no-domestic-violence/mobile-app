@@ -107,29 +107,29 @@ export default function SosContactForm({ navigation, route }) {
               }}
             />
             <Controller
-              name="name"
+              name='name'
               control={control}
               // focuses when there is error
               onFocus={() => {
                 nameInputRef.current.focus();
               }}
-              defaultValue=""
+              defaultValue=''
               render={({ onChange, value }) => (
                 <Input
-                  placeholder="Name"
+                  placeholder='Name'
                   ref={nameInputRef}
-                  returnKeyType="next"
-                  autoCapitalize="none"
+                  returnKeyType='next'
+                  autoCapitalize='none'
                   autoCorrect={false}
                   onSubmitEditing={() =>
                     phoneInputRef.current && phoneInputRef.current.focus()
                   }
                   blurOnSubmit={false}
-                  autoCompleteType="off"
+                  autoCompleteType='off'
                   onChangeText={(text) => onChange(text)}
                   value={value}
                   leftIcon={
-                    <FontAwesomeIcon icon={faUser} size={20} color="black" />
+                    <FontAwesomeIcon icon={faUser} size={20} color='black' />
                   }
                   leftIconContainerStyle={styles.icon}
                 />
@@ -140,30 +140,30 @@ export default function SosContactForm({ navigation, route }) {
               <Text style={styles.error}>{errors.name.message}</Text>
             )} */}
             <Controller
-              name="phone"
+              name='phone'
               control={control}
               onFocus={() => {
                 phoneInputRef.current.focus();
               }}
-              defaultValue=""
+              defaultValue=''
               render={({ onChange, value }) => (
                 <Input
-                  placeholder="Phone Number"
+                  placeholder='Phone Number'
                   ref={phoneInputRef}
-                  keyboardType="numeric"
+                  keyboardType='numeric'
                   // RN not supporting 'next' on ios, 'done' does the same thing tho
                   returnKeyType={Platform.OS === 'ios' ? 'done' : 'next'}
-                  autoCapitalize="none"
+                  autoCapitalize='none'
                   autoCorrect={false}
                   onSubmitEditing={() =>
                     messageInputRef.current && messageInputRef.current.focus()
                   }
                   blurOnSubmit={false}
                   value={value}
-                  autoCompleteType="off"
+                  autoCompleteType='off'
                   onChangeText={(text) => onChange(text)}
                   leftIcon={
-                    <FontAwesomeIcon icon={faPhone} size={20} color="black" />
+                    <FontAwesomeIcon icon={faPhone} size={20} color='black' />
                   }
                   leftIconContainerStyle={styles.icon}
                 />
@@ -171,21 +171,21 @@ export default function SosContactForm({ navigation, route }) {
             />
             <Error errors={errors.phone} />
             <Controller
-              name="message"
+              name='message'
               control={control}
               onFocus={() => {
                 messageInputRef.current.focus();
               }}
-              defaultValue=""
+              defaultValue=''
               render={({ onChange, value }) => (
                 <Input
-                  placeholder="Help Message"
+                  placeholder='Help Message'
                   ref={messageInputRef}
                   value={value}
-                  returnKeyType="done"
-                  autoCapitalize="none"
+                  returnKeyType='done'
+                  autoCapitalize='none'
                   autoCorrect={false}
-                  autoCompleteType="off"
+                  autoCompleteType='off'
                   blurOnSubmit={false}
                   onChangeText={(text) => onChange(text)}
                   onSubmitEditing={Keyboard.dismiss}
@@ -193,7 +193,7 @@ export default function SosContactForm({ navigation, route }) {
                     <FontAwesomeIcon
                       icon={faEnvelope}
                       size={20}
-                      color="black"
+                      color='black'
                     />
                   }
                   leftIconContainerStyle={styles.icon}
@@ -213,7 +213,7 @@ export default function SosContactForm({ navigation, route }) {
               />
             )}
             <FontAwesomeIcon
-              testID="contact-submit-button"
+              testID='contact-submit-button'
               icon={faCheck}
               size={30}
               raised

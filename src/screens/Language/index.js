@@ -24,7 +24,7 @@ export default function LanguageScreen({ navigation }) {
             <Button
               title={item.name}
               titleStyle={{ color: '#000000' }}
-              type="solid"
+              type='solid'
               raised
               containerStyle={styles.button}
               buttonStyle={styles.buttonText}

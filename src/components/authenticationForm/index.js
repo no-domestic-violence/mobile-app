@@ -50,8 +50,8 @@ export default function AuthForm({
     return (
       <>
         <Controller
-          name="username"
-          defaultValue=""
+          name='username'
+          defaultValue=''
           control={control}
           onFocus={() => {
             usernameInputRef.current.focus();
@@ -60,12 +60,12 @@ export default function AuthForm({
             <StyledInputAuth
               onChangeText={(value) => onChange(value)}
               value={value}
-              placeholder="Username"
-              autoCapitalize="none"
+              placeholder='Username'
+              autoCapitalize='none'
               autoCorrect={false}
-              placeholderTextColor="#6c757d"
+              placeholderTextColor='#6c757d'
               ref={usernameInputRef}
-              returnKeyType="next"
+              returnKeyType='next'
               onSubmitEditing={() =>
                 emailInputRef.current && emailInputRef.current.focus()
               }
@@ -85,22 +85,22 @@ export default function AuthForm({
     return (
       <>
         <Controller
-          name="oldPassword"
-          defaultValue=""
+          name='oldPassword'
+          defaultValue=''
           control={control}
           onFocus={() => {
             password.current.focus();
           }}
           render={({ onChange, value }) => (
             <StyledInputAuth
-              placeholder="Your old password"
-              autoCapitalize="none"
+              placeholder='Your old password'
+              autoCapitalize='none'
               autoCorrect={false}
-              placeholderTextColor="#6c757d"
+              placeholderTextColor='#6c757d'
               onChangeText={(value) => onChange(value)}
               value={value}
               ref={oldPasswordInputRef}
-              returnKeyType="next"
+              returnKeyType='next'
               onSubmitEditing={() =>
                 newPasswordInputRef.current &&
                 newPasswordInputRef.current.focus()
@@ -124,22 +124,22 @@ export default function AuthForm({
       <Text style={styles.header}>{headerForm}</Text>
       {formType === 'sign up' ? renderUsername() : null}
       <Controller
-        name="email"
+        name='email'
         control={control}
-        defaultValue=""
+        defaultValue=''
         onFocus={() => {
           emailInputRef.current.focus();
         }}
         render={({ onChange, value }) => (
           <StyledInputAuth
-            placeholder="Email"
+            placeholder='Email'
             autoCorrect={false}
-            autoCapitalize="none"
-            placeholderTextColor="#6c757d"
+            autoCapitalize='none'
+            placeholderTextColor='#6c757d'
             onChangeText={(value) => onChange(value)}
             value={value}
             ref={emailInputRef}
-            returnKeyType="next"
+            returnKeyType='next'
             onSubmitEditing={() =>
               passwordInputRef.current && passwordInputRef.current.focus()
             }
@@ -154,19 +154,19 @@ export default function AuthForm({
       <Divider style={{ height: 20, backgroundColor: Colors.primary }} />
       {formType === 'change password' ? renderOldpasswordInput() : null}
       <Controller
-        name="password"
-        defaultValue=""
+        name='password'
+        defaultValue=''
         control={control}
         render={({ onChange, value }) => (
           <StyledInputAuth
-            placeholder="Password"
-            autoCapitalize="none"
+            placeholder='Password'
+            autoCapitalize='none'
             autoCorrect={false}
-            placeholderTextColor="#6c757d"
+            placeholderTextColor='#6c757d'
             onChangeText={(value) => onChange(value)}
             value={value}
             ref={passwordInputRef}
-            returnKeyType="done"
+            returnKeyType='done'
             onSubmitEditing={Keyboard.dismiss}
             blurOnSubmit={false}
             // secureTextEntry={true}

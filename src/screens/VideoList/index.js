@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, FlatList } from 'react-native';
-import  videoData  from '../../mock/video';
+import videoData from '../../mock/video';
 import VideoListRenderItem from '../../components/content-views/VideoListRenderItem';
 
 export default function VideoList({ navigation }) {

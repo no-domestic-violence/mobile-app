@@ -32,7 +32,7 @@ const MapScreen = ({ isFocused }) => {
         },
         (location) => {
           updateCurrentLocation(location);
-        },
+        }
       );
     } catch (error) {
       setError(error);
@@ -47,7 +47,7 @@ const MapScreen = ({ isFocused }) => {
   if (!currentLocation) {
     return (
       <View>
-        <ActivityIndicator size="large" style={styles.loader} />
+        <ActivityIndicator size='large' style={styles.loader} />
       </View>
     );
   }

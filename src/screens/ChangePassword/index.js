@@ -11,7 +11,7 @@ import ModalComponent from '_components/modal';
 
 export default function ChangePasswordScreen({ navigation }) {
   const { state, changePassword, removeErrors, removeMessages } = useContext(
-    AuthContext,
+    AuthContext
   );
   const { username } = state;
 
@@ -45,10 +45,10 @@ export default function ChangePasswordScreen({ navigation }) {
             style={styles.arrow}
           />
           <AuthForm
-            formType="change password"
-            headerForm="Change Password"
+            formType='change password'
+            headerForm='Change Password'
             onSubmitForm={handleChangePassword}
-            buttonText="confirm"
+            buttonText='confirm'
           />
           {state.errorMessage && !state.successMessage ? (
             <Text style={styles.textError}>{state.errorMessage}</Text>
@@ -65,4 +65,3 @@ export default function ChangePasswordScreen({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
-

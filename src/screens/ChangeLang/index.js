@@ -35,7 +35,7 @@ export default function ChangeLanguage({ navigation }) {
             <Button
               title={item.name}
               titleStyle={{ color: '#000000' }}
-              type="solid"
+              type='solid'
               raised
               containerStyle={styles.button}
               buttonStyle={styles.buttonText}

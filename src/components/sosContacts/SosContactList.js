@@ -16,12 +16,12 @@ export default function SosContactList({ contacts, navigation }) {
     <>
       <View style={styles.contactContainer}>
         <Button
-          testID="first-contact"
+          testID='first-contact'
           title={hasFirstContact ? contacts[0].name : contactPlaceholder}
           titleStyle={
             hasFirstContact ? styles.contactText : styles.contactPlaceholder
           }
-          type="solid"
+          type='solid'
           raised
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
@@ -33,12 +33,12 @@ export default function SosContactList({ contacts, navigation }) {
           icon={<FontAwesomeIcon icon={faPen} />}
         />
         <Button
-          testID="second-contact"
+          testID='second-contact'
           titleStyle={
             hasSecondContact ? styles.contactText : styles.contactPlaceholder
           }
           title={hasSecondContact ? contacts[1].name : contactPlaceholder}
-          type="solid"
+          type='solid'
           raised
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
@@ -114,7 +114,7 @@ SosContactList.propTypes = {
       name: PropTypes.string,
       phone: PropTypes.string,
       message: PropTypes.string,
-    }),
+    })
   ),
 };
 

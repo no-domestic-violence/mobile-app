@@ -43,8 +43,7 @@ export const LanguageProvider = ({ children }) => {
         setAppLanguage: setLanguage,
         appLanguage,
         initializeAppLanguage,
-      }}
-    >
+      }}>
       {children}
     </LanguageContext.Provider>
   );

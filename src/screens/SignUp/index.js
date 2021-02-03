@@ -35,10 +35,10 @@ export default function SignUpScreen({ navigation }) {
       <StyledView style={styles.view}>
         <AuthSVG style={{ position: 'absolute', top: 0 }} />
         <AuthForm
-          formType="sign up"
-          headerForm="Sign Up"
+          formType='sign up'
+          headerForm='Sign Up'
           onSubmitForm={handleSignup}
-          buttonText="sign up"
+          buttonText='sign up'
         />
         <View style={styles.actionsContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
@@ -52,5 +52,3 @@ export default function SignUpScreen({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
-
-

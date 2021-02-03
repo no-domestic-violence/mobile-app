@@ -45,16 +45,15 @@ const BottomTabNavigator = () => {
         style: {
           backgroundColor: '#FEF8E3',
         },
-      }}
-    >
+      }}>
       <>
-        <Tab.Screen name="Home" component={ResourcesTabNavigator} />
-        <Tab.Screen name="Hotlines" component={SheltersHotlinesTabNavigator} />
+        <Tab.Screen name='Home' component={ResourcesTabNavigator} />
+        <Tab.Screen name='Hotlines' component={SheltersHotlinesTabNavigator} />
         {state.token && (
-          <Tab.Screen name="Emergency" component={SosContactStackNavigator} />
+          <Tab.Screen name='Emergency' component={SosContactStackNavigator} />
         )}
         <Tab.Screen
-          name="UserSettings"
+          name='UserSettings'
           component={UserSettingsStackNavigator}
         />
       </>

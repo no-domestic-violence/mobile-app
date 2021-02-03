@@ -12,5 +12,5 @@ const getHotlinesData = async (setDataSource, setLoading, search, inputRef) => {
     console.error(error);
   }
 };
-  // eslint-disable-next-line
+// eslint-disable-next-line
 export { getHotlinesData };

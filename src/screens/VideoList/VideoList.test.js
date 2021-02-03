@@ -46,7 +46,7 @@ describe('Testing', () => {
     const result = render(<VideoList />).toJSON();
     expect(result).toMatchSnapshot();
   });
-/* TODO: continue later
+  /* TODO: continue later
   it('should display the order as a <ListItem />', () => {
     const element = wrapper.instance().renderItem(item);
     expect(element.type).toBe(ListItem);

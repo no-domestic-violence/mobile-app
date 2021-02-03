@@ -10,7 +10,7 @@
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'",
     "test": "jest",
     "flow": "flow",
-    "format": "prettier --write '**/*.{js,jsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier 'src/**/*.{js,jsx}' --write"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",

@@ -62,13 +62,13 @@ const Home = ({ navigation }) => {
     <ScrollView style={styles.homePageView} scrollEventThrottle={16}>
       <View style={styles.searchBoxView}>
         <TextInput
-          placeholder="What are u looking for?"
-          placeholderTextColor="grey"
+          placeholder='What are u looking for?'
+          placeholderTextColor='grey'
           style={styles.searchbox}></TextInput>
         <FontAwesomeIcon
           icon={faSearch}
           size={22}
-          color="grey"
+          color='grey'
           style={styles.searchboxIcon}
         />
       </View>
@@ -106,6 +106,5 @@ const Home = ({ navigation }) => {
     </ScrollView>
   );
 };
-
 
 export default Home;

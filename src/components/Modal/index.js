@@ -18,7 +18,7 @@ const ModalComponent = ({ isVisible, setModalVisible, navigation }) => {
             Your password was successfully changed!
           </Text>
           <Button
-            title="Ok"
+            title='Ok'
             onPress={() => {
               setModalVisible(false);
               navigation.navigate('User');

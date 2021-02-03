@@ -32,7 +32,7 @@ export default function HotlinesList() {
   if (loading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color={Colors.darkBlue} />
+        <ActivityIndicator size='large' color={Colors.darkBlue} />
       </View>
     );
   }
@@ -46,9 +46,9 @@ export default function HotlinesList() {
         inputContainerStyle={{ backgroundColor: Colors.primary, width: '90%' }}
         containerStyle={{ backgroundColor: Colors.primary, borderTopWidth: 0 }}
         autoCorrect={false}
-        autoCapitalize="none"
+        autoCapitalize='none'
         onChangeText={setSearch}
-        placeholder="Type city or orgaisation name"
+        placeholder='Type city or orgaisation name'
         value={search}
       />
       <Divider style={{ height: 10, backgroundColor: Colors.primary }} />

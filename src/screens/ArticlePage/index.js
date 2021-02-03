@@ -45,7 +45,7 @@ export default function ArticlePage({ route, navigation }) {
           Violence Type: {uniqueArticle.violence_type}
         </Text>
 
-        <Button title="Add to favorites" />
+        <Button title='Add to favorites' />
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.goBack()}>

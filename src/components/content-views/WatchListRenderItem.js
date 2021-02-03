@@ -2,7 +2,7 @@ import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-const WatchListRenderItem = ({ item, background}) => {
+const WatchListRenderItem = ({ item, background }) => {
   return (
     <TouchableOpacity style={styles.itemContainer}>
       <Image source={background} style={styles.itemImage} />
@@ -10,7 +10,7 @@ const WatchListRenderItem = ({ item, background}) => {
       <FontAwesomeIcon
         icon={faPlay}
         size={38}
-        color="#fff"
+        color='#fff'
         style={styles.itemIcon}
       />
     </TouchableOpacity>

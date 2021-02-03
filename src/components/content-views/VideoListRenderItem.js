@@ -12,7 +12,7 @@ const VideoListRenderItem = ({ item, navigation }) => {
       <FontAwesomeIcon
         icon={faPlay}
         size={38}
-        color="#415889"
+        color='#415889'
         style={styles.itemIcon}
       />
       <Text style={styles.title}>{item.title}</Text>

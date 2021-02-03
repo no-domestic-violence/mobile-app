@@ -36,10 +36,10 @@ export default function LoginScreen({ navigation }) {
       <StyledView style={styles.view}>
         <AuthSVG style={{ position: 'absolute', top: 0 }} />
         <AuthForm
-          formType="log in"
+          formType='log in'
           headerForm={t('common.login')}
           onSubmitForm={handleLogin}
-          buttonText="log in"
+          buttonText='log in'
         />
         <View style={styles.textView}>
           <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
@@ -59,5 +59,3 @@ export default function LoginScreen({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
-
-
