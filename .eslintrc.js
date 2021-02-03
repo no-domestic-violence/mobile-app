@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: 'airbnb',
+  extends: ['airbnb', 'prettier', 'prettier/react'],
   plugins: ['react', 'react-native', 'react-hooks'],
   parser: 'babel-eslint',
   env: {
@@ -14,6 +14,7 @@ module.exports = {
     'comma-dangle': 'off',
     'padded-blocks': 'off',
     'arrow-body-style': 'off',
+    "import/no-cycle": "off",
     'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/exhaustive-deps': 'warn',
     'react-native/no-unused-styles': 2,
