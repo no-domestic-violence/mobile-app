@@ -1,0 +1,4 @@
+# Add files here to ignore them from prettier formatting
+/__mocks__
+/coverage
+/node_modules
