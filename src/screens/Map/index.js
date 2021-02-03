@@ -18,7 +18,7 @@ const MapScreen = ({ isFocused }) => {
     state: { currentLocation },
     updateCurrentLocation,
   } = useContext(LocationContext);
-  //TODO: handle errros
+  // TODO: handle errros
   const [error, setError] = useState({});
 
   const askForLocation = async () => {

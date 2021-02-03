@@ -6,8 +6,8 @@ import { StyledView } from '_styles/shared/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import AuthForm from '_components/authenticationForm/';
-import { styles } from './ChangePassword.styles';
 import ModalComponent from '_components/modal';
+import { styles } from './ChangePassword.styles';
 
 export default function ChangePasswordScreen({ navigation }) {
   const { state, changePassword, removeErrors, removeMessages } = useContext(
@@ -41,7 +41,7 @@ export default function ChangePasswordScreen({ navigation }) {
             onPress={() => navigation.goBack()}
             icon={faAngleLeft}
             size={40}
-            color={'#000'}
+            color="#000"
             style={styles.arrow}
           />
           <AuthForm

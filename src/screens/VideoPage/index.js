@@ -8,12 +8,12 @@ export default function VideoPage({ route }) {
     <WebView
       source={{ uri: url }}
       style={{ marginTop: 20 }}
-      javaScriptEnabled={true}
+      javaScriptEnabled
     />
   );
 }
 
-//TODO : to reuse this for own video
+// TODO : to reuse this for own video
 /*   
 import { View } from 'react-native';
 import { Video } from 'expo-av';

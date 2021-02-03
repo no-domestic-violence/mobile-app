@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Context as AuthContext } from '../../state/AuthContext';
-import { StyledView } from '../../styles/shared/StyledView';
 import UserInfo from '_components/user-settings/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { LanguageContext } from '../../state/LanguageContext';
 import { Button } from 'react-native-elements';
+import { LanguageContext } from '../../state/LanguageContext';
+import { StyledView } from '../../styles/shared/StyledView';
+import { Context as AuthContext } from '../../state/AuthContext';
 
 export default function ChangeLanguage({ navigation }) {
   const { state } = useContext(AuthContext);
   const { availableLanguages, setAppLanguage } = useContext(LanguageContext);
-  const username = state.username;
+  const {username} = state;
 
   const handleLanguageChange = async (language) => {
     await setAppLanguage(language);
@@ -26,7 +26,7 @@ export default function ChangeLanguage({ navigation }) {
           onPress={() => navigation.goBack()}
           icon={faAngleLeft}
           size={40}
-          color={'#000'}
+          color="#000"
           style={styles.arrow}
         />
         <Text style={styles.header}>Change Language</Text>

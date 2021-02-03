@@ -7,12 +7,12 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { styles } from './Login.styles';
 import { StyledView } from '_styles/shared/';
 
 import { useTranslation } from 'react-i18next';
 import AuthSVG from '_assets/svg/login.svg';
 import AuthForm from '_components/authenticationForm/';
+import { styles } from './Login.styles';
 
 export default function LoginScreen({ navigation }) {
   const { t, i18n } = useTranslation();
@@ -21,7 +21,7 @@ export default function LoginScreen({ navigation }) {
   const handleLogin = ({ email, password }) => {
     login({ email, password });
   };
-  //: TODO: handle errors removing from BE
+  // : TODO: handle errors removing from BE
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
       removeErrors();

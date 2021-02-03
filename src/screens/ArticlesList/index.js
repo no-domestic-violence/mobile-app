@@ -24,7 +24,7 @@ export default function Content({ navigation }) {
     <View>
       <FlatList
         data={blog}
-        keyExtractor={(item, index) => 'key' + index}
+        keyExtractor={(item, index) => `key${  index}`}
         renderItem={({ item }) => {
           return <ArticleCard item={item} navigation={navigation} />;
         }}

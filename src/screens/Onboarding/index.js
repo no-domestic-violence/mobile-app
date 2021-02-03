@@ -7,6 +7,7 @@ import SecondSVG from 'assets/svg/onboarding/map.svg';
 import ThirdSVG from 'assets/svg/onboarding/resources.svg';
 import FourthSVG from 'assets/svg/onboarding/questions.svg';
 import { styles } from './Onboarding.styles';
+
 export default function OnboardingScreen({ navigation }) {
   const { t, i18n } = useTranslation();
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import SosContactHome from './index';
 import { Provider as SosProvider } from 'state/SosContext';
+import SosContactHome from './index';
 
 jest.mock('@fortawesome/react-native-fontawesome', () => ({
   FontAwesomeIcon: '',

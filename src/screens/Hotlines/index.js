@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { getHotlinesData } from '../../api/';
 import { View, FlatList, Linking, ActivityIndicator } from 'react-native';
-import { Divider } from 'react-native-elements';
+import { Divider , SearchBar } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { SearchBar } from 'react-native-elements';
+
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import HotlinesItem from '_components/hotlines/';
 import { StyledView } from '_styles/shared/StyledView';
 import { Colors } from '_styles/';
 import useDebounce from '_hooks/useDebounce';
+import { getHotlinesData } from "../../api";
 import { styles } from './Hotlines.styles';
 
 export default function HotlinesList() {
@@ -56,7 +56,7 @@ export default function HotlinesList() {
         style={styles.list}
         data={dataSource}
         keyExtractor={(item, index) => index.toString()}
-        enableEmptySections={true}
+        enableEmptySections
         renderItem={({ item }) => (
           <HotlinesItem item={item} makeCall={makeCall} title={item.phone} />
         )}

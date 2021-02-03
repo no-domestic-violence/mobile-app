@@ -14,7 +14,7 @@ const UserInfo = React.memo(({ username }) => {
         <FontAwesomeIcon
           icon={faUserCircle}
           size={80}
-          color={'grey'}
+          color="grey"
           style={styles.arrow}
         />
         <Text style={styles.username}>{username}</Text>

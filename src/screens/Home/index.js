@@ -66,7 +66,7 @@ const Home = ({ navigation }) => {
         <TextInput
           placeholder='What are u looking for?'
           placeholderTextColor='grey'
-          style={styles.searchbox}></TextInput>
+          style={styles.searchbox} />
         <FontAwesomeIcon
           icon={faSearch}
           size={22}
@@ -98,7 +98,7 @@ const Home = ({ navigation }) => {
         </View>
         <FlatList
           keyExtractor={(item, index) => index.toString()}
-          horizontal={true}
+          horizontal
           data={watchList}
           renderItem={({ item }) => (
             <WatchListRenderItem item={item} background={background1} />

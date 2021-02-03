@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import { styles } from './MapContainer.styles';
 import MapView, { Marker } from 'react-native-maps';
+import { styles } from './MapContainer.styles';
 
 const MapContainer = React.memo(({ currentLocation, sheltersList }) => {
   return (
@@ -10,7 +10,7 @@ const MapContainer = React.memo(({ currentLocation, sheltersList }) => {
       <MapView
         onRegionChange={() => {}}
         style={styles.mapContainer}
-        zoomEnabled={true}
+        zoomEnabled
         initialRegion={{
           ...currentLocation.coords,
           latitudeDelta: 90,

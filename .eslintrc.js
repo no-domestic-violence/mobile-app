@@ -14,7 +14,7 @@ module.exports = {
     'comma-dangle': 'off',
     'padded-blocks': 'off',
     'arrow-body-style': 'off',
-    "import/no-cycle": "off",
+    'import/no-cycle': 'off',
     'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/exhaustive-deps': 'warn',
     'react-native/no-unused-styles': 2,
@@ -22,6 +22,7 @@ module.exports = {
     'react-native/no-inline-styles': 2,
     'react-native/no-color-literals': 2,
     'react-native/no-raw-text': 2,
+    'react/prop-types': 0,
     'react-native/no-single-element-style-arrays': 2,
   },
   settings: {

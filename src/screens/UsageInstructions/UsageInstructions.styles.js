@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 export const styles = StyleSheet.create({
   userSettingsContainer: {
     alignItems: 'flex-start',

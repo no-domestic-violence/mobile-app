@@ -23,12 +23,12 @@ export default function AuthForm({
     username: yup.string().when(formType, () => {
       if (formType === 'sign up')
         return yup.string().required('Please enter your username');
-      else return yup.string().notRequired();
+      return yup.string().notRequired();
     }),
     oldPassword: yup.string().when(formType, () => {
       if (formType === 'change password')
         return yup.string().required('Please enter your old password here');
-      else return yup.string().notRequired();
+      return yup.string().notRequired();
     }),
     email: yup.string().required('Please enter an email'),
     password: yup

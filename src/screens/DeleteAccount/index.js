@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
-import { Context as AuthContext } from '../../state/AuthContext';
-import { StyledView } from '../../styles/shared/StyledView';
 import UserInfo from '_components/user-settings/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { StyledView } from '../../styles/shared/StyledView';
+import { Context as AuthContext } from '../../state/AuthContext';
 import {
   StyledButton,
   StyledButtonText,
@@ -13,7 +13,7 @@ import { styles } from './DeleteAccount.styles';
 
 export default function DeleteAccountScreen({ navigation }) {
   const { state, deleteAccount } = useContext(AuthContext);
-  const username = state.username;
+  const {username} = state;
 
   const handleDeleteAccount = () => {
     deleteAccount({ username });
@@ -26,7 +26,7 @@ export default function DeleteAccountScreen({ navigation }) {
           onPress={() => navigation.goBack()}
           icon={faAngleLeft}
           size={40}
-          color={'#000'}
+          color="#000"
           style={styles.arrow}
         />
         <Text style={styles.header}>Delete Account</Text>

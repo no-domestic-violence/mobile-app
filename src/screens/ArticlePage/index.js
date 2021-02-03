@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import appApiClient from '../../api/appApiClient';
+
 const { width, height } = Dimensions.get('window');
 
 export default function ArticlePage({ route, navigation }) {

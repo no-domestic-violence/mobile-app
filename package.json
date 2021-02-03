@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint *.js **/*.js src/**/*.js",
+    "lint": "eslint --color --ext .js --ext .jsx ./src",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'",
     "test": "jest",
     "flow": "flow",

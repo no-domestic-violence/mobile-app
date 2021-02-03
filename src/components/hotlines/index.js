@@ -8,6 +8,7 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StyledHotlinesListItem } from '_styles/shared';
 import { styles } from './HotlinesItem.styles';
+
 export default function HotlinesItem({ item, makeCall }) {
   return (
     <>
@@ -25,7 +26,7 @@ export default function HotlinesItem({ item, makeCall }) {
             onPress={() => makeCall(item.phone)}
             icon={faPhone}
             size={25}
-            color={'#000'}
+            color="#000"
           />
         </View>
       </StyledHotlinesListItem>

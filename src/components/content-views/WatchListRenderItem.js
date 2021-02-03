@@ -8,7 +8,7 @@ const WatchListRenderItem = ({ item, background }) => {
   return (
     <TouchableOpacity style={styles.watchItemContainer}>
       <Image source={background} style={styles.watchItemImage} />
-      <View style={styles.watchItemView}></View>
+      <View style={styles.watchItemView} />
       <FontAwesomeIcon
         icon={faPlay}
         size={38}

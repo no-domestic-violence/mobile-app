@@ -19,7 +19,7 @@ export default function SignUpScreen({ navigation }) {
     signup({ email, password, username });
   };
 
-  //TODO: find other way to remove messages from BE
+  // TODO: find other way to remove messages from BE
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
       removeErrors();
