@@ -1,11 +1,12 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-native-elements';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
 import PropTypes from 'prop-types';
+import { styles } from './SosContactList.styles';
 
 export default function SosContactList({ contacts, navigation }) {
   const hasFirstContact = contacts !== undefined && contacts.length !== 0;
@@ -16,12 +17,12 @@ export default function SosContactList({ contacts, navigation }) {
     <>
       <View style={styles.contactContainer}>
         <Button
-          testID="first-contact"
+          testID='first-contact'
           title={hasFirstContact ? contacts[0].name : contactPlaceholder}
           titleStyle={
             hasFirstContact ? styles.contactText : styles.contactPlaceholder
           }
-          type="solid"
+          type='solid'
           raised
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
@@ -33,12 +34,12 @@ export default function SosContactList({ contacts, navigation }) {
           icon={<FontAwesomeIcon icon={faPen} />}
         />
         <Button
-          testID="second-contact"
+          testID='second-contact'
           titleStyle={
             hasSecondContact ? styles.contactText : styles.contactPlaceholder
           }
           title={hasSecondContact ? contacts[1].name : contactPlaceholder}
-          type="solid"
+          type='solid'
           raised
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
@@ -53,7 +54,7 @@ export default function SosContactList({ contacts, navigation }) {
       {contacts !== undefined && contacts.length > 0 && (
         <StyledButton style={styles.messageButtonContainer}>
           <StyledButtonText style={styles.messageButtonText}>
-            Ask for help to your contacts
+    Ask for help to your contacts
           </StyledButtonText>
         </StyledButton>
       )}
@@ -61,52 +62,7 @@ export default function SosContactList({ contacts, navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  homeView: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  contactContainer: {
-    height: '25%',
-    width: '75%',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  contactText: {
-    color: '#000000',
-    marginLeft: 10,
-    fontWeight: '600',
-  },
-  contactPlaceholder: {
-    color: '#000000',
-    opacity: 0.34,
-    marginLeft: 10,
-    fontWeight: '400',
-    fontSize: 16,
-  },
-  messageButtonContainer: {
-    marginTop: 100,
-    height: '10%',
-    borderRadius: 41,
-    backgroundColor: '#D65137',
-    justifyContent: 'center',
-  },
-  messageButtonText: {
-    fontSize: 16,
-  },
-  icon: {
-    position: 'absolute',
-    left: 10,
-    fontSize: 14,
-    paddingRight: 15,
-  },
-  buttonText: {
-    backgroundColor: '#FEF8E3',
-    padding: 18,
-    borderRadius: 41,
-  },
-});
+
 
 SosContactList.propTypes = {
   contacts: PropTypes.arrayOf(
@@ -114,7 +70,7 @@ SosContactList.propTypes = {
       name: PropTypes.string,
       phone: PropTypes.string,
       message: PropTypes.string,
-    }),
+    })
   ),
 };
 

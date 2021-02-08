@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { View, Text, StyleSheet } from 'react-native';
-import { Colors } from '../../styles/index';
+import { View, Text } from 'react-native';
+import { Colors } from '_styles/index';
 import { Divider } from 'react-native-elements';
 
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StyledHotlinesListItem } from '_styles/shared';
+import { styles } from './HotlinesItem.styles';
 
-export default function ListItem({ item, makeCall }) {
+export default function HotlinesItem({ item, makeCall }) {
   return (
     <>
       <StyledHotlinesListItem>
@@ -25,7 +25,7 @@ export default function ListItem({ item, makeCall }) {
             onPress={() => makeCall(item.phone)}
             icon={faPhone}
             size={25}
-            color={'#000'}
+            color="#000"
           />
         </View>
       </StyledHotlinesListItem>
@@ -33,32 +33,3 @@ export default function ListItem({ item, makeCall }) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  info: {
-    alignContent: 'center',
-    alignItems: 'center',
-  },
-  iconContainer: {
-    flexDirection: 'row',
-    alignContent: 'center',
-    alignItems: 'center',
-  },
-  listItemTitle: {
-    fontWeight: 'bold',
-    flexShrink: 1,
-  },
-  listItemContacts: {
-    flexWrap: 'wrap',
-    flexShrink: 1,
-  },
-  listItemContent: {
-    flexWrap: 'wrap',
-    flex: 1,
-  },
-});
-
-ListItem.propTypes = {
-  item: PropTypes.object.isRequired,
-  makeCall: PropTypes.func,
-};

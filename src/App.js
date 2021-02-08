@@ -9,6 +9,12 @@ import { LanguageProvider } from './state/LanguageContext';
 
 import './services/i18n';
 
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+    flex: 1,
+  },
+});
 const App = () => {
   return (
     <LanguageProvider>
@@ -24,12 +30,5 @@ const App = () => {
     </LanguageProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 50,
-    flex: 1,
-  },
-});
 
 export default App;

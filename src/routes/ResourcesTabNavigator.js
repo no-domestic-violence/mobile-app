@@ -17,12 +17,11 @@ const ResourcesTabNavigator = () => {
         labelStyle: { fontSize: 13, color: '#fff' },
         style: { backgroundColor: Colors.darkBlue },
         indicatorStyle: { backgroundColor: '#fff' },
-      }}
-    >
-      <Tab.Screen name="Home" component={HomeStackNavigator} />
-      <Tab.Screen name="Article" component={ArticleStackNavigator} />
-      <Tab.Screen name="Video" component={VideoStackNavigator} />
-      <Tab.Screen name="Podcast" component={PodcastStackNavigator} />
+      }}>
+      <Tab.Screen name='Home' component={HomeStackNavigator} />
+      <Tab.Screen name='Article' component={ArticleStackNavigator} />
+      <Tab.Screen name='Video' component={VideoStackNavigator} />
+      <Tab.Screen name='Podcast' component={PodcastStackNavigator} />
     </Tab.Navigator>
   );
 };

@@ -1,16 +1,11 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import React, { useRef } from 'react';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { styles } from './index.styles';
 
 const TodayReadRenderItem = ({ item, navigation }) => {
-  // TODO: fix use ref hook
-  // const carouselRef = useRef(null);
-
   return (
     <View>
       <TouchableOpacity
-        // onPress={() => {
-        //   carouselRef.current.scrollToIndex(index);
-        // }}
         onPress={() => {
           navigation.navigate('Article Page', {
             id: '5fae8c93b9b4bf4a2d4027c8',
@@ -22,23 +17,6 @@ const TodayReadRenderItem = ({ item, navigation }) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  carouselImage: {
-    width: 200,
-    height: 200,
-    borderRadius: 20,
-    alignSelf: 'center',
-    backgroundColor: '#fff',
-  },
-  carouselText: {
-    paddingLeft: 10,
-    color: '#000',
-    marginTop: 10,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    fontWeight: 'bold',
-  },
-});
+
 
 export default TodayReadRenderItem;

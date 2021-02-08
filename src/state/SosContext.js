@@ -20,7 +20,9 @@ const sosReducer = (state, action) => {
     case ACTIONS.EDIT_CONTACT:
       return {
         ...contacts,
-        contacts: contacts.map((contact) => (contact._id === id ? data : contact),),
+        contacts: contacts.map((contact) =>
+          contact._id === id ? data : contact
+        ),
       };
     case ACTIONS.DELETE_CONTACT:
       return {
@@ -101,5 +103,5 @@ export const { Provider, Context } = createAppContext(
     addContact,
     editContact,
   },
-  { contacts: [] },
+  { contacts: [] }
 );

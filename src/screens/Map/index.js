@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import {
   requestPermissionsAsync,
   watchPositionAsync,
@@ -7,8 +7,9 @@ import {
 } from 'expo-location';
 import { withNavigationFocus } from '@react-navigation/compat';
 
-import MapContainer from '_components/map/MapContainer';
+import MapContainer from '_components/map/';
 import { Context as LocationContext } from '_state/LocationContext';
+import { styles } from './Map.styles';
 
 const MapScreen = ({ isFocused }) => {
   const {
@@ -17,8 +18,7 @@ const MapScreen = ({ isFocused }) => {
     state: { currentLocation },
     updateCurrentLocation,
   } = useContext(LocationContext);
-  //TODO: handle errros
-  const [error, setError] = useState({});
+  const [error, setError] = useState('');
 
   const askForLocation = async () => {
     try {
@@ -31,10 +31,10 @@ const MapScreen = ({ isFocused }) => {
         },
         (location) => {
           updateCurrentLocation(location);
-        },
+        }
       );
-    } catch (error) {
-      setError(error);
+    } catch (responseError) {
+      setError(responseError);
     }
   };
 
@@ -43,10 +43,10 @@ const MapScreen = ({ isFocused }) => {
     fetchShelters();
   }, [isFocused]);
 
-  if (!currentLocation) {
+  if (!currentLocation || error) {
     return (
       <View>
-        <ActivityIndicator size="large" style={styles.loader} />
+        <ActivityIndicator size='large' style={styles.loader} />
       </View>
     );
   }
@@ -59,14 +59,5 @@ const MapScreen = ({ isFocused }) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  loader: {
-    flex: 1,
-  },
-});
 
 export default withNavigationFocus(MapScreen);

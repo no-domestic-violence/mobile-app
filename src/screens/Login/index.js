@@ -1,10 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-
 import { Context as AuthContext } from '_state/AuthContext';
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
@@ -13,7 +11,8 @@ import { StyledView } from '_styles/shared/';
 
 import { useTranslation } from 'react-i18next';
 import AuthSVG from '_assets/svg/login.svg';
-import AuthForm from '_components/authenticationForm/AuthForm';
+import AuthForm from '_components/authenticationForm/';
+import { styles } from './Login.styles';
 
 export default function LoginScreen({ navigation }) {
   const { t, i18n } = useTranslation();
@@ -22,7 +21,7 @@ export default function LoginScreen({ navigation }) {
   const handleLogin = ({ email, password }) => {
     login({ email, password });
   };
-  //: TODO: handle errors removing from BE
+  // : TODO: handle errors removing from BE
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
       removeErrors();
@@ -37,10 +36,10 @@ export default function LoginScreen({ navigation }) {
       <StyledView style={styles.view}>
         <AuthSVG style={{ position: 'absolute', top: 0 }} />
         <AuthForm
-          formType="log in"
+          formType='log in'
           headerForm={t('common.login')}
           onSubmitForm={handleLogin}
-          buttonText="log in"
+          buttonText='log in'
         />
         <View style={styles.textView}>
           <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
@@ -60,25 +59,3 @@ export default function LoginScreen({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  view: {
-    justifyContent: 'flex-end',
-    height: '100%',
-  },
-  textView: {
-    marginVertical: 30,
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 14,
-    color: '#000',
-    alignItems: 'center',
-    fontStyle: 'italic',
-    marginBottom: 10,
-  },
-  textError: {
-    marginTop: 20,
-    color: 'darkred',
-  },
-});

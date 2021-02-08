@@ -1,18 +1,19 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Context as AuthContext } from '../../state/AuthContext';
-import { StyledView } from '../../styles/shared/StyledView';
-import UserInfo from '_components/user-settings/UserInfo';
+import { View, Text } from 'react-native';
+import UserInfo from '_components/user-settings/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { StyledView } from '../../styles/shared/StyledView';
+import { Context as AuthContext } from '../../state/AuthContext';
 import {
   StyledButton,
   StyledButtonText,
 } from '../../styles/shared/StyledButton';
+import { styles } from './DeleteAccount.styles';
 
 export default function DeleteAccountScreen({ navigation }) {
   const { state, deleteAccount } = useContext(AuthContext);
-  const username = state.username;
+  const {username} = state;
 
   const handleDeleteAccount = () => {
     deleteAccount({ username });
@@ -25,7 +26,7 @@ export default function DeleteAccountScreen({ navigation }) {
           onPress={() => navigation.goBack()}
           icon={faAngleLeft}
           size={40}
-          color={'#000'}
+          color="#000"
           style={styles.arrow}
         />
         <Text style={styles.header}>Delete Account</Text>
@@ -41,37 +42,3 @@ export default function DeleteAccountScreen({ navigation }) {
     </StyledView>
   );
 }
-
-const styles = StyleSheet.create({
-  userSettingsContainer: {
-    alignItems: 'flex-start',
-  },
-  arrow: {
-    alignSelf: 'flex-start',
-    marginTop: 50,
-    marginLeft: 10,
-  },
-  button: {
-    backgroundColor: 'red',
-    fontWeight: '800',
-  },
-  view: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-  },
-  header: {
-    fontSize: 20,
-    fontWeight: '600',
-    alignSelf: 'flex-start',
-    marginLeft: 30,
-    marginBottom: 40,
-    marginTop: 40,
-  },
-  text: {
-    fontSize: 16,
-    color: '#000',
-    alignSelf: 'flex-start',
-    marginLeft: 30,
-  },
-});

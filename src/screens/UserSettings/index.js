@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Context as AuthContext } from 'state/AuthContext';
-import { Colors } from 'styles';
 import { StyledView } from 'styles/shared/StyledView';
-import UserInfo from '_components/user-settings/UserInfo';
+import UserInfo from '_components/user-settings/';
 import { useTranslation } from 'react-i18next';
+import { styles } from './UserSettings.styles';
 
 export default function UserSettings({ navigation }) {
   const { t } = useTranslation();
@@ -58,31 +58,4 @@ export default function UserSettings({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: Colors.primary,
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-    borderWidth: 0,
-    borderRadius: 14,
-    color: '#000',
-    fontWeight: '500',
-    fontSize: 20,
-    overflow: 'hidden',
-    textAlign: 'center',
-    width: '40%',
-    marginLeft: 10,
-  },
-  userSettingsContainer: {
-    alignItems: 'flex-start',
-  },
-  userSettingsActions: {
-    fontSize: 20,
-    fontWeight: '500',
-    lineHeight: 40,
-  },
-  userSettingsActionsView: {
-    marginVertical: 50,
-    marginLeft: 10,
-  },
-});
+

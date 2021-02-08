@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
@@ -7,25 +6,30 @@ import {
   ScrollView,
   TextInput,
   FlatList,
-  Image,
 } from 'react-native';
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import Carousel from 'react-native-anchor-carousel';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import WatchListRenderItem from '../../components/content-views/WatchListRenderItem';
-import TodayReadRenderItem from '../../components/content-views/TodayReadRenderItem';
+import {
+  WatchListRenderItem,
+  TodayReadRenderItem,
+} from '_components/content-views/';
 import videoData from '../../mock/video';
-import { Colors } from '../../styles';
+import { styles } from './Home.styles';
 
 const Home = ({ navigation }) => {
   // TODO: should get from db (with context api cuz of different screen)
+  // eslint-disable-next-line
   const background1 = require('../../assets/backgrounds/article1.png');
+  // eslint-disable-next-line
   const background2 = require('../../assets/backgrounds/article2.png');
+  // eslint-disable-next-line
   const background6 = require('../../assets/backgrounds/article6.png');
+  // eslint-disable-next-line
   const background9 = require('../../assets/backgrounds/article9.png');
 
-  const [articles, setArticles] = useState([
+  const articles = [
     {
       image: background2,
       title: 'Why do we have violence?',
@@ -51,29 +55,28 @@ const Home = ({ navigation }) => {
       title: 'Physical violence is increasing in Germany',
       id: '5',
     },
-  ]);
+  ];
 
-  const [watchList, setWatchList] = useState(videoData);
-  // TODO: fix use ref hook
-  // const carouselRef = useRef(null);
+  const watchList = videoData;
 
   const { width } = Dimensions.get('window');
 
   return (
-    <ScrollView style={styles.homePageView}>
+    <ScrollView style={styles.homePageView} scrollEventThrottle={16}>
       <View style={styles.searchBoxView}>
         <TextInput
-          placeholder="What are u looking for?"
-          placeholderTextColor="grey"
-          style={styles.searchbox}></TextInput>
+          placeholder='What are u looking for?'
+          placeholderTextColor='grey'
+          style={styles.searchbox}
+        />
         <FontAwesomeIcon
           icon={faSearch}
           size={22}
-          color="grey"
+          color='grey'
           style={styles.searchboxIcon}
         />
       </View>
-      <Text style={styles.headers}>Today's Read</Text>
+      <Text style={styles.headers}>Today&#39;s Read</Text>
       <View style={styles.carouselContainer}>
         <Carousel
           style={styles.carousel}
@@ -97,7 +100,7 @@ const Home = ({ navigation }) => {
         </View>
         <FlatList
           keyExtractor={(item, index) => index.toString()}
-          horizontal={true}
+          horizontal
           data={watchList}
           renderItem={({ item }) => (
             <WatchListRenderItem item={item} background={background1} />
@@ -106,63 +109,6 @@ const Home = ({ navigation }) => {
       </View>
     </ScrollView>
   );
-};
-
-const styles = StyleSheet.create({
-  homePageView: {
-    backgroundColor: Colors.primary,
-    flex: 1,
-  },
-  headers: {
-    color: '#000',
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginLeft: 10,
-    marginVertical: 5,
-  },
-  rowHeaders: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  searchBoxView: {
-    flexDirection: 'row',
-    marginVertical: 20,
-    width: '95%',
-    alignSelf: 'center',
-    backgroundColor: '#fff',
-    elevation: 10,
-    borderRadius: 4,
-  },
-  searchbox: {
-    padding: 12,
-    paddingLeft: 20,
-    fontSize: 16,
-  },
-  searchboxIcon: {
-    position: 'absolute',
-    right: 20,
-    top: 14,
-  },
-  carouselContainer: {
-    height: 250,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  carousel: {
-    flex: 1,
-    overflow: 'visible',
-  },
-  watchListView: {
-    marginHorizontal: 14,
-    marginVertical: 20,
-  },
-  viewMoreBtn: {
-    color: '#02ad94',
-    fontSize: 14,
-    fontWeight: 'normal',
-  },
-});
+};;
 
 export default Home;

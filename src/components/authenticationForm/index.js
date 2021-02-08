@@ -2,9 +2,8 @@ import React, { useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import PropTypes from 'prop-types';
-
 import * as yup from 'yup';
-import { Text, StyleSheet, Keyboard } from 'react-native';
+import { Text, Keyboard } from 'react-native';
 import {
   StyledInputAuth,
   StyledButton,
@@ -12,7 +11,7 @@ import {
 } from '_styles/shared/';
 import { Colors } from '_styles/';
 import { Divider } from 'react-native-elements';
-
+import { styles } from './AuthForm.styles';
 
 export default function AuthForm({
   formType,
@@ -24,12 +23,12 @@ export default function AuthForm({
     username: yup.string().when(formType, () => {
       if (formType === 'sign up')
         return yup.string().required('Please enter your username');
-      else return yup.string().notRequired();
+      return yup.string().notRequired();
     }),
     oldPassword: yup.string().when(formType, () => {
       if (formType === 'change password')
         return yup.string().required('Please enter your old password here');
-      else return yup.string().notRequired();
+      return yup.string().notRequired();
     }),
     email: yup.string().required('Please enter an email'),
     password: yup
@@ -38,35 +37,36 @@ export default function AuthForm({
       .required('Please enter 8 characters password'),
   });
 
-  const { control, handleSubmit, errors, getValues } = useForm({
+  const { control, handleSubmit, errors } = useForm({
     resolver: yupResolver(AuthSchema),
   });
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const usernameInputRef = useRef();
-  const oldPasswordInputRef = React.useRef();
+  const oldPasswordInputRef = useRef();
+  const newPasswordInputRef = useRef();
 
   const renderUsername = () => {
     return (
       <>
         <Controller
-          name="username"
-          defaultValue=""
+          name='username'
+          defaultValue=''
           control={control}
           onFocus={() => {
             usernameInputRef.current.focus();
           }}
           render={({ onChange, value }) => (
             <StyledInputAuth
-              onChangeText={(value) => onChange(value)}
+              onChangeText={(inputValue) => onChange(inputValue)}
               value={value}
-              placeholder="Username"
-              autoCapitalize="none"
+              placeholder='Username'
+              autoCapitalize='none'
               autoCorrect={false}
-              placeholderTextColor="#6c757d"
+              placeholderTextColor='#6c757d'
               ref={usernameInputRef}
-              returnKeyType="next"
+              returnKeyType='next'
               onSubmitEditing={() =>
                 emailInputRef.current && emailInputRef.current.focus()
               }
@@ -82,33 +82,33 @@ export default function AuthForm({
       </>
     );
   };
-
   const renderOldpasswordInput = () => {
     return (
       <>
         <Controller
-          name="oldPassword"
-          defaultValue=""
+          name='oldPassword'
+          defaultValue=''
           control={control}
           onFocus={() => {
-            password.current.focus();
+            oldPasswordInputRef.current.focus();
           }}
           render={({ onChange, value }) => (
             <StyledInputAuth
-              placeholder="Your old password"
-              autoCapitalize="none"
+              placeholder='Your old password'
+              autoCapitalize='none'
               autoCorrect={false}
-              placeholderTextColor="#6c757d"
-              onChangeText={(value) => onChange(value)}
+              placeholderTextColor='#6c757d'
+              onChangeText={(inputValue) => onChange(inputValue)}
               value={value}
               ref={oldPasswordInputRef}
-              returnKeyType="next"
+              returnKeyType='next'
               onSubmitEditing={() =>
                 newPasswordInputRef.current &&
                 newPasswordInputRef.current.focus()
               }
               blurOnSubmit={false}
-              // secureTextEntry={true} TODO: fix secure password
+              // secureTextEntry={true}
+              // TODO:fix secure password
             />
           )}
         />
@@ -125,22 +125,22 @@ export default function AuthForm({
       <Text style={styles.header}>{headerForm}</Text>
       {formType === 'sign up' ? renderUsername() : null}
       <Controller
-        name="email"
+        name='email'
         control={control}
-        defaultValue=""
+        defaultValue=''
         onFocus={() => {
           emailInputRef.current.focus();
         }}
         render={({ onChange, value }) => (
           <StyledInputAuth
-            placeholder="Email"
+            placeholder='Email'
             autoCorrect={false}
-            autoCapitalize="none"
-            placeholderTextColor="#6c757d"
-            onChangeText={(value) => onChange(value)}
+            autoCapitalize='none'
+            placeholderTextColor='#6c757d'
+            onChangeText={(inputValue) => onChange(inputValue)}
             value={value}
             ref={emailInputRef}
-            returnKeyType="next"
+            returnKeyType='next'
             onSubmitEditing={() =>
               passwordInputRef.current && passwordInputRef.current.focus()
             }
@@ -155,19 +155,19 @@ export default function AuthForm({
       <Divider style={{ height: 20, backgroundColor: Colors.primary }} />
       {formType === 'change password' ? renderOldpasswordInput() : null}
       <Controller
-        name="password"
-        defaultValue=""
+        name='password'
+        defaultValue=''
         control={control}
         render={({ onChange, value }) => (
           <StyledInputAuth
-            placeholder="Password"
-            autoCapitalize="none"
+            placeholder='Password'
+            autoCapitalize='none'
             autoCorrect={false}
-            placeholderTextColor="#6c757d"
-            onChangeText={(value) => onChange(value)}
+            placeholderTextColor='#6c757d'
+            onChangeText={(inputValue) => onChange(inputValue)}
             value={value}
             ref={passwordInputRef}
-            returnKeyType="done"
+            returnKeyType='done'
             onSubmitEditing={Keyboard.dismiss}
             blurOnSubmit={false}
             // secureTextEntry={true}
@@ -185,23 +185,10 @@ export default function AuthForm({
     </>
   );
 }
-const styles = StyleSheet.create({
-  view: {
-    justifyContent: 'flex-end',
-    height: '100%',
-  },
-  header: {
-    fontSize: 35,
-    fontWeight: '600',
-    alignSelf: 'flex-start',
-    marginBottom: 40,
-    marginLeft: 30,
-  },
-});
 
 AuthForm.propTypes = {
   formType: PropTypes.string.isRequired,
   headerForm: PropTypes.string.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,
-}
+};
