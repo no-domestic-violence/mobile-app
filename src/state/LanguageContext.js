@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import i18n from 'services/i18n';
 import PropTypes from 'prop-types';
 import { DEFAULT_LANGUAGE } from '../services/i18n/language-detector';
@@ -24,11 +24,11 @@ export const LanguageProvider = ({ children }) => {
   const setLanguage = async (language) => {
     i18n.changeLanguage(language);
     setAppLanguage(language);
-    AsyncStorage.setItem(APP_LANGUAGE, language);
+    SecureStore.setItemAsync(APP_LANGUAGE, language);
   };
 
   const initializeAppLanguage = async () => {
-    const currentLanguage = await AsyncStorage.getItem(APP_LANGUAGE);
+    const currentLanguage = await SecureStore.getItemAsync(APP_LANGUAGE);
     if (!currentLanguage) {
       setLanguage(DEFAULT_LANGUAGE);
     } else {

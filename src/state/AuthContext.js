@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import createAppContext from './CreateAppContext';
 import appApiClient from '../api/appApiClient';
 
@@ -68,8 +68,8 @@ const signup = (dispatch) => async ({ email, password, username }) => {
       username,
     });
 
-    await AsyncStorage.setItem('token', response.data.token);
-    await AsyncStorage.setItem('username', response.data.user.username);
+    await SecureStore.setItemAsync('token', response.data.token);
+    await SecureStore.setItemAsync('username', response.data.user.username);
 
     dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data });
   } catch (error) {
@@ -83,8 +83,8 @@ const signup = (dispatch) => async ({ email, password, username }) => {
 const login = (dispatch) => async ({ email, password }) => {
   try {
     const response = await appApiClient.post('/login', { email, password });
-    await AsyncStorage.setItem('token', response.data.token);
-    await AsyncStorage.setItem('username', response.data.user.username);
+    await SecureStore.setItemAsync('token', response.data.token);
+    await SecureStore.setItemAsync('username', response.data.user.username);
     dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
   } catch (error) {
     dispatch({
@@ -95,8 +95,8 @@ const login = (dispatch) => async ({ email, password }) => {
 };
 
 const authentication = (dispatch) => async () => {
-  const token = await AsyncStorage.getItem('token');
-  const username = await AsyncStorage.getItem('username');
+  const token = await SecureStore.getItemAsync('token');
+  const username = await SecureStore.getItemAsync('username');
   const user = { token, username };
   if (token) {
     dispatch({ type: 'AUTH_SUCCESS', payload: user });
@@ -132,7 +132,7 @@ const changePassword = (dispatch) => async ({
 };
 
 const signout = (dispatch) => async () => {
-  await AsyncStorage.removeItem('token');
+  await SecureStore.deleteItemAsync('token');
   dispatch({ type: 'LOGOUT' });
 };
 
@@ -142,8 +142,8 @@ const deleteAccount = (dispatch) => async ({ username }) => {
     const response = await appApiClient.delete('/deleteUser', {
       params: { username },
     });
-    await AsyncStorage.removeItem('token');
-    await AsyncStorage.removeItem('username');
+    await SecureStore.deleteItemAsync('token');
+    await SecureStore.deleteItemAsync('username');
     dispatch({ type: 'DELETE_ACCOUNT', payload: response.data });
   } catch (error) {
     dispatch({
