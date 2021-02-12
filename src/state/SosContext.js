@@ -1,5 +1,5 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import createAppContext from './CreateAppContext';
 import appApiClient from '../api/appApiClient';
 
@@ -38,8 +38,8 @@ const sosReducer = (state, action) => {
 
 const getContacts = (dispatch) => async () => {
   try {
-    const username = await AsyncStorage.getItem('username');
-    const token = await AsyncStorage.getItem('token');
+    const username = await SecureStore.getItemAsync('username');
+    const token = await SecureStore.getItemAsync('token');
     const response = await appApiClient.get(`/users/${username}/contacts`, {
       headers: { 'auth-token': token },
     });
@@ -50,8 +50,8 @@ const getContacts = (dispatch) => async () => {
 };
 
 const deleteContact = (dispatch) => async ({ id }) => {
-  const username = await AsyncStorage.getItem('username');
-  const token = await AsyncStorage.getItem('token');
+  const username = await SecureStore.getItemAsync('username');
+  const token = await SecureStore.getItemAsync('token');
   await appApiClient
     .delete(`/users/${username}/contacts/`, {
       params: { id },
@@ -66,8 +66,8 @@ const deleteContact = (dispatch) => async ({ id }) => {
 };
 
 const addContact = (dispatch) => async (data) => {
-  const username = await AsyncStorage.getItem('username');
-  const token = await AsyncStorage.getItem('token');
+  const username = await SecureStore.getItemAsync('username');
+  const token = await SecureStore.getItemAsync('token');
   await appApiClient
     .patch(`/users/${username}/contacts/`, data, {
       headers: { 'auth-token': token },
@@ -81,8 +81,8 @@ const addContact = (dispatch) => async (data) => {
 };
 
 const editContact = (dispatch) => async ({ data, id }) => {
-  const username = await AsyncStorage.getItem('username');
-  const token = await AsyncStorage.getItem('token');
+  const username = await SecureStore.getItemAsync('username');
+  const token = await SecureStore.getItemAsync('token');
   await appApiClient
     .patch(`/users/${username}/contacts/${id}`, data, {
       headers: { 'auth-token': token },
