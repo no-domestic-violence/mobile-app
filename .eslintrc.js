@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['airbnb', 'prettier', 'prettier/react'],
+  extends: 'airbnb',
   plugins: ['react', 'react-native', 'react-hooks'],
   parser: 'babel-eslint',
   env: {
@@ -8,22 +8,19 @@ module.exports = {
     'react-native/react-native': true,
   },
   rules: {
+    'no-use-before-define': 'off',
     'react/jsx-filename-extension': 'off',
-    'no-console': ['warn', { allow: ['clear', 'info', 'error'] }],
-    'arrow-body-style': 'off',
+    'react/prop-types': 'off',
     'comma-dangle': 'off',
     'padded-blocks': 'off',
     'arrow-body-style': 'off',
-    'import/no-cycle': 'off',
     'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/exhaustive-deps': 'warn',
     'react-native/no-unused-styles': 2,
     'react-native/split-platform-components': 2,
-    'react-native/no-inline-styles': 'off', //make it strict at some point
-    'react-native/no-color-literals': 0, //make it strict at some point
-    'import/prefer-default-export': 0, //make it strict at some point
+    'react-native/no-inline-styles': 2,
+    'react-native/no-color-literals': 2,
     'react-native/no-raw-text': 2,
-    'react/prop-types': 0,
     'react-native/no-single-element-style-arrays': 2,
   },
   settings: {

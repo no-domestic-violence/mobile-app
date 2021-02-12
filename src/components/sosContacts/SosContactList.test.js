@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render, fireEvent } from '@testing-library/react-native';
 import SosContactList from './SosContactList';
 
 jest.mock('@fortawesome/react-native-fontawesome', () => ({

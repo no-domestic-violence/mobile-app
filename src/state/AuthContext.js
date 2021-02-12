@@ -165,5 +165,5 @@ export const { Provider, Context } = createAppContext(
     changePassword,
     deleteAccount,
   },
-  { isLoggedIn: false, errorMessage: '' }
+  { isLoggedIn: false, errorMessage: '' },
 );

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import {
   View,
   Text,
+  StyleSheet,
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
@@ -9,8 +10,7 @@ import {
 import { Context as AuthContext } from '_state/AuthContext';
 import AuthSVG from '_assets/svg/login.svg';
 import { StyledView } from '_styles/shared/';
-import AuthForm from '_components/authenticationForm/';
-import { styles } from './SignUp.styles';
+import AuthForm from '_components/authenticationForm/AuthForm';
 
 export default function SignUpScreen({ navigation }) {
   const { state, signup, removeErrors } = useContext(AuthContext);
@@ -19,7 +19,7 @@ export default function SignUpScreen({ navigation }) {
     signup({ email, password, username });
   };
 
-  // TODO: find other way to remove messages from BE
+  //TODO: find other way to remove messages from BE
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
       removeErrors();
@@ -35,10 +35,10 @@ export default function SignUpScreen({ navigation }) {
       <StyledView style={styles.view}>
         <AuthSVG style={{ position: 'absolute', top: 0 }} />
         <AuthForm
-          formType='sign up'
-          headerForm='Sign Up'
+          formType="sign up"
+          headerForm="Sign Up"
           onSubmitForm={handleSignup}
-          buttonText='sign up'
+          buttonText="sign up"
         />
         <View style={styles.actionsContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
@@ -52,3 +52,23 @@ export default function SignUpScreen({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+  view: {
+    justifyContent: 'flex-end',
+    height: '100%',
+  },
+  text: {
+    fontSize: 14,
+    color: '#000',
+    marginTop: 20,
+    fontStyle: 'italic',
+  },
+  actionsContainer: {
+    marginBottom: 60,
+  },
+  errorMessage: {
+    color: 'red',
+    marginTop: 20,
+  },
+});

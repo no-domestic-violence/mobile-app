@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { Provider as SosProvider } from 'state/SosContext';
 import SosContactHome from './index';
+import { Provider as SosProvider } from 'state/SosContext';
 
 jest.mock('@fortawesome/react-native-fontawesome', () => ({
   FontAwesomeIcon: '',
@@ -24,7 +24,7 @@ describe('<SosContactHome />', () => {
     const result = await render(
       <SosProvider>
         <SosContactHome />
-      </SosProvider>
+      </SosProvider>,
     ).toJSON();
     await expect(result).toMatchSnapshot();
   });

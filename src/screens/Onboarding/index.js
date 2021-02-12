@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import { useTranslation } from 'react-i18next';
 import { Colors } from 'styles/index';
@@ -6,10 +7,9 @@ import FirstSVG from 'assets/svg/onboarding/emergency.svg';
 import SecondSVG from 'assets/svg/onboarding/map.svg';
 import ThirdSVG from 'assets/svg/onboarding/resources.svg';
 import FourthSVG from 'assets/svg/onboarding/questions.svg';
-import { styles } from './Onboarding.styles';
 
 export default function OnboardingScreen({ navigation }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <Onboarding
       onSkip={() => navigation.navigate('Login')}
@@ -46,3 +46,15 @@ export default function OnboardingScreen({ navigation }) {
     />
   );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 20,
+    fontWeight: '700',
+  },
+
+  // TODO: Resizing doesn't work
+  image: {
+    width: '70%',
+  },
+});

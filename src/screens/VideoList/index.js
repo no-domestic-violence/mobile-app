@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, FlatList } from 'react-native';
-import { VideoListRenderItem } from '_components/content-views/';
-import videoData from '../../mock/video';
+import  videoData  from '../../mock/video';
+import VideoListRenderItem from '../../components/content-views/VideoListRenderItem';
 
 export default function VideoList({ navigation }) {
-  const watchList = videoData;
+  const [watchList, setWatchList] = useState(videoData);
   return (
     <View>
       <FlatList

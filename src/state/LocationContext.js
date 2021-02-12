@@ -26,5 +26,5 @@ export const { Provider, Context } = createAppContext(
     updateCurrentLocation,
     fetchShelters,
   },
-  { currentLocation: null, shelters_list: [] }
+  { currentLocation: null, shelters_list: [] },
 );

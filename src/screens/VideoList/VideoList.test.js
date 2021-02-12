@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
+import VideoListRenderItem from '_components/content-views/VideoListRenderItem';
 import VideoList from './index';
 
 export const mockDataVideos = [
@@ -45,7 +46,7 @@ describe('Testing', () => {
     const result = render(<VideoList />).toJSON();
     expect(result).toMatchSnapshot();
   });
-  /* TODO: continue later
+/* TODO: continue later
   it('should display the order as a <ListItem />', () => {
     const element = wrapper.instance().renderItem(item);
     expect(element.type).toBe(ListItem);
