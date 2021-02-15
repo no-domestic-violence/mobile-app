@@ -107,6 +107,8 @@ export const UserSettingsStackNavigator = () => {
       <Stack.Screen name='Change Language' component={ChangeLanguage} />
       <Stack.Screen name='How to use' component={UsageInstructions} />
       <Stack.Screen name='Login' component={LoginScreen} />
+      <Stack.Screen name='Sign Up' component={SignUpScreen} />
+      <Stack.Screen name='Home' component={HomeScreen} />
     </Stack.Navigator>
   );
 };

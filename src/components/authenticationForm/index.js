@@ -18,6 +18,7 @@ export default function AuthForm({
   headerForm,
   onSubmitForm,
   buttonText,
+  navigation,
 }) {
   const AuthSchema = yup.object().shape({
     username: yup.string().when(formType, () => {
@@ -178,7 +179,7 @@ export default function AuthForm({
       {errors.password && (
         <Text style={{ color: 'red' }}>{errors.password.message}</Text>
       )}
-
+      {/* TODO: Enable navigate to Home onPress  */}
       <StyledButton onPress={handleSubmit(onSubmitForm)}>
         <StyledButtonText>{buttonText.toUpperCase()}</StyledButtonText>
       </StyledButton>
