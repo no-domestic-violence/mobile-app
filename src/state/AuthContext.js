@@ -55,6 +55,10 @@ const authReducer = (state, action) => {
         ...state,
         successMessage: '',
       };
+    case 'CHECK_FIRST_LAUNCH':
+      return {
+        isFirstLaunch: action.payload,
+      };
     default:
       return state;
   }
@@ -153,6 +157,17 @@ const deleteAccount = (dispatch) => async ({ username }) => {
   }
 };
 
+const checkFirstLaunch = (dispatch) => async () => {
+  await SecureStore.getItemAsync('alreadyLaunched').then((value) => {
+    if (value === null) {
+      SecureStore.setItemAsync('alreadyLaunched', 'true');
+      dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: true });
+    } else {
+      dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: false });
+    }
+  });
+};
+
 export const { Provider, Context } = createAppContext(
   authReducer,
   {
@@ -164,6 +179,7 @@ export const { Provider, Context } = createAppContext(
     authentication,
     changePassword,
     deleteAccount,
+    checkFirstLaunch,
   },
-  { isLoggedIn: false, errorMessage: '' }
+  { isLoggedIn: false, errorMessage: '', isFirstLaunch: null }
 );
