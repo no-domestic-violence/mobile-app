@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
-import * as SecureStore from 'expo-secure-store';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import BottomTabNavigator from './TabNavigator';
 import { OnboardingNavigator } from './StackNavigator';
