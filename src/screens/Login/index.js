@@ -18,8 +18,9 @@ export default function LoginScreen({ navigation }) {
   const { t, i18n } = useTranslation();
   const { state, login, removeErrors } = useContext(AuthContext);
 
-  const handleLogin = ({ email, password }) => {
-    login({ email, password });
+  const handleLogin = async ({ email, password }) => {
+    await login({ email, password });
+    navigation.navigate('User');
   };
   // : TODO: handle errors removing from BE
   useEffect(() => {
@@ -40,6 +41,7 @@ export default function LoginScreen({ navigation }) {
           headerForm={t('common.login')}
           onSubmitForm={handleLogin}
           buttonText='log in'
+          navigation={navigation}
         />
         <View style={styles.textView}>
           <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
@@ -47,7 +49,12 @@ export default function LoginScreen({ navigation }) {
               Do not have an account? Go to sign up
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('BottomTabNavigator', {
+                screen: 'Home',
+              })
+            }>
             <Text style={styles.text}>Proceed without login</Text>
           </TouchableOpacity>
           {/* //TODO: fix messages from BE validatiton */}
