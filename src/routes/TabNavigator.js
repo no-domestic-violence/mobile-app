@@ -18,7 +18,8 @@ import ResourcesTabNavigator from './ResourcesTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
-export const SignedInTabNavigator = () => {
+export const BottomTabNavigator = () => {
+  const { state } = useContext(AuthContext);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -45,55 +46,32 @@ export const SignedInTabNavigator = () => {
           backgroundColor: '#FEF8E3',
         },
       }}>
-      <>
-        <Tab.Screen name='Home' component={ResourcesTabNavigator} />
-        <Tab.Screen name='Hotlines' component={SheltersHotlinesTabNavigator} />
-        <Tab.Screen name='Emergency' component={SosContactStackNavigator} />
-        <Tab.Screen
-          name='UserSettings'
-          component={UserSettingsStackNavigator}
-        />
-      </>
-    </Tab.Navigator>
-  );
-};
-
-export const SignedOutTabNavigator = () => {
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        // eslint-disable-next-line
-        tabBarIcon: ({ color, size }) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = faHome;
-          } else if (route.name === 'Hotlines') {
-            iconName = faMapPin;
-          } else if (route.name === 'Emergency') {
-            iconName = faPhone;
-          } else if (route.name === 'UserSettings') {
-            iconName = faUserCog;
-          }
-          return <FontAwesomeIcon icon={iconName} size={size} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: 'black',
-        inactiveTintColor: 'gray',
-        style: {
-          backgroundColor: '#FEF8E3',
-        },
-      }}>
-      <>
-        <Tab.Screen name='Home' component={ResourcesTabNavigator} />
-        <Tab.Screen name='Hotlines' component={SheltersHotlinesTabNavigator} />
-
-        <Tab.Screen
-          name='UserSettings'
-          component={UserSettingsStackNavigator}
-        />
-      </>
+      {!state.token ? (
+        <>
+          <Tab.Screen name='Home' component={ResourcesTabNavigator} />
+          <Tab.Screen
+            name='Hotlines'
+            component={SheltersHotlinesTabNavigator}
+          />
+          <Tab.Screen
+            name='UserSettings'
+            component={UserSettingsStackNavigator}
+          />
+        </>
+      ) : (
+        <>
+          <Tab.Screen name='Home' component={ResourcesTabNavigator} />
+          <Tab.Screen
+            name='Hotlines'
+            component={SheltersHotlinesTabNavigator}
+          />
+          <Tab.Screen name='Emergency' component={SosContactStackNavigator} />
+          <Tab.Screen
+            name='UserSettings'
+            component={UserSettingsStackNavigator}
+          />
+        </>
+      )}
     </Tab.Navigator>
   );
 };
