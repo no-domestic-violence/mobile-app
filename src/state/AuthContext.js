@@ -140,23 +140,6 @@ const signout = (dispatch) => async () => {
   dispatch({ type: 'LOGOUT' });
 };
 
-const deleteAccount = (dispatch) => async ({ username }) => {
-  try {
-    // TODO: fix sending params so it is more readable
-    const response = await appApiClient.delete('/deleteUser', {
-      params: { username },
-    });
-    await SecureStore.deleteItemAsync('token');
-    await SecureStore.deleteItemAsync('username');
-    dispatch({ type: 'DELETE_ACCOUNT', payload: response.data });
-  } catch (error) {
-    dispatch({
-      type: 'CHANGE_PASSWORD_ERROR',
-      payload: error.response.data.message,
-    });
-  }
-};
-
 const checkFirstLaunch = (dispatch) => async () => {
   await SecureStore.getItemAsync('alreadyLaunched').then((value) => {
     if (value === null) {
@@ -166,6 +149,25 @@ const checkFirstLaunch = (dispatch) => async () => {
       dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: false });
     }
   });
+};
+
+const deleteAccount = (dispatch) => async ({ username }) => {
+  try {
+    // TODO: fix sending params so it is more readable
+    const response = await appApiClient.delete('/deleteUser', {
+      params: { username },
+    });
+    await SecureStore.deleteItemAsync('token');
+    await SecureStore.deleteItemAsync('username');
+    await SecureStore.deleteItemAsync('alreadyLaunched');
+    dispatch({ type: 'DELETE_ACCOUNT', payload: response.data });
+    dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: true });
+  } catch (error) {
+    dispatch({
+      type: 'CHANGE_PASSWORD_ERROR',
+      payload: error.response.data.message,
+    });
+  }
 };
 
 export const { Provider, Context } = createAppContext(
