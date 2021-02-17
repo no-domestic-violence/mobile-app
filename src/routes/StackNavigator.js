@@ -37,6 +37,7 @@ export const OnboardingNavigator = () => {
       <Stack.Screen name='Login' component={LoginScreen} />
       <Stack.Screen name='Sign Up' component={SignUpScreen} />
       <Stack.Screen name='BottomTabNavigator' component={BottomTabNavigator} />
+      <Stack.Screen name='User' component={UserSettings} />
     </Stack.Navigator>
   );
 };
