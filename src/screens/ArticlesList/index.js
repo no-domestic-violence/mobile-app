@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import { View, FlatList } from 'react-native';
 import ArticleCard from 'components/content/';
 import appApiClient from '../../api/appApiClient';
 
 export default function Content({ navigation }) {
   const [blog, setBlog] = useState([]);
+  const isFocused = useIsFocused();
 
   const getArticles = async () => {
     try {
@@ -17,7 +19,7 @@ export default function Content({ navigation }) {
 
   useEffect(() => {
     getArticles();
-  }, []);
+  }, [isFocused]);
 
   if (!blog) {
     return null;
