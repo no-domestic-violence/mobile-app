@@ -17,7 +17,9 @@ export default function SignUpScreen({ navigation }) {
 
   const handleSignup = async ({ email, password, username }) => {
     await signup({ email, password, username });
-    navigation.navigate('User');
+    if (state.token) {
+      navigation.navigate('User');
+    }
   };
 
   // TODO: find other way to remove messages from BE

@@ -20,7 +20,9 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = async ({ email, password }) => {
     await login({ email, password });
-    navigation.navigate('User');
+    if (state.token) {
+      navigation.navigate('User');
+    }
   };
   // : TODO: handle errors removing from BE
   useEffect(() => {
