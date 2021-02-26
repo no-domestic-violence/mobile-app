@@ -21,6 +21,7 @@ import ChangeLanguage from '_screens/ChangeLang';
 import UsageInstructions from '_screens/UsageInstructions';
 import DeleteAccount from '_screens/DeleteAccount';
 import TermsAndConditionsScreen from '_screens/TermsAndConditions';
+import { BottomTabNavigator } from './TabNavigator';
 
 const Stack = createStackNavigator();
 
@@ -35,7 +36,8 @@ export const OnboardingNavigator = () => {
       <Stack.Screen name='Onboarding' component={OnboardingScreen} />
       <Stack.Screen name='Login' component={LoginScreen} />
       <Stack.Screen name='Sign Up' component={SignUpScreen} />
-      <Stack.Screen name='Home' component={HomeScreen} />
+      <Stack.Screen name='BottomTabNavigator' component={BottomTabNavigator} />
+      <Stack.Screen name='User' component={UserSettings} />
     </Stack.Navigator>
   );
 };
@@ -107,6 +109,7 @@ export const UserSettingsStackNavigator = () => {
       <Stack.Screen name='Change Language' component={ChangeLanguage} />
       <Stack.Screen name='How to use' component={UsageInstructions} />
       <Stack.Screen name='Login' component={LoginScreen} />
+      <Stack.Screen name='Sign Up' component={SignUpScreen} />
     </Stack.Navigator>
   );
 };

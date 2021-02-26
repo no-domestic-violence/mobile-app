@@ -5,7 +5,7 @@ const getHotlinesData = async (setDataSource, setLoading, search, inputRef) => {
     const response = await appApiClient.get('/hotlines', {
       params: { searchTerm: search },
     });
-    setDataSource([...response.data]);
+    setDataSource(response.data);
     setLoading(false);
     inputRef.current.focus();
   } catch (error) {

@@ -15,8 +15,11 @@ import { styles } from './SignUp.styles';
 export default function SignUpScreen({ navigation }) {
   const { state, signup, removeErrors } = useContext(AuthContext);
 
-  const handleSignup = ({ email, password, username }) => {
-    signup({ email, password, username });
+  const handleSignup = async ({ email, password, username }) => {
+    await signup({ email, password, username });
+    if (state.token) {
+      navigation.navigate('User');
+    }
   };
 
   // TODO: find other way to remove messages from BE

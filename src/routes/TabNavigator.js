@@ -18,7 +18,7 @@ import ResourcesTabNavigator from './ResourcesTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigator = () => {
+export const BottomTabNavigator = () => {
   const { state } = useContext(AuthContext);
   return (
     <Tab.Navigator
@@ -46,19 +46,32 @@ const BottomTabNavigator = () => {
           backgroundColor: '#FEF8E3',
         },
       }}>
-      <>
-        <Tab.Screen name='Home' component={ResourcesTabNavigator} />
-        <Tab.Screen name='Hotlines' component={SheltersHotlinesTabNavigator} />
-        {state.token && (
+      {!state.token ? (
+        <>
+          <Tab.Screen name='Home' component={ResourcesTabNavigator} />
+          <Tab.Screen
+            name='Hotlines'
+            component={SheltersHotlinesTabNavigator}
+          />
+          <Tab.Screen
+            name='UserSettings'
+            component={UserSettingsStackNavigator}
+          />
+        </>
+      ) : (
+        <>
+          <Tab.Screen name='Home' component={ResourcesTabNavigator} />
+          <Tab.Screen
+            name='Hotlines'
+            component={SheltersHotlinesTabNavigator}
+          />
           <Tab.Screen name='Emergency' component={SosContactStackNavigator} />
-        )}
-        <Tab.Screen
-          name='UserSettings'
-          component={UserSettingsStackNavigator}
-        />
-      </>
+          <Tab.Screen
+            name='UserSettings'
+            component={UserSettingsStackNavigator}
+          />
+        </>
+      )}
     </Tab.Navigator>
   );
 };
-
-export default BottomTabNavigator;

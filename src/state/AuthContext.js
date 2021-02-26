@@ -55,6 +55,10 @@ const authReducer = (state, action) => {
         ...state,
         successMessage: '',
       };
+    case 'CHECK_FIRST_LAUNCH':
+      return {
+        isFirstLaunch: action.payload,
+      };
     default:
       return state;
   }
@@ -136,6 +140,17 @@ const signout = (dispatch) => async () => {
   dispatch({ type: 'LOGOUT' });
 };
 
+const checkFirstLaunch = (dispatch) => async () => {
+  await SecureStore.getItemAsync('alreadyLaunched').then((value) => {
+    if (value === null) {
+      SecureStore.setItemAsync('alreadyLaunched', 'true');
+      dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: true });
+    } else {
+      dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: false });
+    }
+  });
+};
+
 const deleteAccount = (dispatch) => async ({ username }) => {
   try {
     // TODO: fix sending params so it is more readable
@@ -144,7 +159,9 @@ const deleteAccount = (dispatch) => async ({ username }) => {
     });
     await SecureStore.deleteItemAsync('token');
     await SecureStore.deleteItemAsync('username');
+    await SecureStore.deleteItemAsync('alreadyLaunched');
     dispatch({ type: 'DELETE_ACCOUNT', payload: response.data });
+    dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: true });
   } catch (error) {
     dispatch({
       type: 'CHANGE_PASSWORD_ERROR',
@@ -164,6 +181,7 @@ export const { Provider, Context } = createAppContext(
     authentication,
     changePassword,
     deleteAccount,
+    checkFirstLaunch,
   },
-  { isLoggedIn: false, errorMessage: '' }
+  { isLoggedIn: false, errorMessage: '', isFirstLaunch: null }
 );
