@@ -38,6 +38,7 @@ exports[`<TermsAndConditionsScreen /> should match snapshot 1`] = `
   </Text>
   <RCTScrollView
     onScroll={[Function]}
+    scrollEventThrottle={16}
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.71)",
