@@ -5,9 +5,6 @@ jest.mock('@fortawesome/react-native-fontawesome', () => ({
   FontAwesomeIcon: '',
 }));
 
-global.console = { error: jest.fn() };
-
-
 
 jest.mock('react-native-reanimated', () => {
   // eslint-disable-next-line
