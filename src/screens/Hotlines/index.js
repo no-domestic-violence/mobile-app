@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, FlatList, Linking, ActivityIndicator } from 'react-native';
-import { Divider , SearchBar } from 'react-native-elements';
+import { Divider, SearchBar } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import HotlinesItem from '_components/hotlines/';
-import { StyledView } from '_styles/shared/StyledView';
-import { Colors } from '_styles/';
-import useDebounce from '_hooks/useDebounce';
-import { getHotlinesData } from "../../api";
+import HotlinesItem from 'components/hotlines/';
+import { StyledView } from 'styles/shared/StyledView';
+import { Colors } from 'styles/';
+import useDebounce from 'hooks/useDebounce';
+import { getHotlinesData } from '../../api';
 import { styles } from './Hotlines.styles';
 
 export default function HotlinesList() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
+  const [hotlinesData, setHotlinesData] = useState([]);
   const inputRef = useRef();
 
   const debouncedValue = useDebounce(search, 500);
@@ -22,7 +22,7 @@ export default function HotlinesList() {
   useEffect(() => {
     setLoading(true);
     getHotlinesData(search).then((response) =>
-      setDataSource([...response.data])
+      setHotlinesData([...response.data])
     );
     setLoading(false);
     inputRef.current.focus();
@@ -57,12 +57,18 @@ export default function HotlinesList() {
       />
       <Divider style={{ height: 10, backgroundColor: Colors.primary }} />
       <FlatList
+        testID='hotlinesFlatList'
         style={styles.list}
-        data={dataSource}
+        data={hotlinesData}
         keyExtractor={(item, index) => index.toString()}
         enableEmptySections
         renderItem={({ item }) => (
-          <HotlinesItem item={item} makeCall={makeCall} title={item.phone} />
+          <HotlinesItem
+            testID='hotlinesItem'
+            item={item}
+            makeCall={makeCall}
+            title={item.phone}
+          />
         )}
       />
     </StyledView>
