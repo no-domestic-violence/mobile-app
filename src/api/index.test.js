@@ -47,6 +47,8 @@ describe('getHotlinesData by search parameter', () => {
   it('resolves with error', async () => {
     const serverError = new Error('Some network error');
     axios.get.mockRejectedValueOnce(Promise.reject(serverError));
+    console = { error: jest.fn() };
+
     try {
       await getHotlinesData('?');
     } catch (err) {
