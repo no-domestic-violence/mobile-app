@@ -8,4 +8,8 @@ describe('User information component', () => {
     const { queryByText } = render(<UserInfo username={username} />);
     expect(queryByText(username)).not.toBeNull();
   });
+  it('should match snapshot', () => {
+    const result = render(<UserInfo username={username} />).toJSON();
+    expect(result).toMatchSnapshot();
+  });
 });

@@ -26,4 +26,10 @@ describe('Hotline item component', () => {
     expect(mockMakeCall).toHaveBeenCalledTimes(1);
     expect(mockMakeCall).toHaveBeenCalledWith(mockHotlineItem.phone);
   });
+  it('should match snapshot', () => {
+    const result = render(
+      <HotlinesItem item={mockHotlineItem} makeCall={mockMakeCall} />
+    ).toJSON();
+    expect(result).toMatchSnapshot();
+  });
 });

@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hotline item component should match snapshot 1`] = `
+Array [
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#FEF8E3",
+        "borderRadius": 30,
+        "flexDirection": "row",
+        "flexShrink": 1,
+        "justifyContent": "space-between",
+        "opacity": 1,
+        "paddingHorizontal": 20,
+        "paddingVertical": 20,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignContent": "center",
+          "alignItems": "center",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexWrap": "wrap",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "flexShrink": 1,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Test name 2
+        </Text>
+        <Text
+          style={
+            Object {
+              "flexShrink": 1,
+              "flexWrap": "wrap",
+            }
+          }
+        >
+          Hamburg
+          , tel:
+          +49 543 514 8358
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignContent": "center",
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <
+        color="#000"
+        icon={
+          Object {
+            "icon": Array [
+              512,
+              512,
+              Array [],
+              "f095",
+              "M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z",
+            ],
+            "iconName": "phone",
+            "prefix": "fas",
+          }
+        }
+        onPress={[Function]}
+        size={25}
+        testID="makeCall"
+      />
+    </View>
+  </View>,
+  <View
+    style={
+      Object {
+        "backgroundColor": "#cadeee",
+        "height": 20,
+      }
+    }
+  />,
+]
+`;
