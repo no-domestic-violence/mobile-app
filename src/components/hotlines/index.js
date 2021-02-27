@@ -22,10 +22,11 @@ export default function HotlinesItem({ item, makeCall }) {
         </View>
         <View style={styles.iconContainer}>
           <FontAwesomeIcon
+            testID='makeCall'
             onPress={() => makeCall(item.phone)}
             icon={faPhone}
             size={25}
-            color="#000"
+            color='#000'
           />
         </View>
       </StyledHotlinesListItem>
