@@ -1,4 +1,13 @@
 import 'react-native-gesture-handler/jestSetup';
+import '@testing-library/jest-dom/extend-expect';
+
+jest.mock('@fortawesome/react-native-fontawesome', () => ({
+  FontAwesomeIcon: '',
+}));
+
+global.console = { error: jest.fn() };
+
+
 
 jest.mock('react-native-reanimated', () => {
   // eslint-disable-next-line

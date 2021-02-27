@@ -21,7 +21,11 @@ export default function HotlinesList() {
 
   useEffect(() => {
     setLoading(true);
-    getHotlinesData(setDataSource, setLoading, search, inputRef);
+    getHotlinesData(search).then((response) =>
+      setDataSource([...response.data])
+    );
+    setLoading(false);
+    inputRef.current.focus();
   }, [debouncedValue]);
 
   const makeCall = (phoneNumber) => {
@@ -48,7 +52,7 @@ export default function HotlinesList() {
         autoCorrect={false}
         autoCapitalize='none'
         onChangeText={setSearch}
-        placeholder='Type city or orgaisation name'
+        placeholder='Type city or organisation name'
         value={search}
       />
       <Divider style={{ height: 10, backgroundColor: Colors.primary }} />

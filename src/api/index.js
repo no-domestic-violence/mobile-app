@@ -1,13 +1,11 @@
 import appApiClient from './appApiClient';
 
-const getHotlinesData = async (setDataSource, setLoading, search, inputRef) => {
+const getHotlinesData = async (search) => {
   try {
-    const response = await appApiClient.get('/hotlines', {
+    const response =  await appApiClient.get('/hotlines', {
       params: { searchTerm: search },
     });
-    setDataSource([...response.data]);
-    setLoading(false);
-    inputRef.current.focus();
+    return response;
   } catch (error) {
     console.error(error);
   }
