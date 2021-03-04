@@ -36,30 +36,9 @@ export const mockDataVideos = [
   },
 ];
 
-jest.mock('@fortawesome/react-native-fontawesome', () => ({
-  FontAwesomeIcon: '',
-}));
-
 describe('Testing', () => {
   it('should match snapshot', () => {
     const result = render(<VideoList />).toJSON();
     expect(result).toMatchSnapshot();
   });
-  /* TODO: continue later
-  it('should display the order as a <ListItem />', () => {
-    const element = wrapper.instance().renderItem(item);
-    expect(element.type).toBe(ListItem);
-    expect(element.props).toEqual({
-      title: 'Chris Jackson',
-      subtitle: 'Vice Chairman',
-      leftAvatar: {
-        source: {
-          uri:
-            'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        },
-        title: 'C',
-      },
-    });
-  });
-  */
 });
