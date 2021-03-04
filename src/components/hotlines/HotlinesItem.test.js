@@ -9,14 +9,18 @@ describe('Hotline item component', () => {
     country: 'Germany',
     organisation_name: 'Test name 2',
     phone: '+49 543 514 8358',
+    website: 'www.help.de',
   };
   const mockMakeCall = jest.fn();
   it('renders hotline item from props', () => {
-    const { queryByText } = render(<HotlinesItem item={mockHotlineItem} />);
+    const { queryByText, debug } = render(
+      <HotlinesItem item={mockHotlineItem} />
+    );
     expect(queryByText(mockHotlineItem.organisation_name)).not.toBeNull();
     expect(
       queryByText(`${mockHotlineItem.city}, tel:${mockHotlineItem.phone}`)
     ).not.toBeNull();
+    expect(queryByText(`${mockHotlineItem.website}`)).not.toBeNull();
   });
   it('make a call on press with the righ number', () => {
     const { getByTestId } = render(

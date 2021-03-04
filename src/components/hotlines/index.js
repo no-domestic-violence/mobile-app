@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Colors } from '_styles/index';
-import { Divider } from 'react-native-elements';
-
+import { Divider, Text } from 'react-native-elements';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { StyledHotlinesListItem } from '_styles/shared';
+import { StyledHotlinesListItem } from 'styles/shared';
 import { styles } from './HotlinesItem.styles';
+import ExternalLinkText from 'components/external-link-text';
 
 export default function HotlinesItem({ item, makeCall }) {
   return (
@@ -18,6 +18,15 @@ export default function HotlinesItem({ item, makeCall }) {
             <Text style={styles.listItemContacts}>
               {item.city}, tel:{item.phone}
             </Text>
+            <Text style={styles.listItemContacts}>website:</Text>
+            <View>
+              <ExternalLinkText
+                style={styles.listItemWebsite}
+                url={item.website}
+                title={item.website}
+              />
+              <Text> {item.description}</Text>
+            </View>
           </View>
         </View>
         <View style={styles.iconContainer}>

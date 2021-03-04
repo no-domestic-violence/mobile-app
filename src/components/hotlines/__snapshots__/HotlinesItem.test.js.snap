@@ -28,8 +28,8 @@ Array [
     <View
       style={
         Object {
-          "alignContent": "center",
-          "alignItems": "center",
+          "flexShrink": 1,
+          "flexWrap": "wrap",
         }
       }
     >
@@ -44,6 +44,7 @@ Array [
         <Text
           style={
             Object {
+              "color": "#242424",
               "flexShrink": 1,
               "fontWeight": "bold",
             }
@@ -54,6 +55,8 @@ Array [
         <Text
           style={
             Object {
+              "color": "#242424",
+              "flex": 1,
               "flexShrink": 1,
               "flexWrap": "wrap",
             }
@@ -63,6 +66,41 @@ Array [
           , tel:
           +49 543 514 8358
         </Text>
+        <Text
+          style={
+            Object {
+              "color": "#242424",
+              "flex": 1,
+              "flexShrink": 1,
+              "flexWrap": "wrap",
+            }
+          }
+        >
+          website:
+        </Text>
+        <View>
+          <Text
+            onPress={[Function]}
+            style={
+              Object {
+                "color": "blue",
+              }
+            }
+            title="www.help.de"
+            type="clear"
+          >
+            www.help.de
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#242424",
+              }
+            }
+          >
+             
+          </Text>
+        </View>
       </View>
     </View>
     <View
