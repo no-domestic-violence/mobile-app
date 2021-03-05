@@ -9,7 +9,7 @@ import {
 import { Context as AuthContext } from '_state/AuthContext';
 import AuthSVG from '_assets/svg/login.svg';
 import { StyledView } from '_styles/shared/';
-import AuthForm from '_components/authenticationForm/';
+import AuthForm from 'components/authentication-form/';
 import { styles } from './SignUp.styles';
 
 export default function SignUpScreen({ navigation }) {

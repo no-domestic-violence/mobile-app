@@ -5,7 +5,7 @@ import UserInfo from '_components/user-info/';
 import { StyledView } from '_styles/shared/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import AuthForm from '_components/authenticationForm/';
+import AuthForm from 'components/authentication-form/';
 import ModalComponent from '_components/modal';
 import { styles } from './ChangePassword.styles';
 

@@ -2,17 +2,16 @@ import React, { useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import PropTypes from 'prop-types';
-import * as yup from 'yup';
 import { Text, Keyboard } from 'react-native';
+import { Divider } from 'react-native-elements';
 import {
   StyledInputAuth,
   StyledButton,
   StyledButtonText,
-} from '_styles/shared/';
-import { Colors } from '_styles/';
-import { Divider } from 'react-native-elements';
+} from 'styles/shared/';
+import { Colors } from 'styles/';
 import { styles } from './AuthForm.styles';
-
+import { AuthSchema } from './AuthForm.constants';
 export default function AuthForm({
   formType,
   headerForm,
@@ -20,26 +19,8 @@ export default function AuthForm({
   buttonText,
   navigation,
 }) {
-  const AuthSchema = yup.object().shape({
-    username: yup.string().when(formType, () => {
-      if (formType === 'sign up')
-        return yup.string().required('Please enter your username');
-      return yup.string().notRequired();
-    }),
-    oldPassword: yup.string().when(formType, () => {
-      if (formType === 'change password')
-        return yup.string().required('Please enter your old password here');
-      return yup.string().notRequired();
-    }),
-    email: yup.string().required('Please enter an email'),
-    password: yup
-      .string()
-      .min(8, 'Please enter 8 characters password')
-      .required('Please enter 8 characters password'),
-  });
-
   const { control, handleSubmit, errors } = useForm({
-    resolver: yupResolver(AuthSchema),
+    resolver: yupResolver(AuthSchema(formType)),
   });
 
   const emailInputRef = useRef();

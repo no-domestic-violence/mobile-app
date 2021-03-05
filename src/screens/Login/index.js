@@ -11,7 +11,7 @@ import { StyledView } from '_styles/shared/';
 
 import { useTranslation } from 'react-i18next';
 import AuthSVG from '_assets/svg/login.svg';
-import AuthForm from '_components/authenticationForm/';
+import AuthForm from 'components/authentication-form/';
 import { styles } from './Login.styles';
 
 export default function LoginScreen({ navigation }) {
