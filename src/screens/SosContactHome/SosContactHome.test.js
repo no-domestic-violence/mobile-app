@@ -1,4 +1,4 @@
-//it is the same file, just needed to extract it from the testing scope and added again cuz something was failing
+// it is the same file, just needed to extract it from the testing scope and added again cuz something was failing
 
 import React from 'react';
 import { render } from '@testing-library/react-native';

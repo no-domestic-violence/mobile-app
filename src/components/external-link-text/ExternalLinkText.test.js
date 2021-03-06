@@ -1,6 +1,6 @@
 import React from 'react';
-import ExternalLinkText from './index';
 import { render, fireEvent } from '@testing-library/react-native';
+import ExternalLinkText from './index';
 
 describe('External Link Text component', () => {
   const url = 'www.help.de';

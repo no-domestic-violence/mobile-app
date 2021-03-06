@@ -1,6 +1,6 @@
 import React from 'react';
-import HotlinesItem from './index';
 import { render, fireEvent } from '@testing-library/react-native';
+import HotlinesItem from './index';
 
 describe('Hotline item component', () => {
   const mockHotlineItem = {

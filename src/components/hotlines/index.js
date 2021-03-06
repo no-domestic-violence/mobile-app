@@ -5,8 +5,8 @@ import { Divider, Text } from 'react-native-elements';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StyledHotlinesListItem } from 'styles/shared';
-import { styles } from './HotlinesItem.styles';
 import ExternalLinkText from 'components/external-link-text';
+import { styles } from './HotlinesItem.styles';
 
 export default function HotlinesItem({ item, makeCall }) {
   return (
