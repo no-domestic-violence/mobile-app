@@ -1,5 +1,5 @@
 import createAppContext from './CreateAppContext';
-import appApiClient from '../api/appApiClient';
+import { apiInstance } from 'api/';
 
 const LocationReducer = (state, action) => {
   switch (action.type) {
@@ -17,7 +17,7 @@ const updateCurrentLocation = (dispatch) => (location) => {
 };
 
 const fetchShelters = (dispatch) => async () => {
-  const response = await appApiClient.get('/shelters');
+  const response = await apiInstance.get('/shelters');
   dispatch({ type: 'FETCH_SHELTERS', payload: response.data });
 };
 export const { Provider, Context } = createAppContext(

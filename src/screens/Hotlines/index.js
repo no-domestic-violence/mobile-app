@@ -8,7 +8,7 @@ import HotlinesItem from 'components/hotlines/';
 import { StyledView } from 'styles/shared/StyledView';
 import { Colors } from 'styles/';
 import useDebounce from 'hooks/useDebounce';
-import { getHotlinesData } from '../../api';
+import appApiClient from 'api/';
 import { styles } from './Hotlines.styles';
 
 export default function HotlinesList() {
@@ -21,9 +21,9 @@ export default function HotlinesList() {
 
   useEffect(() => {
     setLoading(true);
-    getHotlinesData(search).then((response) =>
-      setHotlinesData([...response.data])
-    );
+    appApiClient
+      .getHotlinesData(search)
+      .then((response) => setHotlinesData([...response.data]));
     setLoading(false);
     inputRef.current.focus();
   }, [debouncedValue]);

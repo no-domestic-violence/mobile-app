@@ -1,6 +1,6 @@
 import * as SecureStore from 'expo-secure-store';
 import createAppContext from './CreateAppContext';
-import appApiClient from '../api/appApiClient';
+import appApiClient from 'api/';
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -66,11 +66,7 @@ const authReducer = (state, action) => {
 
 const signup = (dispatch) => async ({ email, password, username }) => {
   try {
-    const response = await appApiClient.post('/signup', {
-      email,
-      password,
-      username,
-    });
+    const response = await appApiClient.signupUser(email, password, username);
 
     await SecureStore.setItemAsync('token', response.data.token);
     await SecureStore.setItemAsync('username', response.data.user.username);
@@ -86,7 +82,7 @@ const signup = (dispatch) => async ({ email, password, username }) => {
 
 const login = (dispatch) => async ({ email, password }) => {
   try {
-    const response = await appApiClient.post('/login', { email, password });
+    const response = await appApiClient.loginUser(email, password);
     await SecureStore.setItemAsync('token', response.data.token);
     await SecureStore.setItemAsync('username', response.data.user.username);
     dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
@@ -120,11 +116,11 @@ const changePassword = (dispatch) => async ({
   oldPassword,
 }) => {
   try {
-    const response = await appApiClient.post('/changePassword', {
+    const response = await appApiClient.changePassword(
       email,
-      oldPassword,
       password,
-    });
+      oldPassword
+    );
     removeErrors();
     dispatch({ type: 'CHANGE_PASSWORD_SUCCESS', payload: response.data });
   } catch (error) {
@@ -154,9 +150,7 @@ const checkFirstLaunch = (dispatch) => async () => {
 const deleteAccount = (dispatch) => async ({ username }) => {
   try {
     // TODO: fix sending params so it is more readable
-    const response = await appApiClient.delete('/deleteUser', {
-      params: { username },
-    });
+    const response = await appApiClient.deleteUser(username);
     await SecureStore.deleteItemAsync('token');
     await SecureStore.deleteItemAsync('username');
     await SecureStore.deleteItemAsync('alreadyLaunched');

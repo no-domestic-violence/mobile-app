@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
 import * as SecureStore from 'expo-secure-store';
 import createAppContext from './CreateAppContext';
-import appApiClient from '../api/appApiClient';
+import { apiInstance } from 'api/';
 
 const ACTIONS = {
   ADD_CONTACT: 'ADD_CONTACT',
@@ -40,7 +40,7 @@ const getContacts = (dispatch) => async () => {
   try {
     const username = await SecureStore.getItemAsync('username');
     const token = await SecureStore.getItemAsync('token');
-    const response = await appApiClient.get(`/users/${username}/contacts`, {
+    const response = await apiInstance.get(`/users/${username}/contacts`, {
       headers: { 'auth-token': token },
     });
     dispatch({ type: ACTIONS.GET_CONTACTS, payload: response.data.contacts });
@@ -52,7 +52,7 @@ const getContacts = (dispatch) => async () => {
 const deleteContact = (dispatch) => async ({ id }) => {
   const username = await SecureStore.getItemAsync('username');
   const token = await SecureStore.getItemAsync('token');
-  await appApiClient
+  await apiInstance
     .delete(`/users/${username}/contacts/`, {
       params: { id },
       headers: { 'auth-token': token },
@@ -68,7 +68,7 @@ const deleteContact = (dispatch) => async ({ id }) => {
 const addContact = (dispatch) => async (data) => {
   const username = await SecureStore.getItemAsync('username');
   const token = await SecureStore.getItemAsync('token');
-  await appApiClient
+  await apiInstance
     .patch(`/users/${username}/contacts/`, data, {
       headers: { 'auth-token': token },
     })
@@ -83,7 +83,7 @@ const addContact = (dispatch) => async (data) => {
 const editContact = (dispatch) => async ({ data, id }) => {
   const username = await SecureStore.getItemAsync('username');
   const token = await SecureStore.getItemAsync('token');
-  await appApiClient
+  await apiInstance
     .patch(`/users/${username}/contacts/${id}`, data, {
       headers: { 'auth-token': token },
     })
