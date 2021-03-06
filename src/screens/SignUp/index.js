@@ -6,10 +6,10 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { Context as AuthContext } from '_state/AuthContext';
-import AuthSVG from '_assets/svg/login.svg';
-import { StyledView } from '_styles/shared/';
-import AuthForm from 'components/authentication-form/';
+import { Context as AuthContext } from 'state/AuthContext';
+import AuthSVG from 'assets/svg/login.svg';
+import { StyledView } from 'styles/shared/';
+import { AuthForm } from 'components/authentication-form/';
 import { styles } from './SignUp.styles';
 
 export default function SignUpScreen({ navigation }) {

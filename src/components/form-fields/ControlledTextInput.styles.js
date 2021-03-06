@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const StyledInputAuth = styled.TextInput`
+export const StyledInput = styled.TextInput`
   width: 85%;
   background-color: #fff;
   color: #000;
