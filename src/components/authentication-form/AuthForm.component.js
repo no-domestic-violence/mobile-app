@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import PropTypes from 'prop-types';
+import { useForm, FormProvider } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Text, Keyboard } from 'react-native';
 import { StyledButton, StyledButtonText } from 'styles/shared/';
 import { AuthSchema, styles } from './index';
@@ -30,8 +30,10 @@ const AuthForm = ({
     newPasswordInputRef.current && newPasswordInputRef.current.focus();
 
   return (
-    <>
-      <Text style={styles.header}>{headerForm}</Text>
+    <FormProvider>
+      <Text testID='form-header' style={styles.header}>
+        {headerForm}
+      </Text>
       {formType === 'sign up' && (
         <ControlledTextInput
           name='username'
@@ -57,7 +59,7 @@ const AuthForm = ({
         <ControlledTextInput
           name='oldPassword'
           control={control}
-          placeholder='Your old password'
+          placeholder='Old password'
           returnKeyType='next'
           onSubmitEditing={isNewPasswordFocused}
           blurOnSubmit={false}
@@ -68,7 +70,7 @@ const AuthForm = ({
       <ControlledTextInput
         name='password'
         control={control}
-        placeholder='password'
+        placeholder='Password'
         returnKeyType='next'
         isInputFocused={Keyboard.dismiss}
         blurOnSubmit={false}
@@ -78,7 +80,7 @@ const AuthForm = ({
       <StyledButton onPress={handleSubmit(onSubmitForm)}>
         <StyledButtonText>{buttonText.toUpperCase()}</StyledButtonText>
       </StyledButton>
-    </>
+    </FormProvider>
   );
 };
 
