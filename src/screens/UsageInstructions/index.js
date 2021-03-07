@@ -4,7 +4,7 @@ import UserInfo from '_components/user-info/';
 import { faTools, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StyledView } from '../../styles/shared/StyledView';
-import { Context as AuthContext } from '../../state/AuthContext';
+import { AuthContext } from 'state/';
 import { styles } from './UsageInstructions.styles';
 
 export default function UsageInstructions({ navigation }) {

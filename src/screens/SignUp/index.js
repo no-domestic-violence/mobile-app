@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { Context as AuthContext } from 'state/AuthContext';
+import { AuthContext } from 'state/';
 import AuthSVG from 'assets/svg/login.svg';
 import { StyledView } from 'styles/shared/';
 import { AuthForm } from 'components/authentication-form/';

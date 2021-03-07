@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Context as AuthContext } from 'state/AuthContext';
+import { AuthContext } from 'state/';
 import {
   View,
   Text,

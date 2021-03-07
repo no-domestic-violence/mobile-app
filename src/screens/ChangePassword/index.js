@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, KeyboardAvoidingView } from 'react-native';
-import { Context as AuthContext } from 'state/AuthContext';
+import { AuthContext } from 'state/';
 import UserInfo from 'components/user-info/';
 import { StyledView } from 'styles/shared/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';

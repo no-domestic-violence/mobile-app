@@ -11,7 +11,7 @@ import {
   UserSettingsStackNavigator,
   SosContactStackNavigator,
 } from './StackNavigator';
-import { Context as AuthContext } from '../state/AuthContext';
+import { AuthContext } from 'state/';
 
 import SheltersHotlinesTabNavigator from './SheltersHotlinesTabNavigator';
 import ResourcesTabNavigator from './ResourcesTabNavigator';

@@ -3,7 +3,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Provider as SosProvider } from 'state/SosContext';
 import AppNavigation from './routes/AppNavigator';
-import { Provider as AuthProvider } from './state/AuthContext';
+import { AuthProvider } from 'state/';
 import { Provider as LocationProvider } from './state/LocationContext';
 import { LanguageProvider } from './state/LanguageContext';
 

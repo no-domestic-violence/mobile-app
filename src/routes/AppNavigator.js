@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { BottomTabNavigator } from './TabNavigator';
 import { OnboardingNavigator } from './StackNavigator';
-import { Context as AuthContext } from '../state/AuthContext';
+import { AuthContext } from 'state/';
 
 export default function AppNavigation() {
   const { state, authentication, checkFirstLaunch } = useContext(AuthContext);

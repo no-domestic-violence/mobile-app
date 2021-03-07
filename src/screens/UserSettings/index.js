@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Context as AuthContext } from 'state/AuthContext';
+import { AuthContext } from 'state/';
 import { StyledView } from 'styles/shared/StyledView';
 import UserInfo from '_components/user-info';
 import { useTranslation } from 'react-i18next';
