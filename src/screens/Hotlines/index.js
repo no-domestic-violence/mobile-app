@@ -1,29 +1,31 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { View, FlatList, Linking, ActivityIndicator } from 'react-native';
 import { Divider, SearchBar } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Context as LocationContext } from 'state/LocationContext';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import HotlinesItem from 'components/hotlines/';
 import { StyledView } from 'styles/shared/StyledView';
 import { Colors } from 'styles/';
 import useDebounce from 'hooks/useDebounce';
-import appApiClient from 'api/';
 import { styles } from './Hotlines.styles';
 
 export default function HotlinesList() {
+  const {
+    state: { hotlinesData },
+    searchHotlinesByParam,
+  } = useContext(LocationContext);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
-  const [hotlinesData, setHotlinesData] = useState([]);
+
   const inputRef = useRef();
 
   const debouncedValue = useDebounce(search, 500);
 
   useEffect(() => {
     setLoading(true);
-    appApiClient
-      .getHotlinesData(search)
-      .then((response) => setHotlinesData([...response.data]));
+    searchHotlinesByParam(search);
     setLoading(false);
     inputRef.current.focus();
   }, [debouncedValue]);
