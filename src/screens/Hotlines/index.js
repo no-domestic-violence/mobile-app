@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { View, FlatList, Linking, ActivityIndicator } from 'react-native';
 import { Divider, SearchBar } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { Context as LocationContext } from 'state/LocationContext';
+import { LocationContext } from 'state/';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import HotlinesItem from 'components/hotlines/';
 import { StyledView } from 'styles/shared/StyledView';

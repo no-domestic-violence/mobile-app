@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { Provider as SosProvider } from 'state/SosContext';
 import AppNavigation from './routes/AppNavigator';
 import { AuthProvider } from 'state/';
-import { Provider as LocationProvider } from './state/LocationContext';
+import { LocationProvider } from 'state/';
 import { LanguageProvider } from './state/LanguageContext';
 
 import './services/i18n';

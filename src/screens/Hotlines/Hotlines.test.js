@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { Provider as LocationProvider } from 'state/LocationContext';
+import { LocationProvider } from 'state/';
 import HotlinesList from './index';
 
 describe('Hotlines screen', () => {
