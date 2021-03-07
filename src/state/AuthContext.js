@@ -1,6 +1,6 @@
 import * as SecureStore from 'expo-secure-store';
-import createAppContext from './CreateAppContext';
 import appApiClient from 'api/';
+import createAppContext from './CreateAppContext';
 
 const authReducer = (state, action) => {
   switch (action.type) {

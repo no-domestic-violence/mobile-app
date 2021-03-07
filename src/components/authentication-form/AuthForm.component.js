@@ -4,8 +4,8 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Text, Keyboard } from 'react-native';
 import { StyledButton, StyledButtonText } from 'styles/shared/';
-import { AuthSchema, styles } from './index';
 import { ControlledTextInput } from 'components/form-fields';
+import { AuthSchema, styles } from './index';
 
 const AuthForm = ({
   formType,

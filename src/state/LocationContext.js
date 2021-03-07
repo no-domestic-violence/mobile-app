@@ -1,5 +1,5 @@
-import createAppContext from './CreateAppContext';
 import appApiClient, { apiInstance } from 'api/';
+import createAppContext from './CreateAppContext';
 
 const LocationReducer = (state, action) => {
   switch (action.type) {
