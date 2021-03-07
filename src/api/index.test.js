@@ -21,6 +21,7 @@ const hotlinesDataMock = [
     phone: '+49 543 514 8358',
   },
 ];
+//TODO: needs to be redone, not flexible test
 describe('appApiClient', () => {
   const appApiClient = {
     getHotlinesData: jest.fn(() => Promise.resolve({ data: hotlinesDataMock }))

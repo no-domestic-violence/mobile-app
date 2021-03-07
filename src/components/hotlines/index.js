@@ -8,7 +8,7 @@ import { StyledHotlinesListItem } from 'styles/shared';
 import ExternalLinkText from 'components/external-link-text';
 import { styles } from './HotlinesItem.styles';
 
-export default function HotlinesItem({ item, makeCall }) {
+const HotlinesItem = ({ item, makeCall }) => {
   return (
     <>
       <StyledHotlinesListItem>
@@ -41,4 +41,6 @@ export default function HotlinesItem({ item, makeCall }) {
       <Divider style={{ height: 20, backgroundColor: Colors.primary }} />
     </>
   );
-}
+};
+
+export default HotlinesItem;
