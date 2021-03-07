@@ -3,7 +3,7 @@ import { View, FlatList, Linking, ActivityIndicator } from 'react-native';
 import { Divider, SearchBar } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Context as LocationContext } from 'state/LocationContext';
-
+import { makeCall } from '../../utils';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import HotlinesItem from 'components/hotlines/';
 import { StyledView } from 'styles/shared/StyledView';
@@ -29,11 +29,6 @@ export default function HotlinesList() {
     setLoading(false);
     inputRef.current.focus();
   }, [debouncedValue]);
-
-  const makeCall = (phoneNumber) => {
-    const iosPhoneNumber = `tel:${phoneNumber}`;
-    Linking.openURL(iosPhoneNumber);
-  };
 
   if (loading) {
     return (

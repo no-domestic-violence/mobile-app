@@ -7,3 +7,8 @@ export const openExternalLink = (url) => {
     alert('Failed to open page');
   });
 };
+
+export const makeCall = (phoneNumber) => {
+  const iosPhoneNumber = `tel:${phoneNumber}`;
+  Linking.openURL(iosPhoneNumber);
+};

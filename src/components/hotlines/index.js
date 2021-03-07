@@ -18,14 +18,13 @@ export default function HotlinesItem({ item, makeCall }) {
             <Text style={styles.listItemContacts}>
               {item.city}, tel:{item.phone}
             </Text>
-            <Text style={styles.listItemContacts}>website:</Text>
             <View>
               <ExternalLinkText
                 style={styles.listItemWebsite}
                 url={item.website}
                 title={item.website}
               />
-              <Text> {item.description}</Text>
+              <Text>{item.description}</Text>
             </View>
           </View>
         </View>

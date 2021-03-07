@@ -66,18 +66,6 @@ Array [
           , tel:
           +49 543 514 8358
         </Text>
-        <Text
-          style={
-            Object {
-              "color": "#242424",
-              "flex": 1,
-              "flexShrink": 1,
-              "flexWrap": "wrap",
-            }
-          }
-        >
-          website:
-        </Text>
         <View>
           <Text
             onPress={[Function]}
@@ -97,7 +85,7 @@ Array [
               }
             }
           >
-             
+            
           </Text>
         </View>
       </View>

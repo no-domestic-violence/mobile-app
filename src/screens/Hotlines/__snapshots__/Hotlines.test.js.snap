@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Hotlines seach screen should match snapshot 1`] = `
+exports[`Hotlines screen should match snapshot 1`] = `
 <View
   style={
     Array [

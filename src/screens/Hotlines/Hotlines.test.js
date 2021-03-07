@@ -1,26 +1,23 @@
 import React from 'react';
 import { render, act, fireEvent } from '@testing-library/react-native';
 import HotlinesList from './index';
+import { Provider as LocationProvider } from 'state/LocationContext';
 
-describe('Hotlines seach screen', () => {
-  test('it renders searchBar', async () => {
-    const { getByPlaceholderText } = await render(<HotlinesList />);
-    await act(async () => {
-      const searchInput = getByPlaceholderText(
-        'Type city or organisation name'
-      );
-      expect(searchInput).not.toBeNull();
-      fireEvent.changeText(searchInput, 'CHANGE_TEXT');
-    });
-  });
-  test('renders flat list', async () => {
-    const { getByTestId } = await render(<HotlinesList />);
-    await act(async () => {
-      expect(getByTestId('hotlinesFlatList')).not.toBeNull();
-    });
+describe('Hotlines screen', () => {
+  const component = (
+    <LocationProvider>
+      <HotlinesList />
+    </LocationProvider>
+  );
+  test('should have SearchBar and FlatList elements', async () => {
+    const { getByTestId, getByPlaceholderText } = await render(component);
+    expect(getByTestId('hotlinesFlatList')).not.toBeNull();
+    expect(
+      getByPlaceholderText(/Type city or organisation name/)
+    ).not.toBeNull();
   });
   it('should match snapshot', () => {
-    const result = render(<HotlinesList />).toJSON();
+    const result = render(component).toJSON();
     expect(result).toMatchSnapshot();
   });
 });
