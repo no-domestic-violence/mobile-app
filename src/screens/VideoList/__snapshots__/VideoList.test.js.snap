@@ -7,41 +7,31 @@ exports[`Testing should match snapshot 1`] = `
       Array [
         Object {
           "id": 1,
-          "image": Object {
-            "testUri": "../../../src/assets/backgrounds/video1.png",
-          },
+          "image": 1,
           "title": "7 Early Signs of A Toxic Relationship",
           "url": "https://www.youtube.com/embed/HDNMvuQrcGk",
         },
         Object {
           "id": 2,
-          "image": Object {
-            "testUri": "../../../src/assets/backgrounds/video2.png",
-          },
+          "image": 1,
           "title": "Why domestic violence victims do not leave | Leslie Morgan Steiner",
           "url": "https://www.youtube.com/embed/V1yW5IsnSjo",
         },
         Object {
           "id": 3,
-          "image": Object {
-            "testUri": "../../../src/assets/backgrounds/video3.png",
-          },
+          "image": 1,
           "title": "I broke my silence: My story of domestic violence | Emma Murphy | TEDxUniversityofNicosia",
           "url": "https://www.youtube.com/embed/frFEdN7aMh8",
         },
         Object {
           "id": 4,
-          "image": Object {
-            "testUri": "../../../src/assets/backgrounds/video4.png",
-          },
+          "image": 1,
           "title": "Dangerous Love (Domestic Abuse Documentary) | Real Stories",
           "url": "https://www.youtube.com/embed/0yIAY2tbnOE",
         },
         Object {
           "id": 5,
-          "image": Object {
-            "testUri": "../../../src/assets/backgrounds/video5.png",
-          },
+          "image": 1,
           "title": "The difference between healthy and unhealthy love | Katie Hood",
           "url": "https://www.youtube.com/embed/ON4iy8hq2hM",
         },
@@ -96,11 +86,7 @@ exports[`Testing should match snapshot 1`] = `
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../src/assets/backgrounds/video1.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -171,11 +157,7 @@ exports[`Testing should match snapshot 1`] = `
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../src/assets/backgrounds/video2.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -246,11 +228,7 @@ exports[`Testing should match snapshot 1`] = `
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../src/assets/backgrounds/video3.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -321,11 +299,7 @@ exports[`Testing should match snapshot 1`] = `
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../src/assets/backgrounds/video4.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -396,11 +370,7 @@ exports[`Testing should match snapshot 1`] = `
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../src/assets/backgrounds/video5.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
