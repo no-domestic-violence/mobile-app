@@ -7,7 +7,7 @@ import { StyledView } from 'styles/shared/StyledView';
 import { Context as SosContext } from 'state/SosContext';
 import { styles } from './SosContactHome.styles';
 
-export default function SosContactHome({ navigation }) {
+export default function SosContactHome() {
   const {
     getContacts,
     state: { contacts },
@@ -15,7 +15,6 @@ export default function SosContactHome({ navigation }) {
 
   useEffect(() => {
     getContacts();
-    navigation.setParams({ id: '' });
   }, []);
 
   return (
@@ -30,4 +29,3 @@ export default function SosContactHome({ navigation }) {
     </>
   );
 }
-
