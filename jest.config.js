@@ -12,9 +12,9 @@ module.exports = {
     '!**/babel.config.js',
     '!**/jest.setup.js',
   ],
-  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
-  transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)',
+  testPathIgnorePatterns: ['./node_modules/'],
+  setupFilesAfterEnv: [
+    '<rootDir>/jest/setup.js',
+    '@testing-library/jest-native/extend-expect',
   ],
-  setupFiles: ['<rootDir>/jest/setup.js'],
 };

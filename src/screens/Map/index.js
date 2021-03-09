@@ -7,8 +7,8 @@ import {
 } from 'expo-location';
 import { withNavigationFocus } from '@react-navigation/compat';
 
-import MapContainer from '_components/map/';
-import { Context as LocationContext } from '_state/LocationContext';
+import MapContainer from 'components/map/';
+import { LocationContext } from 'state/';
 import { styles } from './Map.styles';
 
 const MapScreen = ({ isFocused }) => {

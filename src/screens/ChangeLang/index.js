@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
-import UserInfo from '_components/user-settings/';
+import UserInfo from '_components/user-info/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button } from 'react-native-elements';
 import { LanguageContext } from '../../state/LanguageContext';
 import { StyledView } from '../../styles/shared/StyledView';
-import { Context as AuthContext } from '../../state/AuthContext';
+import { AuthContext } from 'state/';
 import { styles } from './ChangeLang.styles';
 
 export default function ChangeLanguage({ navigation }) {

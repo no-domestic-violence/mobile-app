@@ -1,33 +1,34 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { View, FlatList, Linking, ActivityIndicator } from 'react-native';
-import { Divider , SearchBar } from 'react-native-elements';
+import { Divider, SearchBar } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-
+import { LocationContext } from 'state/';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import HotlinesItem from '_components/hotlines/';
-import { StyledView } from '_styles/shared/StyledView';
-import { Colors } from '_styles/';
-import useDebounce from '_hooks/useDebounce';
-import { getHotlinesData } from "../../api";
+import HotlinesItem from 'components/hotlines/';
+import { StyledView } from 'styles/shared/StyledView';
+import { Colors } from 'styles/';
+import useDebounce from 'hooks/useDebounce';
+import { makeCall } from '../../utils';
 import { styles } from './Hotlines.styles';
 
 export default function HotlinesList() {
+  const {
+    state: { hotlinesData },
+    searchHotlinesByParam,
+  } = useContext(LocationContext);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
+
   const inputRef = useRef();
 
   const debouncedValue = useDebounce(search, 500);
 
   useEffect(() => {
     setLoading(true);
-    getHotlinesData(setDataSource, setLoading, search, inputRef);
+    searchHotlinesByParam(search);
+    setLoading(false);
+    inputRef.current.focus();
   }, [debouncedValue]);
-
-  const makeCall = (phoneNumber) => {
-    const iosPhoneNumber = `tel:${phoneNumber}`;
-    Linking.openURL(iosPhoneNumber);
-  };
 
   if (loading) {
     return (
@@ -48,17 +49,23 @@ export default function HotlinesList() {
         autoCorrect={false}
         autoCapitalize='none'
         onChangeText={setSearch}
-        placeholder='Type city or orgaisation name'
+        placeholder='Type city or organisation name'
         value={search}
       />
       <Divider style={{ height: 10, backgroundColor: Colors.primary }} />
       <FlatList
+        testID='hotlinesFlatList'
         style={styles.list}
-        data={dataSource}
+        data={hotlinesData}
         keyExtractor={(item, index) => index.toString()}
         enableEmptySections
         renderItem={({ item }) => (
-          <HotlinesItem item={item} makeCall={makeCall} title={item.phone} />
+          <HotlinesItem
+            testID='hotlinesItem'
+            item={item}
+            makeCall={makeCall}
+            title={item.phone}
+          />
         )}
       />
     </StyledView>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Context as AuthContext } from '_state/AuthContext';
+import { AuthContext } from 'state/';
 import {
   View,
   Text,
@@ -7,11 +7,11 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { StyledView } from '_styles/shared/';
+import { StyledView } from 'styles/shared/';
 
 import { useTranslation } from 'react-i18next';
-import AuthSVG from '_assets/svg/login.svg';
-import AuthForm from '_components/authenticationForm/';
+import AuthSVG from 'assets/svg/login.svg';
+import { AuthForm } from 'components/authentication-form/';
 import { styles } from './Login.styles';
 
 export default function LoginScreen({ navigation }) {

@@ -1,16 +1,44 @@
-import appApiClient from './appApiClient';
+import axios from 'axios';
+import baseURL from '../config';
 
-const getHotlinesData = async (setDataSource, setLoading, search, inputRef) => {
-  try {
-    const response = await appApiClient.get('/hotlines', {
-      params: { searchTerm: search },
-    });
-    setDataSource(response.data);
-    setLoading(false);
-    inputRef.current.focus();
-  } catch (error) {
-    console.error(error);
-  }
+export const apiInstance = axios.create({
+  baseURL,
+});
+
+const getHotlinesData = (search) => {
+  return apiInstance.get('/hotlines', {
+    params: { searchTerm: search },
+  });
 };
-// eslint-disable-next-line
-export { getHotlinesData };
+
+const loginUser = (email, password) => {
+  return apiInstance.post('/login', { email, password });
+};
+
+const signupUser = (email, password, username) => {
+  return apiInstance.post('/signup', { email, password, username });
+};
+
+const deleteUser = (username) => {
+  return apiInstance.delete('/deleteUser', {
+    params: { username },
+  });
+};
+
+const changePassword = (email, oldPassword, password) => {
+  return apiInstance.post('/changePassword', {
+    email,
+    oldPassword,
+    password,
+  });
+};
+
+const appApiClient = {
+  getHotlinesData,
+  loginUser,
+  signupUser,
+  deleteUser,
+  changePassword,
+};
+
+export default appApiClient;

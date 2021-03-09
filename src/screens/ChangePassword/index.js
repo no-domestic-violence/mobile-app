@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, KeyboardAvoidingView } from 'react-native';
-import { Context as AuthContext } from '_state/AuthContext';
-import UserInfo from '_components/user-settings/';
-import { StyledView } from '_styles/shared/';
+import { AuthContext } from 'state/';
+import UserInfo from 'components/user-info/';
+import { StyledView } from 'styles/shared/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import AuthForm from '_components/authenticationForm/';
-import ModalComponent from '_components/modal';
+import { AuthForm } from 'components/authentication-form/';
+import ModalComponent from 'components/modal';
 import { styles } from './ChangePassword.styles';
 
 export default function ChangePasswordScreen({ navigation }) {

@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Authentication form component should match snapshot 1`] = `
+Array [
+  <Text
+    style={
+      Object {
+        "alignSelf": "flex-start",
+        "fontSize": 35,
+        "fontWeight": "600",
+        "marginBottom": 40,
+        "marginLeft": 30,
+      }
+    }
+    testID="form-header"
+  >
+    Change password
+  </Text>,
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    autoCorrect={false}
+    blurOnSubmit={false}
+    onChangeText={[Function]}
+    placeholder="Email"
+    placeholderTextColor="#6c757d"
+    rejectResponderTermination={true}
+    returnKeyType="next"
+    secureTextEntry={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+          "borderRadius": 5,
+          "color": "#000",
+          "fontSize": 18,
+          "fontWeight": "400",
+          "paddingBottom": "4%",
+          "paddingLeft": "2%",
+          "paddingTop": "4%",
+          "width": "85%",
+        },
+      ]
+    }
+    textContentType="oneTimeCode"
+    underlineColorAndroid="transparent"
+    value=""
+  />,
+  <View
+    style={
+      Object {
+        "backgroundColor": "#bcbbc1",
+        "height": 5,
+      }
+    }
+  />,
+  <View
+    style={
+      Object {
+        "backgroundColor": "#cadeee",
+        "height": 20,
+      }
+    }
+  />,
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    autoCorrect={false}
+    blurOnSubmit={false}
+    onChangeText={[Function]}
+    placeholder="Old password"
+    placeholderTextColor="#6c757d"
+    rejectResponderTermination={true}
+    returnKeyType="next"
+    secureTextEntry={true}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+          "borderRadius": 5,
+          "color": "#000",
+          "fontSize": 18,
+          "fontWeight": "400",
+          "paddingBottom": "4%",
+          "paddingLeft": "2%",
+          "paddingTop": "4%",
+          "width": "85%",
+        },
+      ]
+    }
+    textContentType="oneTimeCode"
+    underlineColorAndroid="transparent"
+    value=""
+  />,
+  <View
+    style={
+      Object {
+        "backgroundColor": "#bcbbc1",
+        "height": 5,
+      }
+    }
+  />,
+  <View
+    style={
+      Object {
+        "backgroundColor": "#cadeee",
+        "height": 20,
+      }
+    }
+  />,
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    autoCorrect={false}
+    blurOnSubmit={false}
+    onChangeText={[Function]}
+    placeholder="Password"
+    placeholderTextColor="#6c757d"
+    rejectResponderTermination={true}
+    returnKeyType="next"
+    secureTextEntry={true}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+          "borderRadius": 5,
+          "color": "#000",
+          "fontSize": 18,
+          "fontWeight": "400",
+          "paddingBottom": "4%",
+          "paddingLeft": "2%",
+          "paddingTop": "4%",
+          "width": "85%",
+        },
+      ]
+    }
+    textContentType="oneTimeCode"
+    underlineColorAndroid="transparent"
+    value=""
+  />,
+  <View
+    style={
+      Object {
+        "backgroundColor": "#bcbbc1",
+        "height": 5,
+      }
+    }
+  />,
+  <View
+    style={
+      Object {
+        "backgroundColor": "#cadeee",
+        "height": 20,
+      }
+    }
+  />,
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#415889",
+        "borderRadius": 20,
+        "fontWeight": "600",
+        "marginTop": 40,
+        "opacity": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#fff",
+            "fontSize": 14,
+            "fontWeight": "600",
+            "overflow": "hidden",
+            "paddingBottom": 10,
+            "paddingLeft": 50,
+            "paddingRight": 50,
+            "paddingTop": 10,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      CONFIRM
+    </Text>
+  </View>,
+]
+`;
