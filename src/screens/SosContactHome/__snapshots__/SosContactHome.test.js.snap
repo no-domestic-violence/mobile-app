@@ -1,0 +1,233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SosContactHome /> should match snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#cadeee",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+      },
+      Object {
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <svg
+    data-file-name="SvgEmergency"
+    style={
+      Object {
+        "position": "absolute",
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "marginBottom": 120,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 27,
+          "fontWeight": "700",
+        }
+      }
+    >
+      Emergency Contacts
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "column",
+        "height": "25%",
+        "justifyContent": "space-between",
+        "width": "75%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "borderRadius": 41,
+          "overflow": "visible",
+          "shadowColor": "rgba(0,0,0, .4)",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 1,
+          },
+          "shadowOpacity": 1,
+          "shadowRadius": 1,
+        }
+      }
+    >
+      <View
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": false,
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="first-contact"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#FEF8E3",
+              "borderColor": "#2089dc",
+              "borderRadius": 41,
+              "borderWidth": 0,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "padding": 18,
+            }
+          }
+        >
+          <
+            icon={
+              Object {
+                "icon": Array [
+                  512,
+                  512,
+                  Array [],
+                  "f304",
+                  "M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z",
+                ],
+                "iconName": "pen",
+                "prefix": "fas",
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#000000",
+                "fontSize": 16,
+                "fontWeight": "400",
+                "marginLeft": 10,
+                "opacity": 0.34,
+                "paddingVertical": 1,
+                "textAlign": "center",
+              }
+            }
+          >
+            Please add your trusted contact
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "borderRadius": 41,
+          "overflow": "visible",
+          "shadowColor": "rgba(0,0,0, .4)",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 1,
+          },
+          "shadowOpacity": 1,
+          "shadowRadius": 1,
+        }
+      }
+    >
+      <View
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": false,
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="second-contact"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#FEF8E3",
+              "borderColor": "#2089dc",
+              "borderRadius": 41,
+              "borderWidth": 0,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "padding": 18,
+            }
+          }
+        >
+          <
+            icon={
+              Object {
+                "icon": Array [
+                  512,
+                  512,
+                  Array [],
+                  "f304",
+                  "M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z",
+                ],
+                "iconName": "pen",
+                "prefix": "fas",
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#000000",
+                "fontSize": 16,
+                "fontWeight": "400",
+                "marginLeft": 10,
+                "opacity": 0.34,
+                "paddingVertical": 1,
+                "textAlign": "center",
+              }
+            }
+          >
+            Please add your trusted contact
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
