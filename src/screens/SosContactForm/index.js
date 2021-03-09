@@ -57,6 +57,7 @@ export default function SosContactForm({ navigation, route }) {
       setValue('phone', foundContact.phone);
       setValue('message', foundContact.message);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAddMode]);
 
   const saveContact = async () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-native-modal';
 import { View, Text, Button } from 'react-native';
 import { styles } from './Modal.styles';
-//TODO: to make reusable
+// TODO: to make reusable
 const ModalComponent = ({ isVisible, setModalVisible, navigation }) => {
   return (
     <Modal isVisible={isVisible}>

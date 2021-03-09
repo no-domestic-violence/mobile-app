@@ -1,4 +1,5 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
+
 import React from 'react';
 import { View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -53,16 +54,15 @@ export default function SosContactList({ contacts, navigation }) {
       </View>
       {contacts !== undefined && contacts.length > 0 && (
         <StyledButton style={styles.messageButtonContainer}>
+          {/* eslint-disable-next-line react-native/no-raw-text */}
           <StyledButtonText style={styles.messageButtonText}>
-    Ask for help to your contacts
+            Ask for help to your contacts
           </StyledButtonText>
         </StyledButton>
       )}
     </>
   );
 }
-
-
 
 SosContactList.propTypes = {
   contacts: PropTypes.arrayOf(

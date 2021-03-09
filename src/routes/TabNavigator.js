@@ -7,11 +7,11 @@ import {
   faMapPin,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { AuthContext } from 'state/';
 import {
   UserSettingsStackNavigator,
   SosContactStackNavigator,
 } from './StackNavigator';
-import { AuthContext } from 'state/';
 
 import SheltersHotlinesTabNavigator from './SheltersHotlinesTabNavigator';
 import ResourcesTabNavigator from './ResourcesTabNavigator';

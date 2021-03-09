@@ -15,6 +15,7 @@ export default function SosContactHome({ navigation }) {
 
   useEffect(() => {
     getContacts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

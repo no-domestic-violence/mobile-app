@@ -4,9 +4,9 @@ import UserInfo from '_components/user-info/';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button } from 'react-native-elements';
+import { AuthContext } from 'state/';
 import { LanguageContext } from '../../state/LanguageContext';
 import { StyledView } from '../../styles/shared/StyledView';
-import { AuthContext } from 'state/';
 import { styles } from './ChangeLang.styles';
 
 export default function ChangeLanguage({ navigation }) {
