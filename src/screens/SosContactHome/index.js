@@ -4,10 +4,10 @@ import SosContactList from 'components/sosContacts/SosContactList';
 
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
-import { Context as SosContext } from 'state/SosContext';
+import { SosContext } from 'state';
 import { styles } from './SosContactHome.styles';
 
-export default function SosContactHome() {
+export default function SosContactHome({ navigation }) {
   const {
     getContacts,
     state: { contacts },

@@ -17,7 +17,7 @@ import { Input } from 'react-native-elements';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
 import Error from 'components/Error';
-import { Context as SosContext } from 'state/SosContext';
+import { SosContext } from 'state';
 import { styles } from './SosContactForm.styles';
 
 const phoneRegExp = /(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .\-–\/]?)([\d]+))/; // eslint-disable-line
@@ -219,4 +219,3 @@ export default function SosContactForm({ navigation, route }) {
     </>
   );
 }
-
