@@ -13,7 +13,6 @@ const ACTIONS = {
 const sosReducer = (state, action) => {
   // (current state, action to pass to dispatch )
   const { contacts } = state;
-  const { id, data } = action.payload;
   switch (action.type) {
     case ACTIONS.ADD_CONTACT:
       return { contacts: [...contacts, action.payload] };
@@ -21,7 +20,7 @@ const sosReducer = (state, action) => {
       return {
         ...contacts,
         contacts: contacts.map((contact) =>
-          contact._id === id ? data : contact
+          contact._id === action.payload._id ? action.payload : contact
         ),
       };
     case ACTIONS.DELETE_CONTACT:
@@ -84,16 +83,18 @@ const addContact = (dispatch) => async (data) => {
 const editContact = (dispatch) => async ({ data, id }) => {
   const username = await SecureStore.getItemAsync('username');
   const token = await SecureStore.getItemAsync('token');
-  await apiInstance
-    .patch(`/users/${username}/contacts/${id}`, data, {
-      headers: { 'auth-token': token },
-    })
-    .then(() => {
-      dispatch({ type: ACTIONS.EDIT_CONTACT, payload: { id, data } });
-    })
-    .catch((e) => {
-      alert(e);
-    });
+  try {
+    const response = await apiInstance.patch(
+      `/users/${username}/contacts/${id}`,
+      data,
+      {
+        headers: { 'auth-token': token },
+      }
+    );
+    dispatch({ type: ACTIONS.EDIT_CONTACT, payload: response.data });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const { Provider, Context } = createAppContext(
