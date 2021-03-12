@@ -44,6 +44,7 @@ const AuthForm = ({
           blurOnSubmit={false}
           errors={errors}
           inputRef={usernameInputRef}
+          style={styles.input}
         />
       )}
       <ControlledTextInput
@@ -54,6 +55,7 @@ const AuthForm = ({
         onSubmitEditing={isPasswordFocused}
         blurOnSubmit={false}
         errors={errors}
+        style={styles.input}
       />
       {formType === 'change password' && (
         <ControlledTextInput
@@ -65,6 +67,7 @@ const AuthForm = ({
           blurOnSubmit={false}
           errors={errors}
           secureTextEntry
+          style={styles.input}
         />
       )}
       <ControlledTextInput
@@ -76,6 +79,7 @@ const AuthForm = ({
         blurOnSubmit={false}
         errors={errors}
         secureTextEntry
+        style={styles.input}
       />
       <StyledButton onPress={handleSubmit(onSubmitForm)}>
         <StyledButtonText>{buttonText.toUpperCase()}</StyledButtonText>

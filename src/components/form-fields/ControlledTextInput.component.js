@@ -1,9 +1,8 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { Text } from 'react-native';
-import { Divider } from 'react-native-elements';
+import { Divider, Input } from 'react-native-elements';
 import { Colors } from 'styles/';
-import { StyledInput } from './ControlledTextInput.styles';
 
 const ControlledTextInput = ({
   name,
@@ -20,6 +19,7 @@ const ControlledTextInput = ({
   onSubmitEditing,
   inputRef,
   textContentType = 'oneTimeCode',
+  style,
 }) => {
   return (
     <>
@@ -31,7 +31,7 @@ const ControlledTextInput = ({
           inputRef.current.focus();
         }}
         render={({ onChange, value }) => (
-          <StyledInput
+          <Input
             placeholder={placeholder}
             autoCapitalize={autoCapitalize}
             autoCorrect={autoCorrect}
@@ -44,6 +44,7 @@ const ControlledTextInput = ({
             ref={inputRef}
             secureTextEntry={secureTextEntry}
             onSubmitEditing={onSubmitEditing}
+            style={style}
           />
         )}
       />
