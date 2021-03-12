@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { View, Text } from 'react-native';
-import SosContactList from 'components/sosContacts/SosContactList';
+import SosContactList from 'components/sosContactList';
 
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';

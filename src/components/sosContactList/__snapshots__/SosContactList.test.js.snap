@@ -194,6 +194,7 @@ Array [
         "overflow": "hidden",
       }
     }
+    testID="send-sms-button"
   >
     <Text
       style={
