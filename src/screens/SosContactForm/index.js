@@ -13,7 +13,7 @@ import {
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
 import { View, Keyboard, KeyboardAvoidingView, Platform } from 'react-native';
-import { Input } from 'react-native-elements';
+import { ControlledTextInput } from 'components/form-fields';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
 import Error from 'components/Error';
@@ -101,99 +101,50 @@ export default function SosContactForm({ navigation, route }) {
                 navigation.navigate('SosContactHome');
               }}
             />
-            <Controller
+            <ControlledTextInput
               name='name'
               control={control}
-              // focuses when there is error
-              onFocus={() => {
-                nameInputRef.current.focus();
-              }}
               defaultValue=''
-              render={({ onChange, value }) => (
-                <Input
-                  placeholder='Name'
-                  ref={nameInputRef}
-                  returnKeyType='next'
-                  autoCapitalize='none'
-                  autoCorrect={false}
-                  onSubmitEditing={() =>
-                    phoneInputRef.current && phoneInputRef.current.focus()
-                  }
-                  blurOnSubmit={false}
-                  autoCompleteType='off'
-                  onChangeText={(text) => onChange(text)}
-                  value={value}
-                  leftIcon={
-                    <FontAwesomeIcon icon={faUser} size={20} color='black' />
-                  }
-                  leftIconContainerStyle={styles.icon}
-                />
-              )}
+              onSubmitEditing={() =>
+                phoneInputRef.current && phoneInputRef.current.focus()
+              }
+              returnKeyType='next'
+              inputRef={nameInputRef}
+              leftIcon={
+                <FontAwesomeIcon icon={faUser} size={20} color='black' />
+              }
+              leftIconContainerStyle={styles.icon}
+              placeholder='Name'
             />
             <Error errors={errors.name} />
-            {/* {errors.name && (
-              <Text style={styles.error}>{errors.name.message}</Text>
-            )} */}
-            <Controller
+            <ControlledTextInput
               name='phone'
+              placeholder='Phone Number'
               control={control}
-              onFocus={() => {
-                phoneInputRef.current.focus();
-              }}
               defaultValue=''
-              render={({ onChange, value }) => (
-                <Input
-                  placeholder='Phone Number'
-                  ref={phoneInputRef}
-                  keyboardType='numeric'
-                  // RN not supporting 'next' on ios, 'done' does the same thing tho
-                  returnKeyType={Platform.OS === 'ios' ? 'done' : 'next'}
-                  autoCapitalize='none'
-                  autoCorrect={false}
-                  onSubmitEditing={() =>
-                    messageInputRef.current && messageInputRef.current.focus()
-                  }
-                  blurOnSubmit={false}
-                  value={value}
-                  autoCompleteType='off'
-                  onChangeText={(text) => onChange(text)}
-                  leftIcon={
-                    <FontAwesomeIcon icon={faPhone} size={20} color='black' />
-                  }
-                  leftIconContainerStyle={styles.icon}
-                />
-              )}
+              onSubmitEditing={() =>
+                messageInputRef.current && messageInputRef.current.focus()
+              }
+              returnKeyType={Platform.OS === 'ios' ? 'done' : 'next'}
+              keyboardType='numeric'
+              inputRef={phoneInputRef}
+              leftIcon={
+                <FontAwesomeIcon icon={faPhone} size={20} color='black' />
+              }
+              leftIconContainerStyle={styles.icon}
             />
             <Error errors={errors.phone} />
-            <Controller
+            <ControlledTextInput
               name='message'
               control={control}
-              onFocus={() => {
-                messageInputRef.current.focus();
-              }}
-              defaultValue=''
-              render={({ onChange, value }) => (
-                <Input
-                  placeholder='Help Message'
-                  ref={messageInputRef}
-                  value={value}
-                  returnKeyType='done'
-                  autoCapitalize='none'
-                  autoCorrect={false}
-                  autoCompleteType='off'
-                  blurOnSubmit={false}
-                  onChangeText={(text) => onChange(text)}
-                  onSubmitEditing={Keyboard.dismiss}
-                  leftIcon={
-                    <FontAwesomeIcon
-                      icon={faEnvelope}
-                      size={20}
-                      color='black'
-                    />
-                  }
-                  leftIconContainerStyle={styles.icon}
-                />
-              )}
+              placeholder='Help Message'
+              inputRef={messageInputRef}
+              returnKeyType='done'
+              onSubmitEditing={Keyboard.dismiss}
+              leftIcon={
+                <FontAwesomeIcon icon={faEnvelope} size={20} color='black' />
+              }
+              leftIconContainerStyle={styles.icon}
             />
             <Error errors={errors.message} />
           </View>
