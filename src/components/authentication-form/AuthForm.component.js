@@ -4,7 +4,10 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Text, Keyboard } from 'react-native';
 import { StyledButton, StyledButtonText } from 'styles/shared/';
-import { ControlledTextInput } from 'components/form-fields';
+import {
+  ControlledTextInput,
+  ErrorMessageWithDivider,
+} from 'components/form-fields';
 import { AuthSchema, styles } from './index';
 
 const AuthForm = ({
@@ -35,17 +38,19 @@ const AuthForm = ({
         {headerForm}
       </Text>
       {formType === 'sign up' && (
-        <ControlledTextInput
-          name='username'
-          control={control}
-          placeholder='Username'
-          returnKeyType='next'
-          onSubmitEditing={isEmailFocused}
-          blurOnSubmit={false}
-          errors={errors}
-          inputRef={usernameInputRef}
-          style={styles.input}
-        />
+        <>
+          <ControlledTextInput
+            name='username'
+            control={control}
+            placeholder='Username'
+            returnKeyType='next'
+            onSubmitEditing={isEmailFocused}
+            blurOnSubmit={false}
+            inputRef={usernameInputRef}
+            style={styles.input}
+          />
+          <ErrorMessageWithDivider name='username' errors={errors} />
+        </>
       )}
       <ControlledTextInput
         name='email'
@@ -54,21 +59,23 @@ const AuthForm = ({
         returnKeyType='next'
         onSubmitEditing={isPasswordFocused}
         blurOnSubmit={false}
-        errors={errors}
         style={styles.input}
       />
+      <ErrorMessageWithDivider name='email' errors={errors} />
       {formType === 'change password' && (
-        <ControlledTextInput
-          name='oldPassword'
-          control={control}
-          placeholder='Old password'
-          returnKeyType='next'
-          onSubmitEditing={isNewPasswordFocused}
-          blurOnSubmit={false}
-          errors={errors}
-          secureTextEntry
-          style={styles.input}
-        />
+        <>
+          <ControlledTextInput
+            name='oldPassword'
+            control={control}
+            placeholder='Old password'
+            returnKeyType='next'
+            onSubmitEditing={isNewPasswordFocused}
+            blurOnSubmit={false}
+            secureTextEntry
+            style={styles.input}
+          />
+          <ErrorMessageWithDivider name='oldPassword' errors={errors} />
+        </>
       )}
       <ControlledTextInput
         name='password'
@@ -77,10 +84,10 @@ const AuthForm = ({
         returnKeyType='next'
         isInputFocused={Keyboard.dismiss}
         blurOnSubmit={false}
-        errors={errors}
         secureTextEntry
         style={styles.input}
       />
+      <ErrorMessageWithDivider name='password' errors={errors} />
       <StyledButton onPress={handleSubmit(onSubmitForm)}>
         <StyledButtonText>{buttonText.toUpperCase()}</StyledButtonText>
       </StyledButton>

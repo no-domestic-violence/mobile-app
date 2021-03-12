@@ -1,8 +1,6 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { Text } from 'react-native';
-import { Divider, Input } from 'react-native-elements';
-import { Colors } from 'styles/';
+import { Input } from 'react-native-elements';
 
 const ControlledTextInput = ({
   name,
@@ -14,12 +12,15 @@ const ControlledTextInput = ({
   blurOnSubmit,
   placeholderTextColor = '#6c757d',
   control,
-  errors,
   secureTextEntry = false,
   onSubmitEditing,
   inputRef,
   textContentType = 'oneTimeCode',
   style,
+  leftIcon,
+  leftIconContainerStyle,
+  autoCompleteType = 'off',
+  keyboardType,
 }) => {
   return (
     <>
@@ -45,14 +46,13 @@ const ControlledTextInput = ({
             secureTextEntry={secureTextEntry}
             onSubmitEditing={onSubmitEditing}
             style={style}
+            leftIcon={leftIcon}
+            leftIconContainerStyle={leftIconContainerStyle}
+            autoCompleteType={autoCompleteType}
+            keyboardType={keyboardType}
           />
         )}
       />
-      <Divider style={{ height: 5 }} />
-      {errors[name] && (
-        <Text style={{ color: 'red' }}>{errors[name].message}</Text>
-      )}
-      <Divider style={{ height: 20, backgroundColor: Colors.primary }} />
     </>
   );
 };
