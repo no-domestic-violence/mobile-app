@@ -1,6 +1,6 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
 import React, { useContext, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -13,10 +13,9 @@ import {
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
 import { View, Keyboard, KeyboardAvoidingView, Platform } from 'react-native';
-import { ControlledTextInput } from 'components/form-fields';
+import { ControlledTextInput, Error } from 'components/form-fields';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
-import Error from 'components/Error';
 import { SosContext } from 'state';
 import { styles } from './SosContactForm.styles';
 
