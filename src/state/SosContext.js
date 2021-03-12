@@ -16,7 +16,7 @@ const sosReducer = (state, action) => {
   const { id, data } = action.payload;
   switch (action.type) {
     case ACTIONS.ADD_CONTACT:
-      return { contacts: [...contacts, data] };
+      return { contacts: [...contacts, action.payload] };
     case ACTIONS.EDIT_CONTACT:
       return {
         ...contacts,
@@ -75,8 +75,7 @@ const addContact = (dispatch) => async (data) => {
     //   .patch(`/users/${username}/contacts/`, data, {
     //     headers: { 'auth-token': token },
     //   })
-
-    dispatch({ type: ACTIONS.ADD_CONTACT, payload: { data } });
+    dispatch({ type: ACTIONS.ADD_CONTACT, payload: response.data });
   } catch (error) {
     console.error(error);
   }
