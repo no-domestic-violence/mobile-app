@@ -18,10 +18,7 @@ const sosReducer = (state, action) => {
       return { contacts: action.payload };
     case ACTIONS.EDIT_CONTACT:
       return {
-        ...contacts,
-        contacts: contacts.map((contact) =>
-          contact._id === action.payload._id ? action.payload : contact
-        ),
+        contacts: action.payload,
       };
     case ACTIONS.DELETE_CONTACT:
       return { contacts: action.payload };
