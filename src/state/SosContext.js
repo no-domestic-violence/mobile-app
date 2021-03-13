@@ -15,7 +15,7 @@ const sosReducer = (state, action) => {
   const { contacts } = state;
   switch (action.type) {
     case ACTIONS.ADD_CONTACT:
-      return { contacts: [...contacts, action.payload] };
+      return { contacts: action.payload };
     case ACTIONS.EDIT_CONTACT:
       return {
         ...contacts,
