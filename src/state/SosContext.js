@@ -24,10 +24,7 @@ const sosReducer = (state, action) => {
         ),
       };
     case ACTIONS.DELETE_CONTACT:
-      return {
-        ...contacts,
-        contacts: contacts.filter((contact) => contact._id !== action.payload),
-      };
+      return { contacts: action.payload };
     case ACTIONS.GET_CONTACTS:
       return { contacts: action.payload };
     default:
@@ -51,7 +48,7 @@ const deleteContact = (dispatch) => async ({ id }) => {
   const token = await SecureStore.getItemAsync('token');
   try {
     const response = await appApiClient.deleteSosContact(username, id, token);
-    dispatch({ type: ACTIONS.DELETE_CONTACT, payload: response.data.id });
+    dispatch({ type: ACTIONS.DELETE_CONTACT, payload: response.data });
   } catch (error) {
     console.error(error);
   }
