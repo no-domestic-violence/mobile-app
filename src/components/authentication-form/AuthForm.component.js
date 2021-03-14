@@ -46,7 +46,7 @@ const AuthForm = ({
             inputRef={usernameInputRef}
             style={styles.input}
           />
-          <Error name='username' errors={errors} style={styles.error} />
+          <Error name='username' errors={errors} />
         </>
       )}
       <ControlledTextInput
@@ -58,7 +58,7 @@ const AuthForm = ({
         blurOnSubmit={false}
         style={styles.input}
       />
-      <Error name='email' errors={errors} style={styles.error} />
+      <Error name='email' errors={errors} />
       {formType === 'change password' && (
         <>
           <ControlledTextInput
@@ -71,7 +71,7 @@ const AuthForm = ({
             secureTextEntry
             style={styles.input}
           />
-          <Error name='oldPassword' errors={errors} style={styles.error} />
+          <Error name='oldPassword' errors={errors} />
         </>
       )}
       <ControlledTextInput
@@ -84,7 +84,7 @@ const AuthForm = ({
         secureTextEntry
         style={styles.input}
       />
-      <Error name='password' errors={errors} style={styles.error} />
+      <Error name='password' errors={errors} />
       <StyledButton onPress={handleSubmit(onSubmitForm)}>
         <StyledButtonText>{buttonText.toUpperCase()}</StyledButtonText>
       </StyledButton>

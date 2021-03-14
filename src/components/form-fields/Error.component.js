@@ -1,10 +1,17 @@
 import React from 'react';
-import { Text } from 'react-native';
+import styled from 'styled-components/native';
+
+const ErrorText = styled.Text`
+  color: red;
+  bottom: 10;
+`;
 
 const Error = ({ errors, name, style }) => {
   return (
     <>
-      <Text style={style}>{errors[name] ? errors[name].message : ' '}</Text>
+      <ErrorText style={style}>
+        {errors[name] ? errors[name].message : ' '}
+      </ErrorText>
     </>
   );
 };
