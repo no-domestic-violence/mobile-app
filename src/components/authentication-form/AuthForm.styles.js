@@ -23,4 +23,8 @@ export const styles = StyleSheet.create({
     paddingTop: '4%',
     paddingBottom: '4%',
   },
+  error: {
+    bottom: 12,
+    color: 'red',
+  },
 });

@@ -115,7 +115,7 @@ export default function SosContactForm({ navigation, route }) {
               leftIconContainerStyle={styles.icon}
               placeholder='Name'
             />
-            <Error errors={errors.name} />
+            <Error name='name' errors={errors} style={styles.error} />
             <ControlledTextInput
               name='phone'
               placeholder='Phone Number'
@@ -132,7 +132,7 @@ export default function SosContactForm({ navigation, route }) {
               }
               leftIconContainerStyle={styles.icon}
             />
-            <Error errors={errors.phone} />
+            <Error name='phone' errors={errors} style={styles.error} />
             <ControlledTextInput
               name='message'
               control={control}
@@ -145,7 +145,7 @@ export default function SosContactForm({ navigation, route }) {
               }
               leftIconContainerStyle={styles.icon}
             />
-            <Error errors={errors.message} />
+            <Error name='message' errors={errors} style={styles.error} />
           </View>
           <View style={styles.buttonRow}>
             {!isAddMode && (

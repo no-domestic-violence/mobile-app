@@ -1,5 +1,4 @@
 import ControlledTextInput from './ControlledTextInput.component';
-import ErrorMessageWithDivider from './ErrorMessageWithDivider';
-import Error from './Error';
+import Error from './Error.component';
 
-export { ControlledTextInput, ErrorMessageWithDivider, Error };
+export { ControlledTextInput, Error };
