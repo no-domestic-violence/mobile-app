@@ -1,11 +1,14 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Provider as SosProvider } from 'state/SosContext';
-import { AuthProvider , LocationProvider } from 'state/';
+import {
+  AuthProvider,
+  LocationProvider,
+  SosProvider,
+  LanguageProvider,
+} from 'state/';
 
 import AppNavigation from './routes/AppNavigator';
-import { LanguageProvider } from './state/LanguageContext';
 
 import './services/i18n';
 

@@ -7,6 +7,7 @@ import {
   Provider as LocationProvider,
 } from './LocationContext';
 import { Context as SosContext, Provider as SosProvider } from './SosContext';
+import { LanguageContext, LanguageProvider } from './LanguageContext';
 
 export {
   AuthContext,
@@ -15,4 +16,6 @@ export {
   LocationContext,
   SosProvider,
   SosContext,
+  LanguageContext,
+  LanguageProvider,
 };
