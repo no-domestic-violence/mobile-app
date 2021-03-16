@@ -12,7 +12,6 @@ const ACTIONS = {
 
 const sosReducer = (state, action) => {
   // (current state, action to pass to dispatch )
-  const { contacts } = state;
   switch (action.type) {
     case ACTIONS.ADD_CONTACT:
       return { contacts: action.payload };
