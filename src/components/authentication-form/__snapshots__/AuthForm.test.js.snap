@@ -86,21 +86,16 @@ Array [
   </View>,
   <Text
     style={
-      Object {
-        "color": "red",
-      }
+      Array [
+        Object {
+          "bottom": 10,
+          "color": "red",
+        },
+      ]
     }
   >
      
   </Text>,
-  <View
-    style={
-      Object {
-        "backgroundColor": "#cadeee",
-        "height": 20,
-      }
-    }
-  />,
   <View
     style={
       Object {
@@ -171,21 +166,16 @@ Array [
   </View>,
   <Text
     style={
-      Object {
-        "color": "red",
-      }
+      Array [
+        Object {
+          "bottom": 10,
+          "color": "red",
+        },
+      ]
     }
   >
      
   </Text>,
-  <View
-    style={
-      Object {
-        "backgroundColor": "#cadeee",
-        "height": 20,
-      }
-    }
-  />,
   <View
     style={
       Object {
@@ -256,21 +246,16 @@ Array [
   </View>,
   <Text
     style={
-      Object {
-        "color": "red",
-      }
+      Array [
+        Object {
+          "bottom": 10,
+          "color": "red",
+        },
+      ]
     }
   >
      
   </Text>,
-  <View
-    style={
-      Object {
-        "backgroundColor": "#cadeee",
-        "height": 20,
-      }
-    }
-  />,
   <View
     accessible={true}
     focusable={true}

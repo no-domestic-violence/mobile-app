@@ -7,13 +7,7 @@ import { StyledButton, StyledButtonText } from 'styles/shared/';
 import { ControlledTextInput } from 'components/form-fields';
 import { AuthSchema, styles } from './index';
 
-const AuthForm = ({
-  formType,
-  headerForm,
-  onSubmitForm,
-  buttonText,
-  navigation,
-}) => {
+const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText }) => {
   const { control, handleSubmit, errors } = useForm({
     resolver: yupResolver(AuthSchema(formType)),
   });
