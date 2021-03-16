@@ -1,9 +1,12 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { Text } from 'react-native';
-import { Divider } from 'react-native-elements';
-import { Colors } from 'styles/';
-import { StyledInput } from './ControlledTextInput.styles';
+import { Input } from 'react-native-elements';
+import styled from 'styled-components/native';
+
+const ErrorText = styled.Text`
+  color: red;
+  bottom: 10;
+`;
 
 const ControlledTextInput = ({
   name,
@@ -15,11 +18,17 @@ const ControlledTextInput = ({
   blurOnSubmit,
   placeholderTextColor = '#6c757d',
   control,
-  errors,
   secureTextEntry = false,
   onSubmitEditing,
   inputRef,
   textContentType = 'oneTimeCode',
+  style,
+  leftIcon,
+  leftIconContainerStyle,
+  autoCompleteType = 'off',
+  keyboardType,
+  errors,
+  errorStyle,
 }) => {
   return (
     <>
@@ -31,7 +40,7 @@ const ControlledTextInput = ({
           inputRef.current.focus();
         }}
         render={({ onChange, value }) => (
-          <StyledInput
+          <Input
             placeholder={placeholder}
             autoCapitalize={autoCapitalize}
             autoCorrect={autoCorrect}
@@ -44,14 +53,17 @@ const ControlledTextInput = ({
             ref={inputRef}
             secureTextEntry={secureTextEntry}
             onSubmitEditing={onSubmitEditing}
+            style={style}
+            leftIcon={leftIcon}
+            leftIconContainerStyle={leftIconContainerStyle}
+            autoCompleteType={autoCompleteType}
+            keyboardType={keyboardType}
           />
         )}
       />
-      <Divider style={{ height: 5 }} />
-      {errors[name] && (
-        <Text style={{ color: 'red' }}>{errors[name].message}</Text>
-      )}
-      <Divider style={{ height: 20, backgroundColor: Colors.primary }} />
+      <ErrorText errorstyle={errorStyle}>
+        {errors[name] ? errors[name].message : ' '}
+      </ErrorText>
     </>
   );
 };

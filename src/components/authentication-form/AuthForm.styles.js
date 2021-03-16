@@ -12,4 +12,15 @@ export const styles = StyleSheet.create({
     marginBottom: 40,
     marginLeft: 30,
   },
+  input: {
+    width: '85%',
+    backgroundColor: '#fff',
+    color: '#000',
+    borderRadius: 5,
+    fontSize: 18,
+    fontWeight: '400',
+    paddingLeft: '2%',
+    paddingTop: '4%',
+    paddingBottom: '4%',
+  },
 });

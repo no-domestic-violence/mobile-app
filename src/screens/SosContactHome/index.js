@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { View, Text } from 'react-native';
-import SosContactList from 'components/sosContacts/SosContactList';
+import SosContactList from 'components/sosContactList';
 
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
-import { Context as SosContext } from 'state/SosContext';
+import { SosContext } from 'state';
 import { styles } from './SosContactHome.styles';
 
 export default function SosContactHome({ navigation }) {
@@ -15,7 +15,7 @@ export default function SosContactHome({ navigation }) {
 
   useEffect(() => {
     getContacts();
-    navigation.setParams({ id: '' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -30,4 +30,3 @@ export default function SosContactHome({ navigation }) {
     </>
   );
 }
-

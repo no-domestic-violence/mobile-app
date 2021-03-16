@@ -21,16 +21,36 @@ const hotlinesDataMock = [
     phone: '+49 543 514 8358',
   },
 ];
-//TODO: needs to be redone, not flexible test
+
+const sosContactsMock = [
+  {
+    _id: '2f213dsafdsfasdfdas34e',
+    name: 'Soyoon',
+    phone: '012341235215',
+    message: 'help',
+  },
+];
+// TODO: needs to be redone, not flexible test
 describe('appApiClient', () => {
   const appApiClient = {
-    getHotlinesData: jest.fn(() => Promise.resolve({ data: hotlinesDataMock }))
+    getHotlinesData: jest.fn(() => Promise.resolve({ data: hotlinesDataMock })),
+    getSosContact: jest.fn(() => Promise.resolve({ data: sosContactsMock })),
+    addSosContact: jest.fn(() => Promise.resolve({ data: sosContactsMock })),
   };
- it('get hotlines data by search param', async() => {
+  const username = 'celeste';
+  const token = 'faketoken123456';
+
+  it('get hotlines data by search param', async () => {
     const search = 'hamburg';
     const hotlinesData = await appApiClient.getHotlinesData(search);
     expect(appApiClient.getHotlinesData).toHaveBeenCalledTimes(1);
     expect(appApiClient.getHotlinesData).toHaveBeenCalledWith(search);
     expect(hotlinesData.data.length).toEqual(3);
- });
+  });
+  it('gets sos contacts with username and token', async () => {
+    const contacts = await appApiClient.getSosContact(username, token);
+    expect(appApiClient.getSosContact).toHaveBeenCalledTimes(1);
+    expect(appApiClient.getSosContact).toHaveBeenCalledWith(username, token);
+    expect(contacts.data.length).toEqual(1);
+  });
 });

@@ -7,13 +7,7 @@ import { StyledButton, StyledButtonText } from 'styles/shared/';
 import { ControlledTextInput } from 'components/form-fields';
 import { AuthSchema, styles } from './index';
 
-const AuthForm = ({
-  formType,
-  headerForm,
-  onSubmitForm,
-  buttonText,
-  navigation,
-}) => {
+const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText }) => {
   const { control, handleSubmit, errors } = useForm({
     resolver: yupResolver(AuthSchema(formType)),
   });
@@ -35,16 +29,19 @@ const AuthForm = ({
         {headerForm}
       </Text>
       {formType === 'sign up' && (
-        <ControlledTextInput
-          name='username'
-          control={control}
-          placeholder='Username'
-          returnKeyType='next'
-          onSubmitEditing={isEmailFocused}
-          blurOnSubmit={false}
-          errors={errors}
-          inputRef={usernameInputRef}
-        />
+        <>
+          <ControlledTextInput
+            name='username'
+            control={control}
+            placeholder='Username'
+            returnKeyType='next'
+            onSubmitEditing={isEmailFocused}
+            blurOnSubmit={false}
+            inputRef={usernameInputRef}
+            style={styles.input}
+            errors={errors}
+          />
+        </>
       )}
       <ControlledTextInput
         name='email'
@@ -53,19 +50,23 @@ const AuthForm = ({
         returnKeyType='next'
         onSubmitEditing={isPasswordFocused}
         blurOnSubmit={false}
+        style={styles.input}
         errors={errors}
       />
       {formType === 'change password' && (
-        <ControlledTextInput
-          name='oldPassword'
-          control={control}
-          placeholder='Old password'
-          returnKeyType='next'
-          onSubmitEditing={isNewPasswordFocused}
-          blurOnSubmit={false}
-          errors={errors}
-          secureTextEntry
-        />
+        <>
+          <ControlledTextInput
+            name='oldPassword'
+            control={control}
+            placeholder='Old password'
+            returnKeyType='next'
+            onSubmitEditing={isNewPasswordFocused}
+            blurOnSubmit={false}
+            secureTextEntry
+            style={styles.input}
+            errors={errors}
+          />
+        </>
       )}
       <ControlledTextInput
         name='password'
@@ -74,8 +75,9 @@ const AuthForm = ({
         returnKeyType='next'
         isInputFocused={Keyboard.dismiss}
         blurOnSubmit={false}
-        errors={errors}
         secureTextEntry
+        style={styles.input}
+        errors={errors}
       />
       <StyledButton onPress={handleSubmit(onSubmitForm)}>
         <StyledButtonText>{buttonText.toUpperCase()}</StyledButtonText>

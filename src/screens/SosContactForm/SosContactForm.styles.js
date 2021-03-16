@@ -35,6 +35,5 @@ export const styles = StyleSheet.create({
   },
   error: {
     fontSize: 10,
-    color: 'red',
   },
 });

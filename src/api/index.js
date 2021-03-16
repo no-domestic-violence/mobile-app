@@ -33,12 +33,40 @@ const changePassword = (email, oldPassword, password) => {
   });
 };
 
+const getSosContacts = (username, token) => {
+  return apiInstance.get(`/users/${username}/contacts`, {
+    headers: { 'auth-token': token },
+  });
+};
+
+const deleteSosContact = (username, id, token) => {
+  return apiInstance.delete(`/users/${username}/contacts`, {
+    params: { id },
+    headers: { 'auth-token': token },
+  });
+};
+const addSosContact = (username, data, token) => {
+  return apiInstance.patch(`/users/${username}/contacts/`, data, {
+    headers: { 'auth-token': token },
+  });
+};
+
+const editSosContact = (username, data, id, token) => {
+  return apiInstance.patch(`/users/${username}/contacts/${id}`, data, {
+    headers: { 'auth-token': token },
+  });
+};
+
 const appApiClient = {
   getHotlinesData,
   loginUser,
   signupUser,
   deleteUser,
   changePassword,
+  getSosContacts,
+  deleteSosContact,
+  addSosContact,
+  editSosContact,
 };
 
 export default appApiClient;
