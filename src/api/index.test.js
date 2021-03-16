@@ -53,18 +53,4 @@ describe('appApiClient', () => {
     expect(appApiClient.getSosContact).toHaveBeenCalledWith(username, token);
     expect(contacts.data.length).toEqual(1);
   });
-  it('adds an sos contact with username and token', async () => {
-    const newContact = {
-      _id: '312343142341331423',
-      name: 'newcontact',
-      phone: '0123456',
-      message: 'help',
-    };
-    await appApiClient.addSosContact(username, newContact, token);
-    expect(appApiClient.addSosContact).toHaveBeenCalledTimes(1);
-  });
-  it('checks if addSosContact has successfully added a contact', async () => {
-    const contacts = await appApiClient.getSosContact(username, token);
-    expect(contacts.data.length).toEqual(2);
-  });
 });
