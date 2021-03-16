@@ -1,6 +1,12 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { Input } from 'react-native-elements';
+import styled from 'styled-components/native';
+
+const ErrorText = styled.Text`
+  color: red;
+  bottom: 10;
+`;
 
 const ControlledTextInput = ({
   name,
@@ -21,6 +27,8 @@ const ControlledTextInput = ({
   leftIconContainerStyle,
   autoCompleteType = 'off',
   keyboardType,
+  errors,
+  errorStyle,
 }) => {
   return (
     <>
@@ -53,6 +61,9 @@ const ControlledTextInput = ({
           />
         )}
       />
+      <ErrorText errorstyle={errorStyle}>
+        {errors[name] ? errors[name].message : ' '}
+      </ErrorText>
     </>
   );
 };

@@ -13,7 +13,7 @@ import {
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
 import { View, Keyboard, KeyboardAvoidingView, Platform } from 'react-native';
-import { ControlledTextInput, Error } from 'components/form-fields';
+import { ControlledTextInput } from 'components/form-fields';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
 import { SosContext } from 'state';
@@ -114,8 +114,9 @@ export default function SosContactForm({ navigation, route }) {
               }
               leftIconContainerStyle={styles.icon}
               placeholder='Name'
+              errors={errors}
+              errorStyle={styles.error}
             />
-            <Error name='name' errors={errors} style={styles.error} />
             <ControlledTextInput
               name='phone'
               placeholder='Phone Number'
@@ -131,8 +132,9 @@ export default function SosContactForm({ navigation, route }) {
                 <FontAwesomeIcon icon={faPhone} size={20} color='black' />
               }
               leftIconContainerStyle={styles.icon}
+              errors={errors}
+              errorStyle={styles.error}
             />
-            <Error name='phone' errors={errors} style={styles.error} />
             <ControlledTextInput
               name='message'
               control={control}
@@ -144,8 +146,9 @@ export default function SosContactForm({ navigation, route }) {
                 <FontAwesomeIcon icon={faEnvelope} size={20} color='black' />
               }
               leftIconContainerStyle={styles.icon}
+              errors={errors}
+              errorStyle={styles.error}
             />
-            <Error name='message' errors={errors} style={styles.error} />
           </View>
           <View style={styles.buttonRow}>
             {!isAddMode && (
