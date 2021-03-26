@@ -16,8 +16,8 @@ export default function ChangePasswordScreen({ navigation }) {
   const { username } = state;
 
   const [isModalVisible, setModalVisible] = useState(false);
-  const handleChangePassword = ({ email, password, oldPassword }) => {
-    changePassword({ email, password, oldPassword });
+  const handleChangePassword = ({ email, oldPassword, password }) => {
+    changePassword({ email, oldPassword, password });
   };
 
   useEffect(() => {
