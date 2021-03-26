@@ -112,14 +112,14 @@ const removeMessages = (dispatch) => () => {
 
 const changePassword = (dispatch) => async ({
   email,
-  password,
   oldPassword,
+  password,
 }) => {
   try {
     const response = await appApiClient.changePassword(
       email,
-      password,
-      oldPassword
+      oldPassword,
+      password
     );
     removeErrors();
     dispatch({ type: 'CHANGE_PASSWORD_SUCCESS', payload: response.data });

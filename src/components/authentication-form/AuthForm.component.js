@@ -50,6 +50,7 @@ const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText }) => {
         returnKeyType='next'
         onSubmitEditing={isPasswordFocused}
         blurOnSubmit={false}
+        inputRef={emailInputRef}
         style={styles.input}
         errors={errors}
       />
@@ -62,6 +63,7 @@ const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText }) => {
             returnKeyType='next'
             onSubmitEditing={isNewPasswordFocused}
             blurOnSubmit={false}
+            inputRef={passwordInputRef}
             secureTextEntry
             style={styles.input}
             errors={errors}
@@ -74,6 +76,7 @@ const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText }) => {
         placeholder='Password'
         returnKeyType='next'
         isInputFocused={Keyboard.dismiss}
+        inputRef={newPasswordInputRef}
         blurOnSubmit={false}
         secureTextEntry
         style={styles.input}
