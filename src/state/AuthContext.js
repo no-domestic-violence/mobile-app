@@ -1,7 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 import appApiClient from 'api/';
 import createAppContext from './CreateAppContext';
-import { setUserSecureStorage } from '../helpers';
+import { setUserSecureStorage, deleteUserSecureStorage } from '../helpers';
 const authReducer = (state, { type, payload }) => {
   switch (type) {
     case 'SIGNUP_ERROR':
@@ -155,9 +155,7 @@ const checkFirstLaunch = (dispatch) => async () => {
 const deleteAccount = (dispatch) => async ({ username }) => {
   try {
     const { data } = await appApiClient.deleteUser(username);
-    await SecureStore.deleteItemAsync('token');
-    await SecureStore.deleteItemAsync('username');
-    await SecureStore.deleteItemAsync('alreadyLaunched');
+    await deleteUserSecureStorage();
     dispatch({ type: 'DELETE_ACCOUNT', payload: data });
     dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: true });
   } catch (error) {
