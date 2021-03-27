@@ -2,37 +2,37 @@ import * as SecureStore from 'expo-secure-store';
 import appApiClient from 'api/';
 import createAppContext from './CreateAppContext';
 import { setUserSecureStorage } from '../helpers';
-const authReducer = (state, action) => {
-  switch (action.type) {
+const authReducer = (state, { type, payload }) => {
+  switch (type) {
     case 'SIGNUP_ERROR':
     case 'LOGIN_ERROR':
       return {
         ...state,
-        errorMessage: action.payload,
+        errorMessage: payload,
       };
     case 'SIGNUP_SUCCESS':
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        token: action.payload.token,
-        username: action.payload.user.username,
+        token: payload.token,
+        username: payload.user.username,
         errorMessage: '',
       };
     case 'CHANGE_PASSWORD_SUCCESS':
       return {
         ...state,
-        successMessage: action.payload,
+        successMessage: payload,
       };
     case 'CHANGE_PASSWORD_ERROR':
       return {
         ...state,
-        errorMessage: action.payload,
+        errorMessage: payload,
       };
     case 'AUTH_SUCCESS':
       return {
         ...state,
-        token: action.payload.token,
-        username: action.payload.username,
+        token: payload.token,
+        username: payload.username,
       };
     case 'LOGOUT':
       return {
@@ -43,7 +43,7 @@ const authReducer = (state, action) => {
       return {
         token: '',
         username: '',
-        successMessage: action.payload.data,
+        successMessage: payload.data,
       };
     case 'REMOVE_ERRORS':
       return {
@@ -57,7 +57,7 @@ const authReducer = (state, action) => {
       };
     case 'CHECK_FIRST_LAUNCH':
       return {
-        isFirstLaunch: action.payload,
+        isFirstLaunch: payload,
       };
     default:
       return state;
@@ -66,12 +66,13 @@ const authReducer = (state, action) => {
 
 const signup = (dispatch) => async ({ email, password, username }) => {
   try {
-    const response = await appApiClient.signupUser(email, password, username);
-    await setUserSecureStorage(
-      response.data.token,
-      response.data.user.username
-    );
-    dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data });
+    const {
+      data,
+      data: { token, user },
+    } = await appApiClient.signupUser(email, password, username);
+    await setUserSecureStorage(token, user.username);
+    dispatch({ type: 'SIGNUP_SUCCESS', payload: data });
+
   } catch (error) {
     dispatch({
       type: 'SIGNUP_ERROR',
@@ -82,13 +83,14 @@ const signup = (dispatch) => async ({ email, password, username }) => {
 
 const login = (dispatch) => async ({ email, password }) => {
   try {
-    const response = await appApiClient.loginUser(email, password);
-    await setUserSecureStorage(
-      response.data.token,
-      response.data.user.username
-    );
+    const {
+      data,
+      data: { token, user },
+    } = await appApiClient.loginUser(email, password);
 
-    dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
+    await setUserSecureStorage(token, user.username);
+
+    dispatch({ type: 'LOGIN_SUCCESS', payload: data });
   } catch (error) {
     dispatch({
       type: 'LOGIN_ERROR',
@@ -119,13 +121,13 @@ const changePassword = (dispatch) => async ({
   password,
 }) => {
   try {
-    const response = await appApiClient.changePassword(
+    const { data } = await appApiClient.changePassword(
       email,
       oldPassword,
       password
     );
     removeErrors();
-    dispatch({ type: 'CHANGE_PASSWORD_SUCCESS', payload: response.data });
+    dispatch({ type: 'CHANGE_PASSWORD_SUCCESS', payload: data });
   } catch (error) {
     dispatch({
       type: 'CHANGE_PASSWORD_ERROR',
@@ -152,12 +154,11 @@ const checkFirstLaunch = (dispatch) => async () => {
 
 const deleteAccount = (dispatch) => async ({ username }) => {
   try {
-    // TODO: fix sending params so it is more readable
-    const response = await appApiClient.deleteUser(username);
+    const { data } = await appApiClient.deleteUser(username);
     await SecureStore.deleteItemAsync('token');
     await SecureStore.deleteItemAsync('username');
     await SecureStore.deleteItemAsync('alreadyLaunched');
-    dispatch({ type: 'DELETE_ACCOUNT', payload: response.data });
+    dispatch({ type: 'DELETE_ACCOUNT', payload: data });
     dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: true });
   } catch (error) {
     dispatch({
