@@ -1,7 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 import appApiClient from 'api/';
 import createAppContext from './CreateAppContext';
-
+import { setUserSecureStorage } from '../helpers';
 const authReducer = (state, action) => {
   switch (action.type) {
     case 'SIGNUP_ERROR':
@@ -67,10 +67,10 @@ const authReducer = (state, action) => {
 const signup = (dispatch) => async ({ email, password, username }) => {
   try {
     const response = await appApiClient.signupUser(email, password, username);
-
-    await SecureStore.setItemAsync('token', response.data.token);
-    await SecureStore.setItemAsync('username', response.data.user.username);
-
+    await setUserSecureStorage(
+      response.data.token,
+      response.data.user.username
+    );
     dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data });
   } catch (error) {
     dispatch({
@@ -83,8 +83,11 @@ const signup = (dispatch) => async ({ email, password, username }) => {
 const login = (dispatch) => async ({ email, password }) => {
   try {
     const response = await appApiClient.loginUser(email, password);
-    await SecureStore.setItemAsync('token', response.data.token);
-    await SecureStore.setItemAsync('username', response.data.user.username);
+    await setUserSecureStorage(
+      response.data.token,
+      response.data.user.username
+    );
+
     dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
   } catch (error) {
     dispatch({
