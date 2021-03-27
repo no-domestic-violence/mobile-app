@@ -1,7 +1,7 @@
 import {
   Context as AuthContext,
   Provider as AuthProvider,
-} from './AuthContext';
+} from './authentication';
 import {
   Context as LocationContext,
   Provider as LocationProvider,

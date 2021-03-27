@@ -1,68 +1,6 @@
 import * as SecureStore from 'expo-secure-store';
 import appApiClient from 'api/';
-import createAppContext from './CreateAppContext';
-import { setUserSecureStorage, deleteUserSecureStorage } from '../helpers';
-const authReducer = (state, { type, payload }) => {
-  switch (type) {
-    case 'SIGNUP_ERROR':
-    case 'LOGIN_ERROR':
-      return {
-        ...state,
-        errorMessage: payload,
-      };
-    case 'SIGNUP_SUCCESS':
-    case 'LOGIN_SUCCESS':
-      return {
-        ...state,
-        token: payload.token,
-        username: payload.user.username,
-        errorMessage: '',
-      };
-    case 'CHANGE_PASSWORD_SUCCESS':
-      return {
-        ...state,
-        successMessage: payload,
-      };
-    case 'CHANGE_PASSWORD_ERROR':
-      return {
-        ...state,
-        errorMessage: payload,
-      };
-    case 'AUTH_SUCCESS':
-      return {
-        ...state,
-        token: payload.token,
-        username: payload.username,
-      };
-    case 'LOGOUT':
-      return {
-        token: '',
-        username: '',
-      };
-    case 'DELETE_ACCOUNT':
-      return {
-        token: '',
-        username: '',
-        successMessage: payload.data,
-      };
-    case 'REMOVE_ERRORS':
-      return {
-        ...state,
-        errorMessage: '',
-      };
-    case 'REMOVE_MESSAGES':
-      return {
-        ...state,
-        successMessage: '',
-      };
-    case 'CHECK_FIRST_LAUNCH':
-      return {
-        isFirstLaunch: payload,
-      };
-    default:
-      return state;
-  }
-};
+import { setUserSecureStorage, deleteUserSecureStorage } from '../../helpers';
 
 const signup = (dispatch) => async ({ email, password, username }) => {
   try {
@@ -72,7 +10,6 @@ const signup = (dispatch) => async ({ email, password, username }) => {
     } = await appApiClient.signupUser(email, password, username);
     await setUserSecureStorage(token, user.username);
     dispatch({ type: 'SIGNUP_SUCCESS', payload: data });
-
   } catch (error) {
     dispatch({
       type: 'SIGNUP_ERROR',
@@ -166,18 +103,14 @@ const deleteAccount = (dispatch) => async ({ username }) => {
   }
 };
 
-export const { Provider, Context } = createAppContext(
-  authReducer,
-  {
-    signup,
-    login,
-    signout,
-    removeErrors,
-    removeMessages,
-    authentication,
-    changePassword,
-    deleteAccount,
-    checkFirstLaunch,
-  },
-  { isLoggedIn: false, errorMessage: '', isFirstLaunch: null }
-);
+export {
+  signup,
+  login,
+  signout,
+  removeErrors,
+  removeMessages,
+  authentication,
+  changePassword,
+  deleteAccount,
+  checkFirstLaunch,
+};
