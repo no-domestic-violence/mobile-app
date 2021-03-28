@@ -5,7 +5,7 @@ import {
 import {
   Context as LocationContext,
   Provider as LocationProvider,
-} from './LocationContext';
+} from './location';
 import { Context as SosContext, Provider as SosProvider } from './SosContext';
 import { LanguageContext, LanguageProvider } from './LanguageContext';
 
