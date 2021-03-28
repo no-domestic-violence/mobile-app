@@ -1,4 +1,5 @@
-import createAppContext from '../CreateAppContext';
+import createAppContext from 'helpers/createAppContext';
+
 import locationReducer from './location.reducer';
 import {
   updateCurrentLocation,

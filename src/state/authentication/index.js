@@ -1,4 +1,4 @@
-import createAppContext from '../CreateAppContext';
+import createAppContext from 'helpers/createAppContext';
 import {
   signup,
   login,
