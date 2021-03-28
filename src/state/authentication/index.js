@@ -8,7 +8,7 @@ import {
   authentication,
   changePassword,
   deleteAccount,
-  checkFirstLaunch,
+  setAlreadyLaunchedValue,
 } from './authentication.actions';
 import authReducer from './authentication.reducer';
 
@@ -23,7 +23,7 @@ export const { Provider, Context } = createAppContext(
     authentication,
     changePassword,
     deleteAccount,
-    checkFirstLaunch,
+    setAlreadyLaunchedValue,
   },
   { isLoggedIn: false, errorMessage: '', isFirstLaunch: null }
 );

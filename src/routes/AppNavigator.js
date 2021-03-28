@@ -6,11 +6,13 @@ import { BottomTabNavigator } from './TabNavigator';
 import { OnboardingNavigator } from './StackNavigator';
 
 export default function AppNavigation() {
-  const { state, authentication, checkFirstLaunch } = useContext(AuthContext);
+  const { state, authentication, setAlreadyLaunchedValue } = useContext(
+    AuthContext
+  );
   const [checkedSecureStorage, setCheckedSecureStorage] = useState(false);
 
   useEffect(() => {
-    checkFirstLaunch();
+    setAlreadyLaunchedValue();
     setCheckedSecureStorage(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

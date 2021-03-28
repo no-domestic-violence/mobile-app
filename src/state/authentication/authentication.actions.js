@@ -80,7 +80,7 @@ const signout = (dispatch) => async () => {
   dispatch({ type: types.LOGOUT });
 };
 
-const checkFirstLaunch = (dispatch) => async () => {
+const setAlreadyLaunchedValue = (dispatch) => async () => {
   try {
     const alreadyLaunchedValue = await SecureStore.getItemAsync(
       'alreadyLaunched'
@@ -119,5 +119,5 @@ export {
   authentication,
   changePassword,
   deleteAccount,
-  checkFirstLaunch,
+  setAlreadyLaunchedValue,
 };
