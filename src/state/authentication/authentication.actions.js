@@ -1,7 +1,8 @@
 import * as SecureStore from 'expo-secure-store';
 import appApiClient from 'api/';
 import { setUserSecureStorage, deleteUserSecureStorage } from '../../helpers';
-
+import * as types from './authentication.types';
+  
 const signup = (dispatch) => async ({ email, password, username }) => {
   try {
     const {
@@ -9,10 +10,10 @@ const signup = (dispatch) => async ({ email, password, username }) => {
       data: { token, user },
     } = await appApiClient.signupUser(email, password, username);
     await setUserSecureStorage(token, user.username);
-    dispatch({ type: 'SIGNUP_SUCCESS', payload: data });
+    dispatch({ type: types.SIGNUP_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: 'SIGNUP_ERROR',
+      type: types.SIGNUP_ERROR,
       payload: "Something went wrong'( Try again",
     });
   }
@@ -27,10 +28,10 @@ const login = (dispatch) => async ({ email, password }) => {
 
     await setUserSecureStorage(token, user.username);
 
-    dispatch({ type: 'LOGIN_SUCCESS', payload: data });
+    dispatch({ type: types.LOGIN_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: 'LOGIN_ERROR',
+      type: types.LOGIN_ERROR,
       payload: 'Are you sure about password and email?',
     });
   }
@@ -41,15 +42,15 @@ const authentication = (dispatch) => async () => {
   const username = await SecureStore.getItemAsync('username');
   const user = { token, username };
   if (token) {
-    dispatch({ type: 'AUTH_SUCCESS', payload: user });
+    dispatch({ type: types.AUTH_SUCCESS, payload: user });
   }
 };
 const removeErrors = (dispatch) => () => {
-  dispatch({ type: 'REMOVE_ERRORS' });
+  dispatch({ type: types.REMOVE_ERRORS });
 };
 
 const removeMessages = (dispatch) => () => {
-  dispatch({ type: 'REMOVE_MESSAGES' });
+  dispatch({ type: types.REMOVE_MESSAGES });
 };
 
 const changePassword = (dispatch) => async ({
@@ -64,10 +65,10 @@ const changePassword = (dispatch) => async ({
       password
     );
     removeErrors();
-    dispatch({ type: 'CHANGE_PASSWORD_SUCCESS', payload: data });
+    dispatch({ type: types.CHANGE_PASSWORD_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: 'CHANGE_PASSWORD_ERROR',
+      type: types.CHANGE_PASSWORD_ERROR,
       payload: error.response.data.message,
     });
   }
@@ -75,16 +76,16 @@ const changePassword = (dispatch) => async ({
 
 const signout = (dispatch) => async () => {
   await SecureStore.deleteItemAsync('token');
-  dispatch({ type: 'LOGOUT' });
+  dispatch({ type: types.LOGOUT });
 };
 
 const checkFirstLaunch = (dispatch) => async () => {
   await SecureStore.getItemAsync('alreadyLaunched').then((value) => {
     if (value === null) {
       SecureStore.setItemAsync('alreadyLaunched', 'true');
-      dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: true });
+      dispatch({ type: types.CHECK_FIRST_LAUNCH, payload: true });
     } else {
-      dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: false });
+      dispatch({ type: types.CHECK_FIRST_LAUNCH, payload: false });
     }
   });
 };
@@ -93,11 +94,11 @@ const deleteAccount = (dispatch) => async ({ username }) => {
   try {
     const { data } = await appApiClient.deleteUser(username);
     await deleteUserSecureStorage();
-    dispatch({ type: 'DELETE_ACCOUNT', payload: data });
-    dispatch({ type: 'CHECK_FIRST_LAUNCH', payload: true });
+    dispatch({ type: types.DELETE_ACCOUNT_SUCCESS, payload: data });
+    dispatch({ type: types.CHECK_FIRST_LAUNCH, payload: true });
   } catch (error) {
     dispatch({
-      type: 'CHANGE_PASSWORD_ERROR',
+      type: types.DELETE_ACCOUNT_ERROR,
       payload: error.response.data.message,
     });
   }
