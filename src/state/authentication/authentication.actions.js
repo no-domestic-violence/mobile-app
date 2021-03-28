@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import appApiClient from 'api/';
 import { setUserSecureStorage, deleteUserSecureStorage } from '../../helpers';
 import * as types from './authentication.types';
-  
+
 const signup = (dispatch) => async ({ email, password, username }) => {
   try {
     const {
@@ -45,6 +45,7 @@ const authentication = (dispatch) => async () => {
     dispatch({ type: types.AUTH_SUCCESS, payload: user });
   }
 };
+
 const removeErrors = (dispatch) => () => {
   dispatch({ type: types.REMOVE_ERRORS });
 };
@@ -80,14 +81,19 @@ const signout = (dispatch) => async () => {
 };
 
 const checkFirstLaunch = (dispatch) => async () => {
-  await SecureStore.getItemAsync('alreadyLaunched').then((value) => {
-    if (value === null) {
+  try {
+    const alreadyLaunchedValue = await SecureStore.getItemAsync(
+      'alreadyLaunched'
+    );
+    if (alreadyLaunchedValue === null) {
       SecureStore.setItemAsync('alreadyLaunched', 'true');
       dispatch({ type: types.CHECK_FIRST_LAUNCH, payload: true });
     } else {
       dispatch({ type: types.CHECK_FIRST_LAUNCH, payload: false });
     }
-  });
+  } catch {
+    dispatch({ type: types.CHECK_FIRST_LAUNCH, payload: false });
+  }
 };
 
 const deleteAccount = (dispatch) => async ({ username }) => {
