@@ -109,6 +109,6 @@ const Home = ({ navigation }) => {
       </View>
     </ScrollView>
   );
-};;
+};
 
 export default Home;

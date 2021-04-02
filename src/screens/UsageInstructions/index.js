@@ -9,7 +9,7 @@ import { styles } from './UsageInstructions.styles';
 
 export default function UsageInstructions({ navigation }) {
   const { state } = useContext(AuthContext);
-  const {username} = state;
+  const { username } = state;
 
   return (
     <StyledView style={styles.userSettingsContainer}>
@@ -18,7 +18,7 @@ export default function UsageInstructions({ navigation }) {
         onPress={() => navigation.goBack()}
         icon={faAngleLeft}
         size={40}
-        color="#000"
+        color='#000'
         style={styles.arrow}
       />
       <View style={styles.view}>
@@ -26,7 +26,7 @@ export default function UsageInstructions({ navigation }) {
           onPress={() => navigation.goBack()}
           icon={faTools}
           size={50}
-          color="#000"
+          color='#000'
         />
         <Text style={styles.header}>Work In Progress...</Text>
       </View>

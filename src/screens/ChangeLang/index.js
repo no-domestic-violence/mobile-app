@@ -12,7 +12,7 @@ import { styles } from './ChangeLang.styles';
 export default function ChangeLanguage({ navigation }) {
   const { state } = useContext(AuthContext);
   const { availableLanguages, setAppLanguage } = useContext(LanguageContext);
-  const {username} = state;
+  const { username } = state;
 
   const handleLanguageChange = async (language) => {
     await setAppLanguage(language);
@@ -27,7 +27,7 @@ export default function ChangeLanguage({ navigation }) {
           onPress={() => navigation.goBack()}
           icon={faAngleLeft}
           size={40}
-          color="#000"
+          color='#000'
           style={styles.arrow}
         />
         <Text style={styles.header}>Change Language</Text>
@@ -49,5 +49,3 @@ export default function ChangeLanguage({ navigation }) {
     </StyledView>
   );
 }
-
-
