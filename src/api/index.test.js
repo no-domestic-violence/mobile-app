@@ -74,7 +74,7 @@ describe('appApiClient', () => {
     expect(shelters.data.data).toEqual(response);
   });
 
-  it('should successfully send user data on post to login endpoint', async () => {
+  it('should successfully send user data on POST to /login endpoint', async () => {
     const email = 'test@test.com';
     const password = '12345678';
     //given
@@ -91,8 +91,78 @@ describe('appApiClient', () => {
       user,
     };
     // when
-    mockFMClient.onPost('/login', { email, password }).reply(200, response);
+    mockFMClient.onPost('/login', { email, password }).reply(201, response);
     const actual = await appApiClient.loginUser(email, password);
+    //then
+    expect(actual.data).toEqual(response);
+  });
+
+  it('should successfully send user data on POST to /signup endpoint', async () => {
+    const email = 'test@test.com';
+    const password = '12345678';
+    const username = 'celeste';
+    const token = 'TestToken121212';
+    //given
+    const user = {
+      username,
+      email,
+      contacts: [{}],
+      role: 'basic',
+    };
+    const response = {
+      success: true,
+      token,
+      user,
+    };
+    // when
+    mockFMClient
+      .onPost('/signup', { email, password, username })
+      .reply(201, response);
+    const actual = await appApiClient.signupUser(email, password, username);
+    //then
+    expect(actual.data).toEqual(response);
+  });
+  it('should successfully delete user on DELETE request to /deleteUser endpoint', async () => {
+    const username = 'celeste';
+    const email = 'test@test.com';
+    //given
+    const user = {
+      username,
+      email,
+      contacts: [{}],
+      role: 'basic',
+    };
+    const response = {
+      message: 'User was deleted',
+      user,
+    };
+    // when
+    mockFMClient
+      .onDelete('/deleteUser', { params: { username } })
+      .reply(200, response);
+    const actual = await appApiClient.deleteUser(username);
+    //then
+    expect(actual.data).toEqual(response);
+  });
+
+  it('should successfully change password of user on POST request to /changePassword endpoint', async () => {
+    const email = 'test@test.com';
+    const password = '12345678';
+    const oldPassword = '87654321';
+
+    //given
+    const response = {
+      message: 'You updated the password',
+    };
+    // when
+    mockFMClient
+      .onPost('/changePassword', { email, oldPassword, password })
+      .reply(200, response);
+    const actual = await appApiClient.changePassword(
+      email,
+      oldPassword,
+      password
+    );
     //then
     expect(actual.data).toEqual(response);
   });
