@@ -1,6 +1,7 @@
-jest.unmock('axios');
-import appApiClient, { apiInstance } from './index';
 import MockAdapter from 'axios-mock-adapter';
+import appApiClient, { apiInstance } from './index';
+
+jest.unmock('axios');
 
 describe('appApiClient', () => {
   const mockFMClient = new MockAdapter(apiInstance);
@@ -14,7 +15,7 @@ describe('appApiClient', () => {
   });
 
   it('should successfully fetch hotlines data by search param', async () => {
-    //given
+    // given
     const search = 'Berlin';
     const response = [
       {
@@ -50,12 +51,12 @@ describe('appApiClient', () => {
       .onGet('/hotlines', { params: { searchTerm: search } })
       .reply(200, response);
     const hotlines = await appApiClient.getHotlinesData(search);
-    //then
+    // then
     expect(hotlines.data).toEqual(response);
   });
 
   it('should successfully fetch shelters data', async () => {
-    //given
+    // given
     const response = [
       {
         place_name: 'Test name',
@@ -70,14 +71,14 @@ describe('appApiClient', () => {
       data: response,
     });
     const shelters = await appApiClient.getSheltersData();
-    //then
+    // then
     expect(shelters.data.data).toEqual(response);
   });
 
   it('should successfully send user data on POST to /login endpoint', async () => {
     const email = 'test@test.com';
     const password = '12345678';
-    //given
+    // given
     const user = {
       username: 'Celeste',
       email,
@@ -93,7 +94,7 @@ describe('appApiClient', () => {
     // when
     mockFMClient.onPost('/login', { email, password }).reply(201, response);
     const actual = await appApiClient.loginUser(email, password);
-    //then
+    // then
     expect(actual.data).toEqual(response);
   });
 
@@ -102,7 +103,7 @@ describe('appApiClient', () => {
     const password = '12345678';
     const username = 'celeste';
     const token = 'TestToken121212';
-    //given
+    // given
     const user = {
       username,
       email,
@@ -119,13 +120,13 @@ describe('appApiClient', () => {
       .onPost('/signup', { email, password, username })
       .reply(201, response);
     const actual = await appApiClient.signupUser(email, password, username);
-    //then
+    // then
     expect(actual.data).toEqual(response);
   });
   it('should successfully delete user on DELETE request to /deleteUser endpoint', async () => {
     const username = 'celeste';
     const email = 'test@test.com';
-    //given
+    // given
     const user = {
       username,
       email,
@@ -141,7 +142,7 @@ describe('appApiClient', () => {
       .onDelete('/deleteUser', { params: { username } })
       .reply(200, response);
     const actual = await appApiClient.deleteUser(username);
-    //then
+    // then
     expect(actual.data).toEqual(response);
   });
 
@@ -150,7 +151,7 @@ describe('appApiClient', () => {
     const password = '12345678';
     const oldPassword = '87654321';
 
-    //given
+    // given
     const response = {
       message: 'You updated the password',
     };
@@ -163,12 +164,12 @@ describe('appApiClient', () => {
       oldPassword,
       password
     );
-    //then
+    // then
     expect(actual.data).toEqual(response);
   });
 
   it('should successully get sos contacts with username and token', async () => {
-    //given
+    // given
     const username = 'celeste';
     const token = 'faketoken123456';
     const response = [
@@ -182,9 +183,9 @@ describe('appApiClient', () => {
     mockFMClient.onGet(`/users/${username}/contacts`).reply(200, response, {
       headers: { 'auth-token': token },
     });
-    //when
+    // when
     const contacts = await appApiClient.getSosContacts(username, token);
-    //then
+    // then
     expect(contacts.data).toEqual(response);
   });
 });
