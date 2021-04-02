@@ -7,6 +7,7 @@ module.exports = {
     jest: true,
     'react-native/react-native': true,
   },
+  ignorePatterns: ['.coverage/*'],
   rules: {
     'react/jsx-filename-extension': 'off',
     'no-console': ['warn', { allow: ['clear', 'info', 'error'] }],

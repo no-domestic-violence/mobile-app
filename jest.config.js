@@ -5,13 +5,9 @@ module.exports = {
     '^.+\\.svg$': 'jest-svg-transformer',
   },
   moduleDirectories: ['node_modules', 'src'],
-  collectCoverageFrom: [
-    '**/*.{js,jsx}',
-    '!**/coverage/**',
-    '!**/node_modules/**',
-    '!**/babel.config.js',
-    '!**/jest.setup.js',
-  ],
+  collectCoverage: true,
+  coverageReporters: ['html', 'text-summary', 'lcovonly'],
+  collectCoverageFrom: ['src/**/*.{js,ts,jsx,tsx}', '!**/node_modules/**'],
   testPathIgnorePatterns: ['./node_modules/'],
   setupFilesAfterEnv: [
     '<rootDir>/jest/setup.js',
