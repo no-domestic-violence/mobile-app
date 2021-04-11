@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import { apiInstance } from 'api/';
+import appApiClient from 'api/';
 import { styles } from './ArticlePage.styles';
 
 export default function ArticlePage({ route, navigation }) {
@@ -15,7 +15,7 @@ export default function ArticlePage({ route, navigation }) {
 
   const findOneArticle = async () => {
     try {
-      const response = await apiInstance.get(`/articles/${route.params.id}`);
+      const response = await appApiClient.getArticleById(route.params.id);
       setUniqueArticle(response.data);
     } catch (error) {
       console.error(error);
