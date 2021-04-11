@@ -75,6 +75,49 @@ describe('appApiClient', () => {
     expect(shelters.data.data).toEqual(response);
   });
 
+  it('should successfully fetch articles data', async () => {
+    // given
+    const response = [
+      {
+        title: 'Test title',
+        author: 'Test User',
+        text: 'Lorem ipsum',
+        violence_type: ['emotional'],
+        url_to_image: '"https://www.google.com/',
+        // created_at: new Date(), TODO: fix handling dates
+      },
+    ];
+    // when
+    mockFMClient.onGet('/articles').reply(200, {
+      data: response,
+    });
+    const articles = await appApiClient.getArticlesData();
+    // then
+    expect(articles.data.data).toEqual(response);
+  });
+
+  it('should successfully fetch articles data by id', async () => {
+    // given
+    const response = [
+      {
+        title: 'Test title',
+        author: 'Test User',
+        text: 'Lorem ipsum',
+        violence_type: ['emotional'],
+        url_to_image: '"https://www.google.com/',
+        // created_at: new Date(), TODO: fix handling dates
+      },
+    ];
+    const id = '6062e6501e80a94test40522';
+    // when
+    mockFMClient.onGet(`/articles/${id}`).reply(200, {
+      data: response,
+    });
+    const article = await appApiClient.getArticleById(id);
+    // then
+    expect(article.data.data).toEqual(response);
+  });
+
   it('should successfully send user data on POST to /login endpoint', async () => {
     const email = 'test@test.com';
     const password = '12345678';
