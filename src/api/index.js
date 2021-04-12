@@ -40,8 +40,7 @@ const getSosContacts = (username, token) => {
 };
 
 const deleteSosContact = (username, id, token) => {
-  return apiInstance.delete(`/users/${username}/contacts`, {
-    params: { id },
+  return apiInstance.delete(`/users/${username}/contacts/${id}`, {
     headers: { 'auth-token': token },
   });
 };
