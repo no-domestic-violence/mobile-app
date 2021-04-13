@@ -11,6 +11,18 @@ const getHotlinesData = (search) => {
   });
 };
 
+const getSheltersData = () => {
+  return apiInstance.get('/shelters');
+};
+
+const getArticlesData = () => {
+  return apiInstance.get('/articles');
+};
+
+const getArticleById = (id) => {
+  return apiInstance.get(`/articles/${id}`);
+};
+
 const loginUser = (email, password) => {
   return apiInstance.post('/login', { email, password });
 };
@@ -66,6 +78,9 @@ const appApiClient = {
   deleteSosContact,
   addSosContact,
   editSosContact,
+  getSheltersData,
+  getArticlesData,
+  getArticleById,
 };
 
 export default appApiClient;

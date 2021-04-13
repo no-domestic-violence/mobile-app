@@ -7,6 +7,7 @@ module.exports = {
     jest: true,
     'react-native/react-native': true,
   },
+  ignorePatterns: ['.coverage/*'],
   rules: {
     'react/jsx-filename-extension': 'off',
     'no-console': ['warn', { allow: ['clear', 'info', 'error'] }],
@@ -43,6 +44,7 @@ module.exports = {
           _state: './src/state',
           _services: './src/services',
           _hooks: './src/hooks',
+          helpers: './src/helpers',
         },
       },
     },

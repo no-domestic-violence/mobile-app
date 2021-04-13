@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
 import * as SecureStore from 'expo-secure-store';
 import appApiClient from 'api/';
-import createAppContext from './CreateAppContext';
+import createAppContext from 'helpers/createAppContext';
 
 const ACTIONS = {
   ADD_CONTACT: 'ADD_CONTACT',

@@ -26,6 +26,7 @@ module.exports = (api) => {
             _state: './src/state',
             _services: './src/services',
             _hooks: './src/hooks',
+            helpers: './src/helpers',
           },
         },
       ],

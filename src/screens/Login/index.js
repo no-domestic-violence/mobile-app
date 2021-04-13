@@ -15,7 +15,7 @@ import { AuthForm } from 'components/authentication-form/';
 import { styles } from './Login.styles';
 
 export default function LoginScreen({ navigation }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { state, login, removeErrors } = useContext(AuthContext);
 
   const handleLogin = async ({ email, password }) => {
