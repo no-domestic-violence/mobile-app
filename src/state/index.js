@@ -6,7 +6,7 @@ import {
   Context as LocationContext,
   Provider as LocationProvider,
 } from './location';
-import { Context as SosContext, Provider as SosProvider } from './SosContext';
+import { Context as SosContext, Provider as SosProvider } from './sos';
 import { LanguageContext, LanguageProvider } from './LanguageContext';
 
 export {
