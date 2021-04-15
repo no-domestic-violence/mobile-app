@@ -15,15 +15,6 @@ export const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 30,
   },
-  icon: {
-    paddingRight: 15,
-  },
-  iconContainer: {
-    backgroundColor: '#FECE1F',
-    borderRadius: 50,
-    padding: 30,
-    textAlign: 'center',
-  },
   svg: {
     position: 'absolute',
   },
@@ -32,8 +23,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     width: '60%',
-  },
-  error: {
-    fontSize: 10,
   },
 });
