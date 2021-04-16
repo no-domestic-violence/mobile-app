@@ -28,7 +28,7 @@ export default function SosContactList({ contacts, navigation }) {
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
           onPress={() =>
-            navigation.navigate('SosContactForm', {
+            navigation.navigate('CreateContact', {
               id: hasFirstContact && contacts[0]._id,
             })
           }
@@ -45,7 +45,7 @@ export default function SosContactList({ contacts, navigation }) {
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
           onPress={() =>
-            navigation.navigate('SosContactForm', {
+            navigation.navigate('CreateContact', {
               id: hasSecondContact && contacts[1]._id,
             })
           }

@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import OnboardingScreen from '_screens/Onboarding';
 import HomeScreen from '_screens/Home';
 import SosContactHome from '_screens/SosContactHome';
-import SosContactForm from '_screens/SosContactForm';
+import CreateContact from 'screens/CreateContact';
 import Hotlines from '_screens/Hotlines';
 import ArticlesList from '_screens/ArticlesList';
 import ArticlePage from '_screens/ArticlePage';
@@ -95,7 +95,7 @@ export const SosContactStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name='SosContactHome' component={SosContactHome} />
-      <Stack.Screen name='SosContactForm' component={SosContactForm} />
+      <Stack.Screen name='CreateContact' component={CreateContact} />
     </Stack.Navigator>
   );
 };
