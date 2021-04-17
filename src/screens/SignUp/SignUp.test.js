@@ -123,4 +123,16 @@ describe('Sign Up screen', () => {
       expect(queryByText(/please enter an email/i)).toBeNull()
     );
   });
+  it('should navigate to login screen on press "go to login"', async () => {
+    // given
+    const { queryByText } = render(
+      <AuthProvider>
+        <SignUp navigation={mockNavigation} />
+      </AuthProvider>
+    );
+    // when
+    fireEvent.press(queryByText(/go to login/i));
+    // then
+    await expect(mockNavigation.navigate).toHaveBeenCalledWith('Login');
+  });
 });

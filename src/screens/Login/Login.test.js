@@ -32,7 +32,7 @@ describe('Login screen', () => {
   });
 
   it('should show error messages on empty inputs submit', async () => {
-      // given
+    // given
     const { getByTestId, getByText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
@@ -47,28 +47,28 @@ describe('Login screen', () => {
     );
   });
   it('should show error on invalid password', async () => {
-      // given 
+    // given
     const { getByTestId, queryByText, queryByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
       </AuthProvider>
     );
-    // when 
+    // when
     fireEvent.changeText(queryByPlaceholderText(/password/i), '12');
     fireEvent.press(getByTestId('logIn'));
-    // then 
+    // then
     await waitFor(() =>
       expect(queryByText(/please enter 8 characters password/i))
     );
   });
   it('should not show error on valid password', async () => {
-      // given 
+    // given
     const { getByTestId, queryByText, getByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
       </AuthProvider>
     );
-    // when 
+    // when
     fireEvent.changeText(getByPlaceholderText(/password/i), validPassword);
     fireEvent.press(getByTestId('logIn'));
     // then
@@ -78,7 +78,7 @@ describe('Login screen', () => {
   });
 
   it('should show error on invalid email', async () => {
-      // given
+    // given
     const { getByTestId, queryByText, queryByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
@@ -87,22 +87,48 @@ describe('Login screen', () => {
     // when
     fireEvent.changeText(queryByPlaceholderText(/email/i), 'test.com');
     fireEvent.press(getByTestId('logIn'));
-    // then 
+    // then
     await waitFor(() => expect(queryByText(/please enter an email/i)));
   });
   it('should not show error on valid email', async () => {
-      // given 
+    // given
     const { getByTestId, queryByText, queryByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
       </AuthProvider>
     );
-    // when 
+    // when
     fireEvent.changeText(queryByPlaceholderText(/email/i), validEmail);
     fireEvent.press(getByTestId('logIn'));
     // then
     await waitFor(() =>
       expect(queryByText(/please enter an email/i)).toBeNull()
     );
+  });
+  it('should navigate to sign up on press "go to sign up"', async () => {
+    // given
+    const { queryByText } = render(
+      <AuthProvider>
+        <Login navigation={mockNavigation} />
+      </AuthProvider>
+    );
+    // when
+    fireEvent.press(queryByText(/Do not have an account/i));
+    // then
+    await expect(mockNavigation.navigate).toHaveBeenCalledWith('Sign Up');
+  });
+  it('should navigate to home screen on press "proceed without login"', async () => {
+    // given
+    const { queryByText } = render(
+      <AuthProvider>
+        <Login navigation={mockNavigation} />
+      </AuthProvider>
+    );
+    // when
+    fireEvent.press(queryByText(/proceed without login/i));
+    // then
+    await expect(mockNavigation.navigate).toHaveBeenCalledWith('BottomTabNavigator', {
+      screen: 'Home',
+    });
   });
 });
