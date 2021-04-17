@@ -7,7 +7,7 @@ import { StyledButton, StyledButtonText } from 'styles/shared/';
 import { ControlledTextInput } from 'components/form-fields';
 import { AuthSchema, styles } from './index';
 
-const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText }) => {
+const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText, ...props }) => {
   const { control, handleSubmit, errors } = useForm({
     resolver: yupResolver(AuthSchema(formType)),
   });
@@ -82,7 +82,7 @@ const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText }) => {
         style={styles.input}
         errors={errors}
       />
-      <StyledButton onPress={handleSubmit(onSubmitForm)}>
+      <StyledButton {...props} onPress={handleSubmit(onSubmitForm)}>
         <StyledButtonText>{buttonText.toUpperCase()}</StyledButtonText>
       </StyledButton>
     </FormProvider>
