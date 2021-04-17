@@ -1,12 +1,11 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-import * as SecureStore from 'expo-secure-store';
 import appApiClient from 'api/';
+import { getUsernameTokenFromStore } from 'utils';
 import * as types from './sos.types';
 
 const getContacts = (dispatch) => async () => {
   try {
-    const username = await SecureStore.getItemAsync('username');
-    const token = await SecureStore.getItemAsync('token');
+    const { username, token } = await getUsernameTokenFromStore();
     const response = await appApiClient.getSosContacts(username, token);
     dispatch({ type: types.GET_CONTACTS, payload: response.data.contacts });
   } catch (error) {
@@ -15,8 +14,7 @@ const getContacts = (dispatch) => async () => {
 };
 
 const deleteContact = (dispatch) => async ({ id }) => {
-  const username = await SecureStore.getItemAsync('username');
-  const token = await SecureStore.getItemAsync('token');
+  const { username, token } = await getUsernameTokenFromStore();
   try {
     const response = await appApiClient.deleteSosContact(username, id, token);
     dispatch({ type: types.DELETE_CONTACT, payload: response.data });
@@ -26,9 +24,7 @@ const deleteContact = (dispatch) => async ({ id }) => {
 };
 
 const addContact = (dispatch) => async (data) => {
-  const username = await SecureStore.getItemAsync('username');
-  const token = await SecureStore.getItemAsync('token');
-
+  const { username, token } = await getUsernameTokenFromStore();
   try {
     const response = await appApiClient.addSosContact(username, data, token);
     dispatch({ type: types.ADD_CONTACT, payload: response.data });
@@ -38,8 +34,7 @@ const addContact = (dispatch) => async (data) => {
 };
 
 const editContact = (dispatch) => async ({ data, id }) => {
-  const username = await SecureStore.getItemAsync('username');
-  const token = await SecureStore.getItemAsync('token');
+  const { username, token } = await getUsernameTokenFromStore();
   try {
     const response = await appApiClient.editSosContact(
       username,
