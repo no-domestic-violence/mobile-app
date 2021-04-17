@@ -5,21 +5,20 @@ import {
   GET_CONTACTS,
 } from './sos.types';
 
-const sosReducer = (state, { type, payload }) => {
-  switch (type) {
-    case ADD_CONTACT:
-      return { contacts: payload };
-    case EDIT_CONTACT:
-      return {
-        contacts: payload,
-      };
-    case DELETE_CONTACT:
-      return { contacts: payload };
-    case GET_CONTACTS:
-      return { contacts: payload };
-    default:
-      return state;
-  }
-};
+function createSosReducer(types) {
+  return function reducer(state, { type, payload }) {
+    if (type) {
+      return payload;
+    }
+    return state;
+  };
+}
+
+const sosReducer = createSosReducer({
+  ADD_CONTACT,
+  EDIT_CONTACT,
+  DELETE_CONTACT,
+  GET_CONTACTS,
+});
 
 export default sosReducer;
