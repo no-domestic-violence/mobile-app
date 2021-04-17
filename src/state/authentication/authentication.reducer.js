@@ -14,6 +14,11 @@ import {
   CHECK_FIRST_LAUNCH,
 } from './authentication.types';
 
+const initialState = {
+  token: '',
+  username: '',
+};
+
 const authReducer = (state, { type, payload }) => {
   switch (type) {
     case SIGNUP_ERROR:
@@ -48,13 +53,11 @@ const authReducer = (state, { type, payload }) => {
       };
     case LOGOUT:
       return {
-        token: '',
-        username: '',
+        initialState,
       };
     case DELETE_ACCOUNT_SUCCESS:
       return {
-        token: '',
-        username: '',
+        ...initialState,
         successMessage: payload.data,
       };
     case DELETE_ACCOUNT_ERROR:
