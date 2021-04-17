@@ -12,7 +12,10 @@ const getContacts = (dispatch) => async () => {
       payload: { contacts: response.data.contacts },
     });
   } catch (error) {
-    console.error(error);
+    dispatch({
+      type: types.ERROR,
+      payload: { errorMessage: error.response.data.message },
+    });
   }
 };
 
@@ -25,7 +28,10 @@ const deleteContact = (dispatch) => async ({ id }) => {
       payload: { contacts: response.data },
     });
   } catch (error) {
-    console.error(error);
+    dispatch({
+      type: types.ERROR,
+      payload: { errorMessage: error.response.data.message },
+    });
   }
 };
 
@@ -35,7 +41,10 @@ const addContact = (dispatch) => async (data) => {
     const response = await appApiClient.addSosContact(username, data, token);
     dispatch({ type: types.ADD_CONTACT, payload: { contacts: response.data } });
   } catch (error) {
-    console.error(error);
+    dispatch({
+      type: types.ERROR,
+      payload: { errorMessage: error.response.data.message },
+    });
   }
 };
 
@@ -53,7 +62,10 @@ const editContact = (dispatch) => async ({ data, id }) => {
       payload: { contacts: response.data },
     });
   } catch (error) {
-    console.error(error);
+    dispatch({
+      type: types.ERROR,
+      payload: { errorMessage: error.response.data.message },
+    });
   }
 };
 

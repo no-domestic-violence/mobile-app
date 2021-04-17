@@ -3,6 +3,7 @@ import {
   EDIT_CONTACT,
   DELETE_CONTACT,
   GET_CONTACTS,
+  ERROR,
 } from './sos.types';
 
 function createSosReducer(types) {
@@ -19,6 +20,7 @@ const sosReducer = createSosReducer({
   EDIT_CONTACT,
   DELETE_CONTACT,
   GET_CONTACTS,
+  ERROR,
 });
 
 export default sosReducer;
