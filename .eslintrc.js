@@ -26,6 +26,7 @@ module.exports = {
     'react-native/no-raw-text': 2,
     'react/prop-types': 0,
     'react-native/no-single-element-style-arrays': 2,
+    'react/jsx-props-no-spreading': ['error', { custom: 'ignore' }],
   },
   settings: {
     'import/resolver': {

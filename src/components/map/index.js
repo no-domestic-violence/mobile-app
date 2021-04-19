@@ -33,7 +33,7 @@ const MapContainer = React.memo(({ currentLocation, sheltersList }) => {
         {sheltersList &&
           sheltersList.map((marker, index) => (
             <Marker
-              key={index}
+              key={index.id}
               coordinate={{
                 longitude: marker.locs[0],
                 latitude: marker.locs[1],

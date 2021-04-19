@@ -41,7 +41,8 @@ const MapScreen = ({ isFocused }) => {
   useEffect(() => {
     askForLocation();
     fetchShelters();
-  }, [isFocused]);
+    // @ts-ignore react-hooks/exhaustive-deps
+  }, [isFocused]); 
 
   if (!currentLocation || error) {
     return (

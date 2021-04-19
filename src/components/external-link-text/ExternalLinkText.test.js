@@ -5,7 +5,7 @@ import ExternalLinkText from './index';
 describe('External Link Text component', () => {
   const url = 'www.help.de';
   const title = 'www.help.de';
-  const openExternalLink = jest.fn();
+  // const openExternalLink = jest.fn();
   it('renders component', () => {
     const { getByText } = render(<ExternalLinkText title={title} url={url} />);
     const text = getByText('www.help.de');

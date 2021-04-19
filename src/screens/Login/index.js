@@ -40,7 +40,7 @@ export default function LoginScreen({ navigation }) {
         <AuthSVG style={{ position: 'absolute', top: 0 }} />
         <AuthForm
           formType='log in'
-          headerForm={'log in'}
+          headerForm='log in'
           onSubmitForm={handleLogin}
           buttonText='log in'
           testID="logIn"

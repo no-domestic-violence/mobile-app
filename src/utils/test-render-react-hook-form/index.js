@@ -11,7 +11,7 @@ import { useForm, FormProvider } from 'react-hook-form';
  */
 
 export function renderWithReactHookForm(ui, { defaultValues = {} } = {}) {
-  let reactHookFormMethods = {};
+  const reactHookFormMethods = {};
 
   const Wrapper = ({ children }) => {
     const methods = useForm({ defaultValues });
