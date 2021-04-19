@@ -1,17 +1,13 @@
-import {
-  UPDATE_LOCATION,
-  FETCH_SHELTERS,
-  SEARCH_HOTLINES,
-} from './location.types';
+import types from './location.types';
 
-const locationReducer = (state, action) => {
-  switch (action.type) {
-    case UPDATE_LOCATION:
-      return { ...state, currentLocation: action.payload };
-    case FETCH_SHELTERS:
-      return { ...state, shelters_list: action.payload };
-    case SEARCH_HOTLINES:
-      return { ...state, hotlinesData: action.payload };
+const locationReducer = (state, { type, payload }) => {
+  switch (type) {
+    case types.UPDATE_LOCATION:
+      return { ...state, currentLocation: payload };
+    case types.FETCH_SHELTERS:
+      return { ...state, sheltersList: payload };
+    case types.SEARCH_HOTLINES:
+      return { ...state, hotlinesData: payload };
     default:
       return state;
   }

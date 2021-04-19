@@ -54,7 +54,7 @@ const MapScreen = ({ isFocused }) => {
     <View style={styles.container}>
       <MapContainer
         currentLocation={currentLocation}
-        sheltersList={state.shelters_list}
+        sheltersList={state.sheltersList}
       />
     </View>
   );
