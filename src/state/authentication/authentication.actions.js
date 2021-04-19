@@ -10,10 +10,10 @@ const signup = (dispatch) => async ({ email, password, username }) => {
       data: { token, user },
     } = await appApiClient.signupUser(email, password, username);
     await setUserSecureStorage(token, user.username);
-    dispatch({ type: types.SIGNUP_SUCCESS, payload: data });
+    dispatch({ type: types.LOGIN_SIGNUP_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: types.SIGNUP_ERROR,
+      type: types.AUTH_ERROR,
       payload: "Something went wrong'( Try again",
     });
   }
@@ -28,10 +28,10 @@ const login = (dispatch) => async ({ email, password }) => {
 
     await setUserSecureStorage(token, user.username);
 
-    dispatch({ type: types.LOGIN_SUCCESS, payload: data });
+    dispatch({ type: types.LOGIN_SIGNUP_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: types.LOGIN_ERROR,
+      type: types.AUTH_ERROR,
       payload: 'Are you sure about password and email?',
     });
   }
@@ -69,7 +69,7 @@ const changePassword = (dispatch) => async ({
     dispatch({ type: types.CHANGE_PASSWORD_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: types.CHANGE_PASSWORD_ERROR,
+      type: types.AUTH_ERROR,
       payload: error.response.data.message,
     });
   }
@@ -104,7 +104,7 @@ const deleteAccount = (dispatch) => async ({ username }) => {
     dispatch({ type: types.CHECK_FIRST_LAUNCH, payload: true });
   } catch (error) {
     dispatch({
-      type: types.DELETE_ACCOUNT_ERROR,
+      type: types.AUTH_ERROR,
       payload: error.response.data.message,
     });
   }
