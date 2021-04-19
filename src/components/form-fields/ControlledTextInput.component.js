@@ -8,56 +8,44 @@ const ErrorText = styled.Text`
   bottom: 10;
 `;
 
+const initialTextInputProps = {
+  placeholderTextColor: '#6c757d',
+  autoCapitalize: 'none',
+  blurOnSubmit: false,
+  autoCorrect: false,
+  textContentType: 'oneTimeCode',
+  autoCompleteType: 'off',
+}
+
 const ControlledTextInput = ({
   name,
-  defaultValue = '',
-  placeholder,
-  autoCapitalize = 'none',
-  autoCorrect = false,
-  returnKeyType,
-  blurOnSubmit,
-  placeholderTextColor = '#6c757d',
+  defaultValue,
   control,
-  secureTextEntry = false,
+  returnKeyType,
   onSubmitEditing,
-  inputRef,
-  textContentType = 'oneTimeCode',
-  style,
-  leftIcon,
-  leftIconContainerStyle,
-  autoCompleteType = 'off',
-  keyboardType,
   errors,
   errorStyle,
+  inputRef,
+  ...props
 }) => {
   return (
     <>
       <Controller
         name={name}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue || ''}
         control={control}
         onFocus={() => {
           inputRef.current.focus();
         }}
         render={({ onChange, value }) => (
           <Input
-            placeholder={placeholder}
-            autoCapitalize={autoCapitalize}
-            autoCorrect={autoCorrect}
-            placeholderTextColor={placeholderTextColor}
-            returnKeyType={returnKeyType}
-            blurOnSubmit={blurOnSubmit}
-            textContentType={textContentType}
             onChangeText={onChange}
+            returnKeyType={returnKeyType || 'next'}
+            onSubmitEditing={onSubmitEditing}
             value={value}
             ref={inputRef}
-            secureTextEntry={secureTextEntry}
-            onSubmitEditing={onSubmitEditing}
-            style={style}
-            leftIcon={leftIcon}
-            leftIconContainerStyle={leftIconContainerStyle}
-            autoCompleteType={autoCompleteType}
-            keyboardType={keyboardType}
+            {...props}
+            {...initialTextInputProps}
           />
         )}
       />

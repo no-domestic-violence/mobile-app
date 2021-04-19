@@ -7,7 +7,13 @@ import { StyledButton, StyledButtonText } from 'styles/shared/';
 import { ControlledTextInput } from 'components/form-fields';
 import { AuthSchema, styles } from './index';
 
-const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText, ...props }) => {
+const AuthForm = ({
+  formType,
+  headerForm,
+  onSubmitForm,
+  buttonText,
+  ...props
+}) => {
   const { control, handleSubmit, errors } = useForm({
     resolver: yupResolver(AuthSchema(formType)),
   });
@@ -34,9 +40,7 @@ const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText, ...props }) 
             name='username'
             control={control}
             placeholder='Username'
-            returnKeyType='next'
             onSubmitEditing={isEmailFocused}
-            blurOnSubmit={false}
             inputRef={usernameInputRef}
             style={styles.input}
             errors={errors}
@@ -47,9 +51,7 @@ const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText, ...props }) 
         name='email'
         control={control}
         placeholder='Email'
-        returnKeyType='next'
         onSubmitEditing={isPasswordFocused}
-        blurOnSubmit={false}
         inputRef={emailInputRef}
         style={styles.input}
         errors={errors}
@@ -60,9 +62,7 @@ const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText, ...props }) 
             name='oldPassword'
             control={control}
             placeholder='Old password'
-            returnKeyType='next'
             onSubmitEditing={isNewPasswordFocused}
-            blurOnSubmit={false}
             inputRef={passwordInputRef}
             secureTextEntry
             style={styles.input}
@@ -74,10 +74,8 @@ const AuthForm = ({ formType, headerForm, onSubmitForm, buttonText, ...props }) 
         name='password'
         control={control}
         placeholder='Password'
-        returnKeyType='next'
         isInputFocused={Keyboard.dismiss}
         inputRef={newPasswordInputRef}
-        blurOnSubmit={false}
         secureTextEntry
         style={styles.input}
         errors={errors}

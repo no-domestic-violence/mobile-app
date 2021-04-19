@@ -89,7 +89,6 @@ exports[`Sign Up screen should match snapshot 1`] = `
           placeholderTextColor="#6c757d"
           rejectResponderTermination={true}
           returnKeyType="next"
-          secureTextEntry={false}
           style={
             Object {
               "alignSelf": "center",
@@ -169,7 +168,6 @@ exports[`Sign Up screen should match snapshot 1`] = `
           placeholderTextColor="#6c757d"
           rejectResponderTermination={true}
           returnKeyType="next"
-          secureTextEntry={false}
           style={
             Object {
               "alignSelf": "center",
@@ -244,6 +242,7 @@ exports[`Sign Up screen should match snapshot 1`] = `
           autoCorrect={false}
           blurOnSubmit={false}
           editable={true}
+          isInputFocused={[Function]}
           onChangeText={[Function]}
           placeholder="Password"
           placeholderTextColor="#6c757d"
