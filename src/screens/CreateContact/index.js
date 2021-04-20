@@ -75,7 +75,6 @@ const CreateContact = ({ navigation, route }) => {
           <FormProvider {...methods}>
             <SosForm
               isAddMode={isAddMode}
-              // contactId={id}
               onRemove={() => {
                 handleRemove(foundContact._id);
               }}
