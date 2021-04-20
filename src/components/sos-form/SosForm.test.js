@@ -14,42 +14,44 @@ const mockContact = {
   message: 'help me',
 };
 
+// TODO: fix form error display tests, use UserEvent instead of FireEvent
+
 describe('Sos Form in AddMode', () => {
   it('should match snapshot', () => {
     const result = renderWithReactHookForm(<SosForm />).toJSON();
     expect(result).toMatchSnapshot();
   });
   it('should render name, phone and message fields with placeholder text', () => {
-    const { queryByPlaceholderText } = renderWithReactHookForm(
+    const { getByPlaceholderText } = renderWithReactHookForm(
       <SosForm isAddMode />
     );
-    expect(queryByPlaceholderText(/name/i)).toBeTruthy();
-    expect(queryByPlaceholderText(/phone number/i)).toBeTruthy();
-    expect(queryByPlaceholderText(/help message/i)).toBeTruthy();
+    expect(getByPlaceholderText(/name/i)).toBeTruthy();
+    expect(getByPlaceholderText(/phone number/i)).toBeTruthy();
+    expect(getByPlaceholderText(/help message/i)).toBeTruthy();
   });
 
   it('should show error message when submit is pressed with invalid phone number', async () => {
     const {
       getByTestId,
-      queryByPlaceholderText,
-      queryByText,
+      getByPlaceholderText,
+      findByText,
     } = renderWithReactHookForm(<SosForm isAddMode onSubmit={handleSubmit} />);
     fireEvent.changeText(
-      queryByPlaceholderText(/phone number/i),
+      getByPlaceholderText(/phone number/i),
       mockInvalidNumber
     );
     fireEvent.press(getByTestId('contact-submit-button'));
-    await waitFor(() => expect(queryByText(/phone number is not valid/i)));
+    expect(await findByText(/phone number is not valid/i)).toBeVisible();
   });
 
   it('should not show error message when submit is pressed with a valid number', async () => {
     const {
       getByTestId,
-      queryByPlaceholderText,
+      getByPlaceholderText,
       queryByText,
     } = renderWithReactHookForm(<SosForm isAddMode onSubmit={handleSubmit} />);
     fireEvent.changeText(
-      queryByPlaceholderText(/phone number/i),
+      getByPlaceholderText(/phone number/i),
       mockContact.phone
     );
     fireEvent.press(getByTestId('contact-submit-button'));
@@ -59,22 +61,23 @@ describe('Sos Form in AddMode', () => {
   });
 
   it('should show error messages when submit is pressed and all the fields are empty', async () => {
-    const { getByTestId, queryByText } = renderWithReactHookForm(
+    const { getByTestId, findByText } = renderWithReactHookForm(
       <SosForm isAddMode onSubmit={handleSubmit} />
     );
     fireEvent.press(getByTestId('contact-submit-button'));
-    await waitFor(() => expect(queryByText(/please enter a name/i)));
-    await waitFor(() => expect(queryByText(/phone number is not valid/i)));
-    await waitFor(() => expect(queryByText(/please enter a message/i)));
+
+    expect(await findByText(/please enter a name/i)).toBeVisible();
+    expect(await findByText(/phone number is not valid/i)).toBeVisible();
+    expect(await findByText(/please enter a message/i)).toBeVisible();
   });
 
   it('should not show error message when submit is pressed with a valid name', async () => {
     const {
       getByTestId,
-      queryByPlaceholderText,
+      getByPlaceholderText,
       queryByText,
     } = renderWithReactHookForm(<SosForm isAddMode onSubmit={handleSubmit} />);
-    fireEvent.changeText(queryByPlaceholderText(/name/i), mockContact.name);
+    fireEvent.changeText(getByPlaceholderText(/name/i), mockContact.name);
     fireEvent.press(getByTestId('contact-submit-button'));
     await waitFor(() => expect(queryByText(/please enter a name/i)).toBeNull());
   });
@@ -82,11 +85,11 @@ describe('Sos Form in AddMode', () => {
   it('should not show error when submit is pressed with a valid message', async () => {
     const {
       getByTestId,
-      queryByPlaceholderText,
+      getByPlaceholderText,
       queryByText,
     } = renderWithReactHookForm(<SosForm isAddMode onSubmit={handleSubmit} />);
     fireEvent.changeText(
-      queryByPlaceholderText(/help message/i),
+      getByPlaceholderText(/help message/i),
       mockContact.message
     );
     fireEvent.press(getByTestId('contact-submit-button'));
@@ -96,16 +99,16 @@ describe('Sos Form in AddMode', () => {
   });
 
   it('should call onSubmit with the name, phone, and message when submit is pressed', () => {
-    const { queryByPlaceholderText, getByTestId } = renderWithReactHookForm(
+    const { getByPlaceholderText, getByTestId } = renderWithReactHookForm(
       <SosForm isAddMode onSubmit={handleSubmit} />
     );
-    fireEvent.changeText(queryByPlaceholderText(/name/i), mockContact.name);
+    fireEvent.changeText(getByPlaceholderText(/name/i), mockContact.name);
     fireEvent.changeText(
-      queryByPlaceholderText(/phone number/i),
+      getByPlaceholderText(/phone number/i),
       mockContact.phone
     );
     fireEvent.changeText(
-      queryByPlaceholderText(/help message/i),
+      getByPlaceholderText(/help message/i),
       mockContact.message
     );
     fireEvent.press(getByTestId('contact-submit-button'));
@@ -123,7 +126,7 @@ describe('Sos Form in AddMode', () => {
 });
 
 describe('Sos Form in edit mode', () => {
-  it('should render delete and submit button', async () => {
+  it('should render delete and submit button', () => {
     const { getByTestId } = renderWithReactHookForm(
       <SosForm isAddMode={false} />
     );
