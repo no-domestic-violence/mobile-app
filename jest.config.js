@@ -13,4 +13,5 @@ module.exports = {
     '<rootDir>/jest/setup.js',
     '@testing-library/jest-native/extend-expect',
   ],
+  resetMocks: true,
 };
