@@ -14,13 +14,7 @@ import {
 import { Keyboard, Platform, View } from 'react-native';
 import { styles } from './index';
 
-const SosForm = ({
-  onRemove,
-  onSubmit,
-  goBack,
-  // contactId,
-  isAddMode,
-}) => {
+const SosForm = ({ onRemove, onSubmit, goBack, isAddMode }) => {
   const { control, errors } = useFormContext();
   const nameInputRef = useRef();
   const phoneInputRef = useRef();
@@ -29,8 +23,6 @@ const SosForm = ({
   const isPhoneFocused = phoneInputRef.current && phoneInputRef.current.focus();
   const isMessageFocused =
     messageInputRef.current && messageInputRef.current.focus();
-
-  // const isAddMode = !contactId;
 
   return (
     <>
@@ -41,6 +33,7 @@ const SosForm = ({
           raised
           style={{ marginLeft: 'auto' }}
           onPress={goBack}
+          testID='go-back-button'
         />
         <ControlledTextInput
           name='name'
