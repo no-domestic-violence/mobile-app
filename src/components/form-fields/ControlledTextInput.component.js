@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 
 const ErrorText = styled.Text`
   color: red;
-  bottom: 10;
+  bottom: 10px;
 `;
 
 const ControlledTextInput = ({
