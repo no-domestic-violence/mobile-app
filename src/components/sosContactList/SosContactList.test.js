@@ -1,40 +1,61 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render, fireEvent } from '@testing-library/react-native';
 import SosContactList from '.';
 
 jest.mock('@fortawesome/react-native-fontawesome', () => ({
   FontAwesomeIcon: '',
 }));
+const mockNavigation = {
+  navigate: jest.fn(),
+};
+const mockContacts = [
+  {
+    _id: '61234579jgbh3431',
+    name: 'celeste',
+    phone: '12345667134',
+    message: 'mock message',
+  },
+];
 
 describe('<SosContactList />', () => {
-  const mockedContacts = [
-    { name: 'test name', phone: '12345667', message: 'mock message' },
-  ];
   it('displays first contact name when there is first contact', () => {
-    const { getByText } = render(<SosContactList contacts={mockedContacts} />);
-    expect(getByText('test name').props.children).toEqual(
-      mockedContacts[0].name
+    const { queryByText } = render(<SosContactList contacts={mockContacts} />);
+    expect(queryByText(/celeste/i).props.children).toEqual(
+      mockContacts[0].name
     );
   });
   it('displays placeholder message when there is one or no contact', () => {
-    const { getByText } = render(<SosContactList contacts={mockedContacts} />);
-    expect(
-      getByText('Please add your trusted contact').props.children
-    ).toBeTruthy();
+    const { queryByText } = render(<SosContactList contacts={mockContacts} />);
+    expect(queryByText(/please add your trusted contact/i)).toBeTruthy();
   });
   it('displays send sms button when a contact exists', () => {
-    const { getByTestId } = render(
-      <SosContactList contacts={mockedContacts} />
+    const { queryByText } = render(<SosContactList contacts={mockContacts} />);
+    expect(queryByText(/ask for help to your contacts/i)).toBeTruthy();
+  });
+  it('should not render send sms button when there are no contacts', () => {
+    const { queryByText } = render(<SosContactList />);
+    expect(queryByText(/ask for help to your contacts/i)).toBeTruthy();
+  });
+  it('should navigate to create contact screen with contact id on press existing contact button', () => {
+    const { queryByText } = render(
+      <SosContactList contacts={mockContacts} navigation={mockNavigation} />
     );
-    expect(getByTestId('send-sms-button')).toBeTruthy();
+    fireEvent.press(queryByText(/celeste/i));
+    expect(mockNavigation.navigate).toHaveBeenCalledWith('CreateContact', {
+      id: '61234579jgbh3431',
+    });
+  });
+  it('should navigate to create contact screen without contact id on press empty contact button', () => {
+    const { queryByText } = render(
+      <SosContactList contacts={mockContacts} navigation={mockNavigation} />
+    );
+    fireEvent.press(queryByText(/please add your trusted contact/i));
+    expect(mockNavigation.navigate).toHaveBeenCalledWith('CreateContact', {
+      id: null,
+    });
   });
   it('should match snapshot', () => {
     const result = render(<SosContactList />).toJSON();
     expect(result).toMatchSnapshot();
-  });
-  it('should render both of two contact list elements', () => {
-    const { getByTestId } = render(<SosContactList />);
-    expect(getByTestId('first-contact')).toBeTruthy();
-    expect(getByTestId('second-contact')).toBeTruthy();
   });
 });
