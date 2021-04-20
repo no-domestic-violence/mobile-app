@@ -14,5 +14,5 @@ export const { Provider, Context } = createAppContext(
     fetchShelters,
     searchHotlinesByParam,
   },
-  { currentLocation: null, shelters_list: [], hotlinesData: [] }
+  { currentLocation: null, sheltersList: [], hotlinesData: [] }
 );

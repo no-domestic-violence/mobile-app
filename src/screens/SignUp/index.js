@@ -42,6 +42,7 @@ export default function SignUpScreen({ navigation }) {
           headerForm='Sign Up'
           onSubmitForm={handleSignup}
           buttonText='sign up'
+          testID="signUp"
         />
         <View style={styles.actionsContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
