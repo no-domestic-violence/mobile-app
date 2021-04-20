@@ -6,12 +6,24 @@ import {
   ERROR,
 } from './sos.types';
 
+// function createReducer(stateKey, types) {
+//   return function reducer(state, { type, payload }) {
+//     return type ? { ...state, [stateKey]: payload } : state;
+//   };
+// }
+
+// TODO: how to make this reusable? split error reducer?
 function createSosReducer(types) {
   return function reducer(state, { type, payload }) {
-    if (type) {
-      return payload;
+    if (type !== ERROR) {
+      return { ...state, contacts: payload };
     }
-    return state;
+    if (type === ERROR) {
+      return { ...state, errorMessage: payload };
+    }
+    return {
+      state,
+    };
   };
 }
 
