@@ -12,7 +12,6 @@ import { useForm, FormProvider } from 'react-hook-form';
  */
 
 export function renderWithReactHookForm(ui, { defaultValues = {} } = {}) {
-  // eslint-disable-next-line no-unused-vars
   const reactHookFormMethods = {};
 
   const Wrapper = ({ children }) => {

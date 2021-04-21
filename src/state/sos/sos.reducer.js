@@ -13,7 +13,7 @@ import {
 // }
 
 // TODO: how to make this reusable? split error reducer?
-function createSosReducer() {
+function createSosReducer(types) {
   return function reducer(state, { type, payload }) {
     if (type !== ERROR) {
       return { ...state, contacts: payload };
