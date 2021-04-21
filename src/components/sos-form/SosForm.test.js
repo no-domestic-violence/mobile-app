@@ -7,7 +7,7 @@ const handleRemove = jest.fn();
 const handleSubmit = jest.fn();
 const handleGoBack = jest.fn();
 
-const mockInvalidNumber = '123456';
+// const mockInvalidNumber = '123456';
 const mockContact = {
   name: 'celeste',
   phone: '015756775098',
