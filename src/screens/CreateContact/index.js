@@ -56,8 +56,8 @@ const CreateContact = ({ navigation, route }) => {
     goBack();
   };
 
-  const handleRemove = async () => {
-    await deleteContact({ id });
+  const handleRemove = async (contactId) => {
+    await deleteContact({ contactId });
     goBack();
   };
 
