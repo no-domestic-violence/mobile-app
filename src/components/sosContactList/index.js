@@ -18,7 +18,6 @@ export default function SosContactList({ contacts, navigation }) {
     <>
       <View style={styles.contactContainer}>
         <Button
-          testID='first-contact'
           title={hasFirstContact ? contacts[0].name : contactPlaceholder}
           titleStyle={
             hasFirstContact ? styles.contactText : styles.contactPlaceholder
@@ -28,14 +27,13 @@ export default function SosContactList({ contacts, navigation }) {
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
           onPress={() =>
-            navigation.navigate('SosContactForm', {
-              id: hasFirstContact && contacts[0]._id,
+            navigation.navigate('CreateContact', {
+              id: hasFirstContact ? contacts[0]._id : null,
             })
           }
           icon={<FontAwesomeIcon icon={faPen} />}
         />
         <Button
-          testID='second-contact'
           titleStyle={
             hasSecondContact ? styles.contactText : styles.contactPlaceholder
           }
@@ -45,8 +43,8 @@ export default function SosContactList({ contacts, navigation }) {
           iconContainerStyle={styles.icon}
           buttonStyle={styles.buttonText}
           onPress={() =>
-            navigation.navigate('SosContactForm', {
-              id: hasSecondContact && contacts[1]._id,
+            navigation.navigate('CreateContact', {
+              id: hasSecondContact ? contacts[1]._id : null,
             })
           }
           icon={<FontAwesomeIcon icon={faPen} />}

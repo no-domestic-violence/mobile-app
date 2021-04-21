@@ -10,4 +10,11 @@ const deleteUserSecureStorage = async () => {
   await SecureStore.deleteItemAsync('username');
   await SecureStore.deleteItemAsync('alreadyLaunched');
 };
-export { setUserSecureStorage, deleteUserSecureStorage };
+
+const getUserSecureStorage = async () => {
+  const username = await SecureStore.getItemAsync('username');
+  const token = await SecureStore.getItemAsync('token');
+  return { username, token };
+};
+
+export { setUserSecureStorage, deleteUserSecureStorage, getUserSecureStorage };

@@ -92,7 +92,6 @@ exports[`<SosContactHome /> should match snapshot 1`] = `
             "opacity": 1,
           }
         }
-        testID="first-contact"
       >
         <View
           style={
@@ -179,7 +178,6 @@ exports[`<SosContactHome /> should match snapshot 1`] = `
             "opacity": 1,
           }
         }
-        testID="second-contact"
       >
         <View
           style={

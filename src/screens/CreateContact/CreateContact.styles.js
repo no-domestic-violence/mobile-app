@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  icon: {
-    paddingRight: 15,
+  homeView: {
+    justifyContent: 'center',
   },
-  error: {
-    fontSize: 10,
+
+  svg: {
+    position: 'absolute',
   },
 });

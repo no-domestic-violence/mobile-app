@@ -1,8 +1,17 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  homeView: {
-    justifyContent: 'center',
+  icon: {
+    paddingRight: 15,
+  },
+  error: {
+    fontSize: 10,
+  },
+  buttonRow: {
+    paddingTop: 80,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    width: '60%',
   },
   container: {
     backgroundColor: '#FEF8E3',
@@ -14,14 +23,5 @@ export const styles = StyleSheet.create({
     paddingBottom: 40,
     paddingLeft: 30,
     paddingRight: 30,
-  },
-  svg: {
-    position: 'absolute',
-  },
-  buttonRow: {
-    paddingTop: 80,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    width: '60%',
   },
 });

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import { useForm, FormProvider } from 'react-hook-form';
