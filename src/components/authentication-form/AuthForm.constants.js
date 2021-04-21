@@ -12,7 +12,7 @@ const AuthSchema = (formType) =>
         return yup.string().required('Please enter your old password here');
       return yup.string().notRequired();
     }),
-    email: yup.string().required('Please enter an email'),
+    email: yup.string().email().required('Please enter an email'),
     password: yup
       .string()
       .min(8, 'Please enter 8 characters password')
