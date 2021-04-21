@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   extends: ['airbnb', 'prettier', 'prettier/react'],
-  plugins: ['react', 'react-native', 'react-hooks'],
+  plugins: ['react', 'react-native', 'react-hooks', 'testing-library'],
   parser: 'babel-eslint',
   env: {
     jest: true,
@@ -27,6 +27,10 @@ module.exports = {
     'react/prop-types': 0,
     'react-native/no-single-element-style-arrays': 2,
     'react/jsx-props-no-spreading': ['error', { custom: 'ignore' }],
+    "testing-library/await-async-query": "error",
+    "testing-library/no-await-sync-query": "error",
+    "testing-library/no-debug": "warn",
+    "testing-library/no-dom-import": "off"
   },
   settings: {
     'import/resolver': {

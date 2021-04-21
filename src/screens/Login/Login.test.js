@@ -20,20 +20,20 @@ describe('Login screen', () => {
     expect(result).toMatchSnapshot();
   });
   it('should render default screen elements', () => {
-    const { getAllByText, queryByPlaceholderText, queryByText } = render(
+    const { getAllByText, getByText, getByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
       </AuthProvider>
     );
     expect(getAllByText(/log in/i).length).toBe(2);
-    expect(queryByPlaceholderText(/email/i));
-    expect(queryByPlaceholderText(/password/i));
-    expect(queryByText(/Have an account? Go to sign up/i));
+    expect(getByPlaceholderText(/email/i));
+    expect(getByPlaceholderText(/password/i));
+    expect(getByText(/Go to sign up/i));
   });
 
   it('should show error messages on empty inputs submit', async () => {
     // given
-    const { getByTestId, getByText } = render(
+    const { getByTestId, findByText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
       </AuthProvider>
@@ -41,26 +41,28 @@ describe('Login screen', () => {
     // when
     fireEvent.press(getByTestId('logIn'));
     // then
-    await waitFor(() => expect(getByText(/please enter an email/i)));
-    await waitFor(() =>
-      expect(getByText(/please enter 8 characters password/i))
-    );
+    expect(await findByText(/please enter an email/i)).toBeTruthy();
+    expect(
+      await findByText(/please enter 8 characters password/i)
+    ).toBeTruthy();
   });
+
   it('should show error on invalid password', async () => {
     // given
-    const { getByTestId, queryByText, queryByPlaceholderText } = render(
+    const { getByTestId, getByText, getByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
       </AuthProvider>
     );
     // when
-    fireEvent.changeText(queryByPlaceholderText(/password/i), '12');
+    fireEvent.changeText(getByPlaceholderText(/password/i), '12');
     fireEvent.press(getByTestId('logIn'));
     // then
     await waitFor(() =>
-      expect(queryByText(/please enter 8 characters password/i))
+      expect(getByText(/please enter 8 characters password/i)).toBeTruthy()
     );
   });
+
   it('should not show error on valid password', async () => {
     // given
     const { getByTestId, queryByText, getByPlaceholderText } = render(
@@ -79,56 +81,61 @@ describe('Login screen', () => {
 
   it('should show error on invalid email', async () => {
     // given
-    const { getByTestId, queryByText, queryByPlaceholderText } = render(
+    const { getByTestId, getByText, getByPlaceholderText, debug } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
       </AuthProvider>
     );
     // when
-    fireEvent.changeText(queryByPlaceholderText(/email/i), 'test.com');
-    fireEvent.press(getByTestId('logIn'));
-    // then
-    await waitFor(() => expect(queryByText(/please enter an email/i)));
-  });
-  it('should not show error on valid email', async () => {
-    // given
-    const { getByTestId, queryByText, queryByPlaceholderText } = render(
-      <AuthProvider>
-        <Login navigation={mockNavigation} />
-      </AuthProvider>
-    );
-    // when
-    fireEvent.changeText(queryByPlaceholderText(/email/i), validEmail);
+    fireEvent.changeText(getByPlaceholderText(/email/i), 'test');
     fireEvent.press(getByTestId('logIn'));
     // then
     await waitFor(() =>
-      expect(queryByText(/please enter an email/i)).toBeNull()
+      expect(getByText(/email must be a valid email/i)).toBeTruthy()
+    );
+  });
+  it('should not show error on valid email', async () => {
+    // given
+    const { getByTestId, queryByText, getByPlaceholderText } = render(
+      <AuthProvider>
+        <Login navigation={mockNavigation} />
+      </AuthProvider>
+    );
+    // when
+    fireEvent.changeText(getByPlaceholderText(/email/i), validEmail);
+    fireEvent.press(getByTestId('logIn'));
+    // then
+    await waitFor(() =>
+      expect(queryByText(/email must be a valid email/i)).toBeNull()
     );
   });
   it('should navigate to sign up on press "go to sign up"', async () => {
     // given
-    const { queryByText } = render(
+    const { getByText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
       </AuthProvider>
     );
     // when
-    fireEvent.press(queryByText(/Do not have an account/i));
+    fireEvent.press(getByText(/Do not have an account/i));
     // then
     await expect(mockNavigation.navigate).toHaveBeenCalledWith('Sign Up');
   });
   it('should navigate to home screen on press "proceed without login"', async () => {
     // given
-    const { queryByText } = render(
+    const { getByText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
       </AuthProvider>
     );
     // when
-    fireEvent.press(queryByText(/proceed without login/i));
+    fireEvent.press(getByText(/proceed without login/i));
     // then
-    await expect(mockNavigation.navigate).toHaveBeenCalledWith('BottomTabNavigator', {
-      screen: 'Home',
-    });
+    await expect(mockNavigation.navigate).toHaveBeenCalledWith(
+      'BottomTabNavigator',
+      {
+        screen: 'Home',
+      }
+    );
   });
 });

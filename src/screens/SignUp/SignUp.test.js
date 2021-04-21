@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import { AuthProvider } from 'state/index';
 import SignUp from 'screens/SignUp/index';
 
@@ -21,15 +21,15 @@ describe('Sign Up screen', () => {
     expect(result).toMatchSnapshot();
   });
   it('should render default screen elements', () => {
-    const { getAllByText, queryByPlaceholderText, queryByText } = render(
+    const { getAllByText, getByPlaceholderText, queryByText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
       </AuthProvider>
     );
     expect(getAllByText(/sign up/i).length).toBe(2);
-    expect(queryByPlaceholderText(/username/i));
-    expect(queryByPlaceholderText(/email/i));
-    expect(queryByPlaceholderText(/password/i));
+    expect(getByPlaceholderText(/username/i));
+    expect(getByPlaceholderText(/email/i));
+    expect(getByPlaceholderText(/password/i));
     expect(queryByText(/Have an account? Go to login/i));
   });
 
@@ -51,13 +51,13 @@ describe('Sign Up screen', () => {
   });
   it('should not show error message on valid username', async () => {
       // given
-    const { getByTestId, queryByText, queryByPlaceholderText } = render(
+    const { getByTestId, queryByText, getByPlaceholderText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
       </AuthProvider>
     );
     // when
-    fireEvent.changeText(queryByPlaceholderText(/username/i), validUsername);
+    fireEvent.changeText(getByPlaceholderText(/username/i), validUsername);
     fireEvent.press(getByTestId('signUp'));
     // then 
     await waitFor(() =>
