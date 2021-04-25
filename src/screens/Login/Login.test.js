@@ -81,7 +81,7 @@ describe('Login screen', () => {
 
   it('should show error on invalid email', async () => {
     // given
-    const { getByTestId, getByText, getByPlaceholderText, debug } = render(
+    const { getByTestId, getByText, getByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={mockNavigation} />
       </AuthProvider>

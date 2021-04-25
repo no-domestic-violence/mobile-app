@@ -134,13 +134,13 @@ exports[`<CreateContact /> when isAddMode should match snapshot 1`] = `
             autoCapitalize="none"
             autoCompleteType="off"
             autoCorrect={false}
+            blurOnSubmit={false}
             editable={true}
             onChangeText={[Function]}
             placeholder="Name"
             placeholderTextColor="#6c757d"
             rejectResponderTermination={true}
             returnKeyType="next"
-            secureTextEntry={false}
             style={
               Object {
                 "alignSelf": "center",
@@ -240,6 +240,7 @@ exports[`<CreateContact /> when isAddMode should match snapshot 1`] = `
             autoCapitalize="none"
             autoCompleteType="off"
             autoCorrect={false}
+            blurOnSubmit={false}
             editable={true}
             keyboardType="numeric"
             onChangeText={[Function]}
@@ -247,7 +248,6 @@ exports[`<CreateContact /> when isAddMode should match snapshot 1`] = `
             placeholderTextColor="#6c757d"
             rejectResponderTermination={true}
             returnKeyType="done"
-            secureTextEntry={false}
             style={
               Object {
                 "alignSelf": "center",
@@ -347,6 +347,7 @@ exports[`<CreateContact /> when isAddMode should match snapshot 1`] = `
             autoCapitalize="none"
             autoCompleteType="off"
             autoCorrect={false}
+            blurOnSubmit={false}
             editable={true}
             onChangeText={[Function]}
             onSubmitEditing={[Function]}
@@ -354,7 +355,6 @@ exports[`<CreateContact /> when isAddMode should match snapshot 1`] = `
             placeholderTextColor="#6c757d"
             rejectResponderTermination={true}
             returnKeyType="done"
-            secureTextEntry={false}
             style={
               Object {
                 "alignSelf": "center",

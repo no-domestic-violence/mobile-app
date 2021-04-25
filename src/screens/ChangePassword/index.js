@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, KeyboardAvoidingView } from 'react-native';
+import { View, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import { AuthContext } from 'state/';
 import UserInfo from 'components/user-info/';
 import { StyledView } from 'styles/shared/';

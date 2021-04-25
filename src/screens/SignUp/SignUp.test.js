@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
+import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { AuthProvider } from 'state/index';
 import SignUp from 'screens/SignUp/index';
 
@@ -34,7 +34,7 @@ describe('Sign Up screen', () => {
   });
 
   it('should show error messages on empty inputs submit', async () => {
-      // given
+    // given
     const { getByTestId, getByText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
@@ -50,7 +50,7 @@ describe('Sign Up screen', () => {
     );
   });
   it('should not show error message on valid username', async () => {
-      // given
+    // given
     const { getByTestId, queryByText, getByPlaceholderText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
@@ -59,34 +59,34 @@ describe('Sign Up screen', () => {
     // when
     fireEvent.changeText(getByPlaceholderText(/username/i), validUsername);
     fireEvent.press(getByTestId('signUp'));
-    // then 
+    // then
     await waitFor(() =>
       expect(queryByText(/please enter your username/i)).toBeNull()
     );
   });
   it('should show error on invalid password', async () => {
-      // given 
+    // given
     const { getByTestId, queryByText, queryByPlaceholderText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
       </AuthProvider>
     );
-    // when 
+    // when
     fireEvent.changeText(queryByPlaceholderText(/password/i), '12');
     fireEvent.press(getByTestId('signUp'));
-    // then 
+    // then
     await waitFor(() =>
       expect(queryByText(/please enter 8 characters password/i))
     );
   });
   it('should not show error on valid password', async () => {
-      // given 
+    // given
     const { getByTestId, queryByText, getByPlaceholderText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
       </AuthProvider>
     );
-    // when 
+    // when
     fireEvent.changeText(getByPlaceholderText(/password/i), validPassword);
     fireEvent.press(getByTestId('signUp'));
     // then
@@ -96,7 +96,7 @@ describe('Sign Up screen', () => {
   });
 
   it('should show error on invalid email', async () => {
-      // given
+    // given
     const { getByTestId, queryByText, queryByPlaceholderText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
@@ -105,17 +105,17 @@ describe('Sign Up screen', () => {
     // when
     fireEvent.changeText(queryByPlaceholderText(/email/i), 'test.com');
     fireEvent.press(getByTestId('signUp'));
-    // then 
+    // then
     await waitFor(() => expect(queryByText(/please enter an email/i)));
   });
   it('should not show error on valid email', async () => {
-      // given 
+    // given
     const { getByTestId, queryByText, queryByPlaceholderText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
       </AuthProvider>
     );
-    // when 
+    // when
     fireEvent.changeText(queryByPlaceholderText(/email/i), validEmail);
     fireEvent.press(getByTestId('signUp'));
     // then
