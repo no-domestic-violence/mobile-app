@@ -13,9 +13,7 @@ describe('Hotline item component', () => {
   };
   const mockMakeCall = jest.fn();
   it('renders hotline item from props', () => {
-    const { queryByText, debug } = render(
-      <HotlinesItem item={mockHotlineItem} />
-    );
+    const { queryByText } = render(<HotlinesItem item={mockHotlineItem} />);
     expect(queryByText(mockHotlineItem.organisation_name)).not.toBeNull();
     expect(
       queryByText(`${mockHotlineItem.city}, tel:${mockHotlineItem.phone}`)

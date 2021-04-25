@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-raw-text */
 import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
 import UserInfo from '_components/user-info/';
