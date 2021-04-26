@@ -1,12 +1,12 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
-import appApiClient from 'api/';
+import { appApiClient } from 'api/';
 import { getUserSecureStorage } from 'helpers';
 import * as types from './sos.types';
 
 const getContacts = (dispatch) => async () => {
   try {
-    const { username, token } = await getUserSecureStorage();
-    const response = await appApiClient.getSosContacts(username, token);
+    const { username } = await getUserSecureStorage();
+    const response = await appApiClient.getSosContacts(username);
     dispatch({
       type: types.GET_CONTACTS,
       payload: response.data.contacts,
@@ -20,9 +20,9 @@ const getContacts = (dispatch) => async () => {
 };
 
 const deleteContact = (dispatch) => async ({ id }) => {
-  const { username, token } = await getUserSecureStorage();
+  const { username } = await getUserSecureStorage();
   try {
-    const response = await appApiClient.deleteSosContact(username, id, token);
+    const response = await appApiClient.deleteSosContact(username, id);
     dispatch({
       type: types.DELETE_CONTACT,
       payload: response.data,
@@ -36,9 +36,9 @@ const deleteContact = (dispatch) => async ({ id }) => {
 };
 
 const addContact = (dispatch) => async (data) => {
-  const { username, token } = await getUserSecureStorage();
+  const { username } = await getUserSecureStorage();
   try {
-    const response = await appApiClient.addSosContact(username, data, token);
+    const response = await appApiClient.addSosContact(username, data);
     dispatch({ type: types.ADD_CONTACT, payload: response.data });
   } catch (error) {
     dispatch({
@@ -49,14 +49,9 @@ const addContact = (dispatch) => async (data) => {
 };
 
 const editContact = (dispatch) => async ({ data, id }) => {
-  const { username, token } = await getUserSecureStorage();
+  const { username } = await getUserSecureStorage();
   try {
-    const response = await appApiClient.editSosContact(
-      username,
-      data,
-      id,
-      token
-    );
+    const response = await appApiClient.editSosContact(username, data, id);
     dispatch({
       type: types.EDIT_CONTACT,
       payload: response.data,
