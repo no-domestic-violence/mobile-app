@@ -66,17 +66,17 @@ describe('Sign Up screen', () => {
   });
   it('should show error on invalid password', async () => {
     // given
-    const { getByTestId, queryByText, queryByPlaceholderText } = render(
+    const { getByTestId, getByText, getByPlaceholderText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
       </AuthProvider>
     );
     // when
-    fireEvent.changeText(queryByPlaceholderText(/password/i), '12');
+    fireEvent.changeText(getByPlaceholderText(/password/i), '12');
     fireEvent.press(getByTestId('signUp'));
     // then
     await waitFor(() =>
-      expect(queryByText(/please enter 8 characters password/i))
+      expect(getByText(/please enter 8 characters password/i))
     );
   });
   it('should not show error on valid password', async () => {
@@ -97,7 +97,7 @@ describe('Sign Up screen', () => {
 
   it('should show error on invalid email', async () => {
     // given
-    const { getByTestId, queryByText, queryByPlaceholderText } = render(
+    const { getByTestId, getByText, queryByPlaceholderText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
       </AuthProvider>
@@ -106,32 +106,32 @@ describe('Sign Up screen', () => {
     fireEvent.changeText(queryByPlaceholderText(/email/i), 'test.com');
     fireEvent.press(getByTestId('signUp'));
     // then
-    await waitFor(() => expect(queryByText(/please enter an email/i)));
+    await waitFor(() => expect(getByText(/email must be a valid email/i)));
   });
   it('should not show error on valid email', async () => {
     // given
-    const { getByTestId, queryByText, queryByPlaceholderText } = render(
+    const { getByTestId, queryByText, getByPlaceholderText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
       </AuthProvider>
     );
     // when
-    fireEvent.changeText(queryByPlaceholderText(/email/i), validEmail);
+    fireEvent.changeText(getByPlaceholderText(/email/i), validEmail);
     fireEvent.press(getByTestId('signUp'));
     // then
     await waitFor(() =>
-      expect(queryByText(/please enter an email/i)).toBeNull()
+      expect(queryByText(/email must be a valid email/i)).toBeNull()
     );
   });
   it('should navigate to login screen on press "go to login"', async () => {
     // given
-    const { queryByText } = render(
+    const { getByText } = render(
       <AuthProvider>
         <SignUp navigation={mockNavigation} />
       </AuthProvider>
     );
     // when
-    fireEvent.press(queryByText(/go to login/i));
+    fireEvent.press(getByText(/go to login/i));
     // then
     await expect(mockNavigation.navigate).toHaveBeenCalledWith('Login');
   });
