@@ -1,4 +1,4 @@
-import appApiClient from 'api/';
+import { appApiClient } from 'api/';
 import types from './location.types';
 
 const updateCurrentLocation = (dispatch) => (location) => {
