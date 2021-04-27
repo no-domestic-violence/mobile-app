@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import axios from 'axios';
 import { getTokenSecureStorage } from 'helpers';
 import baseURL from '../config';

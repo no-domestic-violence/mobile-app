@@ -307,6 +307,6 @@ describe('authInterceptor', () => {
     );
     expect(result.headers).toHaveProperty('auth-token');
     expect(result.headers['auth-token']).toBe('faketoken');
-    expect(await helpers.getTokenSecureStorage.mock.calls.length).toBe(1);
+    expect(helpers.getTokenSecureStorage.mock.calls.length).toBe(1);
   });
 });
