@@ -17,4 +17,14 @@ const getUserSecureStorage = async () => {
   return { username, token };
 };
 
-export { setUserSecureStorage, deleteUserSecureStorage, getUserSecureStorage };
+const getTokenSecureStorage = () => {
+  const token = SecureStore.getItemAsync('token');
+  return token;
+};
+
+export {
+  setUserSecureStorage,
+  deleteUserSecureStorage,
+  getUserSecureStorage,
+  getTokenSecureStorage,
+};
