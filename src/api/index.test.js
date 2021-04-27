@@ -1,4 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
+import * as helpers from 'helpers';
 import { appApiClient, apiInstance } from './index';
 
 jest.unmock('axios');
@@ -283,6 +284,7 @@ describe('appApiClient', () => {
       phone: '12341234134',
       message: 'help me',
     };
+
     mockAppClient
       .onPatch(`/users/${username}/contacts/${id}`)
       .reply(201, response);
@@ -290,5 +292,21 @@ describe('appApiClient', () => {
     const actual = await appApiClient.editSosContact(username, data, id);
     // then
     expect(actual.data).toEqual(response);
+  });
+});
+
+describe('authInterceptor', () => {
+  beforeEach(async () => {
+    helpers.getTokenSecureStorage = jest.fn(() => 'faketoken');
+  });
+  it('should add authorization token to header', async () => {
+    const result = await apiInstance.interceptors.request.handlers[0].fulfilled(
+      {
+        headers: {},
+      }
+    );
+    expect(result.headers).toHaveProperty('auth-token');
+    expect(result.headers['auth-token']).toBe('faketoken');
+    expect(await helpers.getTokenSecureStorage.mock.calls.length).toBe(1);
   });
 });
