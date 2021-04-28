@@ -53,8 +53,7 @@ const CreateContact = ({ navigation: { goBack }, route }) => {
     goBack();
   };
 
-  // eslint-disable-next-line no-shadow
-  const handleDeleteContact = async (id) => {
+  const handleDeleteContact = async () => {
     await deleteContact({ id });
     goBack();
   };
