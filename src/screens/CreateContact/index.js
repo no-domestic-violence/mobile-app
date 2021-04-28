@@ -10,7 +10,7 @@ import { SosContext } from 'state';
 import { SosForm, SosSchema } from 'components/sos-form';
 import { styles } from './CreateContact.styles';
 
-const CreateContact = ({ navigation, route }) => {
+const CreateContact = ({ navigation: { goBack }, route }) => {
   const {
     state,
     deleteContact,
@@ -37,11 +37,7 @@ const CreateContact = ({ navigation, route }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAddMode]);
 
-  const goBack = () => {
-    navigation.navigate('SosContactHome');
-  };
-
-  const saveContact = async () => {
+  const handleAddContact = async () => {
     const data = getValues();
     await addContact(data);
     // need this step since mongodb generates the _id
@@ -49,7 +45,7 @@ const CreateContact = ({ navigation, route }) => {
     goBack();
   };
 
-  const saveEdit = async () => {
+  const handleEditContact = async () => {
     const data = getValues();
     // insert the contact id into form values object
     data._id = id;
@@ -58,13 +54,13 @@ const CreateContact = ({ navigation, route }) => {
   };
 
   // eslint-disable-next-line no-shadow
-  const handleRemove = async (id) => {
+  const handleDeleteContact = async (id) => {
     await deleteContact({ id });
     goBack();
   };
 
   function onSubmit() {
-    return isAddMode ? saveContact() : saveEdit();
+    return isAddMode ? handleAddContact() : handleEditContact();
   }
 
   return (
@@ -78,7 +74,7 @@ const CreateContact = ({ navigation, route }) => {
             <SosForm
               isAddMode={isAddMode}
               onRemove={() => {
-                handleRemove(foundContact._id);
+                handleDeleteContact(foundContact._id);
               }}
               onSubmit={handleSubmit(onSubmit)}
               goBack={goBack}
