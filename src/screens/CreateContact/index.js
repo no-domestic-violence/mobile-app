@@ -72,9 +72,7 @@ const CreateContact = ({ navigation: { goBack }, route }) => {
           <FormProvider {...methods}>
             <SosForm
               isAddMode={isAddMode}
-              onRemove={() => {
-                handleDeleteContact(foundContact._id);
-              }}
+              onRemove={handleDeleteContact}
               onSubmit={handleSubmit(onSubmit)}
               goBack={goBack}
             />
