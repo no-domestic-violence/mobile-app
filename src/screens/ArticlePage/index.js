@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import { appApiClient } from 'api/';
+import appApiClient from 'api/';
 import { styles } from './ArticlePage.styles';
 
 export default function ArticlePage({ route, navigation }) {

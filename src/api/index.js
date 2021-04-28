@@ -1,4 +1,4 @@
-import { apiInstance } from './apiInstance';
+import apiInstance from './apiInstance';
 
 const getHotlinesData = (search) => {
   return apiInstance.get('/hotlines', {
@@ -70,4 +70,4 @@ const appApiClient = {
   getArticleById,
 };
 
-export { appApiClient, apiInstance };
+export default appApiClient;

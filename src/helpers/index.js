@@ -18,8 +18,7 @@ const getUserSecureStorage = async () => {
 };
 
 const getTokenSecureStorage = () => {
-  const token = SecureStore.getItemAsync('token');
-  return token;
+  return SecureStore.getItemAsync('token');
 };
 
 export {

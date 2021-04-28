@@ -1,6 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 import * as helpers from 'helpers';
-import { appApiClient, apiInstance } from './index';
+import appApiClient from './index';
+import apiInstance from './apiInstance';
 
 jest.unmock('axios');
 
@@ -295,7 +296,7 @@ describe('appApiClient', () => {
   });
 });
 
-describe('authInterceptor', () => {
+describe('Request interceptor', () => {
   beforeEach(async () => {
     helpers.getTokenSecureStorage = jest.fn(() => 'faketoken');
   });
