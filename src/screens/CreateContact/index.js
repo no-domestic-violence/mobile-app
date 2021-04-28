@@ -2,7 +2,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import { KeyboardAvoidingView, Platform, Text } from 'react-native';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
 import { SosContext } from 'state';
@@ -11,7 +11,7 @@ import { styles } from './CreateContact.styles';
 
 const CreateContact = ({ navigation, route }) => {
   const {
-    state: { contacts },
+    state,
     deleteContact,
     addContact,
     editContact,
@@ -25,7 +25,7 @@ const CreateContact = ({ navigation, route }) => {
   const { id } = route.params;
   // if there is no id in route.params -> isAddMode
   const isAddMode = !id;
-  const foundContact = contacts.find((item) => item._id === id);
+  const foundContact = state.contacts.find((item) => item._id === id);
 
   useEffect(() => {
     if (!isAddMode) {
@@ -56,6 +56,7 @@ const CreateContact = ({ navigation, route }) => {
     goBack();
   };
 
+  // eslint-disable-next-line no-shadow
   const handleRemove = async (id) => {
     await deleteContact({ id });
     goBack();
@@ -82,6 +83,9 @@ const CreateContact = ({ navigation, route }) => {
               goBack={goBack}
             />
           </FormProvider>
+          <Text style={styles.errorMessage}>
+            {state.errorMessage ? state.errorMessage : ' '}
+          </Text>
         </StyledView>
       </KeyboardAvoidingView>
     </>
