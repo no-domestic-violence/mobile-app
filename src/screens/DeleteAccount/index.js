@@ -9,7 +9,7 @@ import { StyledView } from 'styles/shared/StyledView';
 import { StyledButton, StyledButtonText } from 'styles/shared/StyledButton';
 import { styles } from './DeleteAccount.styles';
 
-export default function DeleteAccountScreen({ navigation }) {
+export default function DeleteAccount({ navigation }) {
   const { state, deleteAccount } = useContext(AuthContext);
   const { username } = state;
 
@@ -26,12 +26,15 @@ export default function DeleteAccountScreen({ navigation }) {
           size={40}
           color='#000'
           style={styles.arrow}
+          testID='backBtn'
         />
         <Text style={styles.header}>Delete Account</Text>
         <Text style={styles.text}>
           Are you certain you want to delete your account?
         </Text>
-        <StyledButton onPress={() => handleDeleteAccount()}>
+        <StyledButton
+          onPress={() => handleDeleteAccount()}
+          testID='deleteAccount'>
           <StyledButtonText style={styles.button}>
             Delete Account
           </StyledButtonText>
