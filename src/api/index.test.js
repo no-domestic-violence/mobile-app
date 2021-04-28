@@ -1,5 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
-import appApiClient, { apiInstance } from './index';
+import * as helpers from 'helpers';
+import appApiClient from './index';
+import apiInstance from './apiInstance';
 
 jest.unmock('axios');
 
@@ -213,10 +215,9 @@ describe('appApiClient', () => {
     expect(actual.data).toEqual(response);
   });
 
-  it('should successfully get sos contacts with username and token', async () => {
+  it('should successfully get sos contacts with username', async () => {
     // given
     const username = 'celeste';
-    const token = 'faketoken123456';
     const response = [
       {
         _id: '2f213dsafdsfasdfdas34e',
@@ -225,28 +226,23 @@ describe('appApiClient', () => {
         message: 'help',
       },
     ];
-    mockAppClient.onGet(`/users/${username}/contacts`).reply(200, response, {
-      headers: { 'auth-token': token },
-    });
+    mockAppClient.onGet(`/users/${username}/contacts`).reply(200, response);
     // when
-    const actual = await appApiClient.getSosContacts(username, token);
+    const actual = await appApiClient.getSosContacts(username);
     // then
     expect(actual.data).toEqual(response);
   });
 
-  it('should successfully delete a contact with username, token and contact id', async () => {
+  it('should successfully delete a contact with username and contact id', async () => {
     // given
     const username = 'celeste';
-    const token = 'faketoken123456';
     const id = '2f213dsafdsfasdfdas34e';
     const response = [];
     mockAppClient
       .onDelete(`/users/${username}/contacts/${id}`)
-      .reply(202, response, {
-        headers: { 'auth-token': token },
-      });
+      .reply(202, response);
     // when
-    const actual = await appApiClient.deleteSosContact(username, id, token);
+    const actual = await appApiClient.deleteSosContact(username, id);
     // then
     expect(actual.data).toEqual(response);
   });
@@ -254,7 +250,6 @@ describe('appApiClient', () => {
   it('should successfully add a contact', async () => {
     // given
     const username = 'celeste';
-    const token = 'faketoken123456';
     const data = {
       name: 'ciel',
       phone: '12341234134',
@@ -268,11 +263,9 @@ describe('appApiClient', () => {
         message: 'help me',
       },
     ];
-    mockAppClient.onPatch(`/users/${username}/contacts/`).reply(201, response, {
-      headers: { 'auth-token': token },
-    });
+    mockAppClient.onPatch(`/users/${username}/contacts/`).reply(201, response);
     // when
-    const actual = await appApiClient.addSosContact(username, data, token);
+    const actual = await appApiClient.addSosContact(username, data);
     // then
     expect(actual.data).toEqual(response);
   });
@@ -280,7 +273,6 @@ describe('appApiClient', () => {
   it('should successfully edit a contact', async () => {
     // given
     const username = 'celeste';
-    const token = 'faketoken123456';
     const id = '2f213dsafdsfasdfdas34e';
     const data = {
       name: 'soyoon',
@@ -293,14 +285,29 @@ describe('appApiClient', () => {
       phone: '12341234134',
       message: 'help me',
     };
+
     mockAppClient
       .onPatch(`/users/${username}/contacts/${id}`)
-      .reply(201, response, {
-        headers: { 'auth-token': token },
-      });
+      .reply(201, response);
     // when
-    const actual = await appApiClient.editSosContact(username, data, id, token);
+    const actual = await appApiClient.editSosContact(username, data, id);
     // then
     expect(actual.data).toEqual(response);
+  });
+});
+
+describe('Request interceptor', () => {
+  beforeEach(async () => {
+    helpers.getTokenSecureStorage = jest.fn(() => 'faketoken');
+  });
+  it('should add authorization token to header', async () => {
+    const result = await apiInstance.interceptors.request.handlers[0].fulfilled(
+      {
+        headers: {},
+      }
+    );
+    expect(result.headers).toHaveProperty('auth-token');
+    expect(result.headers['auth-token']).toBe('faketoken');
+    expect(helpers.getTokenSecureStorage.mock.calls.length).toBe(1);
   });
 });
