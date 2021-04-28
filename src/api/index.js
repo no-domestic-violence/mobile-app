@@ -1,9 +1,4 @@
-import axios from 'axios';
-import baseURL from '../config';
-
-export const apiInstance = axios.create({
-  baseURL,
-});
+import apiInstance from './apiInstance';
 
 const getHotlinesData = (search) => {
   return apiInstance.get('/hotlines', {
@@ -45,27 +40,19 @@ const changePassword = (email, oldPassword, password) => {
   });
 };
 
-const getSosContacts = (username, token) => {
-  return apiInstance.get(`/users/${username}/contacts`, {
-    headers: { 'auth-token': token },
-  });
+const getSosContacts = (username) => {
+  return apiInstance.get(`/users/${username}/contacts`);
 };
 
-const deleteSosContact = (username, id, token) => {
-  return apiInstance.delete(`/users/${username}/contacts/${id}`, {
-    headers: { 'auth-token': token },
-  });
+const deleteSosContact = (username, id) => {
+  return apiInstance.delete(`/users/${username}/contacts/${id}`);
 };
-const addSosContact = (username, data, token) => {
-  return apiInstance.patch(`/users/${username}/contacts/`, data, {
-    headers: { 'auth-token': token },
-  });
+const addSosContact = (username, data) => {
+  return apiInstance.patch(`/users/${username}/contacts/`, data);
 };
 
-const editSosContact = (username, data, id, token) => {
-  return apiInstance.patch(`/users/${username}/contacts/${id}`, data, {
-    headers: { 'auth-token': token },
-  });
+const editSosContact = (username, data, id) => {
+  return apiInstance.patch(`/users/${username}/contacts/${id}`, data);
 };
 
 const appApiClient = {

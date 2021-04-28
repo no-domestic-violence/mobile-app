@@ -32,3 +32,15 @@ jest.mock('i18next', () => ({
   },
   t: (key) => key,
 }));
+
+jest.mock('axios', () => {
+  return {
+    create: jest.fn(() => ({
+      get: jest.fn(),
+      interceptors: {
+        request: { use: jest.fn(), eject: jest.fn() },
+        response: { use: jest.fn(), eject: jest.fn() },
+      },
+    })),
+  };
+});
