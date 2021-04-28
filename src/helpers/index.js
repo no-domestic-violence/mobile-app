@@ -17,7 +17,7 @@ const getUserSecureStorage = async () => {
   return { username, token };
 };
 
-const getTokenSecureStorage = () => {
+const getTokenSecureStorage = async () => {
   return SecureStore.getItemAsync('token');
 };
 
