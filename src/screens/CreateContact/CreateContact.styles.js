@@ -8,8 +8,4 @@ export const styles = StyleSheet.create({
   svg: {
     position: 'absolute',
   },
-  errorMessage: {
-    marginTop: 20,
-    color: 'darkred',
-  },
 });
