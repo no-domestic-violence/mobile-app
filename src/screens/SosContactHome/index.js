@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import SosContactList from 'components/sosContactList';
 
 import EmergencySVG from '_assets/svg/emergency.svg';
+import { ErrorMessageText } from 'components/error-message-text';
 import { StyledView } from 'styles/shared/StyledView';
 import { SosContext } from 'state';
 import { styles } from './SosContactHome.styles';
@@ -23,9 +24,7 @@ export default function SosContactHome({ navigation }) {
           <Text style={styles.title}>Emergency Contacts</Text>
         </View>
         <SosContactList contacts={state.contacts} navigation={navigation} />
-        <Text style={styles.errorMessage}>
-          {state.errorMessage ? state.errorMessage : ' '}
-        </Text>
+        <ErrorMessageText errorMessage={state.errorMessage} />
       </StyledView>
     </>
   );

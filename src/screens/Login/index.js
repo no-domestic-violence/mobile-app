@@ -8,7 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import { StyledView } from 'styles/shared/';
-
+import { ErrorMessageText } from 'components/error-message-text';
 import { useTranslation } from 'react-i18next';
 import AuthSVG from 'assets/svg/login.svg';
 import { AuthForm } from 'components/authentication-form/';
@@ -43,7 +43,7 @@ export default function LoginScreen({ navigation }) {
           headerForm='log in'
           onSubmitForm={handleLogin}
           buttonText='log in'
-          testID="logIn"
+          testID='logIn'
           navigation={navigation}
         />
         <View style={styles.textView}>
@@ -61,9 +61,7 @@ export default function LoginScreen({ navigation }) {
             <Text style={styles.text}>Proceed without login</Text>
           </TouchableOpacity>
           {/* //TODO: fix messages from BE validatiton */}
-          {state.errorMessage ? (
-            <Text style={styles.textError}>{state.errorMessage}</Text>
-          ) : null}
+          <ErrorMessageText errorMessage={state.errorMessage} />
         </View>
       </StyledView>
     </KeyboardAvoidingView>

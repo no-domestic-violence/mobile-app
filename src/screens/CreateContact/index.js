@@ -2,7 +2,8 @@
 import React, { useContext, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { KeyboardAvoidingView, Platform, Text } from 'react-native';
+import { KeyboardAvoidingView, Platform } from 'react-native';
+import { ErrorMessageText } from 'components/error-message-text';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
 import { SosContext } from 'state';
@@ -83,9 +84,7 @@ const CreateContact = ({ navigation, route }) => {
               goBack={goBack}
             />
           </FormProvider>
-          <Text style={styles.errorMessage}>
-            {state.errorMessage ? state.errorMessage : ' '}
-          </Text>
+          <ErrorMessageText errorMessage={state.errorMessage} />
         </StyledView>
       </KeyboardAvoidingView>
     </>

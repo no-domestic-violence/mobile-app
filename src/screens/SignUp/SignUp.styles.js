@@ -14,8 +14,4 @@ export const styles = StyleSheet.create({
   actionsContainer: {
     marginBottom: 60,
   },
-  errorMessage: {
-    color: 'red',
-    marginTop: 20,
-  },
 });
