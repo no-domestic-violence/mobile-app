@@ -1,0 +1,40 @@
+{
+  "testRunner": "jest",
+  "runnerConfig": "e2e/config.json",
+  "apps": {
+    "ios.release": {
+      "type": "ios.app",
+      "binaryPath": "build/pool-app.app",
+      "build": "expo build:ios -t simulator"
+    },
+    "android": {
+      "type": "android.apk",
+      "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY",
+      "build": "expo build:android -t app-bundle"
+    }
+  },
+  "devices": {
+    "simulator": {
+      "type": "ios.simulator",
+      "device": {
+        "type": "iPhone 12 Pro Max"
+      }
+    },
+    "emulator": {
+      "type": "android.emulator",
+      "device": {
+        "avdName": "Pixel_3a_API_30_x86"
+      }
+    }
+  },
+  "configurations": {
+    "ios.sim.release": {
+      "device": "simulator",
+      "app": "ios.release"
+    },
+    "android": {
+      "device": "emulator",
+      "app": "android"
+    }
+  }
+}
