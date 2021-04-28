@@ -3,15 +3,13 @@ import { View, Text } from 'react-native';
 import SosContactList from 'components/sosContactList';
 
 import EmergencySVG from '_assets/svg/emergency.svg';
+import { ErrorMessageText } from 'components/error-message-text';
 import { StyledView } from 'styles/shared/StyledView';
 import { SosContext } from 'state';
 import { styles } from './SosContactHome.styles';
 
 export default function SosContactHome({ navigation }) {
-  const {
-    getContacts,
-    state: { contacts },
-  } = useContext(SosContext);
+  const { getContacts, state } = useContext(SosContext);
 
   useEffect(() => {
     getContacts();
@@ -25,7 +23,8 @@ export default function SosContactHome({ navigation }) {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Emergency Contacts</Text>
         </View>
-        <SosContactList contacts={contacts} navigation={navigation} />
+        <SosContactList contacts={state.contacts} navigation={navigation} />
+        <ErrorMessageText errorMessage={state.errorMessage} />
       </StyledView>
     </>
   );

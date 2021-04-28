@@ -15,5 +15,5 @@ export const { Provider, Context } = createAppContext(
     addContact,
     editContact,
   },
-  { contacts: [] }
+  { contacts: [], errorMessage: '' }
 );

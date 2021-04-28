@@ -371,6 +371,16 @@ exports[`Sign Up screen should match snapshot 1`] = `
            Have an account? Go to login
         </Text>
       </View>
+      <Text
+        style={
+          Object {
+            "color": "darkred",
+            "marginTop": 20,
+          }
+        }
+      >
+         
+      </Text>
     </View>
   </View>
 </View>

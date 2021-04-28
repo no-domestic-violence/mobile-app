@@ -16,8 +16,4 @@ export const styles = StyleSheet.create({
     fontStyle: 'italic',
     marginBottom: 10,
   },
-  textError: {
-    marginTop: 20,
-    color: 'darkred',
-  },
 });

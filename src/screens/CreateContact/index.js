@@ -3,15 +3,16 @@ import React, { useContext, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { KeyboardAvoidingView, Platform } from 'react-native';
+import { ErrorMessageText } from 'components/error-message-text';
 import EmergencySVG from '_assets/svg/emergency.svg';
 import { StyledView } from 'styles/shared/StyledView';
 import { SosContext } from 'state';
 import { SosForm, SosSchema } from 'components/sos-form';
 import { styles } from './CreateContact.styles';
 
-const CreateContact = ({ navigation, route }) => {
+const CreateContact = ({ navigation: { goBack }, route }) => {
   const {
-    state: { contacts },
+    state,
     deleteContact,
     addContact,
     editContact,
@@ -25,7 +26,7 @@ const CreateContact = ({ navigation, route }) => {
   const { id } = route.params;
   // if there is no id in route.params -> isAddMode
   const isAddMode = !id;
-  const foundContact = contacts.find((item) => item._id === id);
+  const foundContact = state.contacts.find((item) => item._id === id);
 
   useEffect(() => {
     if (!isAddMode) {
@@ -36,11 +37,7 @@ const CreateContact = ({ navigation, route }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAddMode]);
 
-  const goBack = () => {
-    navigation.navigate('SosContactHome');
-  };
-
-  const saveContact = async () => {
+  const handleAddContact = async () => {
     const data = getValues();
     await addContact(data);
     // need this step since mongodb generates the _id
@@ -48,7 +45,7 @@ const CreateContact = ({ navigation, route }) => {
     goBack();
   };
 
-  const saveEdit = async () => {
+  const handleEditContact = async () => {
     const data = getValues();
     // insert the contact id into form values object
     data._id = id;
@@ -56,13 +53,13 @@ const CreateContact = ({ navigation, route }) => {
     goBack();
   };
 
-  const handleRemove = async (id) => {
+  const handleDeleteContact = async () => {
     await deleteContact({ id });
     goBack();
   };
 
   function onSubmit() {
-    return isAddMode ? saveContact() : saveEdit();
+    return isAddMode ? handleAddContact() : handleEditContact();
   }
 
   return (
@@ -75,13 +72,12 @@ const CreateContact = ({ navigation, route }) => {
           <FormProvider {...methods}>
             <SosForm
               isAddMode={isAddMode}
-              onRemove={() => {
-                handleRemove(foundContact._id);
-              }}
+              onRemove={handleDeleteContact}
               onSubmit={handleSubmit(onSubmit)}
               goBack={goBack}
             />
           </FormProvider>
+          <ErrorMessageText errorMessage={state.errorMessage} />
         </StyledView>
       </KeyboardAvoidingView>
     </>

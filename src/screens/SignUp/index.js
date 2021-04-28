@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { ErrorMessageText } from 'components/error-message-text';
 import { AuthContext } from 'state/';
 import AuthSVG from 'assets/svg/login.svg';
 import { StyledView } from 'styles/shared/';
@@ -42,15 +43,13 @@ export default function SignUpScreen({ navigation }) {
           headerForm='Sign Up'
           onSubmitForm={handleSignup}
           buttonText='sign up'
-          testID="signUp"
+          testID='signUp'
         />
         <View style={styles.actionsContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <Text style={styles.text}> Have an account? Go to login</Text>
           </TouchableOpacity>
-          {state.errorMessage ? (
-            <Text style={styles.errorMessage}>{state.errorMessage}</Text>
-          ) : null}
+          <ErrorMessageText errorMessage={state.errorMessage} />
         </View>
       </StyledView>
     </KeyboardAvoidingView>
