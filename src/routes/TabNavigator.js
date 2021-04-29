@@ -33,7 +33,7 @@ export const BottomTabNavigator = () => {
             iconName = faMapPin;
           } else if (route.name === 'Emergency') {
             iconName = faPhone;
-          } else if (route.name === 'UserSettings') {
+          } else if (route.name === 'User Settings') {
             iconName = faUserCog;
           }
           return <FontAwesomeIcon icon={iconName} size={size} color={color} />;
@@ -54,7 +54,7 @@ export const BottomTabNavigator = () => {
             component={SheltersHotlinesTabNavigator}
           />
           <Tab.Screen
-            name='UserSettings'
+            name='User Settings'
             component={UserSettingsStackNavigator}
           />
         </>
@@ -67,7 +67,7 @@ export const BottomTabNavigator = () => {
           />
           <Tab.Screen name='Emergency' component={SosContactStackNavigator} />
           <Tab.Screen
-            name='UserSettings'
+            name='User Settings'
             component={UserSettingsStackNavigator}
           />
         </>
