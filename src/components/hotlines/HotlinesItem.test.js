@@ -12,15 +12,15 @@ describe('Hotline item component', () => {
     website: 'www.help.de',
   };
   const mockMakeCall = jest.fn();
-  it('renders hotline item from props', () => {
-    const { queryByText } = render(<HotlinesItem item={mockHotlineItem} />);
-    expect(queryByText(mockHotlineItem.organisation_name)).not.toBeNull();
+  it('should render hotline item from props', () => {
+    const { getByText } = render(<HotlinesItem item={mockHotlineItem} />);
+    expect(getByText(mockHotlineItem.organisation_name)).not.toBeNull();
     expect(
-      queryByText(`${mockHotlineItem.city}, tel:${mockHotlineItem.phone}`)
+      getByText(`${mockHotlineItem.city}, tel:${mockHotlineItem.phone}`)
     ).not.toBeNull();
-    expect(queryByText(`${mockHotlineItem.website}`)).not.toBeNull();
+    expect(getByText(`${mockHotlineItem.website}`)).not.toBeNull();
   });
-  it('make a call on press with the righ number', () => {
+  it('should make a call on press with the right number', () => {
     const { getByTestId } = render(
       <HotlinesItem item={mockHotlineItem} makeCall={mockMakeCall} />
     );
