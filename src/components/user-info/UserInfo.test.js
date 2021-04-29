@@ -4,12 +4,16 @@ import UserInfo from './index';
 
 describe('User information component', () => {
   const username = 'Celeste';
-  it('renders name of user from props', () => {
-    const { queryByText } = render(<UserInfo username={username} />);
-    expect(queryByText(username)).not.toBeNull();
+
+  const renderComponent = () => {
+    return <UserInfo username={username} />;
+  };
+  it('should render name of user from props', () => {
+    const { getByText } = render(renderComponent());
+    expect(getByText(username)).not.toBeNull();
   });
   it('should match snapshot', () => {
-    const result = render(<UserInfo username={username} />).toJSON();
+    const result = render(renderComponent()).toJSON();
     expect(result).toMatchSnapshot();
   });
 });
