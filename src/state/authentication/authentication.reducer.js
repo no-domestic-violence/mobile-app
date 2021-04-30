@@ -1,14 +1,4 @@
-import {
-  CHANGE_PASSWORD_SUCCESS,
-  AUTH_SUCCESS,
-  LOGOUT,
-  DELETE_ACCOUNT_SUCCESS,
-  REMOVE_ERRORS,
-  REMOVE_MESSAGES,
-  CHECK_FIRST_LAUNCH,
-  AUTH_ERROR,
-  LOGIN_SIGNUP_SUCCESS
-} from './authentication.types';
+import types from './authentication.types'
 
 const initialState = {
   token: '',
@@ -17,49 +7,49 @@ const initialState = {
 
 const authReducer = (state, { type, payload }) => {
   switch (type) {
-    case AUTH_ERROR:
+    case types.AUTH_ERROR:
       return {
         ...state,
         errorMessage: payload,
       };
-    case LOGIN_SIGNUP_SUCCESS:
+    case types.LOGIN_SIGNUP_SUCCESS:
       return {
         ...state,
         token: payload.token,
         username: payload.user.username,
         errorMessage: '',
       };
-    case CHANGE_PASSWORD_SUCCESS:
+    case types.CHANGE_PASSWORD_SUCCESS:
       return {
         ...state,
         successMessage: payload,
       };
-    case AUTH_SUCCESS:
+    case types.AUTH_SUCCESS:
       return {
         ...state,
         token: payload.token,
         username: payload.username,
       };
-    case LOGOUT:
+    case types.LOGOUT:
       return {
         initialState,
       };
-    case DELETE_ACCOUNT_SUCCESS:
+    case types.DELETE_ACCOUNT_SUCCESS:
       return {
         ...initialState,
         successMessage: payload.data,
       };
-    case REMOVE_ERRORS:
+    case types.REMOVE_ERRORS:
       return {
         ...state,
         errorMessage: '',
       };
-    case REMOVE_MESSAGES:
+    case types.REMOVE_MESSAGES:
       return {
         ...state,
         successMessage: '',
       };
-    case CHECK_FIRST_LAUNCH:
+    case types.CHECK_FIRST_LAUNCH:
       return {
         ...state,
         isFirstLaunch: payload,
