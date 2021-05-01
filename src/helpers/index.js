@@ -21,9 +21,20 @@ const getTokenSecureStorage = async () => {
   return SecureStore.getItemAsync('token');
 };
 
+const createReducer = (handlers) => {
+  return function reducer(state, action) {
+    if (handlers.hasOwnProperty(action.type)) {
+      return handlers[action.type](state, action);
+    } 
+      return state;
+    
+  };
+}
+
 export {
   setUserSecureStorage,
   deleteUserSecureStorage,
   getUserSecureStorage,
   getTokenSecureStorage,
+  createReducer
 };

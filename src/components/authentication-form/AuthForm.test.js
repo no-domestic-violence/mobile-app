@@ -5,9 +5,7 @@ import AuthForm from './AuthForm.component';
 const onSubmitForm = jest.fn();
 describe('Authentication form component', () => {
   it('should render the right header and username, email, password for sign up', () => {
-    // given
     const formType = 'sign up';
-    // when
     const { queryByPlaceholderText, queryByText, queryByTestId } = render(
       <AuthForm
         formType={formType}
@@ -16,7 +14,6 @@ describe('Authentication form component', () => {
         buttonText='Sign up'
       />
     );
-    // expect
     expect(queryByTestId('form-header')).toHaveTextContent('Sign up');
     expect(queryByPlaceholderText(/username/i)).not.toBeNull();
     expect(queryByPlaceholderText(/email/i)).not.toBeNull();

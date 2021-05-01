@@ -61,7 +61,9 @@ exports[`Delete Account screen should match snapshot 1`] = `
             "textTransform": "capitalize",
           }
         }
-      />
+      >
+        celeste
+      </Text>
     </View>
   </View>
   <View
@@ -97,6 +99,7 @@ exports[`Delete Account screen should match snapshot 1`] = `
           "marginTop": 50,
         }
       }
+      testID="backBtn"
     />
     <Text
       style={
@@ -144,6 +147,7 @@ exports[`Delete Account screen should match snapshot 1`] = `
           "overflow": "hidden",
         }
       }
+      testID="deleteAccount"
     >
       <Text
         style={

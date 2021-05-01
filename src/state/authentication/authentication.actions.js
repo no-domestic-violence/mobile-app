@@ -1,7 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 import appApiClient from 'api/';
 import { setUserSecureStorage, deleteUserSecureStorage } from '../../helpers';
-import * as types from './authentication.types';
+import types from './authentication.types';
 
 const signup = (dispatch) => async ({ email, password, username }) => {
   try {

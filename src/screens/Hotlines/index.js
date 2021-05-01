@@ -11,7 +11,7 @@ import useDebounce from 'hooks/useDebounce';
 import { makeCall } from '../../utils';
 import { styles } from './Hotlines.styles';
 
-export default function HotlinesList() {
+const HotlinesList = () => {
   const {
     state: { hotlinesData },
     searchHotlinesByParam,
@@ -71,3 +71,6 @@ export default function HotlinesList() {
     </StyledView>
   );
 }
+
+
+export default HotlinesList; 

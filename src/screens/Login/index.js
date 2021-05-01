@@ -44,7 +44,6 @@ export default function LoginScreen({ navigation }) {
           onSubmitForm={handleLogin}
           buttonText='log in'
           testID='logIn'
-          navigation={navigation}
         />
         <View style={styles.textView}>
           <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
