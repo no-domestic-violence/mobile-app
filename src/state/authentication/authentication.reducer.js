@@ -1,5 +1,6 @@
 import types from './authentication.types';
 import { createReducer } from '../../helpers';
+
 const initialAuthState = {
   token: '',
   username: '',

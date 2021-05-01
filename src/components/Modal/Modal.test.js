@@ -12,7 +12,7 @@ describe('Modal component', () => {
   const renderComponent = () => {
     return (
       <Modal
-        isVisible={true}
+        isVisible
         setModalVisible={setModalVisible}
         navigation={mockNavigation}
       />

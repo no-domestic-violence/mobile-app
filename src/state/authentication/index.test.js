@@ -13,7 +13,7 @@ describe('authReducer', () => {
   });
 
   it('should handle the  AUTH_ERROR action', () => {
-    const error = ''; //TODO: fix implementation code
+    const error = ''; // TODO: fix implementation code
     const action = { type: ' AUTH_ERROR', payload: error };
     const expectedState = { ...initialState, errorMessage: error };
 
@@ -28,7 +28,7 @@ describe('authReducer', () => {
     const action = { type: ' LOGIN_SIGNUP_SUCCESS', payload: { token, user } };
     const expectedState = {
       ...initialState,
-      token: token,
+      token,
       username: user.username,
       errorMessage: '',
     };
@@ -70,7 +70,7 @@ describe('authReducer', () => {
   it('should handle the CHECK_FIRST_LAUNCH action', () => {
     const isFirstLaunch = true;
     const action = { type: 'CHECK_FIRST_LAUNCH', payload: isFirstLaunch };
-    const expectedState = { ...initialState, isFirstLaunch: isFirstLaunch };
+    const expectedState = { ...initialState, isFirstLaunch };
     expect(authReducer(initialState, action)).toEqual(expectedState);
   });
 });
