@@ -1,4 +1,5 @@
 import types from './location.types';
+import { createReducer } from '../../helpers';
 
 const getCurrentLocationCase = (state, { payload }) => {
   return { ...state, currentLocation: payload };
@@ -11,17 +12,6 @@ const fetchSheltersCase = (state, { payload }) => {
 const searchHotlineCase = (state, { payload }) => {
   return { ...state, hotlinesData: payload };
 };
-
-function createReducer(handlers) {
-  return function reducer(state, action) {
-    if (handlers.hasOwnProperty(action.type)) {
-      return handlers[action.type](state, action);
-    } else {
-      console.log(state);
-      return state;
-    }
-  };
-}
 
 const locationReducer = createReducer({
   [types.UPDATE_LOCATION]: getCurrentLocationCase,

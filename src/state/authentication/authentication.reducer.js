@@ -1,5 +1,5 @@
 import types from './authentication.types';
-
+import { createReducer } from '../../helpers';
 const initialAuthState = {
   token: '',
   username: '',
@@ -66,16 +66,6 @@ const checkFirstLaunchCase = (state, { payload }) => {
     isFirstLaunch: payload,
   };
 };
-
-function createReducer(handlers) {
-  return function reducer(state, action) {
-    if (handlers.hasOwnProperty(action.type)) {
-      return handlers[action.type](state, action);
-    } else {
-      return state;
-    }
-  };
-}
 
 const authReducer = createReducer({
   [types.AUTH_ERROR]: getAuthErrorCase,
