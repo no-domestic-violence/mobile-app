@@ -2,7 +2,6 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { AuthContext, AuthProvider } from 'state/index';
 import Login from 'screens/Login/index';
-import * as SecureStore from 'expo-secure-store';
 
 const email = 'test@test.com';
 const password = '12345678';
@@ -32,15 +31,14 @@ describe('Login screen', () => {
   });
 
   it('should show error messages on empty inputs submit', async () => {
-    // given
     const { getByTestId, findByText } = render(
       <AuthProvider>
         <Login navigation={{ navigate, addListener }} />
       </AuthProvider>
     );
-    // when
+
     fireEvent.press(getByTestId('logIn'));
-    // then
+
     expect(await findByText(/please enter an email/i)).toBeTruthy();
     expect(
       await findByText(/please enter 8 characters password/i)
@@ -48,104 +46,97 @@ describe('Login screen', () => {
   });
 
   it('should show error on invalid password', async () => {
-    // given
     const invalidPassword = 'one';
+
     const { getByTestId, getByText, getByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={{ navigate, addListener }} />
       </AuthProvider>
     );
-    // when
+
     fireEvent.changeText(getByPlaceholderText(/password/i), invalidPassword);
     fireEvent.press(getByTestId('logIn'));
-    // then
+
     await waitFor(() =>
       expect(getByText(/please enter 8 characters password/i)).toBeTruthy()
     );
   });
 
   it('should not show error on valid password', async () => {
-    // given
     const { getByTestId, queryByText, getByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={{ navigate, addListener }} />
       </AuthProvider>
     );
-    // when
+
     fireEvent.changeText(getByPlaceholderText(/password/i), password);
     fireEvent.press(getByTestId('logIn'));
-    // then
+
     await waitFor(() =>
       expect(queryByText(/please enter 8 characters password/i)).toBeNull()
     );
   });
 
   it('should show error on invalid email', async () => {
-    // given
     const invalidEmail = 'test.com';
     const { getByTestId, getByText, getByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={{ navigate, addListener }} />
       </AuthProvider>
     );
-    // when
+
     fireEvent.changeText(getByPlaceholderText(/email/i), invalidEmail);
     fireEvent.press(getByTestId('logIn'));
-    // then
+
     await waitFor(() =>
       expect(getByText(/email must be a valid email/i)).toBeTruthy()
     );
   });
   it('should not show error on valid email', async () => {
-    // given
     const { getByTestId, queryByText, getByPlaceholderText } = render(
       <AuthProvider>
         <Login navigation={{ navigate, addListener }} />
       </AuthProvider>
     );
-    // when
+
     fireEvent.changeText(getByPlaceholderText(/email/i), email);
     fireEvent.press(getByTestId('logIn'));
-    // then
+
     await waitFor(() =>
       expect(queryByText(/email must be a valid email/i)).toBeNull()
     );
   });
   it('should navigate to sign up on press "go to sign up"', async () => {
-    // given
     const { getByText } = render(
       <AuthProvider>
         <Login navigation={{ navigate, addListener }} />
       </AuthProvider>
     );
-    // when
+
     fireEvent.press(getByText(/Do not have an account/i));
-    // then
+
     await expect(navigate).toHaveBeenCalledWith('Sign Up');
   });
   it('should navigate to home screen on press "proceed without login"', async () => {
-    // given
     const { getByText } = render(
       <AuthProvider>
         <Login navigation={{ navigate, addListener }} />
       </AuthProvider>
     );
-    // when
+
     fireEvent.press(getByText(/proceed without login/i));
-    // then
+
     await expect(navigate).toHaveBeenCalledWith('BottomTabNavigator', {
       screen: 'Home',
     });
   });
   it('should handle valid input onSubmit and call login action creator function with email and password', async () => {
-    // given
     const state = {
       isLoggedIn: true,
       errorMessage: '',
       isFirstLaunch: false,
       token,
     };
-    await SecureStore.setItemAsync('token', JSON.stringify(token));
     const login = jest.fn();
 
     const { getByTestId, getByPlaceholderText } = render(
@@ -153,13 +144,13 @@ describe('Login screen', () => {
         <Login navigation={{ navigate, addListener }} />
       </AuthContext.Provider>
     );
-    // when
+
     fireEvent.changeText(getByPlaceholderText(/email/i), email);
     fireEvent.changeText(getByPlaceholderText(/password/i), password);
     fireEvent.press(getByTestId('logIn'));
     const flushPromises = () => new Promise(setImmediate);
     await flushPromises();
-    // then
+
     expect(login).toBeCalledWith({ email, password });
     expect(navigate).toBeCalledWith('User');
   });
