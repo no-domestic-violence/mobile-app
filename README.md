@@ -89,7 +89,13 @@ expo build:android -t app-bundle
 ```s
 expo build:ios (only with paid developer account)
 ```
+---
+E2E testing with detox
+build the app before and test
+```s
+detox test --configuration ios.sim.release
 
+```
 ---
 ## Authors of the project:
 

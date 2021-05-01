@@ -70,6 +70,7 @@
     "@babel/core": "~7.9.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/jest-native": "^4.0.1",
+    "@testing-library/react-hooks": "^5.1.2",
     "@testing-library/react-native": "^7.1.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
