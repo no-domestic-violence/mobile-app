@@ -14,7 +14,7 @@ const getContacts = (dispatch) => async () => {
   } catch (error) {
     dispatch({
       type: types.ERROR,
-      payload: error.response.data.message,
+      payload: error.response.data,
     });
   }
 };
@@ -30,7 +30,7 @@ const deleteContact = (dispatch) => async ({ id }) => {
   } catch (error) {
     dispatch({
       type: types.ERROR,
-      payload: error.response.data.message,
+      payload: error.response.data,
     });
   }
 };
@@ -43,7 +43,7 @@ const addContact = (dispatch) => async (data) => {
   } catch (error) {
     dispatch({
       type: types.ERROR,
-      payload: error.response.data.message,
+      payload: error.response.data,
     });
   }
 };
@@ -59,7 +59,7 @@ const editContact = (dispatch) => async ({ data, id }) => {
   } catch (error) {
     dispatch({
       type: types.ERROR,
-      payload: error.response.data.message,
+      payload: error.response.data,
     });
   }
 };

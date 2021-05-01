@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CreateContact /> when isAddMode should match snapshot 1`] = `
+exports[`<CreateContact /> should match snapshot 1`] = `
 <View
   onLayout={[Function]}
   style={
@@ -67,7 +67,7 @@ exports[`<CreateContact /> when isAddMode should match snapshot 1`] = `
             "prefix": "fas",
           }
         }
-        onPress={[Function]}
+        onPress={[MockFunction]}
         raised={true}
         size={20}
         style={
@@ -428,6 +428,16 @@ exports[`<CreateContact /> when isAddMode should match snapshot 1`] = `
         testID="contact-submit-button"
       />
     </View>
+    <Text
+      style={
+        Object {
+          "color": "darkred",
+          "marginTop": 20,
+        }
+      }
+    >
+       
+    </Text>
   </View>
 </View>
 `;

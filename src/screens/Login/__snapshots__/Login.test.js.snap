@@ -324,6 +324,16 @@ exports[`Login screen should match snapshot 1`] = `
           Proceed without login
         </Text>
       </View>
+      <Text
+        style={
+          Object {
+            "color": "darkred",
+            "marginTop": 20,
+          }
+        }
+      >
+         
+      </Text>
     </View>
   </View>
 </View>

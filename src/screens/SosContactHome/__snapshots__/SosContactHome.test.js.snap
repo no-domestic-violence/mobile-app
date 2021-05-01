@@ -227,5 +227,15 @@ exports[`<SosContactHome /> should match snapshot 1`] = `
       </View>
     </View>
   </View>
+  <Text
+    style={
+      Object {
+        "color": "darkred",
+        "marginTop": 20,
+      }
+    }
+  >
+     
+  </Text>
 </View>
 `;

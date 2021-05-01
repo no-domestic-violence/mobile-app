@@ -70,7 +70,7 @@ const changePassword = (dispatch) => async ({
   } catch (error) {
     dispatch({
       type: types.AUTH_ERROR,
-      payload: error.response.data.message,
+      payload: error.response.data,
     });
   }
 };
@@ -105,7 +105,7 @@ const deleteAccount = (dispatch) => async ({ username }) => {
   } catch (error) {
     dispatch({
       type: types.AUTH_ERROR,
-      payload: error.response.data.message,
+      payload: error.response.data,
     });
   }
 };
