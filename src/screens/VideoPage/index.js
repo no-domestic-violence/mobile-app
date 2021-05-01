@@ -6,6 +6,7 @@ const VideoPage = ({ route }) => {
   const { url } = route.params.params;
   return (
     <WebView
+      testID='videoContainer'
       source={{ uri: url }}
       style={{ marginTop: 20 }}
       javaScriptEnabled
