@@ -145,11 +145,7 @@ describe('authentication actions', () => {
     await login(dispatch)({ email, password });
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
-  it('should dispatch an action to authenticate user', async () => {
-    await authentication(dispatch)();
-    expect(dispatch).toHaveBeenCalled();
-  });
-
+  
   it('should create an action to change user password', async () => {
     const oldPassword = '87654321';
     const response = {
