@@ -70,7 +70,6 @@ describe('Shows userflow starting from logged out, not first time launch', () =>
     ).toBeVisible();
   });
   it('should display error messages when trying to submit empty contact form', async () => {
-    // await element(by.text('Emergency')).tap();
     await element(by.text('Please add your trusted contact')).atIndex(0).tap();
     await element(by.id('contact-submit-button')).tap();
     await expect(element(by.text('Please enter a name'))).toBeVisible();
@@ -81,8 +80,6 @@ describe('Shows userflow starting from logged out, not first time launch', () =>
     await expect(element(by.id('contact-delete-button'))).toBeNotVisible();
   });
   it('should display error message when invalid phone number is provided', async () => {
-    // await element(by.text('Emergency')).tap();
-    // await element(by.text('Please add your trusted contact')).atIndex(0).tap();
     await element(by.label('Name')).atIndex(1).tap();
     await element(by.label('Name')).atIndex(1).replaceText('test');
     await element(by.label('Phone Number')).atIndex(1).tap();
