@@ -11,7 +11,7 @@ export default function Content({ navigation }) {
   const getArticles = async () => {
     try {
       const response = await appApiClient.getArticlesData();
-      setBlog([...response.data]);
+      setBlog([...response.data.articles]);
     } catch (error) {
       console.error(error);
     }
@@ -30,7 +30,13 @@ export default function Content({ navigation }) {
         data={blog}
         keyExtractor={(item, index) => `key${index}`}
         renderItem={({ item }) => {
-          return <ArticleCard testID='articleItem' item={item} navigation={navigation} />;
+          return (
+            <ArticleCard
+              testID='articleItem'
+              item={item}
+              navigation={navigation}
+            />
+          );
         }}
       />
     </View>
