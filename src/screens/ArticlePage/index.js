@@ -16,7 +16,7 @@ export default function ArticlePage({ route, navigation }) {
   const findOneArticle = async () => {
     try {
       const response = await appApiClient.getArticleById(route.params.id);
-      setUniqueArticle(response.data);
+      setUniqueArticle(response.data.article);
     } catch (error) {
       console.error(error);
     }

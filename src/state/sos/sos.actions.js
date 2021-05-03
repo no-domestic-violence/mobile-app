@@ -14,7 +14,7 @@ const getContacts = (dispatch) => async () => {
   } catch (error) {
     dispatch({
       type: types.ERROR,
-      payload: error.response.data,
+      payload: error.response.data.message,
     });
   }
 };
@@ -25,12 +25,12 @@ const deleteContact = (dispatch) => async ({ id }) => {
     const response = await appApiClient.deleteSosContact(username, id);
     dispatch({
       type: types.DELETE_CONTACT,
-      payload: response.data,
+      payload: response.data.contacts,
     });
   } catch (error) {
     dispatch({
       type: types.ERROR,
-      payload: error.response.data,
+      payload: error.response.data.message,
     });
   }
 };
@@ -39,11 +39,11 @@ const addContact = (dispatch) => async (data) => {
   const { username } = await getUserSecureStorage();
   try {
     const response = await appApiClient.addSosContact(username, data);
-    dispatch({ type: types.ADD_CONTACT, payload: response.data });
+    dispatch({ type: types.ADD_CONTACT, payload: response.data.contacts });
   } catch (error) {
     dispatch({
       type: types.ERROR,
-      payload: error.response.data,
+      payload: error.response.data.message,
     });
   }
 };
@@ -54,12 +54,12 @@ const editContact = (dispatch) => async ({ data, id }) => {
     const response = await appApiClient.editSosContact(username, data, id);
     dispatch({
       type: types.EDIT_CONTACT,
-      payload: response.data,
+      payload: response.data.contacts,
     });
   } catch (error) {
     dispatch({
       type: types.ERROR,
-      payload: error.response.data,
+      payload: error.response.data.message,
     });
   }
 };
