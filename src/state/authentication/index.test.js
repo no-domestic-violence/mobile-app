@@ -2,7 +2,6 @@ import authReducer from './authentication.reducer';
 import {
   signup,
   login,
-  authentication,
   changePassword,
   signout,
   setAlreadyLaunchedValue,
