@@ -1,7 +1,6 @@
 import createAppContext from 'helpers/createAppContext';
 import {
-  signup,
-  login,
+  loginSignup,
   signout,
   removeErrors,
   removeMessages,
@@ -15,8 +14,7 @@ import authReducer from './authentication.reducer';
 export const { Provider, Context } = createAppContext(
   authReducer,
   {
-    signup,
-    login,
+    loginSignup,
     signout,
     removeErrors,
     removeMessages,

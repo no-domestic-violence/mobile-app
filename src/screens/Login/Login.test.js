@@ -137,10 +137,10 @@ describe('Login screen', () => {
       isFirstLaunch: false,
       token,
     };
-    const login = jest.fn();
+    const loginSignup = jest.fn();
 
     const { getByTestId, getByPlaceholderText } = render(
-      <AuthContext.Provider value={{ state, login }}>
+      <AuthContext.Provider value={{ state, loginSignup }}>
         <Login navigation={{ navigate, addListener }} />
       </AuthContext.Provider>
     );
@@ -151,7 +151,7 @@ describe('Login screen', () => {
     const flushPromises = () => new Promise(setImmediate);
     await flushPromises();
 
-    expect(login).toBeCalledWith({ email, password });
+    expect(loginSignup).toBeCalledWith({ email, password });
     expect(navigate).toBeCalledWith('User');
   });
 });

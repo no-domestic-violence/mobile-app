@@ -16,10 +16,10 @@ import { styles } from './Login.styles';
 
 export default function LoginScreen({ navigation }) {
   const { t } = useTranslation();
-  const { state, login, removeErrors } = useContext(AuthContext);
+  const { state, loginSignup, removeErrors } = useContext(AuthContext);
 
   const handleLogin = async ({ email, password }) => {
-    await login({ email, password });
+    await loginSignup({ email, password });
     if (state.token) {
       navigation.navigate('User');
     }

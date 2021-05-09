@@ -1,7 +1,6 @@
 import authReducer from './authentication.reducer';
 import {
-  signup,
-  login,
+  loginSignup,
   changePassword,
   signout,
   setAlreadyLaunchedValue,
@@ -122,11 +121,14 @@ describe('authentication actions', () => {
       .onPost('/signup', { email, password, username })
       .reply(201, response);
     appApiClient.signupUser(email, password, username);
+    mockAppClient
+    .onPost('/login', { email, password })
+    .reply(201, response);
     const expectedAction = {
       type: types.LOGIN_SIGNUP_SUCCESS,
       payload: response,
     };
-    await signup(dispatch)({ email, password, username });
+    await loginSignup(dispatch)({ email, password, username });
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
   it('should create an action to login user', async () => {
@@ -141,7 +143,7 @@ describe('authentication actions', () => {
       type: types.LOGIN_SIGNUP_SUCCESS,
       payload: response,
     };
-    await login(dispatch)({ email, password });
+    await loginSignup(dispatch)({ email, password });
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
   

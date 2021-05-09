@@ -6,7 +6,7 @@ import types from './authentication.types';
 const authenticationError = (error) => {
   return {
     type: types.AUTH_ERROR,
-    payload: error.response.data,
+    payload: error.message,
   };
 };
 
@@ -30,25 +30,22 @@ const changePasswordSuccess = (data) => {
   return { type: types.CHANGE_PASSWORD_SUCCESS, payload: data };
 };
 
-const signup = (dispatch) => async ({ email, password, username }) => {
-  try {
-    const {
-      data,
-      data: { token, user },
-    } = await appApiClient.signupUser(email, password, username);
-    await setUserSecureStorage(token, user.username);
-    dispatch(signupLoginSuccess(data));
-  } catch (error) {
-    dispatch(authenticationError(error));
-  }
+const signupRequest = async (email, password, username) => {
+  const { data } = await appApiClient.signupUser(email, password, username);
+  return data;
+};
+const loginRequest = async (email, password) => {
+  const { data } = await appApiClient.loginUser(email, password);
+  return data;
 };
 
-const login = (dispatch) => async ({ email, password }) => {
+const loginSignup = (dispatch) => async ({ email, password, username }) => {
   try {
-    const {
-      data,
-      data: { token, user },
-    } = await appApiClient.loginUser(email, password);
+    const data =
+      username === true
+        ? await signupRequest(email, password, username)
+        : await loginRequest(email, password);
+    const { token, user } = data;
     await setUserSecureStorage(token, user.username);
     dispatch(signupLoginSuccess(data));
   } catch (error) {
@@ -124,8 +121,6 @@ const deleteAccount = (dispatch) => async ({ username }) => {
 };
 
 export {
-  signup,
-  login,
   signout,
   removeErrors,
   removeMessages,
@@ -133,4 +128,5 @@ export {
   changePassword,
   deleteAccount,
   setAlreadyLaunchedValue,
+  loginSignup,
 };
