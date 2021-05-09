@@ -1,6 +1,10 @@
 import * as SecureStore from 'expo-secure-store';
 import appApiClient from 'api/';
-import { setUserSecureStorage, deleteUserSecureStorage } from '../../helpers';
+import {
+  setUserSecureStorage,
+  deleteUserSecureStorage,
+  getUserSecureStorage,
+} from '../../helpers';
 import types from './authentication.types';
 
 const authenticationError = (error) => {
@@ -54,10 +58,8 @@ const loginSignup = (dispatch) => async ({ email, password, username }) => {
 };
 
 const authentication = (dispatch) => async () => {
-  const token = await SecureStore.getItemAsync('token');
-  const username = await SecureStore.getItemAsync('username');
-  const user = { token, username };
-  if (token) {
+  const user = await getUserSecureStorage();
+  if (user.token) {
     dispatch(authenticationSuccess(user));
   }
 };
