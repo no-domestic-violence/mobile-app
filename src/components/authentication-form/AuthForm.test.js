@@ -50,15 +50,40 @@ describe('Authentication form component', () => {
     expect(queryByPlaceholderText('Password')).not.toBeNull();
     expect(queryByText(/confirm/i)).not.toBeNull();
   });
-  it('should match snapshot', () => {
-    const result = render(
-      <AuthForm
-        formType='change password'
-        headerForm='Change password'
-        onSubmitForm={onSubmitForm}
-        buttonText='confirm'
-      />
-    ).toJSON();
-    expect(result).toMatchSnapshot();
+
+  describe('should match snapshot', () => {
+    it('for change password form', () => {
+      const result = render(
+        <AuthForm
+          formType='change password'
+          headerForm='Change password'
+          onSubmitForm={onSubmitForm}
+          buttonText='confirm'
+        />
+      ).toJSON();
+      expect(result).toMatchSnapshot();
+    });
+    it('for sign up form', () => {
+      const result = render(
+        <AuthForm
+          formType='sign up'
+          headerForm='Sign up'
+          onSubmitForm={onSubmitForm}
+          buttonText='Sign up'
+        />
+      ).toJSON();
+      expect(result).toMatchSnapshot();
+    });
+    it('for login form', () => {
+      const result = render(
+        <AuthForm
+          formType='log in'
+          headerForm='Log in'
+          onSubmitForm={onSubmitForm}
+          buttonText='Log in'
+        />
+      ).toJSON();
+      expect(result).toMatchSnapshot();
+    });
   });
 });

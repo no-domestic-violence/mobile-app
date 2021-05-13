@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Authentication form component should match snapshot 1`] = `
+exports[`Authentication form component should match snapshot for change password form 1`] = `
 Array [
   <Text
     style={
@@ -295,6 +295,525 @@ Array [
       }
     >
       CONFIRM
+    </Text>
+  </View>,
+]
+`;
+
+exports[`Authentication form component should match snapshot for login form 1`] = `
+Array [
+  <Text
+    style={
+      Object {
+        "alignSelf": "flex-start",
+        "fontSize": 35,
+        "fontWeight": "600",
+        "marginBottom": 40,
+        "marginLeft": 30,
+      }
+    }
+    testID="form-header"
+  >
+    Log in
+  </Text>,
+  <View
+    style={
+      Object {
+        "paddingHorizontal": 10,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 1,
+          "borderColor": "#86939e",
+          "flexDirection": "row",
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+          ],
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCompleteType="off"
+        autoCorrect={false}
+        blurOnSubmit={false}
+        editable={true}
+        onChangeText={[Function]}
+        placeholder="Email"
+        placeholderTextColor="#6c757d"
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#fff",
+            "borderRadius": 5,
+            "color": "#000",
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "400",
+            "minHeight": 40,
+            "paddingBottom": "4%",
+            "paddingLeft": "2%",
+            "paddingTop": "4%",
+            "width": "85%",
+          }
+        }
+        testID="RNE__Input__text-input"
+        textContentType="oneTimeCode"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+    </View>
+    <Text
+      style={
+        Object {
+          "color": "#ff190c",
+          "fontSize": 12,
+          "margin": 5,
+        }
+      }
+    />
+  </View>,
+  <Text
+    style={
+      Array [
+        Object {
+          "bottom": 10,
+          "color": "red",
+        },
+      ]
+    }
+  >
+     
+  </Text>,
+  <View
+    style={
+      Object {
+        "paddingHorizontal": 10,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 1,
+          "borderColor": "#86939e",
+          "flexDirection": "row",
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+          ],
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCompleteType="off"
+        autoCorrect={false}
+        blurOnSubmit={false}
+        editable={true}
+        isInputFocused={[Function]}
+        onChangeText={[Function]}
+        placeholder="Password"
+        placeholderTextColor="#6c757d"
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        secureTextEntry={true}
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#fff",
+            "borderRadius": 5,
+            "color": "#000",
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "400",
+            "minHeight": 40,
+            "paddingBottom": "4%",
+            "paddingLeft": "2%",
+            "paddingTop": "4%",
+            "width": "85%",
+          }
+        }
+        testID="RNE__Input__text-input"
+        textContentType="oneTimeCode"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+    </View>
+    <Text
+      style={
+        Object {
+          "color": "#ff190c",
+          "fontSize": 12,
+          "margin": 5,
+        }
+      }
+    />
+  </View>,
+  <Text
+    style={
+      Array [
+        Object {
+          "bottom": 10,
+          "color": "red",
+        },
+      ]
+    }
+  >
+     
+  </Text>,
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#415889",
+        "borderRadius": 20,
+        "fontWeight": "600",
+        "marginTop": 40,
+        "opacity": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#fff",
+            "fontSize": 14,
+            "fontWeight": "600",
+            "overflow": "hidden",
+            "paddingBottom": 10,
+            "paddingLeft": 50,
+            "paddingRight": 50,
+            "paddingTop": 10,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      LOG IN
+    </Text>
+  </View>,
+]
+`;
+
+exports[`Authentication form component should match snapshot for sign up form 1`] = `
+Array [
+  <Text
+    style={
+      Object {
+        "alignSelf": "flex-start",
+        "fontSize": 35,
+        "fontWeight": "600",
+        "marginBottom": 40,
+        "marginLeft": 30,
+      }
+    }
+    testID="form-header"
+  >
+    Sign up
+  </Text>,
+  <View
+    style={
+      Object {
+        "paddingHorizontal": 10,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 1,
+          "borderColor": "#86939e",
+          "flexDirection": "row",
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+          ],
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCompleteType="off"
+        autoCorrect={false}
+        blurOnSubmit={false}
+        editable={true}
+        onChangeText={[Function]}
+        placeholder="Username"
+        placeholderTextColor="#6c757d"
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#fff",
+            "borderRadius": 5,
+            "color": "#000",
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "400",
+            "minHeight": 40,
+            "paddingBottom": "4%",
+            "paddingLeft": "2%",
+            "paddingTop": "4%",
+            "width": "85%",
+          }
+        }
+        testID="RNE__Input__text-input"
+        textContentType="oneTimeCode"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+    </View>
+    <Text
+      style={
+        Object {
+          "color": "#ff190c",
+          "fontSize": 12,
+          "margin": 5,
+        }
+      }
+    />
+  </View>,
+  <Text
+    style={
+      Array [
+        Object {
+          "bottom": 10,
+          "color": "red",
+        },
+      ]
+    }
+  >
+     
+  </Text>,
+  <View
+    style={
+      Object {
+        "paddingHorizontal": 10,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 1,
+          "borderColor": "#86939e",
+          "flexDirection": "row",
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+          ],
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCompleteType="off"
+        autoCorrect={false}
+        blurOnSubmit={false}
+        editable={true}
+        onChangeText={[Function]}
+        placeholder="Email"
+        placeholderTextColor="#6c757d"
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#fff",
+            "borderRadius": 5,
+            "color": "#000",
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "400",
+            "minHeight": 40,
+            "paddingBottom": "4%",
+            "paddingLeft": "2%",
+            "paddingTop": "4%",
+            "width": "85%",
+          }
+        }
+        testID="RNE__Input__text-input"
+        textContentType="oneTimeCode"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+    </View>
+    <Text
+      style={
+        Object {
+          "color": "#ff190c",
+          "fontSize": 12,
+          "margin": 5,
+        }
+      }
+    />
+  </View>,
+  <Text
+    style={
+      Array [
+        Object {
+          "bottom": 10,
+          "color": "red",
+        },
+      ]
+    }
+  >
+     
+  </Text>,
+  <View
+    style={
+      Object {
+        "paddingHorizontal": 10,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 1,
+          "borderColor": "#86939e",
+          "flexDirection": "row",
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+          ],
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCompleteType="off"
+        autoCorrect={false}
+        blurOnSubmit={false}
+        editable={true}
+        isInputFocused={[Function]}
+        onChangeText={[Function]}
+        placeholder="Password"
+        placeholderTextColor="#6c757d"
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        secureTextEntry={true}
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#fff",
+            "borderRadius": 5,
+            "color": "#000",
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "400",
+            "minHeight": 40,
+            "paddingBottom": "4%",
+            "paddingLeft": "2%",
+            "paddingTop": "4%",
+            "width": "85%",
+          }
+        }
+        testID="RNE__Input__text-input"
+        textContentType="oneTimeCode"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+    </View>
+    <Text
+      style={
+        Object {
+          "color": "#ff190c",
+          "fontSize": 12,
+          "margin": 5,
+        }
+      }
+    />
+  </View>,
+  <Text
+    style={
+      Array [
+        Object {
+          "bottom": 10,
+          "color": "red",
+        },
+      ]
+    }
+  >
+     
+  </Text>,
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#415889",
+        "borderRadius": 20,
+        "fontWeight": "600",
+        "marginTop": 40,
+        "opacity": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#fff",
+            "fontSize": 14,
+            "fontWeight": "600",
+            "overflow": "hidden",
+            "paddingBottom": 10,
+            "paddingLeft": 50,
+            "paddingRight": 50,
+            "paddingTop": 10,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      SIGN UP
     </Text>
   </View>,
 ]
