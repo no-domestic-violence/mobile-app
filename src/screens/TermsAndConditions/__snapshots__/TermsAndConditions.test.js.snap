@@ -48,6 +48,7 @@ exports[`<TermsAndConditionsScreen /> should match snapshot 1`] = `
         "width": 637.5,
       }
     }
+    testID="terms-conditions-scroll-view"
   >
     <View>
       <View
