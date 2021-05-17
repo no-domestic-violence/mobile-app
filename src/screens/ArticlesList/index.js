@@ -30,7 +30,13 @@ export default function Content({ navigation }) {
         data={blog}
         keyExtractor={(item, index) => `key${index}`}
         renderItem={({ item }) => {
-          return <ArticleCard testID='articleItem' item={item} navigation={navigation} />;
+          return (
+            <ArticleCard
+              testID='articleItem'
+              item={item}
+              navigation={navigation}
+            />
+          );
         }}
       />
     </View>
