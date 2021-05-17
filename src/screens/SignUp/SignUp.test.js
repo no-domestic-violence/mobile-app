@@ -34,7 +34,6 @@ describe('Sign Up screen', () => {
   });
 
   it('should show error messages on empty inputs submit', async () => {
-    // given
     const { getByTestId, getByText } = render(
       <AuthProvider>
         <SignUp navigation={{ navigate, addListener }} />

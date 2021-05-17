@@ -25,15 +25,15 @@ describe('authReducer', () => {
     expect(authReducer(initialState, invalidAction)).toEqual(initialState);
   });
 
-  it('should handle the  AUTH_ERROR action', () => {
-    const error = ''; // TODO: fix implementation code
-    const action = { type: ' AUTH_ERROR', payload: error };
+  it('should handle the AUTH_ERROR action', () => {
+    const error = '';
+    const action = { type: 'AUTH_ERROR', payload: error };
     const expectedState = { ...initialState, errorMessage: error };
 
     expect(authReducer(initialState, action)).toEqual(expectedState);
   });
 
-  it('should handle the  LOGIN_SIGNUP_SUCCESS action', () => {
+  it('should handle the LOGIN_SIGNUP_SUCCESS action', () => {
     const token = 'TestToken';
     const user = {
       username: 'TestUsername',
