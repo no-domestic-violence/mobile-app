@@ -14,7 +14,7 @@ const signup = (dispatch) => async ({ email, password, username }) => {
   } catch (error) {
     dispatch({
       type: types.AUTH_ERROR,
-      payload: "Something went wrong'( Try again",
+      payload: error.response.data.message,
     });
   }
 };
@@ -32,7 +32,7 @@ const login = (dispatch) => async ({ email, password }) => {
   } catch (error) {
     dispatch({
       type: types.AUTH_ERROR,
-      payload: 'Are you sure about password and email?',
+      payload: error.response.data.message,
     });
   }
 };
