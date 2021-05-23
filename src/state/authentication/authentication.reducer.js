@@ -1,13 +1,9 @@
 import types from './authentication.types';
-import { createReducer } from '../../helpers';
+import { createReducer, handleErrorMessage, updateState } from '../../helpers';
 
 const initialAuthState = {
   token: '',
   username: '',
-};
-
-const getAuthErrorCase = (state, { payload }) => {
-  return { ...state, errorMessage: payload };
 };
 
 const loginSignupSuccessCase = (state, { payload }) => {
@@ -19,12 +15,7 @@ const loginSignupSuccessCase = (state, { payload }) => {
   };
 };
 
-const changePasswordSuccessCase = (state, { payload }) => {
-  return {
-    ...state,
-    successMessage: payload,
-  };
-};
+const changePasswordSuccessCase = updateState('successMessage');
 
 const authSuccessCase = (state, { payload }) => {
   return {
@@ -61,15 +52,10 @@ const removeMessagesCase = (state, { payload }) => {
   };
 };
 
-const checkFirstLaunchCase = (state, { payload }) => {
-  return {
-    ...state,
-    isFirstLaunch: payload,
-  };
-};
+const checkFirstLaunchCase = updateState('isFirstLaunch');
 
 const authReducer = createReducer({
-  [types.AUTH_ERROR]: getAuthErrorCase,
+  [types.AUTH_ERROR]: handleErrorMessage,
   [types.LOGIN_SIGNUP_SUCCESS]: loginSignupSuccessCase,
   [types.CHANGE_PASSWORD_SUCCESS]: changePasswordSuccessCase,
   [types.AUTH_SUCCESS]: authSuccessCase,
