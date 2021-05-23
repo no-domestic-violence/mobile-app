@@ -23,18 +23,32 @@ const getTokenSecureStorage = async () => {
 
 const createReducer = (handlers) => {
   return function reducer(state, action) {
-    if (handlers.hasOwnProperty(action.type)) {
-      return handlers[action.type](state, action);
-    } 
+    const handler = handlers[action.type];
+    if (handler) {
+      return handler(state, action);
+    }
       return state;
     
   };
 }
+const updateState = (stateKey) => {
+  return (state, action) => {
+    return {
+      ...state,
+      [stateKey]: action.payload,
+    };
+  };
+};
+
+// case reducer 
+const handleErrorMessage = updateState('errorMessage');
 
 export {
   setUserSecureStorage,
   deleteUserSecureStorage,
   getUserSecureStorage,
   getTokenSecureStorage,
-  createReducer
+  createReducer,
+  updateState,
+  handleErrorMessage
 };
