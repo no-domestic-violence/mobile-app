@@ -1,5 +1,5 @@
 import sosReducer from './sos.reducer';
-import * as types from './sos.types';
+import types from './sos.types';
 
 const mockFirstContact = {
   name: 'celeste',
