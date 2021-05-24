@@ -60,4 +60,9 @@ describe('sos reducer', () => {
     };
     expect(sosReducer(mockInitialState, action)).toEqual(expectedState);
   });
+
+  it('should return the initialState', () => {
+    const invalidAction = { type: 'INVALID_ACTION' };
+    expect(sosReducer(mockInitialState, invalidAction)).toEqual(mockInitialState);
+  });
 });
