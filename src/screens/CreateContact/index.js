@@ -40,14 +40,12 @@ const CreateContact = ({ navigation: { goBack }, route }) => {
   const handleAddContact = async () => {
     const data = getValues();
     await addContact(data);
-    // need this step since mongodb generates the _id
     await getContacts();
     goBack();
   };
 
   const handleEditContact = async () => {
     const data = getValues();
-    // insert the contact id into form values object
     data._id = id;
     await editContact({ data, id });
     goBack();
