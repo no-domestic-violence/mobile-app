@@ -14,7 +14,6 @@ const mockContact = {
   message: 'help me',
 };
 
-// TODO: use UserEvent instead of FireEvent
 describe('Sos Form in AddMode', () => {
   it('should match snapshot', () => {
     const result = renderWithReactHookForm(<SosForm />).toJSON();
@@ -62,7 +61,7 @@ describe('Sos Form in edit mode', () => {
     const { getByTestId } = renderWithReactHookForm(
       <SosForm isAddMode={false} />
     );
-    
+    expect(getByTestId('contact-submit-button')).toBeTruthy();
     expect(getByTestId('contact-delete-button')).toBeTruthy();
   });
 
