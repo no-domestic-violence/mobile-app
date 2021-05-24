@@ -22,13 +22,9 @@ const getTokenSecureStorage = async () => {
 };
 
 const createReducer = (handlers) => {
-  return function reducer(state, action) {
+  return (state, action) => {
     const handler = handlers[action.type];
-    if (handler) {
-      return handler(state, action);
-    }
-      return state;
-    
+    return handler ? handler(state, action) : state;
   };
 }
 const updateState = (stateKey) => {
