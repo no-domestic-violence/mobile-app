@@ -3,7 +3,7 @@ import { act, render, fireEvent, waitFor } from '@testing-library/react-native';
 import { SosProvider, SosContext } from 'state';
 import CreateContact from './index';
 
-const mockRoute = {
+const mockRouteWithoutId = {
   params: {},
 };
 const mockRouteWithId = {
@@ -57,7 +57,7 @@ describe('<CreateContact /> in addMode', () => {
   it('should match snapshot', async () => {
     const result = render(
       <SosProvider {...initProps}>
-        <CreateContact route={mockRoute} navigation={mockNavigation} />
+        <CreateContact route={mockRouteWithoutId} navigation={mockNavigation} />
       </SosProvider>
     ).toJSON();
     expect(result).toMatchSnapshot();
@@ -67,18 +67,18 @@ describe('<CreateContact /> in addMode', () => {
   it('should not render delete icon', async () => {
     const { queryByTestId } = render(
       <SosProvider {...initProps}>
-        <CreateContact route={mockRoute} navigation={mockNavigation} />
+        <CreateContact route={mockRouteWithoutId} navigation={mockNavigation} />
       </SosProvider>
     );
     expect(queryByTestId('contact-delete-button')).toBeNull();
   });
+
   it('should show field error messages when all the fields are empty and submit is pressed', async () => {
     const { getByTestId, getByText } = render(
       <SosProvider {...initProps}>
-        <CreateContact route={mockRoute} navigation={mockNavigation} />
+        <CreateContact route={mockRouteWithoutId} navigation={mockNavigation} />
       </SosProvider>
     );
-
     fireEvent.press(getByTestId('contact-submit-button'));
     await waitFor(() => {
       expect(getByText(/please enter a name/i)).toBeTruthy();
@@ -90,7 +90,7 @@ describe('<CreateContact /> in addMode', () => {
   it('should show error message when submit is pressed with invalid phone number', async () => {
     const { getByTestId, getByPlaceholderText, findByText } = render(
       <SosProvider {...initProps}>
-        <CreateContact route={mockRoute} navigation={mockNavigation} />
+        <CreateContact route={mockRouteWithoutId} navigation={mockNavigation} />
       </SosProvider>
     );
     fireEvent.changeText(
@@ -104,7 +104,7 @@ describe('<CreateContact /> in addMode', () => {
   it('should not show error message when submit is pressed with valid phone number', async () => {
     const { getByTestId, getByPlaceholderText, queryByText } = render(
       <SosProvider {...initProps}>
-        <CreateContact route={mockRoute} navigation={mockNavigation} />
+        <CreateContact route={mockRouteWithoutId} navigation={mockNavigation} />
       </SosProvider>
     );
     await act(async () => {
@@ -121,7 +121,7 @@ describe('<CreateContact /> in addMode', () => {
   it('handles valid input submission when adding a contact', async () => {
     const { getByTestId, getByPlaceholderText } = render(
       <SosContext.Provider value={{ state: mockEmptyState, ...initProps }}>
-        <CreateContact route={mockRoute} navigation={mockNavigation} />
+        <CreateContact route={mockRouteWithoutId} navigation={mockNavigation} />
       </SosContext.Provider>
     );
     await act(async () => {
@@ -149,7 +149,7 @@ describe('<CreateContact /> in addMode', () => {
   it('should display errorMessage when there is server error', async () => {
     const { getByText } = render(
       <SosContext.Provider value={{ state: mockErrorState, ...initProps }}>
-        <CreateContact route={mockRoute} navigation={mockNavigation} />
+        <CreateContact route={mockRouteWithoutId} navigation={mockNavigation} />
       </SosContext.Provider>
     );
     expect(getByText(/contact does not exist/i)).toBeTruthy();
