@@ -1,4 +1,5 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
+/* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
 import React, { useContext, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -24,8 +25,8 @@ const CreateContact = ({ navigation: { goBack }, route }) => {
   });
 
   const { id } = route.params;
-  // if there is no id in route.params -> isAddMode
   const isAddMode = !id;
+  
   const foundContact = state.contacts.find((item) => item._id === id);
 
   useEffect(() => {
@@ -37,18 +38,14 @@ const CreateContact = ({ navigation: { goBack }, route }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAddMode]);
 
-  const handleAddContact = async () => {
-    const data = getValues();
+  const handleAddContact = async (data) => {
     await addContact(data);
     await getContacts();
-    goBack();
   };
 
-  const handleEditContact = async () => {
-    const data = getValues();
+  const handleEditContact = async (data) => {
     data._id = id;
     await editContact({ data, id });
-    goBack();
   };
 
   const handleDeleteContact = async () => {
@@ -56,8 +53,10 @@ const CreateContact = ({ navigation: { goBack }, route }) => {
     goBack();
   };
 
-  function onSubmit() {
-    return isAddMode ? handleAddContact() : handleEditContact();
+  const onSubmit = async () => {
+    const data = getValues();
+    isAddMode ? await handleAddContact(data) : await handleEditContact(data);
+    goBack();
   }
 
   return (
