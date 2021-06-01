@@ -45,10 +45,9 @@ const loginRequest = async (email, password) => {
 
 const loginSignup = (dispatch) => async ({ email, password, username }) => {
   try {
-    const data =
-      username === true
-        ? await signupRequest(email, password, username)
-        : await loginRequest(email, password);
+    const data = username
+      ? await signupRequest(email, password, username)
+      : await loginRequest(email, password);
     const { token, user } = data;
     await setUserSecureStorage(token, user.username);
     dispatch(signupLoginSuccess(data));
