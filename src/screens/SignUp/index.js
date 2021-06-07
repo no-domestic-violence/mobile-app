@@ -14,10 +14,10 @@ import { AuthForm } from 'components/authentication-form/';
 import { styles } from './SignUp.styles';
 
 export default function SignUpScreen({ navigation }) {
-  const { state, signup, removeErrors } = useContext(AuthContext);
+  const { state, loginSignup, removeErrors } = useContext(AuthContext);
 
   const handleSignup = async ({ email, password, username }) => {
-    await signup({ email, password, username });
+    await loginSignup({ email, password, username });
     if (state.token) {
       navigation.navigate('User');
     }
