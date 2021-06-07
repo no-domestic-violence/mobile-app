@@ -1,38 +1,16 @@
-import {
-  ADD_CONTACT,
-  EDIT_CONTACT,
-  DELETE_CONTACT,
-  GET_CONTACTS,
-  ERROR,
-} from './sos.types';
+import { createReducer, updateState, handleErrorMessage } from 'helpers/index';
+import types from './sos.types';
 
-// function createReducer(stateKey, types) {
-//   return function reducer(state, { type, payload }) {
-//     return type ? { ...state, [stateKey]: payload } : state;
-//   };
-// }
+const handleContacts = updateState('contacts');
 
-// TODO: how to make this reusable? split error reducer?
-function createSosReducer(types) {
-  return function reducer(state, { type, payload }) {
-    if (type !== ERROR) {
-      return { ...state, contacts: payload };
-    }
-    if (type === ERROR) {
-      return { ...state, errorMessage: payload };
-    }
-    return {
-      state,
-    };
-  };
-}
+const sosHandlers = {
+  [types.ADD_CONTACT]: handleContacts,
+  [types.EDIT_CONTACT]: handleContacts,
+  [types.DELETE_CONTACT]: handleContacts,
+  [types.GET_CONTACTS]: handleContacts,
+  [types.ERROR]: handleErrorMessage
+};
+const sosReducer = createReducer(sosHandlers);
 
-const sosReducer = createSosReducer({
-  ADD_CONTACT,
-  EDIT_CONTACT,
-  DELETE_CONTACT,
-  GET_CONTACTS,
-  ERROR,
-});
 
 export default sosReducer;

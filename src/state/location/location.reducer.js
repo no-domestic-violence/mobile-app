@@ -1,22 +1,10 @@
 import types from './location.types';
-import { createReducer } from '../../helpers';
-
-const getCurrentLocationCase = (state, { payload }) => {
-  return { ...state, currentLocation: payload };
-};
-
-const fetchSheltersCase = (state, { payload }) => {
-  return { ...state, sheltersList: payload };
-};
-
-const searchHotlineCase = (state, { payload }) => {
-  return { ...state, hotlinesData: payload };
-};
+import { createReducer, updateState } from '../../helpers';
 
 const locationReducer = createReducer({
-  [types.UPDATE_LOCATION]: getCurrentLocationCase,
-  [types.FETCH_SHELTERS]: fetchSheltersCase,
-  [types.SEARCH_HOTLINES]: searchHotlineCase,
+  [types.UPDATE_LOCATION]: updateState('currentLocation'),
+  [types.FETCH_SHELTERS]: updateState('sheltersList'),
+  [types.SEARCH_HOTLINES]: updateState('hotlinesData'),
 });
 
 export default locationReducer;

@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: ['error', { 'allow': ['_id'] }] */
 import appApiClient from 'api/';
 import { getUserSecureStorage } from 'helpers';
-import * as types from './sos.types';
+import types from './sos.types';
 
 const getContacts = (dispatch) => async () => {
   try {

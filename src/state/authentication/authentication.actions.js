@@ -10,7 +10,7 @@ import types from './authentication.types';
 const authenticationError = (error) => {
   return {
     type: types.AUTH_ERROR,
-    payload: error.message,
+    payload: error.response.data.message,
   };
 };
 

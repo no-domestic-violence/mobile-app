@@ -30,6 +30,7 @@ export default function TermsAndConditionsScreen({ navigation }) {
       <SVG style={{ position: 'absolute' }} />
       <Text style={styles.title}>{t('TermsAndConditions.title')}</Text>
       <ScrollView
+        testID='terms-conditions-scroll-view'
         scrollEventThrottle={16}
         style={styles.tcContainer}
         onScroll={({ nativeEvent }) => {

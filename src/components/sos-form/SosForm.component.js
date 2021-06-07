@@ -15,7 +15,7 @@ import { Keyboard, Platform, View } from 'react-native';
 import { styles } from './index';
 
 const SosForm = ({ onRemove, onSubmit, goBack, isAddMode }) => {
-  const { control, errors } = useFormContext();
+  const { errors } = useFormContext();
   const nameInputRef = useRef();
   const phoneInputRef = useRef();
   const messageInputRef = useRef();
@@ -37,7 +37,6 @@ const SosForm = ({ onRemove, onSubmit, goBack, isAddMode }) => {
         />
         <ControlledTextInput
           name='name'
-          control={control}
           onSubmitEditing={isPhoneFocused}
           returnKeyType='next'
           inputRef={nameInputRef}
@@ -50,7 +49,6 @@ const SosForm = ({ onRemove, onSubmit, goBack, isAddMode }) => {
         <ControlledTextInput
           name='phone'
           placeholder='Phone Number'
-          control={control}
           onSubmitEditing={isMessageFocused}
           returnKeyType={Platform.OS === 'ios' ? 'done' : 'next'}
           keyboardType='numeric'
@@ -62,7 +60,6 @@ const SosForm = ({ onRemove, onSubmit, goBack, isAddMode }) => {
         />
         <ControlledTextInput
           name='message'
-          control={control}
           placeholder='Help Message'
           inputRef={messageInputRef}
           returnKeyType='done'

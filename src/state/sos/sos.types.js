@@ -1,5 +1,9 @@
-export const ADD_CONTACT = 'ADD_CONTACT';
-export const EDIT_CONTACT = 'EDIT_CONTACT';
-export const DELETE_CONTACT = 'DELETE_CONTACT';
-export const GET_CONTACTS = 'GET_CONTACTS';
-export const ERROR = 'ERROR';
+const types = {
+  ADD_CONTACT: 'ADD_CONTACT',
+  EDIT_CONTACT: 'EDIT_CONTACT',
+  DELETE_CONTACT: 'DELETE_CONTACT',
+  GET_CONTACTS: 'GET_CONTACTS',
+  ERROR: 'ERROR',
+};
+
+export default types;
