@@ -306,8 +306,8 @@ describe('Request interceptor', () => {
         headers: {},
       }
     );
-    expect(result.headers).toHaveProperty('auth-token');
-    expect(result.headers['auth-token']).toBe('faketoken');
+    expect(result.headers).toHaveProperty('authorization');
+    expect(result.headers['authorization']).toBe('Bearer faketoken');
     expect(helpers.getTokenSecureStorage.mock.calls.length).toBe(1);
   });
 });

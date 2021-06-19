@@ -11,7 +11,7 @@ apiInstance.interceptors.request.use(
   async (config) => {
     const token = await getTokenSecureStorage();
     if (token) {
-      config.headers['auth-token'] = token;
+      config.headers.authorization = `Bearer ${token}`;
     }
     return config;
   },
