@@ -48,8 +48,8 @@ const loginSignup = (dispatch) => async ({ email, password, username }) => {
     const data = username
       ? await signupRequest(email, password, username)
       : await loginRequest(email, password);
-    const { token, user } = data;
-    await setUserSecureStorage(token, user.username);
+    const { token, refreshToken, user } = data;
+    await setUserSecureStorage(token, user.username, refreshToken);
     dispatch(signupLoginSuccess(data));
   } catch (error) {
     dispatch(authenticationError(error));
