@@ -27,7 +27,6 @@ const ControlledTextInput = ({
   onSubmitEditing,
   errors,
   errorStyle,
-  inputRef,
   formType,
   watchPassword,
   ...props
@@ -38,9 +37,6 @@ const ControlledTextInput = ({
         name={name}
         defaultValue={defaultValue || ''}
         control={control}
-        onFocus={() => {
-          inputRef.current.focus();
-        }}
         render={({ onChange, value }) => (
           <Input
             onChangeText={onChange}

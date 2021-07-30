@@ -14,18 +14,27 @@ Array [
   >
     <View
       style={
-        Object {
-          "backgroundColor": "#fff",
-          "borderRadius": 41,
-          "overflow": "visible",
-          "shadowColor": "rgba(0,0,0, .4)",
-          "shadowOffset": Object {
-            "height": 1,
-            "width": 1,
+        Array [
+          Object {
+            "borderRadius": 3,
+            "overflow": "hidden",
           },
-          "shadowOpacity": 1,
-          "shadowRadius": 1,
-        }
+          Object {
+            "borderRadius": 3,
+          },
+          undefined,
+          Object {
+            "backgroundColor": "#fff",
+            "overflow": "visible",
+            "shadowColor": "rgba(0,0,0, .4)",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 1,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 1,
+          },
+        ]
       }
     >
       <View
@@ -85,18 +94,27 @@ Array [
     </View>
     <View
       style={
-        Object {
-          "backgroundColor": "#fff",
-          "borderRadius": 41,
-          "overflow": "visible",
-          "shadowColor": "rgba(0,0,0, .4)",
-          "shadowOffset": Object {
-            "height": 1,
-            "width": 1,
+        Array [
+          Object {
+            "borderRadius": 3,
+            "overflow": "hidden",
           },
-          "shadowOpacity": 1,
-          "shadowRadius": 1,
-        }
+          Object {
+            "borderRadius": 3,
+          },
+          undefined,
+          Object {
+            "backgroundColor": "#fff",
+            "overflow": "visible",
+            "shadowColor": "rgba(0,0,0, .4)",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 1,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 1,
+          },
+        ]
       }
     >
       <View

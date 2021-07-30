@@ -99,6 +99,11 @@ Array [
           autoCorrect={false}
           blurOnSubmit={false}
           editable={true}
+          inputRef={
+            Object {
+              "current": undefined,
+            }
+          }
           onChangeText={[Function]}
           placeholder="Name"
           placeholderTextColor="#6c757d"
@@ -106,7 +111,6 @@ Array [
           returnKeyType="next"
           style={
             Object {
-              "alignSelf": "center",
               "color": "#242424",
               "flex": 1,
               "fontSize": 18,
@@ -205,6 +209,11 @@ Array [
           autoCorrect={false}
           blurOnSubmit={false}
           editable={true}
+          inputRef={
+            Object {
+              "current": undefined,
+            }
+          }
           keyboardType="numeric"
           onChangeText={[Function]}
           placeholder="Phone Number"
@@ -213,7 +222,6 @@ Array [
           returnKeyType="done"
           style={
             Object {
-              "alignSelf": "center",
               "color": "#242424",
               "flex": 1,
               "fontSize": 18,
@@ -312,6 +320,11 @@ Array [
           autoCorrect={false}
           blurOnSubmit={false}
           editable={true}
+          inputRef={
+            Object {
+              "current": undefined,
+            }
+          }
           onChangeText={[Function]}
           onSubmitEditing={[Function]}
           placeholder="Help Message"
@@ -320,7 +333,6 @@ Array [
           returnKeyType="done"
           style={
             Object {
-              "alignSelf": "center",
               "color": "#242424",
               "flex": 1,
               "fontSize": 18,

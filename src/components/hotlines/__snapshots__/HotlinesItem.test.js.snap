@@ -124,6 +124,8 @@ Array [
     style={
       Object {
         "backgroundColor": "#cadeee",
+        "borderBottomColor": "#bcbbc1",
+        "borderBottomWidth": 0.5,
         "height": 20,
       }
     }
