@@ -84,6 +84,11 @@ exports[`Sign Up screen should match snapshot 1`] = `
           autoCorrect={false}
           blurOnSubmit={false}
           editable={true}
+          inputRef={
+            Object {
+              "current": undefined,
+            }
+          }
           onChangeText={[Function]}
           placeholder="Username"
           placeholderTextColor="#6c757d"
@@ -91,7 +96,6 @@ exports[`Sign Up screen should match snapshot 1`] = `
           returnKeyType="next"
           style={
             Object {
-              "alignSelf": "center",
               "backgroundColor": "#fff",
               "borderRadius": 5,
               "color": "#000",
@@ -163,6 +167,11 @@ exports[`Sign Up screen should match snapshot 1`] = `
           autoCorrect={false}
           blurOnSubmit={false}
           editable={true}
+          inputRef={
+            Object {
+              "current": undefined,
+            }
+          }
           onChangeText={[Function]}
           placeholder="Email"
           placeholderTextColor="#6c757d"
@@ -170,7 +179,6 @@ exports[`Sign Up screen should match snapshot 1`] = `
           returnKeyType="next"
           style={
             Object {
-              "alignSelf": "center",
               "backgroundColor": "#fff",
               "borderRadius": 5,
               "color": "#000",
@@ -242,6 +250,11 @@ exports[`Sign Up screen should match snapshot 1`] = `
           autoCorrect={false}
           blurOnSubmit={false}
           editable={true}
+          inputRef={
+            Object {
+              "current": undefined,
+            }
+          }
           isInputFocused={[Function]}
           onChangeText={[Function]}
           placeholder="Password"
@@ -251,7 +264,6 @@ exports[`Sign Up screen should match snapshot 1`] = `
           secureTextEntry={true}
           style={
             Object {
-              "alignSelf": "center",
               "backgroundColor": "#fff",
               "borderRadius": 5,
               "color": "#000",
@@ -293,6 +305,53 @@ exports[`Sign Up screen should match snapshot 1`] = `
     >
        
     </Text>
+    <View
+      animated={true}
+      animationConfig={
+        Object {
+          "bounciness": 0,
+        }
+      }
+      animationType="spring"
+      indeterminate={false}
+      indeterminateAnimationDuration={1000}
+      onLayout={[Function]}
+      progress={0}
+      style={
+        Array [
+          Object {
+            "backgroundColor": undefined,
+            "borderColor": "rgba(0, 122, 255, 1)",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "overflow": "hidden",
+            "width": 400,
+          },
+          undefined,
+        ]
+      }
+      useNativeDriver={false}
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "rgba(0, 122, 255, 1)",
+            "height": 6,
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+              Object {
+                "translateX": -199,
+              },
+              Object {
+                "scaleX": 0.0001,
+              },
+            ],
+          }
+        }
+      />
+    </View>
     <View
       accessible={true}
       focusable={true}
