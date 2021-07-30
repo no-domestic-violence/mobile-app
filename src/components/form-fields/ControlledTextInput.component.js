@@ -43,7 +43,6 @@ const ControlledTextInput = ({
             returnKeyType={returnKeyType || 'next'}
             onSubmitEditing={onSubmitEditing}
             value={value}
-            ref={inputRef}
             {...props}
             {...initialTextInputProps}
           />
