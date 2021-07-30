@@ -9,7 +9,7 @@ const initialAuthState = {
 const loginSignupSuccessCase = (state, { payload }) => {
   return {
     ...state,
-    token: payload.token,
+    token: payload.accessToken,
     username: payload.user.username,
     errorMessage: '',
   };
@@ -20,7 +20,7 @@ const changePasswordSuccessCase = updateState('successMessage');
 const authSuccessCase = (state, { payload }) => {
   return {
     ...state,
-    token: payload.token,
+    token: payload.accessToken,
     username: payload.username,
   };
 };
