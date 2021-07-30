@@ -2,6 +2,8 @@ import React from 'react';
 import { Controller } from 'react-hook-form';
 import { Input } from 'react-native-elements';
 import styled from 'styled-components/native';
+import { Bar } from 'react-native-progress';
+import zxcvbn from 'zxcvbn';
 
 const ErrorText = styled.Text`
   color: red;
@@ -26,6 +28,8 @@ const ControlledTextInput = ({
   errors,
   errorStyle,
   inputRef,
+  formType,
+  watchPassword,
   ...props
 }) => {
   return (
@@ -51,6 +55,16 @@ const ControlledTextInput = ({
       <ErrorText errorstyle={errorStyle}>
         {errors[name] ? errors[name].message : ' '}
       </ErrorText>
+      {formType === 'sign up' && name === 'password' ? (
+        <Bar
+          progress={
+            watchPassword && watchPassword.length > 0
+              ? zxcvbn(watchPassword).score / 4
+              : 0
+          }
+          width={400}
+        />
+      ) : null}
     </>
   );
 };

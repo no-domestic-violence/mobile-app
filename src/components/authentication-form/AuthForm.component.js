@@ -6,7 +6,6 @@ import { Text, Keyboard } from 'react-native';
 import { StyledButton, StyledButtonText } from 'styles/shared/';
 import { ControlledTextInput } from 'components/form-fields';
 import { AuthSchema, styles } from './index';
-
 const AuthForm = ({
   formType,
   headerForm,
@@ -14,7 +13,7 @@ const AuthForm = ({
   buttonText,
   ...props
 }) => {
-  const { control, handleSubmit, errors } = useForm({
+  const { control, handleSubmit, errors, watch } = useForm({
     resolver: yupResolver(AuthSchema(formType)),
   });
 
@@ -28,7 +27,7 @@ const AuthForm = ({
     passwordInputRef.current && passwordInputRef.current.focus();
   const isNewPasswordFocused =
     newPasswordInputRef.current && newPasswordInputRef.current.focus();
-
+  const watchPassword = watch("password");
   return (
     <FormProvider>
       <Text testID='form-header' style={styles.header}>
@@ -79,6 +78,8 @@ const AuthForm = ({
         secureTextEntry
         style={styles.input}
         errors={errors}
+        watchPassword={watchPassword}
+        formType={formType === 'sign up' && 'sign up'}
       />
       <StyledButton {...props} onPress={handleSubmit(onSubmitForm)}>
         <StyledButtonText>{buttonText.toUpperCase()}</StyledButtonText>
