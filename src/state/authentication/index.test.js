@@ -34,14 +34,18 @@ describe('authReducer', () => {
   });
 
   it('should handle the LOGIN_SIGNUP_SUCCESS action', () => {
-    const token = 'TestToken';
+    const accessToken = 'TestToken';
+    const refreshToken = 'testRefreshToken';
     const user = {
       username: 'TestUsername',
     };
-    const action = { type: ' LOGIN_SIGNUP_SUCCESS', payload: { token, user } };
+    const action = {
+      type: ' LOGIN_SIGNUP_SUCCESS',
+      payload: { accessToken, refreshToken, user },
+    };
     const expectedState = {
       ...initialState,
-      token,
+      token: accessToken,
       username: user.username,
       errorMessage: '',
     };
@@ -57,10 +61,10 @@ describe('authReducer', () => {
     expect(authReducer(initialState, action)).toEqual(expectedState);
   });
   it('should handle the AUTH_SUCCESS action', () => {
-    const token = 'TestToken';
+    const accessToken = 'TestToken';
     const username = 'TestUsername';
-    const action = { type: 'AUTH_SUCCESS', payload: { token, username } };
-    const expectedState = { ...initialState, token, username };
+    const action = { type: 'AUTH_SUCCESS', payload: { accessToken, username } };
+    const expectedState = { ...initialState, token: accessToken, username };
 
     expect(authReducer(initialState, action)).toEqual(expectedState);
   });
@@ -121,9 +125,7 @@ describe('authentication actions', () => {
       .onPost('/signup', { email, password, username })
       .reply(201, response);
     appApiClient.signupUser(email, password, username);
-    mockAppClient
-    .onPost('/login', { email, password })
-    .reply(201, response);
+    mockAppClient.onPost('/login', { email, password }).reply(201, response);
     const expectedAction = {
       type: types.LOGIN_SIGNUP_SUCCESS,
       payload: response,
@@ -146,7 +148,7 @@ describe('authentication actions', () => {
     await loginSignup(dispatch)({ email, password });
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
-  
+
   it('should create an action to change user password', async () => {
     const oldPassword = '87654321';
     const response = {
