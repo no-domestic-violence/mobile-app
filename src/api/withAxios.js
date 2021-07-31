@@ -31,13 +31,14 @@ const WithAxios = ({ children }) => {
         const refreshToken = await getRefreshTokenSecureStorage();
         // logout user if refresh token did not work (expired)
         if (originalRequest.url === '/refreshToken') {
-            signout();
-            return appApiClient.logoutUser(refreshToken);
+          signout();
+          return appApiClient.logoutUser(refreshToken);
         }
         // try request with new access token when access token expired
         if (
           refreshToken &&
-          error.response.status === 403 &&
+          error.response.status === 401 &&
+          error.response.data.message === 'Invalid token' &&
           !originalRequest._retry
         ) {
           originalRequest._retry = true;
