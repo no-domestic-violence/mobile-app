@@ -22,6 +22,10 @@ const loginUser = (email, password) => {
   return apiInstance.post('/login', { email, password });
 };
 
+const logoutUser = (refreshToken) => {
+  return apiInstance.post('/logout', {refreshToken})
+}
+
 const signupUser = (email, password, username) => {
   return apiInstance.post('/signup', { email, password, username });
 };
@@ -68,6 +72,7 @@ const appApiClient = {
   getSheltersData,
   getArticlesData,
   getArticleById,
+  logoutUser
 };
 
 export default appApiClient;

@@ -48,8 +48,8 @@ const loginSignup = (dispatch) => async ({ email, password, username }) => {
     const data = username
       ? await signupRequest(email, password, username)
       : await loginRequest(email, password);
-    const { token, user } = data;
-    await setUserSecureStorage(token, user.username);
+    const { accessToken, refreshToken, user } = data;
+    await setUserSecureStorage(accessToken, user.username, refreshToken);
     dispatch(signupLoginSuccess(data));
   } catch (error) {
     dispatch(authenticationError(error));
@@ -91,6 +91,7 @@ const changePassword = (dispatch) => async ({
 
 const signout = (dispatch) => async () => {
   await SecureStore.deleteItemAsync('token');
+  await SecureStore.deleteItemAsync('refreshToken');
   dispatch({ type: types.LOGOUT });
 };
 

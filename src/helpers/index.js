@@ -1,12 +1,14 @@
 import * as SecureStore from 'expo-secure-store';
 
-const setUserSecureStorage = async (token, username) => {
-  await SecureStore.setItemAsync('token', token);
+const setUserSecureStorage = async (accessToken, username, refreshToken) => {
+  await SecureStore.setItemAsync('token', accessToken);
+  await SecureStore.setItemAsync('refreshToken', refreshToken);
   await SecureStore.setItemAsync('username', username);
 };
 
 const deleteUserSecureStorage = async () => {
   await SecureStore.deleteItemAsync('token');
+  await SecureStore.deleteItemAsync('refreshToken');
   await SecureStore.deleteItemAsync('username');
   await SecureStore.deleteItemAsync('alreadyLaunched');
 };
@@ -20,6 +22,10 @@ const getUserSecureStorage = async () => {
 const getTokenSecureStorage = async () => {
   return SecureStore.getItemAsync('token');
 };
+
+const getRefreshTokenSecureStorage = async () => {
+  return SecureStore.getItemAsync('refreshToken');
+}
 
 const createReducer = (handlers) => {
   return (state, action) => {
@@ -46,5 +52,6 @@ export {
   getTokenSecureStorage,
   createReducer,
   updateState,
-  handleErrorMessage
+  handleErrorMessage,
+  getRefreshTokenSecureStorage 
 };

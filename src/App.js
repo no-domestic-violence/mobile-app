@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import WithAxios from 'api/withAxios';
 import {
   AuthProvider,
   LocationProvider,
@@ -24,9 +25,11 @@ const App = () => {
       <LocationProvider>
         <AuthProvider>
           <SosProvider>
+            <WithAxios>
             <View style={styles.container}>
               <AppNavigation />
-            </View>
+              </View>
+              </WithAxios>
           </SosProvider>
         </AuthProvider>
       </LocationProvider>
