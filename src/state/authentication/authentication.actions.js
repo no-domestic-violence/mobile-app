@@ -6,6 +6,7 @@ import {
   getUserSecureStorage,
 } from '../../helpers';
 import types from './authentication.types';
+import * as Device from 'expo-device';
 
 const authenticationError = (error) => {
   return {
@@ -45,12 +46,15 @@ const loginRequest = async (email, password) => {
 
 const loginSignup = (dispatch) => async ({ email, password, username }) => {
   try {
-    const data = username
-      ? await signupRequest(email, password, username)
-      : await loginRequest(email, password);
-    const { accessToken, refreshToken, user } = data;
-    await setUserSecureStorage(accessToken, user.username, refreshToken);
-    dispatch(signupLoginSuccess(data));
+    const isRooted = await Device.isRootedExperimentalAsync();
+    if (!isRooted) {
+      const data = username
+        ? await signupRequest(email, password, username)
+        : await loginRequest(email, password);
+      const { accessToken, refreshToken, user } = data;
+      await setUserSecureStorage(accessToken, user.username, refreshToken);
+      dispatch(signupLoginSuccess(data));
+    }
   } catch (error) {
     dispatch(authenticationError(error));
   }
