@@ -103,7 +103,6 @@ exports[`Hotlines screen should match snapshot 1`] = `
           rejectResponderTermination={true}
           style={
             Object {
-              "alignSelf": "center",
               "backgroundColor": "#cadeee",
               "color": "#86939e",
               "flex": 1,
@@ -155,6 +154,8 @@ exports[`Hotlines screen should match snapshot 1`] = `
     style={
       Object {
         "backgroundColor": "#cadeee",
+        "borderBottomColor": "#bcbbc1",
+        "borderBottomWidth": 0.5,
         "height": 10,
       }
     }

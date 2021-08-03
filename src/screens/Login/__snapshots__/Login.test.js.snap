@@ -84,6 +84,11 @@ exports[`Login screen should match snapshot 1`] = `
           autoCorrect={false}
           blurOnSubmit={false}
           editable={true}
+          inputRef={
+            Object {
+              "current": undefined,
+            }
+          }
           onChangeText={[Function]}
           placeholder="Email"
           placeholderTextColor="#6c757d"
@@ -91,7 +96,6 @@ exports[`Login screen should match snapshot 1`] = `
           returnKeyType="next"
           style={
             Object {
-              "alignSelf": "center",
               "backgroundColor": "#fff",
               "borderRadius": 5,
               "color": "#000",
@@ -163,6 +167,11 @@ exports[`Login screen should match snapshot 1`] = `
           autoCorrect={false}
           blurOnSubmit={false}
           editable={true}
+          inputRef={
+            Object {
+              "current": undefined,
+            }
+          }
           isInputFocused={[Function]}
           onChangeText={[Function]}
           placeholder="Password"
@@ -172,7 +181,6 @@ exports[`Login screen should match snapshot 1`] = `
           secureTextEntry={true}
           style={
             Object {
-              "alignSelf": "center",
               "backgroundColor": "#fff",
               "borderRadius": 5,
               "color": "#000",

@@ -136,6 +136,11 @@ exports[`<CreateContact /> in addMode should match snapshot 1`] = `
             autoCorrect={false}
             blurOnSubmit={false}
             editable={true}
+            inputRef={
+              Object {
+                "current": undefined,
+              }
+            }
             onChangeText={[Function]}
             placeholder="Name"
             placeholderTextColor="#6c757d"
@@ -143,7 +148,6 @@ exports[`<CreateContact /> in addMode should match snapshot 1`] = `
             returnKeyType="next"
             style={
               Object {
-                "alignSelf": "center",
                 "color": "#242424",
                 "flex": 1,
                 "fontSize": 18,
@@ -242,6 +246,11 @@ exports[`<CreateContact /> in addMode should match snapshot 1`] = `
             autoCorrect={false}
             blurOnSubmit={false}
             editable={true}
+            inputRef={
+              Object {
+                "current": undefined,
+              }
+            }
             keyboardType="numeric"
             onChangeText={[Function]}
             placeholder="Phone Number"
@@ -250,7 +259,6 @@ exports[`<CreateContact /> in addMode should match snapshot 1`] = `
             returnKeyType="done"
             style={
               Object {
-                "alignSelf": "center",
                 "color": "#242424",
                 "flex": 1,
                 "fontSize": 18,
@@ -349,6 +357,11 @@ exports[`<CreateContact /> in addMode should match snapshot 1`] = `
             autoCorrect={false}
             blurOnSubmit={false}
             editable={true}
+            inputRef={
+              Object {
+                "current": undefined,
+              }
+            }
             onChangeText={[Function]}
             onSubmitEditing={[Function]}
             placeholder="Help Message"
@@ -357,7 +370,6 @@ exports[`<CreateContact /> in addMode should match snapshot 1`] = `
             returnKeyType="done"
             style={
               Object {
-                "alignSelf": "center",
                 "color": "#242424",
                 "flex": 1,
                 "fontSize": 18,
@@ -578,6 +590,11 @@ exports[`<CreateContact /> in editMode should match snapshot 1`] = `
             autoCorrect={false}
             blurOnSubmit={false}
             editable={true}
+            inputRef={
+              Object {
+                "current": undefined,
+              }
+            }
             onChangeText={[Function]}
             placeholder="Name"
             placeholderTextColor="#6c757d"
@@ -585,7 +602,6 @@ exports[`<CreateContact /> in editMode should match snapshot 1`] = `
             returnKeyType="next"
             style={
               Object {
-                "alignSelf": "center",
                 "color": "#242424",
                 "flex": 1,
                 "fontSize": 18,
@@ -684,6 +700,11 @@ exports[`<CreateContact /> in editMode should match snapshot 1`] = `
             autoCorrect={false}
             blurOnSubmit={false}
             editable={true}
+            inputRef={
+              Object {
+                "current": undefined,
+              }
+            }
             keyboardType="numeric"
             onChangeText={[Function]}
             placeholder="Phone Number"
@@ -692,7 +713,6 @@ exports[`<CreateContact /> in editMode should match snapshot 1`] = `
             returnKeyType="done"
             style={
               Object {
-                "alignSelf": "center",
                 "color": "#242424",
                 "flex": 1,
                 "fontSize": 18,
@@ -791,6 +811,11 @@ exports[`<CreateContact /> in editMode should match snapshot 1`] = `
             autoCorrect={false}
             blurOnSubmit={false}
             editable={true}
+            inputRef={
+              Object {
+                "current": undefined,
+              }
+            }
             onChangeText={[Function]}
             onSubmitEditing={[Function]}
             placeholder="Help Message"
@@ -799,7 +824,6 @@ exports[`<CreateContact /> in editMode should match snapshot 1`] = `
             returnKeyType="done"
             style={
               Object {
-                "alignSelf": "center",
                 "color": "#242424",
                 "flex": 1,
                 "fontSize": 18,

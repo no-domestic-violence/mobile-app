@@ -117,20 +117,30 @@ exports[`<ChangeLang /> matches snapshot 1`] = `
     <View>
       <View
         style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#fff",
-            "borderRadius": 50,
-            "margin": 20,
-            "overflow": "visible",
-            "shadowColor": "rgba(0,0,0, .4)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
+          Array [
+            Object {
+              "borderRadius": 3,
+              "overflow": "hidden",
             },
-            "shadowOpacity": 1,
-            "shadowRadius": 1,
-          }
+            Object {
+              "borderRadius": 3,
+            },
+            Object {
+              "alignItems": "center",
+              "margin": 20,
+            },
+            Object {
+              "backgroundColor": "#fff",
+              "overflow": "visible",
+              "shadowColor": "rgba(0,0,0, .4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 1,
+            },
+          ]
         }
       >
         <View
@@ -189,20 +199,30 @@ exports[`<ChangeLang /> matches snapshot 1`] = `
       </View>
       <View
         style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#fff",
-            "borderRadius": 50,
-            "margin": 20,
-            "overflow": "visible",
-            "shadowColor": "rgba(0,0,0, .4)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
+          Array [
+            Object {
+              "borderRadius": 3,
+              "overflow": "hidden",
             },
-            "shadowOpacity": 1,
-            "shadowRadius": 1,
-          }
+            Object {
+              "borderRadius": 3,
+            },
+            Object {
+              "alignItems": "center",
+              "margin": 20,
+            },
+            Object {
+              "backgroundColor": "#fff",
+              "overflow": "visible",
+              "shadowColor": "rgba(0,0,0, .4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 1,
+            },
+          ]
         }
       >
         <View
