@@ -2,7 +2,7 @@
 let baseURL;
 
 if (__DEV__) {
-  baseURL = 'http://localhost:3001/api';
+  baseURL = 'http://localhost:80/api';
 } else {
   baseURL = 'https://pool-api-mobile.herokuapp.com/api';
 }
